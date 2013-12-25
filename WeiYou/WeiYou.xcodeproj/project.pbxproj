@@ -1,0 +1,838 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5E21AE5C186829E600316EA6 /* location.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E21AE5B186829E600316EA6 /* location.plist */; };
+		5E21AE5F1868321C00316EA6 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E21AE5D1868321C00316EA6 /* star.png */; };
+		5E21AE601868321C00316EA6 /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E21AE5E1868321C00316EA6 /* star@2x.png */; };
+		5E49CED11862863C006F6B54 /* WYTrafficController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E49CED01862863C006F6B54 /* WYTrafficController.m */; };
+		5E49CED41862865F006F6B54 /* WYSpotController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E49CED31862865F006F6B54 /* WYSpotController.m */; };
+		5E49CED71862866E006F6B54 /* WYHotelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E49CED61862866E006F6B54 /* WYHotelController.m */; };
+		5E49CEDD18629B36006F6B54 /* WYMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E49CEDC18629B36006F6B54 /* WYMapViewController.m */; };
+		5E4A8C9B185FFDC70062934F /* tamp1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E4A8C97185FFDC70062934F /* tamp1.png */; };
+		5E4A8C9C185FFDC70062934F /* tamp1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E4A8C98185FFDC70062934F /* tamp1@2x.png */; };
+		5E4A8C9D185FFDC70062934F /* tamp2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E4A8C99185FFDC70062934F /* tamp2.png */; };
+		5E4A8C9E185FFDC70062934F /* tamp2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E4A8C9A185FFDC70062934F /* tamp2@2x.png */; };
+		5E4A8CA1186000730062934F /* WYTripCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A8CA0186000730062934F /* WYTripCell.m */; };
+		5E4A8CAA18604D040062934F /* WYMBookedHotel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A8CA918604D040062934F /* WYMBookedHotel.m */; };
+		5E4A8CAD186056B90062934F /* WYMRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A8CAC186056B90062934F /* WYMRoom.m */; };
+		5E4A8CB018605B600062934F /* WYMBookedRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A8CAF18605B600062934F /* WYMBookedRoom.m */; };
+		5E5664FE1869875900460331 /* WYAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5664FD1869875900460331 /* WYAnnotationView.m */; };
+		5E5AE6191856BB6B007DB9CC /* WYTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5AE6181856BB6B007DB9CC /* WYTableFooterView.m */; };
+		5E5AE61B1856ED4A007DB9CC /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5AE61A1856ED4A007DB9CC /* arrow.png */; };
+		5E5BC23A183EE5D80003AC6D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BC230183EE5D80003AC6D /* InfoPlist.strings */; };
+		5E5BC23B183EE5D80003AC6D /* detail_icon_email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BC233183EE5D80003AC6D /* detail_icon_email@2x.png */; };
+		5E5BC23D183EE5D80003AC6D /* mark_reminder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BC235183EE5D80003AC6D /* mark_reminder@2x.png */; };
+		5E5BC23E183EE5D80003AC6D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BC236183EE5D80003AC6D /* Images.xcassets */; };
+		5E5BC23F183EE5D80003AC6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC237183EE5D80003AC6D /* main.m */; };
+		5E5BC258183EE5E90003AC6D /* WYCoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC24B183EE5E90003AC6D /* WYCoverTableViewCell.m */; };
+		5E5BC261183EE6770003AC6D /* WYRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC25B183EE6770003AC6D /* WYRootViewController.m */; };
+		5E5BC262183EE6770003AC6D /* WYSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC25E183EE6770003AC6D /* WYSettingsViewController.m */; };
+		5E5BC263183EE6770003AC6D /* WYUserGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC260183EE6770003AC6D /* WYUserGuideViewController.m */; };
+		5E5BC2EA183EEA3B0003AC6D /* WYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC2E9183EEA3B0003AC6D /* WYAppDelegate.m */; };
+		5E5BC2ED183EF2EC0003AC6D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5BC2EB183EF2EC0003AC6D /* libsqlite3.0.dylib */; };
+		5E5BC2EE183EF2EC0003AC6D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5BC2EC183EF2EC0003AC6D /* libsqlite3.dylib */; };
+		5E5BC2F1183EF5430003AC6D /* WYFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC2F0183EF5430003AC6D /* WYFileManager.m */; };
+		5E5BC2F6183F3DB80003AC6D /* WYDataEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC2F5183F3DB80003AC6D /* WYDataEngine.m */; };
+		5E5D6761186144FF00ECA966 /* WYTripDayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5D6760186144FF00ECA966 /* WYTripDayController.m */; };
+		5E5D67641861451600ECA966 /* WYTripDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5D67631861451600ECA966 /* WYTripDayCell.m */; };
+		5E5D67681861766700ECA966 /* WYTripDayTrafficCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5D67671861766700ECA966 /* WYTripDayTrafficCell.m */; };
+		5E5D676B186176A100ECA966 /* WYTripDaySpotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5D676A186176A000ECA966 /* WYTripDaySpotCell.m */; };
+		5E5D676E186176B000ECA966 /* WYTripDayHotelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5D676D186176B000ECA966 /* WYTripDayHotelCell.m */; };
+		5E6D037E1839F68C006A0E93 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6D037D1839F68C006A0E93 /* Foundation.framework */; };
+		5E6D03801839F68C006A0E93 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6D037F1839F68C006A0E93 /* CoreGraphics.framework */; };
+		5E6D03821839F68C006A0E93 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6D03811839F68C006A0E93 /* UIKit.framework */; };
+		5E6D03971839F68C006A0E93 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6D03961839F68C006A0E93 /* XCTest.framework */; };
+		5E6D03981839F68C006A0E93 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6D037D1839F68C006A0E93 /* Foundation.framework */; };
+		5E6D03991839F68C006A0E93 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6D03811839F68C006A0E93 /* UIKit.framework */; };
+		5E6D03A11839F68C006A0E93 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E6D039F1839F68C006A0E93 /* InfoPlist.strings */; };
+		5E6D03A31839F68C006A0E93 /* WeiYouTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D03A21839F68C006A0E93 /* WeiYouTests.m */; };
+		5E6EBC3918596919004E7EB6 /* WYCreateNewStepTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6EBC3818596919004E7EB6 /* WYCreateNewStepTwoViewController.m */; };
+		5E6EBC3F1859B408004E7EB6 /* WYPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6EBC3E1859B408004E7EB6 /* WYPickerView.m */; };
+		5EBCF732185E95D80057C1AE /* WYTripController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF731185E95D80057C1AE /* WYTripController.m */; };
+		5EBCF73F185EAE290057C1AE /* WYMTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF73E185EAE290057C1AE /* WYMTrip.m */; };
+		5EBCF742185EAE550057C1AE /* WYMTripDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF741185EAE550057C1AE /* WYMTripDay.m */; };
+		5EBCF745185EAEDC0057C1AE /* WYMCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF744185EAEDC0057C1AE /* WYMCity.m */; };
+		5EBCF748185EE7630057C1AE /* WYMContinent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF747185EE7630057C1AE /* WYMContinent.m */; };
+		5EBCF75A185EFF2A0057C1AE /* WYMCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF759185EFF2A0057C1AE /* WYMCountry.m */; };
+		5EBCF75D185EFFBC0057C1AE /* WYMHotel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF75C185EFFBC0057C1AE /* WYMHotel.m */; };
+		5EBCF760185EFFC80057C1AE /* WYMTraffic.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF75F185EFFC80057C1AE /* WYMTraffic.m */; };
+		5EBCF763185EFFD30057C1AE /* WYMSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF762185EFFD30057C1AE /* WYMSpot.m */; };
+		5EBCF765185F016B0057C1AE /* trips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EBCF764185F016B0057C1AE /* trips.plist */; };
+		5EFE0EDF184F0519004F8859 /* WYCreateNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFE0EDE184F0519004F8859 /* WYCreateNewViewController.m */; };
+		5EFE0EE5184F21E3004F8859 /* WYCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFE0EE4184F21E3004F8859 /* WYCityCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5E6D039A1839F68C006A0E93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E6D03721839F68C006A0E93 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E6D03791839F68C006A0E93;
+			remoteInfo = WeiYou;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5E21AE5B186829E600316EA6 /* location.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = location.plist; sourceTree = "<group>"; };
+		5E21AE5D1868321C00316EA6 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		5E21AE5E1868321C00316EA6 /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star@2x.png"; sourceTree = "<group>"; };
+		5E49CECF1862863C006F6B54 /* WYTrafficController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTrafficController.h; sourceTree = "<group>"; };
+		5E49CED01862863C006F6B54 /* WYTrafficController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTrafficController.m; sourceTree = "<group>"; };
+		5E49CED21862865F006F6B54 /* WYSpotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSpotController.h; sourceTree = "<group>"; };
+		5E49CED31862865F006F6B54 /* WYSpotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSpotController.m; sourceTree = "<group>"; };
+		5E49CED51862866E006F6B54 /* WYHotelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYHotelController.h; sourceTree = "<group>"; };
+		5E49CED61862866E006F6B54 /* WYHotelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYHotelController.m; sourceTree = "<group>"; };
+		5E49CEDB18629B36006F6B54 /* WYMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMapViewController.h; sourceTree = "<group>"; };
+		5E49CEDC18629B36006F6B54 /* WYMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMapViewController.m; sourceTree = "<group>"; };
+		5E4A8C97185FFDC70062934F /* tamp1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tamp1.png; sourceTree = "<group>"; };
+		5E4A8C98185FFDC70062934F /* tamp1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tamp1@2x.png"; sourceTree = "<group>"; };
+		5E4A8C99185FFDC70062934F /* tamp2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tamp2.png; sourceTree = "<group>"; };
+		5E4A8C9A185FFDC70062934F /* tamp2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tamp2@2x.png"; sourceTree = "<group>"; };
+		5E4A8C9F186000730062934F /* WYTripCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTripCell.h; sourceTree = "<group>"; };
+		5E4A8CA0186000730062934F /* WYTripCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTripCell.m; sourceTree = "<group>"; };
+		5E4A8CA818604D040062934F /* WYMBookedHotel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMBookedHotel.h; sourceTree = "<group>"; };
+		5E4A8CA918604D040062934F /* WYMBookedHotel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMBookedHotel.m; sourceTree = "<group>"; };
+		5E4A8CAB186056B90062934F /* WYMRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMRoom.h; sourceTree = "<group>"; };
+		5E4A8CAC186056B90062934F /* WYMRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMRoom.m; sourceTree = "<group>"; };
+		5E4A8CAE18605B600062934F /* WYMBookedRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMBookedRoom.h; sourceTree = "<group>"; };
+		5E4A8CAF18605B600062934F /* WYMBookedRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMBookedRoom.m; sourceTree = "<group>"; };
+		5E5664FC1869875900460331 /* WYAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAnnotationView.h; sourceTree = "<group>"; };
+		5E5664FD1869875900460331 /* WYAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAnnotationView.m; sourceTree = "<group>"; };
+		5E5AE6171856BB6B007DB9CC /* WYTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTableFooterView.h; sourceTree = "<group>"; };
+		5E5AE6181856BB6B007DB9CC /* WYTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTableFooterView.m; sourceTree = "<group>"; };
+		5E5AE61A1856ED4A007DB9CC /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		5E5BC231183EE5D80003AC6D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		5E5BC233183EE5D80003AC6D /* detail_icon_email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_icon_email@2x.png"; sourceTree = "<group>"; };
+		5E5BC235183EE5D80003AC6D /* mark_reminder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mark_reminder@2x.png"; sourceTree = "<group>"; };
+		5E5BC236183EE5D80003AC6D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = WeiYou/Images.xcassets; sourceTree = "<group>"; };
+		5E5BC237183EE5D80003AC6D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = WeiYou/main.m; sourceTree = "<group>"; };
+		5E5BC238183EE5D80003AC6D /* WeiYou-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "WeiYou-Info.plist"; path = "WeiYou/WeiYou-Info.plist"; sourceTree = "<group>"; };
+		5E5BC239183EE5D80003AC6D /* WeiYou-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WeiYou-Prefix.pch"; path = "WeiYou/WeiYou-Prefix.pch"; sourceTree = "<group>"; };
+		5E5BC24A183EE5E90003AC6D /* WYCoverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCoverTableViewCell.h; sourceTree = "<group>"; };
+		5E5BC24B183EE5E90003AC6D /* WYCoverTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCoverTableViewCell.m; sourceTree = "<group>"; };
+		5E5BC251183EE5E90003AC6D /* consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = consts.h; sourceTree = "<group>"; };
+		5E5BC252183EE5E90003AC6D /* WYLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLog.h; sourceTree = "<group>"; };
+		5E5BC25B183EE6770003AC6D /* WYRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRootViewController.m; sourceTree = "<group>"; };
+		5E5BC25C183EE6770003AC6D /* WYRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRootViewController.h; sourceTree = "<group>"; };
+		5E5BC25D183EE6770003AC6D /* WYSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSettingsViewController.h; sourceTree = "<group>"; };
+		5E5BC25E183EE6770003AC6D /* WYSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSettingsViewController.m; sourceTree = "<group>"; };
+		5E5BC25F183EE6770003AC6D /* WYUserGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUserGuideViewController.h; sourceTree = "<group>"; };
+		5E5BC260183EE6770003AC6D /* WYUserGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYUserGuideViewController.m; sourceTree = "<group>"; };
+		5E5BC2E8183EEA3B0003AC6D /* WYAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYAppDelegate.h; path = WeiYou/WYAppDelegate.h; sourceTree = "<group>"; };
+		5E5BC2E9183EEA3B0003AC6D /* WYAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYAppDelegate.m; path = WeiYou/WYAppDelegate.m; sourceTree = "<group>"; };
+		5E5BC2EB183EF2EC0003AC6D /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		5E5BC2EC183EF2EC0003AC6D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		5E5BC2EF183EF5430003AC6D /* WYFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYFileManager.h; sourceTree = "<group>"; };
+		5E5BC2F0183EF5430003AC6D /* WYFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYFileManager.m; sourceTree = "<group>"; };
+		5E5BC2F4183F3DB80003AC6D /* WYDataEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDataEngine.h; sourceTree = "<group>"; };
+		5E5BC2F5183F3DB80003AC6D /* WYDataEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDataEngine.m; sourceTree = "<group>"; };
+		5E5D675F186144FF00ECA966 /* WYTripDayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTripDayController.h; sourceTree = "<group>"; };
+		5E5D6760186144FF00ECA966 /* WYTripDayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTripDayController.m; sourceTree = "<group>"; };
+		5E5D67621861451600ECA966 /* WYTripDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTripDayCell.h; sourceTree = "<group>"; };
+		5E5D67631861451600ECA966 /* WYTripDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTripDayCell.m; sourceTree = "<group>"; };
+		5E5D67661861766700ECA966 /* WYTripDayTrafficCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTripDayTrafficCell.h; sourceTree = "<group>"; };
+		5E5D67671861766700ECA966 /* WYTripDayTrafficCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTripDayTrafficCell.m; sourceTree = "<group>"; };
+		5E5D6769186176A000ECA966 /* WYTripDaySpotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTripDaySpotCell.h; sourceTree = "<group>"; };
+		5E5D676A186176A000ECA966 /* WYTripDaySpotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTripDaySpotCell.m; sourceTree = "<group>"; };
+		5E5D676C186176B000ECA966 /* WYTripDayHotelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTripDayHotelCell.h; sourceTree = "<group>"; };
+		5E5D676D186176B000ECA966 /* WYTripDayHotelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTripDayHotelCell.m; sourceTree = "<group>"; };
+		5E6D037A1839F68C006A0E93 /* WeiYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E6D037D1839F68C006A0E93 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5E6D037F1839F68C006A0E93 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5E6D03811839F68C006A0E93 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		5E6D03951839F68C006A0E93 /* WeiYouTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiYouTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E6D03961839F68C006A0E93 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		5E6D039E1839F68C006A0E93 /* WeiYouTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WeiYouTests-Info.plist"; sourceTree = "<group>"; };
+		5E6D03A01839F68C006A0E93 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5E6D03A21839F68C006A0E93 /* WeiYouTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiYouTests.m; sourceTree = "<group>"; };
+		5E6EBC3718596919004E7EB6 /* WYCreateNewStepTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCreateNewStepTwoViewController.h; sourceTree = "<group>"; };
+		5E6EBC3818596919004E7EB6 /* WYCreateNewStepTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCreateNewStepTwoViewController.m; sourceTree = "<group>"; };
+		5E6EBC3D1859B408004E7EB6 /* WYPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPickerView.h; sourceTree = "<group>"; };
+		5E6EBC3E1859B408004E7EB6 /* WYPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPickerView.m; sourceTree = "<group>"; };
+		5EBCF730185E95D80057C1AE /* WYTripController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTripController.h; sourceTree = "<group>"; };
+		5EBCF731185E95D80057C1AE /* WYTripController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTripController.m; sourceTree = "<group>"; };
+		5EBCF73D185EAE290057C1AE /* WYMTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMTrip.h; sourceTree = "<group>"; };
+		5EBCF73E185EAE290057C1AE /* WYMTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMTrip.m; sourceTree = "<group>"; };
+		5EBCF740185EAE550057C1AE /* WYMTripDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMTripDay.h; sourceTree = "<group>"; };
+		5EBCF741185EAE550057C1AE /* WYMTripDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMTripDay.m; sourceTree = "<group>"; };
+		5EBCF743185EAEDC0057C1AE /* WYMCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMCity.h; sourceTree = "<group>"; };
+		5EBCF744185EAEDC0057C1AE /* WYMCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMCity.m; sourceTree = "<group>"; };
+		5EBCF746185EE7630057C1AE /* WYMContinent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMContinent.h; sourceTree = "<group>"; };
+		5EBCF747185EE7630057C1AE /* WYMContinent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMContinent.m; sourceTree = "<group>"; };
+		5EBCF758185EFF2A0057C1AE /* WYMCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMCountry.h; sourceTree = "<group>"; };
+		5EBCF759185EFF2A0057C1AE /* WYMCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMCountry.m; sourceTree = "<group>"; };
+		5EBCF75B185EFFBC0057C1AE /* WYMHotel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMHotel.h; sourceTree = "<group>"; };
+		5EBCF75C185EFFBC0057C1AE /* WYMHotel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMHotel.m; sourceTree = "<group>"; };
+		5EBCF75E185EFFC80057C1AE /* WYMTraffic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMTraffic.h; sourceTree = "<group>"; };
+		5EBCF75F185EFFC80057C1AE /* WYMTraffic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMTraffic.m; sourceTree = "<group>"; };
+		5EBCF761185EFFD30057C1AE /* WYMSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMSpot.h; sourceTree = "<group>"; };
+		5EBCF762185EFFD30057C1AE /* WYMSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMSpot.m; sourceTree = "<group>"; };
+		5EBCF764185F016B0057C1AE /* trips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = trips.plist; sourceTree = "<group>"; };
+		5EFE0EDD184F0519004F8859 /* WYCreateNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCreateNewViewController.h; sourceTree = "<group>"; };
+		5EFE0EDE184F0519004F8859 /* WYCreateNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCreateNewViewController.m; sourceTree = "<group>"; };
+		5EFE0EE3184F21E3004F8859 /* WYCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCityCell.h; sourceTree = "<group>"; };
+		5EFE0EE4184F21E3004F8859 /* WYCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCityCell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5E6D03771839F68C006A0E93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E5BC2ED183EF2EC0003AC6D /* libsqlite3.0.dylib in Frameworks */,
+				5E5BC2EE183EF2EC0003AC6D /* libsqlite3.dylib in Frameworks */,
+				5E6D03801839F68C006A0E93 /* CoreGraphics.framework in Frameworks */,
+				5E6D03821839F68C006A0E93 /* UIKit.framework in Frameworks */,
+				5E6D037E1839F68C006A0E93 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E6D03921839F68C006A0E93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E6D03971839F68C006A0E93 /* XCTest.framework in Frameworks */,
+				5E6D03991839F68C006A0E93 /* UIKit.framework in Frameworks */,
+				5E6D03981839F68C006A0E93 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5E4A8CA518604C4B0062934F /* Hotel */ = {
+			isa = PBXGroup;
+			children = (
+				5EBCF75B185EFFBC0057C1AE /* WYMHotel.h */,
+				5EBCF75C185EFFBC0057C1AE /* WYMHotel.m */,
+				5E4A8CA818604D040062934F /* WYMBookedHotel.h */,
+				5E4A8CA918604D040062934F /* WYMBookedHotel.m */,
+				5E4A8CAB186056B90062934F /* WYMRoom.h */,
+				5E4A8CAC186056B90062934F /* WYMRoom.m */,
+				5E4A8CAE18605B600062934F /* WYMBookedRoom.h */,
+				5E4A8CAF18605B600062934F /* WYMBookedRoom.m */,
+			);
+			name = Hotel;
+			sourceTree = "<group>";
+		};
+		5E4A8CA618604C530062934F /* Traffic */ = {
+			isa = PBXGroup;
+			children = (
+				5EBCF75E185EFFC80057C1AE /* WYMTraffic.h */,
+				5EBCF75F185EFFC80057C1AE /* WYMTraffic.m */,
+			);
+			name = Traffic;
+			sourceTree = "<group>";
+		};
+		5E4A8CA718604C630062934F /* Spot */ = {
+			isa = PBXGroup;
+			children = (
+				5EBCF746185EE7630057C1AE /* WYMContinent.h */,
+				5EBCF747185EE7630057C1AE /* WYMContinent.m */,
+				5EBCF758185EFF2A0057C1AE /* WYMCountry.h */,
+				5EBCF759185EFF2A0057C1AE /* WYMCountry.m */,
+				5EBCF743185EAEDC0057C1AE /* WYMCity.h */,
+				5EBCF744185EAEDC0057C1AE /* WYMCity.m */,
+				5EBCF761185EFFD30057C1AE /* WYMSpot.h */,
+				5EBCF762185EFFD30057C1AE /* WYMSpot.m */,
+			);
+			name = Spot;
+			sourceTree = "<group>";
+		};
+		5E5BC22E183EE5B90003AC6D /* WeiYou */ = {
+			isa = PBXGroup;
+			children = (
+				5E5BC2E8183EEA3B0003AC6D /* WYAppDelegate.h */,
+				5E5BC2E9183EEA3B0003AC6D /* WYAppDelegate.m */,
+				5E5BC241183EE5E90003AC6D /* Controller */,
+				5E5BC249183EE5E90003AC6D /* View */,
+				5E5BC248183EE5E90003AC6D /* Engine */,
+				5E5BC24C183EE5E90003AC6D /* Model */,
+				5E5BC250183EE5E90003AC6D /* Utility */,
+				5E5BC236183EE5D80003AC6D /* Images.xcassets */,
+				5E5BC2A5183EE8020003AC6D /* Supporting Files */,
+			);
+			name = WeiYou;
+			sourceTree = "<group>";
+		};
+		5E5BC22F183EE5D80003AC6D /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				5E5BC230183EE5D80003AC6D /* InfoPlist.strings */,
+			);
+			name = en.lproj;
+			path = WeiYou/en.lproj;
+			sourceTree = "<group>";
+		};
+		5E5BC232183EE5D80003AC6D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5E21AE5D1868321C00316EA6 /* star.png */,
+				5E21AE5E1868321C00316EA6 /* star@2x.png */,
+				5E4A8C97185FFDC70062934F /* tamp1.png */,
+				5E4A8C98185FFDC70062934F /* tamp1@2x.png */,
+				5E4A8C99185FFDC70062934F /* tamp2.png */,
+				5E4A8C9A185FFDC70062934F /* tamp2@2x.png */,
+				5E5AE61A1856ED4A007DB9CC /* arrow.png */,
+				5E5BC233183EE5D80003AC6D /* detail_icon_email@2x.png */,
+				5E5BC235183EE5D80003AC6D /* mark_reminder@2x.png */,
+			);
+			name = Images;
+			path = WeiYou/Images;
+			sourceTree = "<group>";
+		};
+		5E5BC241183EE5E90003AC6D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5E5BC25C183EE6770003AC6D /* WYRootViewController.h */,
+				5E5BC25B183EE6770003AC6D /* WYRootViewController.m */,
+				5E49CEDB18629B36006F6B54 /* WYMapViewController.h */,
+				5E49CEDC18629B36006F6B54 /* WYMapViewController.m */,
+				5E5664FC1869875900460331 /* WYAnnotationView.h */,
+				5E5664FD1869875900460331 /* WYAnnotationView.m */,
+				5EBCF72F185E94A70057C1AE /* Trip */,
+				5EFE0EDC184F04EE004F8859 /* CreateNew */,
+				5E5BC2A6183EE8950003AC6D /* Settings */,
+			);
+			name = Controller;
+			path = WeiYou/Class/Controller;
+			sourceTree = "<group>";
+		};
+		5E5BC248183EE5E90003AC6D /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				5E5BC2F4183F3DB80003AC6D /* WYDataEngine.h */,
+				5E5BC2F5183F3DB80003AC6D /* WYDataEngine.m */,
+			);
+			name = Engine;
+			path = WeiYou/Class/Engine;
+			sourceTree = "<group>";
+		};
+		5E5BC249183EE5E90003AC6D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5E5D67651861455A00ECA966 /* TripDay */,
+				5E5BC24A183EE5E90003AC6D /* WYCoverTableViewCell.h */,
+				5E5BC24B183EE5E90003AC6D /* WYCoverTableViewCell.m */,
+				5E4A8C9F186000730062934F /* WYTripCell.h */,
+				5E4A8CA0186000730062934F /* WYTripCell.m */,
+				5EFE0EE3184F21E3004F8859 /* WYCityCell.h */,
+				5EFE0EE4184F21E3004F8859 /* WYCityCell.m */,
+				5E5AE6171856BB6B007DB9CC /* WYTableFooterView.h */,
+				5E5AE6181856BB6B007DB9CC /* WYTableFooterView.m */,
+				5E6EBC3D1859B408004E7EB6 /* WYPickerView.h */,
+				5E6EBC3E1859B408004E7EB6 /* WYPickerView.m */,
+			);
+			name = View;
+			path = WeiYou/Class/View;
+			sourceTree = "<group>";
+		};
+		5E5BC24C183EE5E90003AC6D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5EBCF73D185EAE290057C1AE /* WYMTrip.h */,
+				5EBCF73E185EAE290057C1AE /* WYMTrip.m */,
+				5EBCF740185EAE550057C1AE /* WYMTripDay.h */,
+				5EBCF741185EAE550057C1AE /* WYMTripDay.m */,
+				5E4A8CA718604C630062934F /* Spot */,
+				5E4A8CA618604C530062934F /* Traffic */,
+				5E4A8CA518604C4B0062934F /* Hotel */,
+			);
+			name = Model;
+			path = WeiYou/Class/Model;
+			sourceTree = "<group>";
+		};
+		5E5BC250183EE5E90003AC6D /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				5E5BC251183EE5E90003AC6D /* consts.h */,
+				5E5BC252183EE5E90003AC6D /* WYLog.h */,
+				5E5BC2EF183EF5430003AC6D /* WYFileManager.h */,
+				5E5BC2F0183EF5430003AC6D /* WYFileManager.m */,
+			);
+			name = Utility;
+			path = WeiYou/Class/Utility;
+			sourceTree = "<group>";
+		};
+		5E5BC2A5183EE8020003AC6D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5E5BC232183EE5D80003AC6D /* Images */,
+				5E5BC22F183EE5D80003AC6D /* en.lproj */,
+				5E5BC237183EE5D80003AC6D /* main.m */,
+				5E5BC238183EE5D80003AC6D /* WeiYou-Info.plist */,
+				5E5BC239183EE5D80003AC6D /* WeiYou-Prefix.pch */,
+				5EBCF764185F016B0057C1AE /* trips.plist */,
+				5E21AE5B186829E600316EA6 /* location.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5E5BC2A6183EE8950003AC6D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				5E5BC25D183EE6770003AC6D /* WYSettingsViewController.h */,
+				5E5BC25E183EE6770003AC6D /* WYSettingsViewController.m */,
+				5E5BC25F183EE6770003AC6D /* WYUserGuideViewController.h */,
+				5E5BC260183EE6770003AC6D /* WYUserGuideViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		5E5D67651861455A00ECA966 /* TripDay */ = {
+			isa = PBXGroup;
+			children = (
+				5E5D67621861451600ECA966 /* WYTripDayCell.h */,
+				5E5D67631861451600ECA966 /* WYTripDayCell.m */,
+				5E5D67661861766700ECA966 /* WYTripDayTrafficCell.h */,
+				5E5D67671861766700ECA966 /* WYTripDayTrafficCell.m */,
+				5E5D6769186176A000ECA966 /* WYTripDaySpotCell.h */,
+				5E5D676A186176A000ECA966 /* WYTripDaySpotCell.m */,
+				5E5D676C186176B000ECA966 /* WYTripDayHotelCell.h */,
+				5E5D676D186176B000ECA966 /* WYTripDayHotelCell.m */,
+			);
+			name = TripDay;
+			sourceTree = "<group>";
+		};
+		5E6D03711839F68C006A0E93 = {
+			isa = PBXGroup;
+			children = (
+				5E5BC22E183EE5B90003AC6D /* WeiYou */,
+				5E6D039C1839F68C006A0E93 /* WeiYouTests */,
+				5E6D037C1839F68C006A0E93 /* Frameworks */,
+				5E6D037B1839F68C006A0E93 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5E6D037B1839F68C006A0E93 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E6D037A1839F68C006A0E93 /* WeiYou.app */,
+				5E6D03951839F68C006A0E93 /* WeiYouTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5E6D037C1839F68C006A0E93 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E5BC2EB183EF2EC0003AC6D /* libsqlite3.0.dylib */,
+				5E5BC2EC183EF2EC0003AC6D /* libsqlite3.dylib */,
+				5E6D037D1839F68C006A0E93 /* Foundation.framework */,
+				5E6D037F1839F68C006A0E93 /* CoreGraphics.framework */,
+				5E6D03811839F68C006A0E93 /* UIKit.framework */,
+				5E6D03961839F68C006A0E93 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5E6D039C1839F68C006A0E93 /* WeiYouTests */ = {
+			isa = PBXGroup;
+			children = (
+				5E6D03A21839F68C006A0E93 /* WeiYouTests.m */,
+				5E6D039D1839F68C006A0E93 /* Supporting Files */,
+			);
+			path = WeiYouTests;
+			sourceTree = "<group>";
+		};
+		5E6D039D1839F68C006A0E93 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5E6D039E1839F68C006A0E93 /* WeiYouTests-Info.plist */,
+				5E6D039F1839F68C006A0E93 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5EBCF72F185E94A70057C1AE /* Trip */ = {
+			isa = PBXGroup;
+			children = (
+				5EBCF730185E95D80057C1AE /* WYTripController.h */,
+				5EBCF731185E95D80057C1AE /* WYTripController.m */,
+				5E5D675F186144FF00ECA966 /* WYTripDayController.h */,
+				5E5D6760186144FF00ECA966 /* WYTripDayController.m */,
+				5E49CECF1862863C006F6B54 /* WYTrafficController.h */,
+				5E49CED01862863C006F6B54 /* WYTrafficController.m */,
+				5E49CED21862865F006F6B54 /* WYSpotController.h */,
+				5E49CED31862865F006F6B54 /* WYSpotController.m */,
+				5E49CED51862866E006F6B54 /* WYHotelController.h */,
+				5E49CED61862866E006F6B54 /* WYHotelController.m */,
+			);
+			name = Trip;
+			sourceTree = "<group>";
+		};
+		5EFE0EDC184F04EE004F8859 /* CreateNew */ = {
+			isa = PBXGroup;
+			children = (
+				5EFE0EDD184F0519004F8859 /* WYCreateNewViewController.h */,
+				5EFE0EDE184F0519004F8859 /* WYCreateNewViewController.m */,
+				5E6EBC3718596919004E7EB6 /* WYCreateNewStepTwoViewController.h */,
+				5E6EBC3818596919004E7EB6 /* WYCreateNewStepTwoViewController.m */,
+			);
+			name = CreateNew;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5E6D03791839F68C006A0E93 /* WeiYou */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E6D03A61839F68C006A0E93 /* Build configuration list for PBXNativeTarget "WeiYou" */;
+			buildPhases = (
+				5E6D03761839F68C006A0E93 /* Sources */,
+				5E6D03771839F68C006A0E93 /* Frameworks */,
+				5E6D03781839F68C006A0E93 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WeiYou;
+			productName = WeiYou;
+			productReference = 5E6D037A1839F68C006A0E93 /* WeiYou.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5E6D03941839F68C006A0E93 /* WeiYouTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E6D03A91839F68C006A0E93 /* Build configuration list for PBXNativeTarget "WeiYouTests" */;
+			buildPhases = (
+				5E6D03911839F68C006A0E93 /* Sources */,
+				5E6D03921839F68C006A0E93 /* Frameworks */,
+				5E6D03931839F68C006A0E93 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5E6D039B1839F68C006A0E93 /* PBXTargetDependency */,
+			);
+			name = WeiYouTests;
+			productName = WeiYouTests;
+			productReference = 5E6D03951839F68C006A0E93 /* WeiYouTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5E6D03721839F68C006A0E93 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = WY;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = xiyuan;
+				TargetAttributes = {
+					5E6D03941839F68C006A0E93 = {
+						TestTargetID = 5E6D03791839F68C006A0E93;
+					};
+				};
+			};
+			buildConfigurationList = 5E6D03751839F68C006A0E93 /* Build configuration list for PBXProject "WeiYou" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5E6D03711839F68C006A0E93;
+			productRefGroup = 5E6D037B1839F68C006A0E93 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5E6D03791839F68C006A0E93 /* WeiYou */,
+				5E6D03941839F68C006A0E93 /* WeiYouTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5E6D03781839F68C006A0E93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E5BC23A183EE5D80003AC6D /* InfoPlist.strings in Resources */,
+				5E4A8C9C185FFDC70062934F /* tamp1@2x.png in Resources */,
+				5E5AE61B1856ED4A007DB9CC /* arrow.png in Resources */,
+				5E5BC23E183EE5D80003AC6D /* Images.xcassets in Resources */,
+				5E5BC23D183EE5D80003AC6D /* mark_reminder@2x.png in Resources */,
+				5E21AE5F1868321C00316EA6 /* star.png in Resources */,
+				5E4A8C9E185FFDC70062934F /* tamp2@2x.png in Resources */,
+				5EBCF765185F016B0057C1AE /* trips.plist in Resources */,
+				5E21AE601868321C00316EA6 /* star@2x.png in Resources */,
+				5E4A8C9D185FFDC70062934F /* tamp2.png in Resources */,
+				5E21AE5C186829E600316EA6 /* location.plist in Resources */,
+				5E5BC23B183EE5D80003AC6D /* detail_icon_email@2x.png in Resources */,
+				5E4A8C9B185FFDC70062934F /* tamp1.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E6D03931839F68C006A0E93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E6D03A11839F68C006A0E93 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5E6D03761839F68C006A0E93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E4A8CAA18604D040062934F /* WYMBookedHotel.m in Sources */,
+				5E5D676B186176A100ECA966 /* WYTripDaySpotCell.m in Sources */,
+				5EBCF75A185EFF2A0057C1AE /* WYMCountry.m in Sources */,
+				5E49CED11862863C006F6B54 /* WYTrafficController.m in Sources */,
+				5EBCF732185E95D80057C1AE /* WYTripController.m in Sources */,
+				5EBCF75D185EFFBC0057C1AE /* WYMHotel.m in Sources */,
+				5EFE0EE5184F21E3004F8859 /* WYCityCell.m in Sources */,
+				5EBCF745185EAEDC0057C1AE /* WYMCity.m in Sources */,
+				5EBCF73F185EAE290057C1AE /* WYMTrip.m in Sources */,
+				5E5BC2EA183EEA3B0003AC6D /* WYAppDelegate.m in Sources */,
+				5E49CED41862865F006F6B54 /* WYSpotController.m in Sources */,
+				5E5D6761186144FF00ECA966 /* WYTripDayController.m in Sources */,
+				5E49CEDD18629B36006F6B54 /* WYMapViewController.m in Sources */,
+				5EFE0EDF184F0519004F8859 /* WYCreateNewViewController.m in Sources */,
+				5E5BC262183EE6770003AC6D /* WYSettingsViewController.m in Sources */,
+				5E5664FE1869875900460331 /* WYAnnotationView.m in Sources */,
+				5E4A8CA1186000730062934F /* WYTripCell.m in Sources */,
+				5E6EBC3918596919004E7EB6 /* WYCreateNewStepTwoViewController.m in Sources */,
+				5EBCF748185EE7630057C1AE /* WYMContinent.m in Sources */,
+				5E5BC23F183EE5D80003AC6D /* main.m in Sources */,
+				5E5AE6191856BB6B007DB9CC /* WYTableFooterView.m in Sources */,
+				5E5D676E186176B000ECA966 /* WYTripDayHotelCell.m in Sources */,
+				5E4A8CAD186056B90062934F /* WYMRoom.m in Sources */,
+				5E5BC263183EE6770003AC6D /* WYUserGuideViewController.m in Sources */,
+				5EBCF763185EFFD30057C1AE /* WYMSpot.m in Sources */,
+				5E4A8CB018605B600062934F /* WYMBookedRoom.m in Sources */,
+				5E49CED71862866E006F6B54 /* WYHotelController.m in Sources */,
+				5E5BC2F1183EF5430003AC6D /* WYFileManager.m in Sources */,
+				5EBCF742185EAE550057C1AE /* WYMTripDay.m in Sources */,
+				5EBCF760185EFFC80057C1AE /* WYMTraffic.m in Sources */,
+				5E5D67681861766700ECA966 /* WYTripDayTrafficCell.m in Sources */,
+				5E5D67641861451600ECA966 /* WYTripDayCell.m in Sources */,
+				5E5BC258183EE5E90003AC6D /* WYCoverTableViewCell.m in Sources */,
+				5E5BC2F6183F3DB80003AC6D /* WYDataEngine.m in Sources */,
+				5E5BC261183EE6770003AC6D /* WYRootViewController.m in Sources */,
+				5E6EBC3F1859B408004E7EB6 /* WYPickerView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E6D03911839F68C006A0E93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E6D03A31839F68C006A0E93 /* WeiYouTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5E6D039B1839F68C006A0E93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5E6D03791839F68C006A0E93 /* WeiYou */;
+			targetProxy = 5E6D039A1839F68C006A0E93 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5E5BC230183EE5D80003AC6D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5E5BC231183EE5D80003AC6D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		5E6D039F1839F68C006A0E93 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5E6D03A01839F68C006A0E93 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5E6D03A41839F68C006A0E93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		5E6D03A51839F68C006A0E93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5E6D03A71839F68C006A0E93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WeiYou/WeiYou-Prefix.pch";
+				INFOPLIST_FILE = "WeiYou/WeiYou-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		5E6D03A81839F68C006A0E93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WeiYou/WeiYou-Prefix.pch";
+				INFOPLIST_FILE = "WeiYou/WeiYou-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		5E6D03AA1839F68C006A0E93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WeiYou.app/WeiYou";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WeiYou/WeiYou-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "WeiYouTests/WeiYouTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		5E6D03AB1839F68C006A0E93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WeiYou.app/WeiYou";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WeiYou/WeiYou-Prefix.pch";
+				INFOPLIST_FILE = "WeiYouTests/WeiYouTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5E6D03751839F68C006A0E93 /* Build configuration list for PBXProject "WeiYou" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E6D03A41839F68C006A0E93 /* Debug */,
+				5E6D03A51839F68C006A0E93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E6D03A61839F68C006A0E93 /* Build configuration list for PBXNativeTarget "WeiYou" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E6D03A71839F68C006A0E93 /* Debug */,
+				5E6D03A81839F68C006A0E93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E6D03A91839F68C006A0E93 /* Build configuration list for PBXNativeTarget "WeiYouTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E6D03AA1839F68C006A0E93 /* Debug */,
+				5E6D03AB1839F68C006A0E93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5E6D03721839F68C006A0E93 /* Project object */;
+}
