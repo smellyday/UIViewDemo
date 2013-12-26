@@ -27,19 +27,23 @@
 	if (self) {
 			//date
 		self.date = [infoDic objectForKey:WY_TRIP_DATE];
-		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-		[formatter setDateStyle:NSDateFormatterLongStyle];
-		self.dateStr = [formatter stringFromDate:self.date];
-		formatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"EEE" options:0 locale:[NSLocale currentLocale]];
-		formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
-		self.weekDayStr = [formatter stringFromDate:self.date];
-		
+        if (_date != nil) {
+            //date str & weekday str
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateStyle:NSDateFormatterLongStyle];
+            self.dateStr = [formatter stringFromDate:self.date];
+            formatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"EEE" options:0 locale:[NSLocale currentLocale]];
+            formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+            self.weekDayStr = [formatter stringFromDate:self.date];
+            
 			//dayth
-		self.dayTH = [infoDic objectForKey:WY_TRIP_DAYTH];
+            self.dayTH = [infoDic objectForKey:WY_TRIP_DAYTH];
+            self.dayTHStr = [NSString stringWithFormat:@"第%d天", [_dayTH intValue]];
+        }
+        
 //		NSCalendar *calendar = [NSCalendar currentCalendar];
 //		NSDateComponents *component = [calendar components:NSCalendarUnitWeekday fromDate:self.date];
 //		self.weekDayStr = [NSString stringWithFormat:@"%li", (long)[component weekday]];
-		self.dayTHStr = [NSString stringWithFormat:@"第%d天", [_dayTH intValue]];
 
 			//continent
 		NSMutableArray *continentsArr = [NSMutableArray arrayWithCapacity:10];

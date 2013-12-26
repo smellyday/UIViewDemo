@@ -10,6 +10,9 @@
 #ifndef WeiYou_consts_h
 #define WeiYou_consts_h
 
+//========one day interval=======
+#define WY_DAY_INTERVAL 86400
+
 //========main color========
 #define WY_MAIN_COLOR                  [UIColor colorWithRed:0.3 green:0.4 blue:0.6 alpha:1.0]
 #define WY_MAIN_COLOR_BG               [UIColor colorWithRed:0.4 green:0.5 blue:0.7 alpha:1.0]
@@ -31,7 +34,7 @@
 #define WY_TRIP_DES                    @"trip_description"
 #define WY_TRIP_MAIN_IMAGE             @"trip_main_image"
 #define WY_TRIP_BEGIN_DATE             @"trip_begin_date"
-#define WY_TRIP_END_DATE               @"trip_end_date"
+//#define WY_TRIP_END_DATE               @"trip_end_date"
 #define WY_TRIP_DAYS                   @"trip_days"
 #define WY_TRIP_PREPARE_LIST           @"trip_prepare_list"
 
