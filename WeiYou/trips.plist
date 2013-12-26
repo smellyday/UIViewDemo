@@ -65,7 +65,7 @@
 												<key>wy_spot_type</key>
 												<integer>1</integer>
 												<key>wy_spot_name</key>
-												<string>** spot name 001</string>
+												<string>人民广场</string>
 												<key>wy_spot_address</key>
 												<string>address is address.</string>
 												<key>wy_spot_info</key>
@@ -87,7 +87,7 @@
 												<key>wy_spot_type</key>
 												<integer>2</integer>
 												<key>wy_spot_name</key>
-												<string>spot name 002</string>
+												<string>外滩</string>
 												<key>wy_spot_address</key>
 												<string>address is address.</string>
 												<key>wy_spot_info</key>
@@ -109,7 +109,7 @@
 												<key>wy_spot_type</key>
 												<integer>3</integer>
 												<key>wy_spot_name</key>
-												<string>spot name 003</string>
+												<string>陆家嘴</string>
 												<key>wy_spot_address</key>
 												<string>address is address.</string>
 												<key>wy_spot_info</key>
@@ -131,7 +131,7 @@
 												<key>wy_spot_type</key>
 												<integer>4</integer>
 												<key>wy_spot_name</key>
-												<string>spot name 004</string>
+												<string>东方明珠</string>
 												<key>wy_spot_address</key>
 												<string>address is address.</string>
 												<key>wy_spot_info</key>
@@ -153,7 +153,7 @@
 												<key>wy_spot_type</key>
 												<integer>5</integer>
 												<key>wy_spot_name</key>
-												<string>spot name 005</string>
+												<string>环球中心</string>
 												<key>wy_spot_address</key>
 												<string>address is address.</string>
 												<key>wy_spot_info</key>

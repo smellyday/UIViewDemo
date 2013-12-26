@@ -20,29 +20,62 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 			// Initialization code
-		self.trafficNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
-		self.trafficNumberLabel.font = [UIFont boldSystemFontOfSize:20];
-		self.trafficNumberLabel.textAlignment = NSTextAlignmentCenter;
-		[self.contentView addSubview:_trafficNumberLabel];
-		
-		self.departureLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, 85, 30)];
+        int wLocation = -30;
+        int wid = 20;
+        
+        UILabel *fromLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80+wLocation, 40)];
+        fromLabel.font = [UIFont boldSystemFontOfSize:12];
+        fromLabel.text = @"出发地： ";
+		[self.contentView addSubview:fromLabel];
+        
+		self.departureLabel = [[UILabel alloc] initWithFrame:CGRectMake(80+wLocation, 0, 120, 40)];
 		self.departureLabel.font = [UIFont boldSystemFontOfSize:15];
-		self.departureLabel.textAlignment = NSTextAlignmentCenter;
+		self.departureLabel.textAlignment = NSTextAlignmentLeft;
 		[self.contentView addSubview:_departureLabel];
 		
-		self.destinationLabel = [[UILabel alloc] initWithFrame:CGRectMake(115, 50, 85, 30)];
+        
+        UILabel *toLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, 80+wLocation, 40)];
+        toLabel.font = [UIFont boldSystemFontOfSize:12];
+        toLabel.text = @"目的地： ";
+		[self.contentView addSubview:toLabel];
+        
+		self.destinationLabel = [[UILabel alloc] initWithFrame:CGRectMake(80+wLocation, 40, 120, 40)];
 		self.destinationLabel.font = [UIFont boldSystemFontOfSize:15];
-		self.destinationLabel.textAlignment = NSTextAlignmentCenter;
+		self.destinationLabel.textAlignment = NSTextAlignmentLeft;
 		[self.contentView addSubview:_destinationLabel];
+        
+        
+        UILabel *trafficLabel = [[UILabel alloc] initWithFrame:CGRectMake(200+wLocation, 0, 50, 25)];
+        trafficLabel.textAlignment = NSTextAlignmentRight;
+        trafficLabel.font = [UIFont boldSystemFontOfSize:12];
+        trafficLabel.text = @"航班号： ";
+		[self.contentView addSubview:trafficLabel];
+        
+		self.trafficNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(250+wLocation, 0, 70+wid, 25)];
+		self.trafficNumberLabel.font = [UIFont boldSystemFontOfSize:12];
+		self.trafficNumberLabel.textAlignment = NSTextAlignmentLeft;
+		[self.contentView addSubview:_trafficNumberLabel];
+        
+        UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(200+wLocation, 25, 50, 25)];
+        dateLabel.textAlignment = NSTextAlignmentRight;
+        dateLabel.font = [UIFont boldSystemFontOfSize:12];
+        dateLabel.text = @"日期： ";
+		[self.contentView addSubview:dateLabel];
 		
-		self.takeOffTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 0, 120, 50)];
-		self.takeOffTimeLabel.font = [UIFont boldSystemFontOfSize:10];
-		self.takeOffTimeLabel.textAlignment = NSTextAlignmentCenter;
+		self.takeOffTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(250+wLocation, 25, 70+wid, 25)];
+		self.takeOffTimeLabel.font = [UIFont boldSystemFontOfSize:12];
+		self.takeOffTimeLabel.textAlignment = NSTextAlignmentLeft;
 		[self.contentView addSubview:_takeOffTimeLabel];
+        
+        UILabel *pLabel = [[UILabel alloc] initWithFrame:CGRectMake(200+wLocation, 50, 50, 25)];
+        pLabel.textAlignment = NSTextAlignmentRight;
+        pLabel.font = [UIFont boldSystemFontOfSize:12];
+        pLabel.text = @"价格： ";
+		[self.contentView addSubview:pLabel];
 		
-		self.priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 50, 120, 30)];
+		self.priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(250+wLocation, 50, 70+wid, 25)];
 		self.priceLabel.font = [UIFont boldSystemFontOfSize:10];
-		self.priceLabel.textAlignment = NSTextAlignmentCenter;
+		self.priceLabel.textAlignment = NSTextAlignmentLeft;
 		[self.contentView addSubview:_priceLabel];
     }
     return self;
