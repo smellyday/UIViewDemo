@@ -35,19 +35,30 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    NSLog(@"%s", __func__);
 
-//    if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
-//        self.tripsArray = [[WYCoreDataEngine sharedCoreDataEngine] tripsArray];
-//    } else {
-//        mlog(@"trips data is not ok.");
-//    }
+    if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
+        //        self.tripsArray = [[WYCoreDataEngine sharedCoreDataEngine] tripsArray];
+        [_tripsArray removeAllObjects];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTrip"];
+        NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"tripIndex" ascending:YES];
+        request.sortDescriptors = [NSArray arrayWithObject:sortDes];
+        NSError *merr;
+        NSArray *trips = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
+        [_tripsArray addObjectsFromArray:trips];
+        
+        [self.mTableView reloadData];
+    } else {
+        mlog(@"trips data is not ok.");
+    }
+
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenTripsDataOK:) name:WY_TRIPS_DATA_OK object:nil];
-    
+    self.tripsArray = [NSMutableArray arrayWithCapacity:10];
 	// Do any additional setup after loading the view.
 	
 	self.view.backgroundColor = [UIColor lightGrayColor];
@@ -68,11 +79,11 @@
 	[self.view addSubview:_mTableView];
 	
 		// ----- prepare data -----
-    if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
-        self.tripsArray = [[WYCoreDataEngine sharedCoreDataEngine] tripsArray];
-    } else {
-        mlog(@"trips data is not ok.");
-    }
+//    if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
+//        self.tripsArray = [[WYCoreDataEngine sharedCoreDataEngine] tripsArray];
+//    } else {
+//        mlog(@"trips data is not ok.");
+//    }
 	
 }
 
@@ -97,7 +108,17 @@
 #pragma notification received
 - (void)doWhenTripsDataOK:(NSNotification *)notification {
     if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
-        self.tripsArray = [[WYCoreDataEngine sharedCoreDataEngine] tripsArray];
+//        self.tripsArray = [[WYCoreDataEngine sharedCoreDataEngine] tripsArray];
+        
+        [_tripsArray removeAllObjects];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTrip"];
+        NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"tripIndex" ascending:YES];
+        request.sortDescriptors = [NSArray arrayWithObject:sortDes];
+        NSError *merr;
+        NSArray *trips = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
+        NSLog(@"trips count : %ld", [trips count]);
+        [_tripsArray addObjectsFromArray:trips];
+        
         [self.mTableView reloadData];
         mlog(@"receive notification -- trips data is ok now.");
     } else {
