@@ -7,7 +7,7 @@
 //
 
 #import "WYCoverTableViewCell.h"
-#import "WYMTrip.h"
+#import "WYCMTrip.h"
 
 @implementation WYCoverTableViewCell
 @synthesize xcMainImageView = _xcMainImageView;
@@ -24,13 +24,14 @@
     return self;
 }
 
-- (id)initWithXCModel:(WYMTrip *)data reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithXCModel:(WYCMTrip *)data reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
     if (self) {
 			// Initialization code
 		
-		UIImageView *mImageView = [[UIImageView alloc] initWithImage:data.tripMainImage];
+        UIImage *mainImg = [UIImage imageWithData:data.tripMainImageData];
+		UIImageView *mImageView = [[UIImageView alloc] initWithImage:mainImg];
 		mImageView.frame = CGRectMake(5, 5, 150, 90);
 		[self.contentView addSubview:mImageView];
 		self.xcMainImageView = mImageView;

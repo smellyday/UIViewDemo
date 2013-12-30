@@ -10,9 +10,9 @@
 #import "WYSettingsViewController.h"
 #import "WYCoverTableViewCell.h"
 #import "WYCreateNewViewController.h"
-#import "WYMTrip.h"
+#import "WYCMTrip.h"
 #import "WYFileManager.h"
-#import "WYDataEngine.h"
+#import "WYCoreDataEngine.h"
 #import "WYTripController.h"
 #import "consts.h"
 
@@ -36,6 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenTripsDataOK:) name:WY_TRIPS_DATA_OK object:nil];
+    
 	// Do any additional setup after loading the view.
 	
 	self.view.backgroundColor = [UIColor lightGrayColor];
@@ -56,8 +58,11 @@
 	[self.view addSubview:_mTableView];
 	
 		// ----- prepare data -----
-	WYDataEngine *mDataEngine = [WYDataEngine sharedDataEngine];
-	self.tripsArray = [mDataEngine getTrips];
+    if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
+        self.tripsArray = [[WYCoreDataEngine sharedCoreDataEngine] tripsArray];
+    } else {
+        mlog(@"trips data is not ok.");
+    }
 	
 }
 
@@ -77,6 +82,17 @@
 	
 	WYCreateNewViewController *mCreateNewController = [[WYCreateNewViewController alloc] init];
 	[self presentViewController:mCreateNewController animated:YES completion:nil];
+}
+
+#pragma notification received
+- (void)doWhenTripsDataOK:(NSNotification *)notification {
+    if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
+        self.tripsArray = [[WYCoreDataEngine sharedCoreDataEngine] tripsArray];
+        [self.mTableView reloadData];
+        mlog(@"receive notification -- trips data is ok now.");
+    } else {
+        mlog(@"receive notification -- trips data is still not ok.");
+    }
 }
 
 
@@ -100,14 +116,14 @@
 	
 	NSInteger row = [indexPath row];
 	if (cell == nil) {
-		WYMTrip *model = (WYMTrip *)[_tripsArray objectAtIndex:row];
+		WYCMTrip *model = (WYCMTrip *)[_tripsArray objectAtIndex:row];
 		cell = [[WYCoverTableViewCell alloc] initWithXCModel:model reuseIdentifier:NORMALCELL];
 		
 		return cell;
 	}
 	
-	WYMTrip *model2 = (WYMTrip *)[_tripsArray objectAtIndex:row];
-	cell.xcMainImageView.image = model2.tripMainImage;
+	WYCMTrip *model2 = (WYCMTrip *)[_tripsArray objectAtIndex:row];
+	cell.xcMainImageView.image = [UIImage imageWithData:model2.tripMainImageData];
 	cell.xcNameLabel.text = model2.tripName;
 	cell.xcDesLabel.text = model2.tripDescription;
 	
@@ -120,7 +136,8 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	WYTripController *theTripController = [[WYTripController alloc] init];
-	WYMTrip *trip = (WYMTrip *)[_tripsArray objectAtIndex:[indexPath row]];
+    WYCMTrip *trip = (WYCMTrip *)[_tripsArray objectAtIndex:[indexPath row]];
+    
 	theTripController.trip = trip;
 	[self.navigationController pushViewController:theTripController animated:YES];
 }
@@ -138,6 +155,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

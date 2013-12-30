@@ -36,8 +36,11 @@
             formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
             self.weekDayStr = [formatter stringFromDate:self.date];
             
-			//dayth
-            self.dayTH = [infoDic objectForKey:WY_TRIP_DAYTH];
+        }
+        
+        //dayth
+        self.dayTH = [infoDic objectForKey:WY_TRIP_DAYTH];
+        if (_dayTH != nil) {
             self.dayTHStr = [NSString stringWithFormat:@"第%d天", [_dayTH intValue]];
         }
         

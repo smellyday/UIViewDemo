@@ -1,4 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+    <entity name="WYCMCity" representedClassName="WYCMCity" syncable="YES">
+        <attribute name="briefName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cityDes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cityName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WYCMCountry" inverseName="cities" inverseEntity="WYCMCountry" syncable="YES"/>
+        <relationship name="spots" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WYCMSpot" inverseName="city" inverseEntity="WYCMSpot" syncable="YES"/>
+    </entity>
+    <entity name="WYCMContinent" representedClassName="WYCMContinent" syncable="YES">
+        <attribute name="continentDes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="continentName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="continentType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="countries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WYCMCountry" inverseName="continent" inverseEntity="WYCMCountry" syncable="YES"/>
+        <relationship name="tripDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WYCMTripDay" inverseName="continents" inverseEntity="WYCMTripDay" syncable="YES"/>
+    </entity>
+    <entity name="WYCMCountry" representedClassName="WYCMCountry" syncable="YES">
+        <attribute name="countryDes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="cities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WYCMCity" inverseName="country" inverseEntity="WYCMCity" syncable="YES"/>
+        <relationship name="continent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WYCMContinent" inverseName="countries" inverseEntity="WYCMContinent" syncable="YES"/>
+    </entity>
+    <entity name="WYCMHotel" representedClassName="WYCMHotel" syncable="YES">
+        <attribute name="dateCheckIn" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="daysCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="hotelAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hotelName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tripDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WYCMTripDay" inverseName="hotels" inverseEntity="WYCMTripDay" syncable="YES"/>
+    </entity>
+    <entity name="WYCMPrepareList" representedClassName="WYCMPrepareList" syncable="YES">
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WYCMTrip" inverseName="tripPrepareList" inverseEntity="WYCMTrip" syncable="YES"/>
+    </entity>
+    <entity name="WYCMSpot" representedClassName="WYCMSpot" syncable="YES">
+        <attribute name="admissionPrice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="spotAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="spotInfo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="spotName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="spotOpenTimeStr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="spotType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="trafficInfo" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WYCMCity" inverseName="spots" inverseEntity="WYCMCity" syncable="YES"/>
+    </entity>
+    <entity name="WYCMTraffic" representedClassName="WYCMTraffic" syncable="YES">
+        <attribute name="departurePlace" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="destinationPlace" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flightNumberStr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="takeOffTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="trafficPrice" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="trafficType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="trainNumberStr" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tripDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WYCMTripDay" inverseName="traffics" inverseEntity="WYCMTripDay" syncable="YES"/>
+    </entity>
+    <entity name="WYCMTrip" representedClassName="WYCMTrip" syncable="YES">
+        <attribute name="tripBeginDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="tripDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tripMainImageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="tripName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tripDays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WYCMTripDay" inverseName="trip" inverseEntity="WYCMTripDay" syncable="YES"/>
+        <relationship name="tripPrepareList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WYCMPrepareList" inverseName="trip" inverseEntity="WYCMPrepareList" syncable="YES"/>
+    </entity>
+    <entity name="WYCMTripDay" representedClassName="WYCMTripDay" syncable="YES">
+        <attribute name="dayth" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="continents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WYCMContinent" inverseName="tripDay" inverseEntity="WYCMContinent" syncable="YES"/>
+        <relationship name="hotels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WYCMHotel" inverseName="tripDay" inverseEntity="WYCMHotel" syncable="YES"/>
+        <relationship name="traffics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WYCMTraffic" inverseName="tripDay" inverseEntity="WYCMTraffic" syncable="YES"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WYCMTrip" inverseName="tripDays" inverseEntity="WYCMTrip" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="WYCMTrip" positionX="-567" positionY="198" width="128" height="133"/>
+        <element name="WYCMTripDay" positionX="-317" positionY="101" width="128" height="133"/>
+        <element name="WYCMContinent" positionX="-83" positionY="270" width="128" height="118"/>
+        <element name="WYCMCountry" positionX="117" positionY="362" width="128" height="103"/>
+        <element name="WYCMCity" positionX="286" positionY="428" width="128" height="118"/>
+        <element name="WYCMSpot" positionX="486" positionY="432" width="128" height="163"/>
+        <element name="WYCMTraffic" positionX="-0" positionY="63" width="128" height="163"/>
+        <element name="WYCMHotel" positionX="-0" positionY="-72" width="128" height="118"/>
+        <element name="WYCMPrepareList" positionX="-387" positionY="369" width="128" height="58"/>
+    </elements>
 </model>

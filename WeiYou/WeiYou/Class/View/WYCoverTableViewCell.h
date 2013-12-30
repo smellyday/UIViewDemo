@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class WYMTrip;
+@class WYCMTrip;
 
 @interface WYCoverTableViewCell : UITableViewCell {
 	UIImageView *xcMainImageView;
@@ -21,6 +21,6 @@
 @property (nonatomic, strong) UILabel *xcDesLabel;
 
 
-- (id)initWithXCModel:(WYMTrip *)data reuseIdentifier:(NSString *)reuseIdentifier;
+- (id)initWithXCModel:(WYCMTrip *)data reuseIdentifier:(NSString *)reuseIdentifier;
 
 @end

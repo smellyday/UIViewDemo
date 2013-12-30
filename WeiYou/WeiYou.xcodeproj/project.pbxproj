@@ -66,6 +66,18 @@
 		5EBCF765185F016B0057C1AE /* trips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EBCF764185F016B0057C1AE /* trips.plist */; };
 		5EFE0EDF184F0519004F8859 /* WYCreateNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFE0EDE184F0519004F8859 /* WYCreateNewViewController.m */; };
 		5EFE0EE5184F21E3004F8859 /* WYCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFE0EE4184F21E3004F8859 /* WYCityCell.m */; };
+		692DFBA1187113CF00076C08 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 692DFB9F187113CF00076C08 /* Model.xcdatamodeld */; };
+		692DFBA41871287800076C08 /* WYCMTraffic.m in Sources */ = {isa = PBXBuildFile; fileRef = 692DFBA31871287800076C08 /* WYCMTraffic.m */; };
+		692DFBA71871287800076C08 /* WYCMCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 692DFBA61871287800076C08 /* WYCMCity.m */; };
+		692DFBAA1871287800076C08 /* WYCMCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 692DFBA91871287800076C08 /* WYCMCountry.m */; };
+		692DFBAD1871287800076C08 /* WYCMPrepareList.m in Sources */ = {isa = PBXBuildFile; fileRef = 692DFBAC1871287800076C08 /* WYCMPrepareList.m */; };
+		692DFBB01871287800076C08 /* WYCMTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 692DFBAF1871287800076C08 /* WYCMTrip.m */; };
+		692DFBB31871287800076C08 /* WYCMTripDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 692DFBB21871287800076C08 /* WYCMTripDay.m */; };
+		692DFBB61871287800076C08 /* WYCMContinent.m in Sources */ = {isa = PBXBuildFile; fileRef = 692DFBB51871287800076C08 /* WYCMContinent.m */; };
+		692DFBB91871287800076C08 /* WYCMHotel.m in Sources */ = {isa = PBXBuildFile; fileRef = 692DFBB81871287800076C08 /* WYCMHotel.m */; };
+		692DFBBC1871287800076C08 /* WYCMSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 692DFBBB1871287800076C08 /* WYCMSpot.m */; };
+		692DFBC0187135CD00076C08 /* WYCoreDataEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 692DFBBF187135CC00076C08 /* WYCoreDataEngine.m */; };
+		6953CB6B186D215100DE04E0 /* demo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6953CB6A186D215100DE04E0 /* demo.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +190,28 @@
 		5EFE0EDE184F0519004F8859 /* WYCreateNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCreateNewViewController.m; sourceTree = "<group>"; };
 		5EFE0EE3184F21E3004F8859 /* WYCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCityCell.h; sourceTree = "<group>"; };
 		5EFE0EE4184F21E3004F8859 /* WYCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCityCell.m; sourceTree = "<group>"; };
+		692DFBA0187113CF00076C08 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		692DFBA21871287800076C08 /* WYCMTraffic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCMTraffic.h; sourceTree = "<group>"; };
+		692DFBA31871287800076C08 /* WYCMTraffic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCMTraffic.m; sourceTree = "<group>"; };
+		692DFBA51871287800076C08 /* WYCMCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCMCity.h; sourceTree = "<group>"; };
+		692DFBA61871287800076C08 /* WYCMCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCMCity.m; sourceTree = "<group>"; };
+		692DFBA81871287800076C08 /* WYCMCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCMCountry.h; sourceTree = "<group>"; };
+		692DFBA91871287800076C08 /* WYCMCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCMCountry.m; sourceTree = "<group>"; };
+		692DFBAB1871287800076C08 /* WYCMPrepareList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCMPrepareList.h; sourceTree = "<group>"; };
+		692DFBAC1871287800076C08 /* WYCMPrepareList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCMPrepareList.m; sourceTree = "<group>"; };
+		692DFBAE1871287800076C08 /* WYCMTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCMTrip.h; sourceTree = "<group>"; };
+		692DFBAF1871287800076C08 /* WYCMTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCMTrip.m; sourceTree = "<group>"; };
+		692DFBB11871287800076C08 /* WYCMTripDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCMTripDay.h; sourceTree = "<group>"; };
+		692DFBB21871287800076C08 /* WYCMTripDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCMTripDay.m; sourceTree = "<group>"; };
+		692DFBB41871287800076C08 /* WYCMContinent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCMContinent.h; sourceTree = "<group>"; };
+		692DFBB51871287800076C08 /* WYCMContinent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCMContinent.m; sourceTree = "<group>"; };
+		692DFBB71871287800076C08 /* WYCMHotel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCMHotel.h; sourceTree = "<group>"; };
+		692DFBB81871287800076C08 /* WYCMHotel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCMHotel.m; sourceTree = "<group>"; };
+		692DFBBA1871287800076C08 /* WYCMSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCMSpot.h; sourceTree = "<group>"; };
+		692DFBBB1871287800076C08 /* WYCMSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCMSpot.m; sourceTree = "<group>"; };
+		692DFBBE187135CC00076C08 /* WYCoreDataEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCoreDataEngine.h; sourceTree = "<group>"; };
+		692DFBBF187135CC00076C08 /* WYCoreDataEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCoreDataEngine.m; sourceTree = "<group>"; };
+		6953CB6A186D215100DE04E0 /* demo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = demo.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +343,8 @@
 			children = (
 				5E5BC2F4183F3DB80003AC6D /* WYDataEngine.h */,
 				5E5BC2F5183F3DB80003AC6D /* WYDataEngine.m */,
+				692DFBBE187135CC00076C08 /* WYCoreDataEngine.h */,
+				692DFBBF187135CC00076C08 /* WYCoreDataEngine.m */,
 			);
 			name = Engine;
 			path = WeiYou/Class/Engine;
@@ -336,13 +372,14 @@
 		5E5BC24C183EE5E90003AC6D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				692DFBBD1871293900076C08 /* CoreDataModel */,
+				5E4A8CA718604C630062934F /* Spot */,
+				5E4A8CA618604C530062934F /* Traffic */,
+				5E4A8CA518604C4B0062934F /* Hotel */,
 				5EBCF73D185EAE290057C1AE /* WYMTrip.h */,
 				5EBCF73E185EAE290057C1AE /* WYMTrip.m */,
 				5EBCF740185EAE550057C1AE /* WYMTripDay.h */,
 				5EBCF741185EAE550057C1AE /* WYMTripDay.m */,
-				5E4A8CA718604C630062934F /* Spot */,
-				5E4A8CA618604C530062934F /* Traffic */,
-				5E4A8CA518604C4B0062934F /* Hotel */,
 			);
 			name = Model;
 			path = WeiYou/Class/Model;
@@ -370,6 +407,7 @@
 				5E5BC239183EE5D80003AC6D /* WeiYou-Prefix.pch */,
 				5EBCF764185F016B0057C1AE /* trips.plist */,
 				5E21AE5B186829E600316EA6 /* location.plist */,
+				6953CB6A186D215100DE04E0 /* demo.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -478,6 +516,32 @@
 			name = CreateNew;
 			sourceTree = "<group>";
 		};
+		692DFBBD1871293900076C08 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				692DFB9F187113CF00076C08 /* Model.xcdatamodeld */,
+				692DFBBA1871287800076C08 /* WYCMSpot.h */,
+				692DFBBB1871287800076C08 /* WYCMSpot.m */,
+				692DFBB71871287800076C08 /* WYCMHotel.h */,
+				692DFBB81871287800076C08 /* WYCMHotel.m */,
+				692DFBB41871287800076C08 /* WYCMContinent.h */,
+				692DFBB51871287800076C08 /* WYCMContinent.m */,
+				692DFBB11871287800076C08 /* WYCMTripDay.h */,
+				692DFBB21871287800076C08 /* WYCMTripDay.m */,
+				692DFBAE1871287800076C08 /* WYCMTrip.h */,
+				692DFBAF1871287800076C08 /* WYCMTrip.m */,
+				692DFBAB1871287800076C08 /* WYCMPrepareList.h */,
+				692DFBAC1871287800076C08 /* WYCMPrepareList.m */,
+				692DFBA81871287800076C08 /* WYCMCountry.h */,
+				692DFBA91871287800076C08 /* WYCMCountry.m */,
+				692DFBA51871287800076C08 /* WYCMCity.h */,
+				692DFBA61871287800076C08 /* WYCMCity.m */,
+				692DFBA21871287800076C08 /* WYCMTraffic.h */,
+				692DFBA31871287800076C08 /* WYCMTraffic.m */,
+			);
+			name = CoreDataModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -563,6 +627,7 @@
 				5E4A8C9E185FFDC70062934F /* tamp2@2x.png in Resources */,
 				5EBCF765185F016B0057C1AE /* trips.plist in Resources */,
 				5E21AE601868321C00316EA6 /* star@2x.png in Resources */,
+				6953CB6B186D215100DE04E0 /* demo.plist in Resources */,
 				5E4A8C9D185FFDC70062934F /* tamp2.png in Resources */,
 				5E21AE5C186829E600316EA6 /* location.plist in Resources */,
 				5E5BC23B183EE5D80003AC6D /* detail_icon_email@2x.png in Resources */,
@@ -590,20 +655,28 @@
 				5EBCF75A185EFF2A0057C1AE /* WYMCountry.m in Sources */,
 				5E49CED11862863C006F6B54 /* WYTrafficController.m in Sources */,
 				5EBCF732185E95D80057C1AE /* WYTripController.m in Sources */,
+				692DFBBC1871287800076C08 /* WYCMSpot.m in Sources */,
 				5EBCF75D185EFFBC0057C1AE /* WYMHotel.m in Sources */,
 				5EFE0EE5184F21E3004F8859 /* WYCityCell.m in Sources */,
 				5EBCF745185EAEDC0057C1AE /* WYMCity.m in Sources */,
 				5EBCF73F185EAE290057C1AE /* WYMTrip.m in Sources */,
 				5E5BC2EA183EEA3B0003AC6D /* WYAppDelegate.m in Sources */,
+				692DFBAD1871287800076C08 /* WYCMPrepareList.m in Sources */,
 				5E49CED41862865F006F6B54 /* WYSpotController.m in Sources */,
 				5E5D6761186144FF00ECA966 /* WYTripDayController.m in Sources */,
 				5E49CEDD18629B36006F6B54 /* WYMapViewController.m in Sources */,
+				692DFBA41871287800076C08 /* WYCMTraffic.m in Sources */,
 				5EFE0EDF184F0519004F8859 /* WYCreateNewViewController.m in Sources */,
 				5E5BC262183EE6770003AC6D /* WYSettingsViewController.m in Sources */,
 				5E5664FE1869875900460331 /* WYAnnotationView.m in Sources */,
 				5E4A8CA1186000730062934F /* WYTripCell.m in Sources */,
 				5E6EBC3918596919004E7EB6 /* WYCreateNewStepTwoViewController.m in Sources */,
+				692DFBA71871287800076C08 /* WYCMCity.m in Sources */,
 				5EBCF748185EE7630057C1AE /* WYMContinent.m in Sources */,
+				692DFBB01871287800076C08 /* WYCMTrip.m in Sources */,
+				692DFBA1187113CF00076C08 /* Model.xcdatamodeld in Sources */,
+				692DFBB91871287800076C08 /* WYCMHotel.m in Sources */,
+				692DFBB61871287800076C08 /* WYCMContinent.m in Sources */,
 				5E5BC23F183EE5D80003AC6D /* main.m in Sources */,
 				5E5AE6191856BB6B007DB9CC /* WYTableFooterView.m in Sources */,
 				5E5D676E186176B000ECA966 /* WYTripDayHotelCell.m in Sources */,
@@ -614,10 +687,13 @@
 				5E49CED71862866E006F6B54 /* WYHotelController.m in Sources */,
 				5E5BC2F1183EF5430003AC6D /* WYFileManager.m in Sources */,
 				5EBCF742185EAE550057C1AE /* WYMTripDay.m in Sources */,
+				692DFBC0187135CD00076C08 /* WYCoreDataEngine.m in Sources */,
 				5EBCF760185EFFC80057C1AE /* WYMTraffic.m in Sources */,
+				692DFBB31871287800076C08 /* WYCMTripDay.m in Sources */,
 				5E5D67681861766700ECA966 /* WYTripDayTrafficCell.m in Sources */,
 				5E5D67641861451600ECA966 /* WYTripDayCell.m in Sources */,
 				5E5BC258183EE5E90003AC6D /* WYCoverTableViewCell.m in Sources */,
+				692DFBAA1871287800076C08 /* WYCMCountry.m in Sources */,
 				5E5BC2F6183F3DB80003AC6D /* WYDataEngine.m in Sources */,
 				5E5BC261183EE6770003AC6D /* WYRootViewController.m in Sources */,
 				5E6EBC3F1859B408004E7EB6 /* WYPickerView.m in Sources */,
@@ -833,6 +909,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		692DFB9F187113CF00076C08 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				692DFBA0187113CF00076C08 /* Model.xcdatamodel */,
+			);
+			currentVersion = 692DFBA0187113CF00076C08 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5E6D03721839F68C006A0E93 /* Project object */;
 }

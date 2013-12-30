@@ -10,12 +10,17 @@
 #import "WYRootViewController.h"
 #import "consts.h"
 #include <stdio.h>
+#import "WYCoreDataEngine.h"
 
 @implementation WYAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	mlog(@"WYAppDelegate -- device system version is %f --", [[[UIDevice currentDevice] systemVersion] floatValue]);
+    
+    //init core data
+    [[WYCoreDataEngine sharedCoreDataEngine] open];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
 		//iOS7 OR the version before
@@ -23,8 +28,6 @@
 		[application setStatusBarStyle:UIStatusBarStyleLightContent];
 		
 		self.window.clipsToBounds = YES;
-//		self.window.frame = CGRectMake(0, 0, self.window.frame.size.width, self.window.frame.size.height);
-//		self.window.bounds = CGRectMake(0, 0, self.window.frame.size.width, self.window.frame.size.height);
 	}
 	
 		//init rootviewcontroller
@@ -98,6 +101,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[WYCoreDataEngine sharedCoreDataEngine] close];
 }
 
 @end

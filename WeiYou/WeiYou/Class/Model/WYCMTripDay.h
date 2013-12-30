@@ -11,14 +11,25 @@
 
 @class WYCMTraffic, WYCMTrip;
 
-@interface WYCMTripDay : NSManagedObject
+@interface WYCMTripDay : NSManagedObject {
+    NSDate *_date;
+    NSString *_dateStr;
+    NSString *_weekDayStr;
+    NSString *_dayTHStr;
+}
 
-@property (nonatomic, retain) NSDate * date;
-@property (nonatomic, retain) NSNumber * trip_dayth;
+@property (nonatomic, retain) NSNumber * dayth;
 @property (nonatomic, retain) WYCMTrip *trip;
 @property (nonatomic, retain) NSSet *continents;
 @property (nonatomic, retain) NSSet *traffics;
 @property (nonatomic, retain) NSSet *hotels;
+
+//not core data
+@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) NSString *dateStr;
+@property (nonatomic, strong) NSString *weekDayStr;
+@property (nonatomic, strong) NSString *dayTHStr;
+
 @end
 
 @interface WYCMTripDay (CoreDataGeneratedAccessors)
@@ -37,5 +48,7 @@
 - (void)removeHotelsObject:(NSManagedObject *)value;
 - (void)addHotels:(NSSet *)values;
 - (void)removeHotels:(NSSet *)values;
+
+- (void)initTripDayWithInfo:(NSDictionary *)infoDic;
 
 @end

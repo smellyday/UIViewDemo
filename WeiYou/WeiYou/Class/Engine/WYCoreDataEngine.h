@@ -8,6 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WYCoreDataEngine : NSObject
+@interface WYCoreDataEngine : NSObject {
+    UIManagedDocument *_managedDocument;
+    NSManagedObjectContext *_context;
+    NSMutableArray *_tripsArray;
+    
+    BOOL _dataOK;
+}
+
+@property (nonatomic, strong) UIManagedDocument *managedDocument;
+@property (nonatomic, strong) NSManagedObjectContext *context;
+@property (nonatomic, strong) NSMutableArray *tripsArray;
+@property (nonatomic) BOOL dataOK;
+
++ (id)sharedCoreDataEngine;
+- (void)open;
+- (void)close;
+- (void)initTrips;
 
 @end

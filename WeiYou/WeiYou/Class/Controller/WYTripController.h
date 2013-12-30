@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WYMTrip.h"
+#import "WYCMTrip.h"
 
 @interface WYTripController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
 	UITableView *_mTableView;
 	
-	NSArray *_daysArray;
-	WYMTrip *_trip;
+	NSMutableArray *_daysArray;
+	WYCMTrip *_trip;
 }
 
 @property (nonatomic, strong) UITableView *mTableView;
-@property (nonatomic, strong) NSArray *daysArray;
-@property (nonatomic, strong) WYMTrip *trip;
+@property (nonatomic, strong) NSMutableArray *daysArray;
+@property (nonatomic, strong) WYCMTrip *trip;
 
 @end
