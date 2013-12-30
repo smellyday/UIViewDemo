@@ -15,6 +15,7 @@
 
 @implementation WYCMTrip
 
+@dynamic tripIndex;
 @dynamic tripName;
 @dynamic tripDescription;
 @dynamic tripBeginDate;
@@ -25,6 +26,7 @@
 
 - (void)initTripWithInfo:(NSDictionary *)infoDic {
     
+    self.tripIndex = [infoDic objectForKey:WY_INDEX];
     self.tripName = [infoDic objectForKey:WY_TRIP_NAME];
     self.tripDescription = [infoDic objectForKey:WY_TRIP_DES];
     self.tripMainImageData = [infoDic objectForKey:WY_TRIP_MAIN_IMAGE];

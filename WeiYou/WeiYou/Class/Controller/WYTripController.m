@@ -13,10 +13,12 @@
 #import "WYMapViewController.h"
 #import "WYTripCell.h"
 #import "WYCMTripDay.h"
+#import "consts.h"
+#import "WYCoreDataEngine.h"
+
 #import "WYMContinent.h"
 #import "WYMCountry.h"
 #import "WYMCity.h"
-#import "consts.h"
 
 @interface WYTripController ()
 
@@ -280,6 +282,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 	
+    self.trip.tripName = @"new trip name";
+    [[WYCoreDataEngine sharedCoreDataEngine] save];
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTrip"];
+    NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"tripIndex" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDes];
+    NSError *merr;
+    NSArray *trips = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
+    for (WYCMTrip *trip in trips) {
+        mlog(@"in one trip : %@", [trip description]);
+    }
+    
     /*
 	WYTripDayController *tripDayController = [[WYTripDayController alloc] init];
 	tripDayController.tripDay = (WYMTripDay *)[self.daysArray objectAtIndex:[indexPath row]];

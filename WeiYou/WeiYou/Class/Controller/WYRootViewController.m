@@ -33,6 +33,16 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+//    if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
+//        self.tripsArray = [[WYCoreDataEngine sharedCoreDataEngine] tripsArray];
+//    } else {
+//        mlog(@"trips data is not ok.");
+//    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

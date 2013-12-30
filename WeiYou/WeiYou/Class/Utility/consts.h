@@ -31,6 +31,7 @@
 
 //========data model keys========
 	//for trip
+#define WY_INDEX                       @"index"
 #define WY_TRIP_NAME                   @"trip_name"
 #define WY_TRIP_DES                    @"trip_description"
 #define WY_TRIP_MAIN_IMAGE             @"trip_main_image"

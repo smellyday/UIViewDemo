@@ -14,6 +14,7 @@
 @synthesize managedDocument = _managedDocument;
 @synthesize context = _context;
 @synthesize tripsArray = _tripsArray;
+@synthesize coreDataURL = _coreDataURL;
 @synthesize dataOK = _dataOK;
 
 + (id)sharedCoreDataEngine {
@@ -29,18 +30,18 @@
 - (void)open {
     NSArray *userDomainArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *dataFilePath = [NSString stringWithFormat:@"%@/%@", [userDomainArray objectAtIndex:0], @"tripCoreData"];
-    NSURL *docURL = [[NSURL alloc] initFileURLWithPath:dataFilePath];
-    self.managedDocument = [[UIManagedDocument alloc] initWithFileURL:docURL];
+    self.coreDataURL = [[NSURL alloc] initFileURLWithPath:dataFilePath];
+    self.managedDocument = [[UIManagedDocument alloc] initWithFileURL:_coreDataURL];
     self.context = self.managedDocument.managedObjectContext;
     self.dataOK = NO;
     
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[docURL path]]) {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[_coreDataURL path]]) {
         
         [_managedDocument openWithCompletionHandler:^(BOOL success){
             
             if (success) {
                 mlog(@"open core data success");
-                [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(initData) userInfo:nil repeats:NO];
+                [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(initData) userInfo:nil repeats:NO];
             } else {
                 mlog(@"open core data fail");
             }
@@ -49,11 +50,11 @@
         
     } else {
         
-        [_managedDocument saveToURL:docURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success){
+        [_managedDocument saveToURL:_coreDataURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success){
             
             if (success) {
                 mlog(@"create core data success");
-                [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(initData) userInfo:nil repeats:NO];
+                [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(initData) userInfo:nil repeats:NO];
             } else {
                 mlog(@"create core data fail");
             }
@@ -65,8 +66,19 @@
 }
 
 - (void)initData {
-    NSLog(@"after 3 sec, we are initilizing trips");
     [self initTrips];
+}
+
+- (void)save {
+    [self.managedDocument saveToURL:_coreDataURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:^(BOOL success){
+        mlog(@"localized name : %@", self.managedDocument.localizedName);
+        if (success) {
+            mlog(@"core data save success");
+        } else {
+            mlog(@"core data save fail");
+        }
+    }];
+    
 }
 
 - (void)close {
@@ -88,6 +100,7 @@
         [trip initTripWithInfo:dic];
         [self.tripsArray addObject:trip];
 	}
+    [self save];
     
     self.dataOK = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:WY_TRIPS_DATA_OK object:nil userInfo:nil];

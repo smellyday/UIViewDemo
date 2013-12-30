@@ -53,6 +53,7 @@
     <entity name="WYCMTrip" representedClassName="WYCMTrip" syncable="YES">
         <attribute name="tripBeginDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="tripDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tripIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="tripMainImageData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="tripName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="tripDays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WYCMTripDay" inverseName="trip" inverseEntity="WYCMTripDay" syncable="YES"/>

@@ -13,6 +13,7 @@
 
 @interface WYCMTrip : NSManagedObject
 
+@property (nonatomic, retain) NSNumber *tripIndex;
 @property (nonatomic, retain) NSString * tripName;
 @property (nonatomic, retain) NSString * tripDescription;
 @property (nonatomic, retain) NSDate * tripBeginDate;
