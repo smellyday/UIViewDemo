@@ -29,6 +29,6 @@
 - (void)addTripDays:(NSSet *)values;
 - (void)removeTripDays:(NSSet *)values;
 
-- (void)initTripWithInfo:(NSDictionary *)infoDic;
+- (void)prepareTripWithInfo:(NSDictionary *)infoDic;
 
 @end

@@ -24,7 +24,7 @@
 @dynamic tripPrepareList;
 
 
-- (void)initTripWithInfo:(NSDictionary *)infoDic {
+- (void)prepareTripWithInfo:(NSDictionary *)infoDic {
     
     self.tripIndex = [infoDic objectForKey:WY_INDEX];
     self.tripName = [infoDic objectForKey:WY_TRIP_NAME];
@@ -36,7 +36,7 @@
     for (NSDictionary *dic in daysDicArr) {
         WYCMTripDay *tripDay = [NSEntityDescription insertNewObjectForEntityForName:@"WYCMTripDay" inManagedObjectContext:[[WYCoreDataEngine sharedCoreDataEngine] context]];
         tripDay.trip = self;
-        [tripDay initTripDayWithInfo:dic];
+        [tripDay prepareTripDayWithInfo:dic];
     }
 }
 

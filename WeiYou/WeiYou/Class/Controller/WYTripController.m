@@ -20,7 +20,9 @@
 #import "WYMCountry.h"
 #import "WYMCity.h"
 
-@interface WYTripController ()
+@interface WYTripController (private)
+
+- (void)refresh;
 
 @end
 
@@ -36,6 +38,30 @@
         // Custom initialization
     }
     return self;
+}
+
+/*
+- (void)refresh {
+    [_daysArray removeAllObjects];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTripDay"];
+    request.predicate = [NSPredicate predicateWithFormat:@"SELF.trip.tripIndex == %@", self.trip.tripIndex];
+    NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"dayth" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDes];
+    NSError *merr;
+    NSArray *trips = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
+    [_daysArray addObjectsFromArray:trips];
+    
+}
+*/
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if ([[[WYCoreDataEngine sharedCoreDataEngine] managedDocument] hasUnsavedChanges]) {
+        mlog(@"has unsaved changes");
+        [[WYCoreDataEngine sharedCoreDataEngine] save];
+    } else {
+        mlog(@"has no unsaved changes");
+    }
 }
 
 - (void)viewDidLoad
@@ -136,18 +162,14 @@
 }
 
 - (void)addOneDay:(id)sender {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"plist"];
-    NSLog(@"file path is %@", filePath);
-    NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
-    NSLog(@"print info : %@", [mDic description]);
+    WYCMTripDay *tripDay = [NSEntityDescription insertNewObjectForEntityForName:@"WYCMTripDay" inManagedObjectContext:[[WYCoreDataEngine sharedCoreDataEngine] context]];
+    tripDay.trip = self.trip;
+    NSDictionary *infoDic = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:[self.trip.tripDays count]-1] forKey:WY_TRIP_DAYTH];// -1 because after tripday.trip = self.trip.
+    [tripDay prepareTripDayWithInfo:infoDic];
+    [_daysArray addObject:tripDay];
+    [_mTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:[self.trip.tripDays count]-1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+//    [_mTableView reloadData];
     
-    [mDic setObject:@"5555" forKey:@"11"];
-    BOOL b = [mDic writeToFile:filePath atomically:YES];
-    if (b) {
-        NSLog(@"write yes");
-    } else {
-        NSLog(@"write no");
-    }
 }
 
 /*
@@ -283,7 +305,6 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 	
     self.trip.tripName = @"new trip name";
-//    [[WYCoreDataEngine sharedCoreDataEngine] save];
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTrip"];
     NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"tripIndex" ascending:YES];
@@ -291,7 +312,7 @@
     NSError *merr;
     NSArray *trips = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
     for (WYCMTrip *trip in trips) {
-        mlog(@"in one trip : %@", [trip description]);
+//        mlog(@"in one trip : %@", [trip description]);
     }
     
     /*

@@ -26,7 +26,7 @@
 @dynamic hotels;
 
 
-- (void)initTripDayWithInfo:(NSDictionary *)infoDic {
+- (void)prepareTripDayWithInfo:(NSDictionary *)infoDic {
     if (self.trip.tripBeginDate != nil) {
         self.dayth = [infoDic objectForKey:WY_TRIP_DAYTH];
         if (self.dayth != nil) {

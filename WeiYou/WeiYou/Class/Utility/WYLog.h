@@ -6,8 +6,9 @@
 	//  Copyright (c) 2013 xyn. All rights reserved.
 	//
 
-	//#define weiyou
+#define weiyou
 #define analyselog
+
 
 #ifdef weiyou
 #define wylog NSLog(@"%s", __func__)

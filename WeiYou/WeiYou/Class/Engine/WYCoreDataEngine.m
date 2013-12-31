@@ -71,7 +71,6 @@
 
 - (void)save {
     [self.managedDocument saveToURL:_coreDataURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:^(BOOL success){
-        mlog(@"localized name : %@", self.managedDocument.localizedName);
         if (success) {
             mlog(@"core data save success");
         } else {
@@ -97,7 +96,7 @@
     NSArray *arr = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
 	for (NSDictionary *dic in arr) {
 		WYCMTrip *trip = [NSEntityDescription insertNewObjectForEntityForName:@"WYCMTrip" inManagedObjectContext:self.context];
-        [trip initTripWithInfo:dic];
+        [trip prepareTripWithInfo:dic];
         [self.tripsArray addObject:trip];
 	}
     [self save];
@@ -105,21 +104,6 @@
     self.dataOK = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:WY_TRIPS_DATA_OK object:nil userInfo:nil];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @end

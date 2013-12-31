@@ -49,6 +49,6 @@
 - (void)addHotels:(NSSet *)values;
 - (void)removeHotels:(NSSet *)values;
 
-- (void)initTripDayWithInfo:(NSDictionary *)infoDic;
+- (void)prepareTripDayWithInfo:(NSDictionary *)infoDic;
 
 @end
