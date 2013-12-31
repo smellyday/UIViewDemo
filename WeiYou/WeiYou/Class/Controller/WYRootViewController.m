@@ -54,6 +54,7 @@
 {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenTripsDataOK:) name:WY_TRIPS_DATA_OK object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenCoreDataChanged:) name:NSManagedObjectContextObjectsDidChangeNotification object:[[WYCoreDataEngine sharedCoreDataEngine] context]];
     self.tripsArray = [NSMutableArray arrayWithCapacity:10];
 	// Do any additional setup after loading the view.
 	
@@ -71,18 +72,10 @@
 	self.mTableView.dataSource = self;
 	self.mTableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
 	self.mTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
-	
 	[self.view addSubview:_mTableView];
-	
+    
 		// ----- prepare data -----
     [self refresh];
-    if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
-        for (WYCMTrip *mtrp in self.tripsArray) {
-            [mtrp addObserver:self forKeyPath:@"tripIndex" options:NSKeyValueObservingOptionNew context:nil];
-            [mtrp addObserver:self forKeyPath:@"tripName" options:NSKeyValueObservingOptionNew context:nil];
-            [mtrp addObserver:self forKeyPath:@"tripMainImageData" options:NSKeyValueObservingOptionNew context:nil];
-        }
-    }
 	
 }
 
@@ -101,24 +94,14 @@
 	[self presentViewController:mCreateNewController animated:YES completion:nil];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    NSLog(@"%s", __func__);
-    
+#pragma notification received
+
+- (void)doWhenCoreDataChanged:(NSNotification *)notification {
     [self refresh];
-    
 }
 
-#pragma notification received
 - (void)doWhenTripsDataOK:(NSNotification *)notification {
-    
     [self refresh];
-    if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
-        for (WYCMTrip *mtrp in self.tripsArray) {
-            [mtrp addObserver:self forKeyPath:@"tripIndex" options:NSKeyValueObservingOptionNew context:nil];
-            [mtrp addObserver:self forKeyPath:@"tripName" options:NSKeyValueObservingOptionNew context:nil];
-            [mtrp addObserver:self forKeyPath:@"tripMainImageData" options:NSKeyValueObservingOptionNew context:nil];
-        }
-    }
 }
 
 
@@ -184,11 +167,6 @@
 }
 
 - (void)dealloc {
-    for (WYCMTrip *mtrp in self.tripsArray) {
-        [mtrp removeObserver:self forKeyPath:@"tripIndex"];
-        [mtrp removeObserver:self forKeyPath:@"tripName"];
-        [mtrp removeObserver:self forKeyPath:@"tripMainImageData"];
-    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
