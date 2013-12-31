@@ -283,7 +283,7 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 	
     self.trip.tripName = @"new trip name";
-    [[WYCoreDataEngine sharedCoreDataEngine] save];
+//    [[WYCoreDataEngine sharedCoreDataEngine] save];
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTrip"];
     NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"tripIndex" ascending:YES];

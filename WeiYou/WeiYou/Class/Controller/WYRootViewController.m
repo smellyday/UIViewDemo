@@ -18,6 +18,8 @@
 
 @interface WYRootViewController ()
 
+- (void)refresh;
+
 @end
 
 @implementation WYRootViewController
@@ -33,12 +35,9 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    NSLog(@"%s", __func__);
-
+- (void)refresh {
+    
     if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
-        //        self.tripsArray = [[WYCoreDataEngine sharedCoreDataEngine] tripsArray];
         [_tripsArray removeAllObjects];
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTrip"];
         NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"tripIndex" ascending:YES];
@@ -46,12 +45,9 @@
         NSError *merr;
         NSArray *trips = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
         [_tripsArray addObjectsFromArray:trips];
-        
         [self.mTableView reloadData];
-    } else {
-        mlog(@"trips data is not ok.");
     }
-
+    
 }
 
 - (void)viewDidLoad
@@ -79,11 +75,14 @@
 	[self.view addSubview:_mTableView];
 	
 		// ----- prepare data -----
-//    if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
-//        self.tripsArray = [[WYCoreDataEngine sharedCoreDataEngine] tripsArray];
-//    } else {
-//        mlog(@"trips data is not ok.");
-//    }
+    [self refresh];
+    if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
+        for (WYCMTrip *mtrp in self.tripsArray) {
+            [mtrp addObserver:self forKeyPath:@"tripIndex" options:NSKeyValueObservingOptionNew context:nil];
+            [mtrp addObserver:self forKeyPath:@"tripName" options:NSKeyValueObservingOptionNew context:nil];
+            [mtrp addObserver:self forKeyPath:@"tripMainImageData" options:NSKeyValueObservingOptionNew context:nil];
+        }
+    }
 	
 }
 
@@ -98,31 +97,27 @@
 }
 
 - (void)clickCreateNew:(id)sender {
-//	WYFileManager *mf = [[WYFileManager alloc] init];
-//	[mf findAllFiles:@"/var/mobile/Applications/B3A77942-A577-4D35-A979-5F020CD60B90" withLevel:0];
-	
 	WYCreateNewViewController *mCreateNewController = [[WYCreateNewViewController alloc] init];
 	[self presentViewController:mCreateNewController animated:YES completion:nil];
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    NSLog(@"%s", __func__);
+    
+    [self refresh];
+    
+}
+
 #pragma notification received
 - (void)doWhenTripsDataOK:(NSNotification *)notification {
+    
+    [self refresh];
     if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
-//        self.tripsArray = [[WYCoreDataEngine sharedCoreDataEngine] tripsArray];
-        
-        [_tripsArray removeAllObjects];
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTrip"];
-        NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"tripIndex" ascending:YES];
-        request.sortDescriptors = [NSArray arrayWithObject:sortDes];
-        NSError *merr;
-        NSArray *trips = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
-        NSLog(@"trips count : %ld", [trips count]);
-        [_tripsArray addObjectsFromArray:trips];
-        
-        [self.mTableView reloadData];
-        mlog(@"receive notification -- trips data is ok now.");
-    } else {
-        mlog(@"receive notification -- trips data is still not ok.");
+        for (WYCMTrip *mtrp in self.tripsArray) {
+            [mtrp addObserver:self forKeyPath:@"tripIndex" options:NSKeyValueObservingOptionNew context:nil];
+            [mtrp addObserver:self forKeyPath:@"tripName" options:NSKeyValueObservingOptionNew context:nil];
+            [mtrp addObserver:self forKeyPath:@"tripMainImageData" options:NSKeyValueObservingOptionNew context:nil];
+        }
     }
 }
 
@@ -189,6 +184,11 @@
 }
 
 - (void)dealloc {
+    for (WYCMTrip *mtrp in self.tripsArray) {
+        [mtrp removeObserver:self forKeyPath:@"tripIndex"];
+        [mtrp removeObserver:self forKeyPath:@"tripName"];
+        [mtrp removeObserver:self forKeyPath:@"tripMainImageData"];
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
