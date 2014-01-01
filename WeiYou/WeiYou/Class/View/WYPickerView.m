@@ -111,7 +111,7 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-	self.daysCountString = [NSString stringWithFormat:@"%d", (row+1)];
+	self.daysCountString = [NSString stringWithFormat:@"%ld", (long)(row+1)];
 }
 
 
