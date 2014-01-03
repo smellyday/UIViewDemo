@@ -56,12 +56,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    if ([[[WYCoreDataEngine sharedCoreDataEngine] managedDocument] hasUnsavedChanges]) {
-        mlog(@"has unsaved changes");
-        [[WYCoreDataEngine sharedCoreDataEngine] save];
-    } else {
-        mlog(@"has no unsaved changes");
-    }
 }
 
 - (void)viewDidLoad
@@ -71,10 +65,21 @@
 	
     self.daysArray = [NSMutableArray arrayWithCapacity:10];
 	if (self.trip) {
-        self.daysArray = [NSMutableArray arrayWithCapacity:10];
+
         NSSortDescriptor *sortDes = [[NSSortDescriptor alloc] initWithKey:@"dayth" ascending:YES];
         [self.daysArray addObjectsFromArray:[[[self.trip tripDays] allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDes]]];
 		self.title = self.trip.tripName;
+		
+		/*
+		NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTripDay"];
+		NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"dayth" ascending:YES];
+		request.sortDescriptors = [NSArray arrayWithObject:sortDes];
+		request.predicate = [NSPredicate predicateWithFormat:@"SELF.trip.tripIndex == %@", self.trip.tripIndex];
+		NSError *merr;
+		NSArray *tripds = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
+		[self.daysArray addObjectsFromArray:tripds];
+		self.title = self.trip.tripName;
+		*/
 	}
 	
 	UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)];
@@ -148,8 +153,20 @@
 }
 
 - (void)editDays:(id)sender {
-    mlog(@"%s", __func__);
+    mlog(@"---------------------%s", __func__);
     
+	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTripDay"];
+	NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"dayth" ascending:YES];
+	request.sortDescriptors = [NSArray arrayWithObject:sortDes];
+	request.predicate = [NSPredicate predicateWithFormat:@"SELF.trip.tripIndex == %@", self.trip.tripIndex];
+	NSError *merr;
+	NSArray *tripds = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
+	mlog(@"tripday count : %ld", (long)[tripds count]);
+	for (WYCMTripDay *td in tripds) {
+		mlog(@"%@", [td description]);
+	}
+	
+	/*
     NSArray *userDomainArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *filePath = [NSString stringWithFormat:@"%@/%@", [userDomainArray objectAtIndex:0], @"hello.plist"];
 	NSFileManager *mFileManager = [[NSFileManager alloc] init];
@@ -158,7 +175,7 @@
 	}
     
     NSDictionary *dayInfoDic = [NSDictionary dictionaryWithContentsOfFile:filePath];
-    NSLog(@"%@", [dayInfoDic description]);
+	*/
 }
 
 - (void)addOneDay:(id)sender {
@@ -271,6 +288,7 @@
 	}
 	
 	WYCMTripDay *tripDay = (WYCMTripDay *)[self.daysArray objectAtIndex:[indexPath row]];
+	[tripDay prepareTripDayInfo];
 	cell.dateLabel.text = tripDay.dateStr;
 	cell.daythLabel.text = tripDay.dayTHStr;
 	cell.weekLabel.text = tripDay.weekDayStr;

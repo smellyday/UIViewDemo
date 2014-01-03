@@ -50,5 +50,6 @@
 - (void)removeHotels:(NSSet *)values;
 
 - (void)prepareTripDayWithInfo:(NSDictionary *)infoDic;
+- (void)prepareTripDayInfo;
 
 @end

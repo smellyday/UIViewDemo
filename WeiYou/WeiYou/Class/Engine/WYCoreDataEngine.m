@@ -41,7 +41,7 @@
             
             if (success) {
                 mlog(@"open core data success");
-                [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(initData) userInfo:nil repeats:NO];
+				[NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(loadData) userInfo:nil repeats:NO];
             } else {
                 mlog(@"open core data fail");
             }
@@ -54,7 +54,7 @@
             
             if (success) {
                 mlog(@"create core data success");
-                [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(initData) userInfo:nil repeats:NO];
+                [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(initData) userInfo:nil repeats:NO];
             } else {
                 mlog(@"create core data fail");
             }
@@ -65,11 +65,29 @@
     
 }
 
+- (void)loadData {
+	/*
+	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTrip"];
+	NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"tripIndex" ascending:YES];
+	request.sortDescriptors = [NSArray arrayWithObject:sortDes];
+	NSError *merr;
+	NSArray *trips = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
+	
+	self.tripsArray = nil;
+	self.tripsArray = [NSMutableArray arrayWithCapacity:10];
+	[self.tripsArray addObjectsFromArray:trips];
+	*/
+	
+    self.dataOK = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:WY_TRIPS_DATA_OK object:nil userInfo:nil];
+}
+
 - (void)initData {
     [self initTrips];
 }
 
 - (void)save {
+
     [self.managedDocument saveToURL:_coreDataURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:^(BOOL success){
         if (success) {
             mlog(@"core data save success");
@@ -78,6 +96,13 @@
         }
     }];
     
+	/*
+	NSError *err = nil;
+	if (![self.context save:&err]) {
+		mlog(@"%@", err);
+	}
+	*/
+	
 }
 
 - (void)close {

@@ -67,7 +67,7 @@
 	self.navigationItem.rightBarButtonItem = mRightButton;
 	
 		//add table view
-	self.mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
+	self.mTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
 	self.mTableView.delegate = self;
 	self.mTableView.dataSource = self;
 	self.mTableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
@@ -90,8 +90,20 @@
 }
 
 - (void)clickCreateNew:(id)sender {
+	
+	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTrip"];
+	NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"tripIndex" ascending:YES];
+	request.sortDescriptors = [NSArray arrayWithObject:sortDes];
+	NSError *merr;
+	NSArray *trips = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
+	for (WYCMTrip *t in trips) {
+		mlog(@"%@", [t description]);
+	}
+	
+	/*
 	WYCreateNewViewController *mCreateNewController = [[WYCreateNewViewController alloc] init];
 	[self presentViewController:mCreateNewController animated:YES completion:nil];
+	*/
 }
 
 #pragma notification received
