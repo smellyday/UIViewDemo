@@ -41,7 +41,7 @@
             
             if (success) {
                 mlog(@"open core data success");
-				[NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(loadData) userInfo:nil repeats:NO];
+				[NSTimer scheduledTimerWithTimeInterval:.3 target:self selector:@selector(loadData) userInfo:nil repeats:NO];
             } else {
                 mlog(@"open core data fail");
             }
@@ -54,7 +54,7 @@
             
             if (success) {
                 mlog(@"create core data success");
-                [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(initData) userInfo:nil repeats:NO];
+                [NSTimer scheduledTimerWithTimeInterval:.3 target:self selector:@selector(initData) userInfo:nil repeats:NO];
             } else {
                 mlog(@"create core data fail");
             }

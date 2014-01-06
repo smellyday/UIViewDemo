@@ -153,18 +153,7 @@
 }
 
 - (void)editDays:(id)sender {
-    mlog(@"---------------------%s", __func__);
-    
-	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTripDay"];
-	NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"dayth" ascending:YES];
-	request.sortDescriptors = [NSArray arrayWithObject:sortDes];
-	request.predicate = [NSPredicate predicateWithFormat:@"SELF.trip.tripIndex == %@", self.trip.tripIndex];
-	NSError *merr;
-	NSArray *tripds = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
-	mlog(@"tripday count : %ld", (long)[tripds count]);
-	for (WYCMTripDay *td in tripds) {
-		mlog(@"%@", [td description]);
-	}
+    [_mTableView setEditing:!_mTableView.editing animated:YES];
 	
 	/*
     NSArray *userDomainArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -293,7 +282,7 @@
 	cell.daythLabel.text = tripDay.dayTHStr;
 	cell.weekLabel.text = tripDay.weekDayStr;
 	
-    cell.citiesNameLabel.text = @"暂无安排";
+    cell.citiesNameLabel.text = [NSString stringWithFormat:@"暂无安排, dayth:%d", [tripDay.dayth intValue]];
     /*
 	NSMutableString *cityStr = [NSMutableString stringWithCapacity:10];
 	for (WYMContinent *continent in tripDay.continentsArray) {
@@ -313,8 +302,46 @@
 	return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    mlog(@"%s", __func__);
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSInteger row = [indexPath row];
+        WYCMTripDay *tripDay = (WYCMTripDay *)[self.daysArray objectAtIndex:row];
+        [[[WYCoreDataEngine sharedCoreDataEngine] context] deleteObject:tripDay];
+        
+        for (NSInteger i = row+1; i < [_daysArray count]; i++) {
+            WYCMTripDay *td = (WYCMTripDay *)[self.daysArray objectAtIndex:i];
+            td.dayth = [NSNumber numberWithInt:i-1];
+        }
+        
+        [self.daysArray removeObjectAtIndex:row];
+        [_mTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [_mTableView reloadData];
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     
+    if (fromIndexPath.row != toIndexPath.row) {
+        WYCMTripDay *tripDay = (WYCMTripDay *)[self.daysArray objectAtIndex:fromIndexPath.row];
+        [self.daysArray removeObject:tripDay];
+        [self.daysArray insertObject:tripDay atIndex:toIndexPath.row];
+        
+        for (int i = 0; i < [_daysArray count]; i++) {
+            WYCMTripDay *td = (WYCMTripDay *)[self.daysArray objectAtIndex:i];
+            td.dayth = [NSNumber numberWithInt:i];
+        }
+        
+        [_mTableView reloadData];
+    }
 }
 
 #pragma mark - UITableViewDelegate
