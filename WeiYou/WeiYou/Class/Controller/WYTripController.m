@@ -154,6 +154,11 @@
 
 - (void)editDays:(id)sender {
     [_mTableView setEditing:!_mTableView.editing animated:YES];
+    if (_mTableView.editing) {
+        self.navigationItem.rightBarButtonItem.title = @"完成";
+    } else {
+        self.navigationItem.rightBarButtonItem.title = @"编辑";
+    }
 	
 	/*
     NSArray *userDomainArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
