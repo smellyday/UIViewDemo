@@ -8,6 +8,7 @@
 
 #import "WYCMHotel.h"
 #import "WYCMTripDay.h"
+#import "consts.h"
 
 
 @implementation WYCMHotel
@@ -17,5 +18,12 @@
 @dynamic hotelName;
 @dynamic hotelAddress;
 @dynamic tripDay;
+
+- (void)prepareHotelInfoWith:(NSDictionary *)infoDic {
+    
+    self.hotelName = [infoDic objectForKey:WY_HOTEL_NAME];
+    self.hotelAddress = [infoDic objectForKey:WY_HOTEL_ADDRESS];
+    
+}
 
 @end

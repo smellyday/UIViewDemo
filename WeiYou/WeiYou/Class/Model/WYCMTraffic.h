@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class WYCMTripDay;
 
-@interface WYCMTraffic : NSManagedObject
+@interface WYCMTraffic : NSManagedObject {
+    NSString *_takeOffTimeStr;
+}
 
 @property (nonatomic, retain) NSNumber * trafficType;
 @property (nonatomic, retain) NSDate * takeOffTime;
@@ -19,6 +22,11 @@
 @property (nonatomic, retain) NSNumber * trafficPrice;
 @property (nonatomic, retain) NSString * flightNumberStr;
 @property (nonatomic, retain) NSString * trainNumberStr;
-@property (nonatomic, retain) NSManagedObject *tripDay;
+@property (nonatomic, retain) WYCMTripDay *tripDay;
+
+@property (nonatomic, strong) NSString *takeOffTimeStr;
+
+- (void)prepareTrafficInfoWith:(NSDictionary *)infoDic;
+- (void)prepareTrafficInfo;
 
 @end

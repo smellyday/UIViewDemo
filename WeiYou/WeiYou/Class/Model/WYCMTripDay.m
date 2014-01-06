@@ -7,9 +7,15 @@
 //
 
 #import "WYCMTripDay.h"
-#import "WYCMTraffic.h"
 #import "WYCMTrip.h"
+#import "WYCMTraffic.h"
+#import "WYCMHotel.h"
+#import "WYCMContinent.h"
+#import "WYCMCountry.h"
+#import "WYCMCity.h"
+#import "WYCMSpot.h"
 #import "consts.h"
+#import "WYCoreDataEngine.h"
 
 
 @implementation WYCMTripDay
@@ -45,6 +51,26 @@
 		}
     }
     
+    NSArray *hotelsArr = [infoDic objectForKey:WY_TRIP_HOTELS];
+    for (NSDictionary *dic in hotelsArr) {
+        WYCMHotel *hotel = [NSEntityDescription insertNewObjectForEntityForName:@"WYCMHotel" inManagedObjectContext:[[WYCoreDataEngine sharedCoreDataEngine] context]];
+        hotel.tripDay = self;
+        [hotel prepareHotelInfoWith:dic];
+    }
+    
+    NSArray *trafficsArr = [infoDic objectForKey:WY_TRIP_TRAFFICS];
+    for (NSDictionary *dic in trafficsArr) {
+        WYCMTraffic *traffic = [NSEntityDescription insertNewObjectForEntityForName:@"WYCMTraffic" inManagedObjectContext:[[WYCoreDataEngine sharedCoreDataEngine] context]];
+        traffic.tripDay = self;
+        [traffic prepareTrafficInfoWith:dic];
+    }
+    
+    NSArray *continentsArr = [infoDic objectForKey:WY_TRIP_CONTINENTS];
+    for (NSDictionary *dic in continentsArr) {
+        WYCMContinent *continent = [NSEntityDescription insertNewObjectForEntityForName:@"WYCMContinent" inManagedObjectContext:[[WYCoreDataEngine sharedCoreDataEngine] context]];
+        continent.tripDay = self;
+        [continent prepareContinentInfoWith:dic];
+    }
 }
 
 - (void)prepareTripDayInfo {

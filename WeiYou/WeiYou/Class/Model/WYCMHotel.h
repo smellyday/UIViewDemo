@@ -19,4 +19,6 @@
 @property (nonatomic, retain) NSString * hotelAddress;
 @property (nonatomic, retain) WYCMTripDay *tripDay;
 
+- (void)prepareHotelInfoWith:(NSDictionary *)infoDic;
+
 @end

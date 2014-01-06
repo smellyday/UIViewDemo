@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class WYCMCountry;
 
 @interface WYCMCity : NSManagedObject
 
 @property (nonatomic, retain) NSString * cityName;
 @property (nonatomic, retain) NSString * cityDes;
 @property (nonatomic, retain) NSString * briefName;
-@property (nonatomic, retain) NSManagedObject *country;
+@property (nonatomic, retain) WYCMCountry *country;
 @property (nonatomic, retain) NSSet *spots;
 @end
 
@@ -25,5 +26,7 @@
 - (void)removeSpotsObject:(NSManagedObject *)value;
 - (void)addSpots:(NSSet *)values;
 - (void)removeSpots:(NSSet *)values;
+
+- (void)prepareCityInfoWith:(NSDictionary *)infoDic;
 
 @end

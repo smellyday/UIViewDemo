@@ -10,15 +10,17 @@
 #import "WYTrafficController.h"
 #import "WYSpotController.h"
 #import "WYHotelController.h"
-#import "WYMContinent.h"
-#import "WYMCountry.h"
-#import "WYMCity.h"
-#import "WYMSpot.h"
+
 #import "WYTripDayTrafficCell.h"
 #import "WYTripDaySpotCell.h"
 #import "WYTripDayHotelCell.h"
-#import "WYMTraffic.h"
-#import "WYMBookedHotel.h"
+
+#import "WYCMTraffic.h"
+#import "WYCMHotel.h"
+#import "WYCMSpot.h"
+#import "WYCMContinent.h"
+#import "WYCMCountry.h"
+#import "WYCMCity.h"
 #import "consts.h"
 
 @interface WYTripDayController ()
@@ -46,23 +48,34 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.trafficArray = [NSMutableArray arrayWithCapacity:10];
+    self.hotelsArray = [NSMutableArray arrayWithCapacity:10];
+    self.spotsArray = [NSMutableArray arrayWithCapacity:10];
+    
 	if (self.tripDay) {
-		if (self.tripName != nil && ![self.tripName isEqualToString:@""]) {
+        
+        if (self.tripName != nil && ![self.tripName isEqualToString:@""]) {
 			self.title = [NSString stringWithFormat:@"%@ : %@", self.tripName, self.tripDay.dayTHStr];
 		} else {
 			self.title = self.tripDay.dayTHStr;
 		}
-		
-		self.hotelsArray = self.tripDay.hotelsArray;
-		self.trafficArray = self.tripDay.trafficArray;
-		self.spotsArray = [NSMutableArray arrayWithCapacity:10];
-		for (WYMContinent *continent in _tripDay.continentsArray) {
-			for (WYMCountry *country in continent.countryArray) {
-				for (WYMCity *city in country.cityArray) {
-					[self.spotsArray addObjectsFromArray:city.spotsArray];
+        
+        NSSortDescriptor *sortTrafficDes = [[NSSortDescriptor alloc] initWithKey:@"takeOffTime" ascending:YES];
+        [self.trafficArray addObjectsFromArray:[[self.tripDay.traffics allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortTrafficDes]]];
+        
+        NSSortDescriptor *sortHotelDes = [[NSSortDescriptor alloc] initWithKey:@"dateCheckIn" ascending:YES];
+        [self.hotelsArray addObjectsFromArray:[[self.tripDay.hotels allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortHotelDes]]];
+        
+		for (WYCMContinent *continent in self.tripDay.continents) {
+			for (WYCMCountry *country in continent.countries) {
+				for (WYCMCity *city in country.cities) {
+                    [self.spotsArray addObjectsFromArray:[city.spots allObjects]];
 				}
 			}
 		}
+        NSSortDescriptor *sortSpotDes = [[NSSortDescriptor alloc] initWithKey:@"spotIndex" ascending:YES];
+        [self.spotsArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortSpotDes]];
 	}
 	
 	UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)];
@@ -133,13 +146,14 @@
 		}
 		
 		if (_trafficArray != nil && [_trafficArray count] > 0) {
-			WYMTraffic *traffic = (WYMTraffic *)[_trafficArray objectAtIndex:[indexPath row]];
-			if (traffic.trafficType == WYPlane) {
+			WYCMTraffic *traffic = (WYCMTraffic *)[_trafficArray objectAtIndex:[indexPath row]];
+            [traffic prepareTrafficInfo];
+			if ([traffic.trafficType intValue] == 1) {
 				cell.trafficNumberLabel.text = traffic.flightNumberStr;
-			} else if (traffic.trafficType == WYTrain) {
+			} else if ([traffic.trafficType intValue] == 2) {
 				cell.trafficNumberLabel.text = traffic.trainNumberStr;
 			} else {
-				cell.trafficNumberLabel.text = @"no number";
+				cell.trafficNumberLabel.text = @"no this type traffic";
 			}
 			cell.departureLabel.text = traffic.departurePlace;
 			cell.destinationLabel.text = traffic.destinationPlace;
@@ -161,13 +175,8 @@
 		}
 		
 		if (_spotsArray != nil && [_spotsArray count] > 0) {
-			WYMSpot *spot = [_spotsArray objectAtIndex:[indexPath row]];
+			WYCMSpot *spot = (WYCMSpot *)[_spotsArray objectAtIndex:[indexPath row]];
 			cell.spotNameLabel.text = spot.spotName;
-			if (spot.spotImagesArray == nil || [spot.spotImagesArray count] == 0) {
-				cell.spotImageView.image = [UIImage imageNamed:@"tamp1.png"];
-			} else {
-				cell.spotImageView.image = [UIImage imageWithData:[spot.spotImagesArray objectAtIndex:0]];
-			}
 			
 		} else {
 			cell.textLabel.text = @"no spot";
@@ -185,15 +194,9 @@
 		}
 		
 		if (_hotelsArray != nil && [_hotelsArray count] > 0) {
-			WYMHotel *hotel = [_hotelsArray objectAtIndex:[indexPath row]];
+			WYCMHotel *hotel = (WYCMHotel *)[_hotelsArray objectAtIndex:[indexPath row]];
 			cell.hotelNameLabel.text = hotel.hotelName;
 			cell.hotelAddressLabel.text = hotel.hotelAddress;
-			if (hotel.hotelImageArray == nil || [hotel.hotelImageArray count] == 0) {
-				cell.hotelImageView.image = [UIImage imageNamed:@"tamp2.png"];
-			} else {
-				cell.hotelImageView.image = [UIImage imageWithData:[hotel.hotelImageArray objectAtIndex:0]];
-			}
-			
 		} else {
 			cell.textLabel.text = @"no hotel";
 		}
@@ -209,6 +212,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 	
+    /*
 	if ([indexPath section] == 0) {
 		if (_trafficArray != nil && [_trafficArray count] > 0) {
 			WYTrafficController *trafficController = [[WYTrafficController alloc] init];
@@ -227,6 +231,7 @@
 			[self.navigationController pushViewController:hotelContrller animated:YES];
 		}
 	}
+    */
 	
 }
 

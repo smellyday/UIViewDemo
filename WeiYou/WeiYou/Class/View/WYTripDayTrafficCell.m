@@ -20,7 +20,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 			// Initialization code
-        int wLocation = -30;
+        int wLocation = -80;
         int wid = 20;
         
         UILabel *fromLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80+wLocation, 40)];

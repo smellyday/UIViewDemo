@@ -13,7 +13,6 @@
 
 @interface WYCMContinent : NSManagedObject
 
-@property (nonatomic, retain) NSString * continentName;
 @property (nonatomic, retain) NSString * continentDes;
 @property (nonatomic, retain) NSNumber * continentType;
 @property (nonatomic, retain) WYCMTripDay *tripDay;
@@ -26,5 +25,7 @@
 - (void)removeCountriesObject:(WYCMCountry *)value;
 - (void)addCountries:(NSSet *)values;
 - (void)removeCountries:(NSSet *)values;
+
+- (void)prepareContinentInfoWith:(NSDictionary *)infoDic;
 
 @end

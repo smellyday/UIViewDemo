@@ -34,7 +34,7 @@
 		
 			//spots
 		self.spotsArray = [NSMutableArray arrayWithCapacity:10];
-		for (NSDictionary *spotDic in [infoDic objectForKey:WY_SPOTS]) {
+		for (NSDictionary *spotDic in [infoDic objectForKey:WY_CITY_SPOTS]) {
 			WYMSpot *spot = [[WYMSpot alloc] initWithSpotInfoDic:spotDic];
 			[self.spotsArray addObject:spot];
 		}

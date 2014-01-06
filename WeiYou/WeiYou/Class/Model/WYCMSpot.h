@@ -13,6 +13,7 @@
 
 @interface WYCMSpot : NSManagedObject
 
+@property (nonatomic, retain) NSNumber * spotIndex;
 @property (nonatomic, retain) NSNumber * spotType;
 @property (nonatomic, retain) NSString * spotName;
 @property (nonatomic, retain) NSString * spotAddress;
@@ -20,6 +21,8 @@
 @property (nonatomic, retain) NSString * spotOpenTimeStr;
 @property (nonatomic, retain) NSString * admissionPrice;
 @property (nonatomic, retain) NSString * trafficInfo;
-@property (nonatomic, retain) WYCMCity *city;
+@property (nonatomic, retain) WYCMCity * city;
+
+- (void)prepareSpotInfoWith:(NSDictionary *)infoDic;
 
 @end

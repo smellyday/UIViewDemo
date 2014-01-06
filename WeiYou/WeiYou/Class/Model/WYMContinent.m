@@ -19,7 +19,7 @@
 - (id)initWithContinentInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
 	if (self) {
-		self.continentName = [infoDic objectForKey:WY_CONTINENT_NAME];
+//		self.continentName = [infoDic objectForKey:WY_CONTINENT_NAME];
 		self.continentDes = [infoDic objectForKey:WY_CONTINENT_DES];
 		
 		NSMutableArray *countryArr = [NSMutableArray arrayWithCapacity:10];

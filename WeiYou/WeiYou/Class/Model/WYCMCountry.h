@@ -26,4 +26,6 @@
 - (void)addCities:(NSSet *)values;
 - (void)removeCities:(NSSet *)values;
 
+- (void)prepareCountryInfoWith:(NSDictionary *)infoDic;
+
 @end

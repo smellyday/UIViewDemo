@@ -48,9 +48,10 @@
 #define WY_TRIP_DAYTH                  @"trip_dayth"
 
 	//for continent
-#define WY_CONTINENT_NAME              @"wy_continent_name"
+//#define WY_CONTINENT_NAME              @"wy_continent_name"
 #define WY_CONTINENT_DES               @"wy_continent_des"
 #define WY_CONTINENT_COUNTRIES         @"wy_continent_countries"
+#define WY_CONTINENT_TYPE              @"wy_continent_type"
 
 #define WY_ASIA                        @"Asia"
 #define WY_EUROPE                      @"Europe"
@@ -69,9 +70,10 @@
 #define WY_CITY_NAME                   @"wy_city_name"
 #define WY_CITY_BRIEF_NAME             @"wy_city_brief_name"
 #define WY_CITY_DES                    @"wy_city_des"
-#define WY_SPOTS                       @"wy_city_spots"
+#define WY_CITY_SPOTS                  @"wy_city_spots"
 
 	//for spot
+#define WY_SPOT_INDEX                  @"wy_spot_index"
 #define WY_SPOT_TYPE                   @"wy_spot_type"
 #define WY_SPOT_NAME                   @"wy_spot_name"
 #define WY_SPOT_ADDRESS                @"wy_spot_address"
