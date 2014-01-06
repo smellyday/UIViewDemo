@@ -21,6 +21,8 @@
 #import "WYCMContinent.h"
 #import "WYCMCountry.h"
 #import "WYCMCity.h"
+
+#import "WYCoreDataEngine.h"
 #import "consts.h"
 
 @interface WYTripDayController ()
@@ -67,19 +69,22 @@
         NSSortDescriptor *sortHotelDes = [[NSSortDescriptor alloc] initWithKey:@"dateCheckIn" ascending:YES];
         [self.hotelsArray addObjectsFromArray:[[self.tripDay.hotels allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortHotelDes]]];
         
+        NSMutableArray *sptArr = [NSMutableArray arrayWithCapacity:10];
 		for (WYCMContinent *continent in self.tripDay.continents) {
 			for (WYCMCountry *country in continent.countries) {
 				for (WYCMCity *city in country.cities) {
-                    [self.spotsArray addObjectsFromArray:[city.spots allObjects]];
+                    [sptArr addObjectsFromArray:[city.spots allObjects]];
 				}
 			}
 		}
         NSSortDescriptor *sortSpotDes = [[NSSortDescriptor alloc] initWithKey:@"spotIndex" ascending:YES];
-        [self.spotsArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortSpotDes]];
+        self.spotsArray = [NSMutableArray arrayWithArray:[sptArr sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortSpotDes]]];
 	}
 	
 	UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)];
 	self.navigationItem.leftBarButtonItem = leftBarItem;
+    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(edit:)];
+	self.navigationItem.rightBarButtonItem = rightBarItem;
 	
 	self.mTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
 	self.mTableView.delegate = self;
@@ -92,6 +97,15 @@
 
 - (void)goBack:(id)sender {
 	[self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)edit:(id)sender {
+    [_mTableView setEditing:!_mTableView.editing animated:YES];
+    if (_mTableView.editing) {
+        self.navigationItem.rightBarButtonItem.title = @"完成";
+    } else {
+        self.navigationItem.rightBarButtonItem.title = @"编辑";
+    }
 }
 
 #pragma mark - Table view data source
@@ -121,7 +135,7 @@
 		
 	} else if (section == 2) {
 		
-		if (_hotelsArray != nil && [_hotelsArray count] > 0) {
+        if (_hotelsArray != nil && [_hotelsArray count] > 0) {
 			return [_hotelsArray count];
 		} else {
 			return 1;
@@ -176,7 +190,8 @@
 		
 		if (_spotsArray != nil && [_spotsArray count] > 0) {
 			WYCMSpot *spot = (WYCMSpot *)[_spotsArray objectAtIndex:[indexPath row]];
-			cell.spotNameLabel.text = spot.spotName;
+			cell.spotNameLabel.text = [NSString stringWithFormat:@"%@ : %d", spot.spotName, [spot.spotIndex intValue]];
+            cell.spotImageView.image = [UIImage imageNamed:@"tamp1.png"];
 			
 		} else {
 			cell.textLabel.text = @"no spot";
@@ -185,8 +200,8 @@
 		return cell;
 		
 	} else {
-		
-		static NSString *TRIPDAYHOTELCELL = @"TripDayHotelCell";
+        
+        static NSString *TRIPDAYHOTELCELL = @"TripDayHotelCell";
 		WYTripDayHotelCell *cell = [tableView dequeueReusableCellWithIdentifier:TRIPDAYHOTELCELL];
 		
 		if (cell == nil) {
@@ -197,6 +212,7 @@
 			WYCMHotel *hotel = (WYCMHotel *)[_hotelsArray objectAtIndex:[indexPath row]];
 			cell.hotelNameLabel.text = hotel.hotelName;
 			cell.hotelAddressLabel.text = hotel.hotelAddress;
+            cell.hotelImageView.image = [UIImage imageNamed:@"tamp2.png"];
 		} else {
 			cell.textLabel.text = @"no hotel";
 		}
@@ -205,6 +221,53 @@
 		
 	}
 	
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSInteger row = [indexPath row];
+        WYCMSpot *spot = (WYCMSpot *)[self.spotsArray objectAtIndex:row];
+        [[[WYCoreDataEngine sharedCoreDataEngine] context] deleteObject:spot];
+        
+        for (NSInteger i = row+1; i < [_spotsArray count]; i++) {
+            WYCMSpot *spt = [_spotsArray objectAtIndex:i];
+            spt.spotIndex = [NSNumber numberWithInt:i-1];
+        }
+        [self.spotsArray removeObject:spot];
+        [_mTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [_mTableView reloadData];
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    
+    if (fromIndexPath.row != toIndexPath.row) {
+        WYCMSpot *spot = (WYCMSpot *)[self.spotsArray objectAtIndex:fromIndexPath.row];
+        [self.spotsArray removeObject:spot];
+        [self.spotsArray insertObject:spot atIndex:toIndexPath.row];
+        
+        for (int i = 0; i < [_spotsArray count]; i++) {
+            WYCMSpot *spt = (WYCMSpot *)[self.spotsArray objectAtIndex:i];
+            spt.spotIndex = [NSNumber numberWithInt:i];
+        }
+        
+        [_mTableView reloadData];
+    }
 }
 
 #pragma mark - UITableViewDelegate
