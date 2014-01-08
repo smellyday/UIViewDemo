@@ -190,7 +190,7 @@
 		
 		if (_spotsArray != nil && [_spotsArray count] > 0) {
 			WYCMSpot *spot = (WYCMSpot *)[_spotsArray objectAtIndex:[indexPath row]];
-			cell.spotNameLabel.text = [NSString stringWithFormat:@"%@ : %d", spot.spotName, [spot.spotIndex intValue]];
+			cell.spotNameLabel.text = [NSString stringWithFormat:@"%d :%@", [spot.spotIndex intValue], spot.spotName];
             cell.spotImageView.image = [UIImage imageNamed:@"tamp1.png"];
 			
 		} else {
@@ -274,27 +274,30 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
-	
-    /*
+
+    
 	if ([indexPath section] == 0) {
+        /*
 		if (_trafficArray != nil && [_trafficArray count] > 0) {
 			WYTrafficController *trafficController = [[WYTrafficController alloc] init];
 			trafficController.trafficArray = self.trafficArray;
 			[self.navigationController pushViewController:trafficController animated:YES];
 		}
+        */
 	} else if ([indexPath section] == 1) {
 		if (_spotsArray != nil && [_spotsArray count] > 0) {
 			WYSpotController *spotController = [[WYSpotController alloc] init];
 			[self.navigationController pushViewController:spotController animated:YES];
 		}
 	} else if ([indexPath section] == 2) {
+        /*
 		if (_hotelsArray != nil && [_hotelsArray count] > 0) {
 			WYHotelController *hotelContrller = [[WYHotelController alloc] init];
 			hotelContrller.hotelsArray = self.hotelsArray;
 			[self.navigationController pushViewController:hotelContrller animated:YES];
 		}
+        */
 	}
-    */
 	
 }
 
