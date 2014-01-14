@@ -87,6 +87,9 @@
 
 - (void)clickButton:(id)sender {
 	
+    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+    
+    /*
 	[self zoomToFitMapAnnotations:self.mapView];
 	
 	NSInteger annCount = [self.spotAnnotionArray count];
@@ -107,6 +110,7 @@
 	CLLocationCoordinate2D coordinate = [self.mapView convertPoint:tarPoint toCoordinateFromView:self.mapView];
 	
 	NSLog(@"at: %f, lo: %f", coordinate.latitude, coordinate.longitude);
+    */
 }
 
 - (void)longPress:(UILongPressGestureRecognizer *)longPressGestureR {
@@ -128,7 +132,7 @@
 #pragma MKMapViewDelegate
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay {
 	MKPolylineRenderer *pr = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
-	pr.lineWidth = 1.0;
+	pr.lineWidth = 5.0;
 	pr.strokeColor = [UIColor redColor];
 	return pr;
 }
@@ -138,16 +142,23 @@
         return nil;
 	
 	NSString *annotationIdentifier = @"CustomViewAnnotation";
-	MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+	WYAnnotationView *annotationView = (WYAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
     if(!annotationView) {
-		annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
+		annotationView = [[WYAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
+        annotationView.frame = CGRectMake(0, 0, 40, 50);
+        
+        annotationView.backgroundColor = [UIColor redColor];
+        UIView *mv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+        mv.backgroundColor = [UIColor blueColor];
+        annotationView.leftCalloutAccessoryView = mv;
+        
 		
-		UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        annotationView.rightCalloutAccessoryView = detailButton;
+//		UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//        annotationView.rightCalloutAccessoryView = detailButton;
 		
-		annotationView.image = [UIImage imageNamed:@"star.png"];
-		annotationView.canShowCallout= YES;
-		annotationView.animatesDrop = YES;
+//		annotationView.image = [UIImage imageNamed:@"star.png"];
+//		annotationView.canShowCallout= YES;
+//		annotationView.animatesDrop = YES;
 		
 	} else {
 		annotationView.annotation = annotation;
@@ -161,28 +172,26 @@
 	
 }
 
-/*
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-	if ([view.annotation isKindOfClass:[WYMapAnnotation class]]) {
-		UIView *vv = [[UIView alloc] initWithFrame:CGRectMake(-50, -50, 120, 50)];
-		vv.backgroundColor = [UIColor yellowColor];
-		vv.tag = 100;
-		
-		UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-		btn.frame = CGRectMake(70, 0, 50, 50);
-		[btn setBackgroundColor:[UIColor blueColor]];
-		[btn addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
-		[vv addSubview:btn];
-		
-		[view addSubview:vv];
-	}
+//	if ([view.annotation isKindOfClass:[WYMapAnnotation class]]) {
+//		UIView *vv = [[UIView alloc] initWithFrame:CGRectMake(-50, -50, 120, 50)];
+//		vv.backgroundColor = [UIColor yellowColor];
+//		vv.tag = 100;
+//		
+//		UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//		btn.frame = CGRectMake(70, 0, 50, 50);
+//		[btn setBackgroundColor:[UIColor blueColor]];
+//		[btn addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
+//		[vv addSubview:btn];
+//		
+//		[view addSubview:vv];
+//	}
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-	[[view viewWithTag:100] removeFromSuperview];
-	view.backgroundColor = [UIColor clearColor];
+//	[[view viewWithTag:100] removeFromSuperview];
+//	view.backgroundColor = [UIColor clearColor];
 }
-*/
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
 	WYSpotController *sc = [[WYSpotController alloc] init];

@@ -8,6 +8,10 @@
 
 #import <MapKit/MapKit.h>
 
-@interface WYAnnotationView : MKAnnotationView
+@interface WYAnnotationView : MKAnnotationView {
+    UIView *_calloutview;
+}
+
+@property (nonatomic, strong) UIView *calloutview;
 
 @end

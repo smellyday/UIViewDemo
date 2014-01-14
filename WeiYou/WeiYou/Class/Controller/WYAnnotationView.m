@@ -9,6 +9,7 @@
 #import "WYAnnotationView.h"
 
 @implementation WYAnnotationView
+@synthesize calloutview;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -22,6 +23,7 @@
 - (id)initWithAnnotation:(id <MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier {
 	self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
 	if (self) {
+        /*
 		self.frame = CGRectMake(0, 0, 100, 100);
 		self.backgroundColor = [UIColor clearColor];
 		
@@ -30,12 +32,55 @@
 		btn.backgroundColor = [UIColor redColor];
 		[btn addTarget:self action:@selector(clickMe:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:btn];
+        */
+        
+        self.calloutview = [[UIView alloc] initWithFrame:CGRectMake(0, -50, 200, 50)];
+        self.calloutview.backgroundColor = [UIColor greenColor];
+        
+        UIButton *mb = [UIButton buttonWithType:UIButtonTypeCustom];
+        mb.frame = CGRectMake(0, 0, 100, 50);
+        mb.backgroundColor = [UIColor yellowColor];
+        [mb addTarget:self action:@selector(clickMe:) forControlEvents:UIControlEventTouchUpInside];
+        [self.calloutview addSubview:mb];
 	}
 	return self;
 }
 
 - (void)clickMe:(id)sender {
 	NSLog(@"hello, i am in annotation view.");
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    
+    if (selected) {
+        [self addSubview:self.calloutview];
+    } else {
+        [self.calloutview removeFromSuperview];
+    }
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    UIView *hitView = [super hitTest:point withEvent:event];
+    if (hitView != nil) {
+        [self.superview bringSubviewToFront:self];
+    }
+    return hitView;
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    CGRect rect = self.bounds;
+    BOOL isInside = CGRectContainsPoint(rect, point);
+    if(!isInside)
+    {
+        for (UIView *view in self.subviews)
+        {
+            isInside = CGRectContainsPoint(view.frame, point);
+            if(isInside)
+                break;
+        }
+    }
+    return isInside;
 }
 
 
