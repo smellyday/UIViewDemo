@@ -10,6 +10,7 @@
 
 @implementation WYAnnotationView
 @synthesize calloutview;
+@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -47,7 +48,7 @@
 }
 
 - (void)clickMe:(id)sender {
-	NSLog(@"hello, i am in annotation view.");
+    [delegate toDetailController];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

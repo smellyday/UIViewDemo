@@ -87,7 +87,7 @@
 	[self.view addSubview:_mTableView];
 	
     //header view
-	UIView *buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 140)];
+	UIView *buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 45)];
 	self.mTableView.tableHeaderView = buttonContainer;
 	
 	UIButton *stuffListButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -95,8 +95,8 @@
 	[stuffListButton setBackgroundColor:[UIColor greenColor]];
 	[stuffListButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 	[stuffListButton addTarget:self action:@selector(clickStuffList:) forControlEvents:UIControlEventTouchUpInside];
-	stuffListButton.frame = CGRectMake(0, 0, 160, 70);
-	stuffListButton.titleLabel.font = [UIFont systemFontOfSize:25];
+	stuffListButton.frame = CGRectMake(0, 0, 80, 45);
+	stuffListButton.titleLabel.font = [UIFont systemFontOfSize:20];
 	[buttonContainer addSubview:stuffListButton];
 	
 	UIButton *mapButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -104,8 +104,8 @@
 	[mapButton setBackgroundColor:[UIColor redColor]];
 	[mapButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 	[mapButton addTarget:self action:@selector(clickMap:) forControlEvents:UIControlEventTouchUpInside];
-	mapButton.frame = CGRectMake(160, 0, 160, 70);
-	mapButton.titleLabel.font = [UIFont systemFontOfSize:25];
+	mapButton.frame = CGRectMake(80, 0, 80, 45);
+	mapButton.titleLabel.font = [UIFont systemFontOfSize:20];
 	[buttonContainer addSubview:mapButton];
 	
 	UIButton *trafficButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -113,8 +113,8 @@
 	[trafficButton setBackgroundColor:[UIColor blueColor]];
 	[trafficButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 	[trafficButton addTarget:self action:@selector(clickTraffic:) forControlEvents:UIControlEventTouchUpInside];
-	trafficButton.frame = CGRectMake(0, 70, 160, 70);
-	trafficButton.titleLabel.font = [UIFont systemFontOfSize:25];
+	trafficButton.frame = CGRectMake(160, 0, 80, 45);
+	trafficButton.titleLabel.font = [UIFont systemFontOfSize:20];
 	[buttonContainer addSubview:trafficButton];
 	
 	UIButton *hotelButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -122,8 +122,8 @@
 	[hotelButton setBackgroundColor:[UIColor yellowColor]];
 	[hotelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 	[hotelButton addTarget:self action:@selector(clickHotel:) forControlEvents:UIControlEventTouchUpInside];
-	hotelButton.frame = CGRectMake(160, 70, 160, 70);
-	hotelButton.titleLabel.font = [UIFont systemFontOfSize:25];
+	hotelButton.frame = CGRectMake(240, 0, 80, 45);
+	hotelButton.titleLabel.font = [UIFont systemFontOfSize:20];
 	[buttonContainer addSubview:hotelButton];
     
     //footer view

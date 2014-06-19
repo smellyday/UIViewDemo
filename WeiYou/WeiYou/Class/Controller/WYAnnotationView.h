@@ -8,10 +8,17 @@
 
 #import <MapKit/MapKit.h>
 
+@protocol WYAnnotationDelegate
+
+- (void)toDetailController;
+
+@end
+
 @interface WYAnnotationView : MKAnnotationView {
     UIView *_calloutview;
 }
 
 @property (nonatomic, strong) UIView *calloutview;
+@property (nonatomic) id<WYAnnotationDelegate> delegate;
 
 @end

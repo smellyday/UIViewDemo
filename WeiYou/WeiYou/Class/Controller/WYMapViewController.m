@@ -8,7 +8,7 @@
 
 #import "WYMapViewController.h"
 #import "WYSpotController.h"
-#import "WYAnnotationView.h"
+#import "WYDetailViewController.h"
 
 @interface WYMapAnnotation : NSObject <MKAnnotation> {
 //	NSString *title;
@@ -145,13 +145,15 @@
 	WYAnnotationView *annotationView = (WYAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
     if(!annotationView) {
 		annotationView = [[WYAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
-        annotationView.frame = CGRectMake(0, 0, 40, 50);
+        annotationView.frame = CGRectMake(0, 0, 8, 40);
         
         annotationView.backgroundColor = [UIColor redColor];
+        
+        /*
         UIView *mv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
         mv.backgroundColor = [UIColor blueColor];
         annotationView.leftCalloutAccessoryView = mv;
-        
+        */
 		
 //		UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 //        annotationView.rightCalloutAccessoryView = detailButton;
@@ -163,6 +165,8 @@
 	} else {
 		annotationView.annotation = annotation;
 	}
+    
+    annotationView.delegate = self;
 	
 	return annotationView;
 }
@@ -229,6 +233,11 @@
     [mapView setRegion:region animated:YES];
 }
 
+#pragma WYAnnotationDelegate
+- (void)toDetailController {
+    WYDetailViewController *dvc = [[WYDetailViewController alloc] init];
+    [self.navigationController pushViewController:dvc animated:YES];
+}
 
 - (void)didReceiveMemoryWarning
 {

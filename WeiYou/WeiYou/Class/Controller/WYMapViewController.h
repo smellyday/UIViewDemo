@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "WYAnnotationView.h"
 
-@interface WYMapViewController : UIViewController <MKMapViewDelegate> {
+@interface WYMapViewController : UIViewController <MKMapViewDelegate, WYAnnotationDelegate> {
 	MKMapView *_mapView;
 	NSMutableArray *_spotAnnotionArray;
 	UIView *_tmpAnnoView;
