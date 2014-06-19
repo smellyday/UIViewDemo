@@ -81,12 +81,14 @@
 
 - (void)clickSettings:(id)sender {
 	WYSettingsViewController *mSettingsController = [[WYSettingsViewController alloc] init];
-	UINavigationController *mNavController = [[UINavigationController alloc] initWithRootViewController:mSettingsController];
-	mNavController.navigationBar.hidden = YES;
-	mNavController.navigationBar.barTintColor = WY_MAIN_COLOR;
-	mNavController.navigationBar.tintColor = [UIColor blackColor];
+    
+//	UINavigationController *mNavController = [[UINavigationController alloc] initWithRootViewController:mSettingsController];
+//	mNavController.navigationBar.hidden = YES;
+//	mNavController.navigationBar.barTintColor = WY_MAIN_COLOR;
+//	mNavController.navigationBar.tintColor = [UIColor blackColor];
 	
-	[self presentViewController:mNavController animated:YES completion:nil];
+//	[self presentViewController:mNavController animated:YES completion:nil];
+    [self.navigationController pushViewController:mSettingsController animated:YES];
 }
 
 - (void)clickCreateNew:(id)sender {

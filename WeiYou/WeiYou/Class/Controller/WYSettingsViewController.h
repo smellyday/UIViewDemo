@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WYGlobalState.h"
 
 @interface WYSettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
 	UITableView *_mTableView;
+    WYGlobalState *_globalState;
 }
 
-@property (nonatomic) UITableView *mTableView;
+@property (nonatomic, strong) UITableView *mTableView;
+@property (nonatomic, strong) WYGlobalState *globalState;
 
 @end
