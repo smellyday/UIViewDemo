@@ -14,3 +14,7 @@
 	#import <UIKit/UIKit.h>
 	#import <Foundation/Foundation.h>
 #endif
+
+#import "WeiboSDK.h"
+#define SinaWeiboAppKey @"211678035"
+#define SinaRedirectUrl @"http://www.baidu.com"

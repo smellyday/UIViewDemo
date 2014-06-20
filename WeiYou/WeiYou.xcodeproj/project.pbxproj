@@ -82,6 +82,8 @@
 		69582DAB1952C3F40072ED3E /* WYLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69582DAA1952C3F40072ED3E /* WYLoginController.m */; };
 		69AA1EBA1953D9D400BA0884 /* WYRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AA1EB91953D9D400BA0884 /* WYRegisterController.m */; };
 		69AA1EBD1953D9F900BA0884 /* WYFindPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AA1EBC1953D9F900BA0884 /* WYFindPasswordController.m */; };
+		69AA1EC21954112500BA0884 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AA1EBF1954112500BA0884 /* libWeiboSDK.a */; };
+		69AA1EC31954112500BA0884 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69AA1EC01954112500BA0884 /* WeiboSDK.bundle */; };
 		69D0B3451887B60D00E0AB7C /* WYDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D0B3441887B60D00E0AB7C /* WYDetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -225,6 +227,9 @@
 		69AA1EB91953D9D400BA0884 /* WYRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRegisterController.m; sourceTree = "<group>"; };
 		69AA1EBB1953D9F900BA0884 /* WYFindPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYFindPasswordController.h; sourceTree = "<group>"; };
 		69AA1EBC1953D9F900BA0884 /* WYFindPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYFindPasswordController.m; sourceTree = "<group>"; };
+		69AA1EBF1954112500BA0884 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
+		69AA1EC01954112500BA0884 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
+		69AA1EC11954112500BA0884 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		69D0B3431887B60D00E0AB7C /* WYDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDetailViewController.h; sourceTree = "<group>"; };
 		69D0B3441887B60D00E0AB7C /* WYDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -235,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E5BC2ED183EF2EC0003AC6D /* libsqlite3.0.dylib in Frameworks */,
+				69AA1EC21954112500BA0884 /* libWeiboSDK.a in Frameworks */,
 				5E5BC2EE183EF2EC0003AC6D /* libsqlite3.dylib in Frameworks */,
 				5E6D03801839F68C006A0E93 /* CoreGraphics.framework in Frameworks */,
 				5E6D03821839F68C006A0E93 /* UIKit.framework in Frameworks */,
@@ -299,6 +305,7 @@
 			children = (
 				5E5BC2E8183EEA3B0003AC6D /* WYAppDelegate.h */,
 				5E5BC2E9183EEA3B0003AC6D /* WYAppDelegate.m */,
+				69AA1EBE1954112500BA0884 /* libWeiboSDK */,
 				5E5BC241183EE5E90003AC6D /* Controller */,
 				5E5BC249183EE5E90003AC6D /* View */,
 				5E5BC248183EE5E90003AC6D /* Engine */,
@@ -564,6 +571,17 @@
 			name = CoreDataModel;
 			sourceTree = "<group>";
 		};
+		69AA1EBE1954112500BA0884 /* libWeiboSDK */ = {
+			isa = PBXGroup;
+			children = (
+				69AA1EBF1954112500BA0884 /* libWeiboSDK.a */,
+				69AA1EC01954112500BA0884 /* WeiboSDK.bundle */,
+				69AA1EC11954112500BA0884 /* WeiboSDK.h */,
+			);
+			name = libWeiboSDK;
+			path = WeiYou/Class/libWeiboSDK;
+			sourceTree = "<group>";
+		};
 		69D0B3421887B4E400E0AB7C /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -623,6 +641,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = xiyuan;
 				TargetAttributes = {
+					5E6D03791839F68C006A0E93 = {
+						DevelopmentTeam = 4RH97J3HKQ;
+					};
 					5E6D03941839F68C006A0E93 = {
 						TestTargetID = 5E6D03791839F68C006A0E93;
 					};
@@ -653,6 +674,7 @@
 			files = (
 				5E5BC23A183EE5D80003AC6D /* InfoPlist.strings in Resources */,
 				5E4A8C9C185FFDC70062934F /* tamp1@2x.png in Resources */,
+				69AA1EC31954112500BA0884 /* WeiboSDK.bundle in Resources */,
 				5E5AE61B1856ED4A007DB9CC /* arrow.png in Resources */,
 				5E5BC23E183EE5D80003AC6D /* Images.xcassets in Resources */,
 				5E5BC23D183EE5D80003AC6D /* mark_reminder@2x.png in Resources */,
@@ -853,9 +875,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WeiYou/WeiYou-Prefix.pch";
 				INFOPLIST_FILE = "WeiYou/WeiYou-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WeiYou/Class/libWeiboSDK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -866,9 +893,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WeiYou/WeiYou-Prefix.pch";
 				INFOPLIST_FILE = "WeiYou/WeiYou-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WeiYou/Class/libWeiboSDK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

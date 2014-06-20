@@ -39,8 +39,12 @@
 	
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-	
 
+    
+    // sina weibo
+    [WeiboSDK enableDebugMode:YES];
+    [WeiboSDK registerApp:SinaWeiboAppKey];
+    
 	/*
 		//test begin----
 	static int mst = 10;
@@ -103,6 +107,28 @@
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 	[[WYCoreDataEngine sharedCoreDataEngine] save];
     [[WYCoreDataEngine sharedCoreDataEngine] close];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [WeiboSDK handleOpenURL:url delegate:self];
+}
+
+#pragma sina weibo delegate.
+- (void)didReceiveWeiboRequest:(WBBaseRequest *)request {
+
+    NSLog(@"hello");
+}
+
+- (void)didReceiveWeiboResponse:(WBBaseResponse *)response {
+    if ([response isKindOfClass:WBAuthorizeResponse.class]) {
+        NSString *userid = [(WBAuthorizeResponse *)response userID];
+        NSString *token = [(WBAuthorizeResponse *)response accessToken];
+        NSLog(@"user id : %@", userid);
+        NSLog(@"token id : %@", token);
+    }
+    
+    NSLog(@"user info : %@", [response.userInfo description]);
 }
 
 @end

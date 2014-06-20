@@ -42,13 +42,14 @@
     containerScrollView.alwaysBounceHorizontal = NO;
     [self.view addSubview:containerScrollView];
     
-    UIButton *xlLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    xlLoginButton.frame = CGRectMake(35, 20, 250, 40);
-    xlLoginButton.backgroundColor = [UIColor redColor];
-    xlLoginButton.titleLabel.font = [UIFont systemFontOfSize:20];
-    [xlLoginButton setTitle:@"新浪微博登录" forState:UIControlStateNormal];
-    [xlLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [containerScrollView addSubview:xlLoginButton];
+    UIButton *sinaLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    sinaLoginButton.frame = CGRectMake(35, 20, 250, 40);
+    sinaLoginButton.backgroundColor = [UIColor redColor];
+    sinaLoginButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    [sinaLoginButton setTitle:@"新浪微博登录" forState:UIControlStateNormal];
+    [sinaLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [containerScrollView addSubview:sinaLoginButton];
+    [sinaLoginButton addTarget:self action:@selector(loginWithSina:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *qqLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];
     qqLoginButton.frame = CGRectMake(35, 65, 250, 40);
@@ -93,6 +94,18 @@
     [registerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [containerScrollView addSubview:registerButton];
     [registerButton addTarget:self action:@selector(registerUser:) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+- (void)loginWithSina:(id)sender {
+    WBAuthorizeRequest *request = [WBAuthorizeRequest request];
+    request.redirectURI = SinaRedirectUrl;
+    request.scope = @"all";
+    request.userInfo = @{@"SSO_From": @"SendMessageToWeiboViewController",
+                         @"Other_Info_1": [NSNumber numberWithInt:123],
+                         @"Other_Info_2": @[@"obj1", @"obj2"],
+                         @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
+    [WeiboSDK sendRequest:request];
 }
 
 - (void)backToSetting:(id)sender {
@@ -114,6 +127,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation
