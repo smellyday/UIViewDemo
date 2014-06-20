@@ -80,6 +80,8 @@
 		6953CB6B186D215100DE04E0 /* demo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6953CB6A186D215100DE04E0 /* demo.plist */; };
 		69582DA81952BACF0072ED3E /* WYGlobalState.m in Sources */ = {isa = PBXBuildFile; fileRef = 69582DA71952BACF0072ED3E /* WYGlobalState.m */; };
 		69582DAB1952C3F40072ED3E /* WYLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69582DAA1952C3F40072ED3E /* WYLoginController.m */; };
+		69AA1EBA1953D9D400BA0884 /* WYRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AA1EB91953D9D400BA0884 /* WYRegisterController.m */; };
+		69AA1EBD1953D9F900BA0884 /* WYFindPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AA1EBC1953D9F900BA0884 /* WYFindPasswordController.m */; };
 		69D0B3451887B60D00E0AB7C /* WYDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D0B3441887B60D00E0AB7C /* WYDetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -219,6 +221,10 @@
 		69582DA71952BACF0072ED3E /* WYGlobalState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGlobalState.m; sourceTree = "<group>"; };
 		69582DA91952C3F40072ED3E /* WYLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLoginController.h; sourceTree = "<group>"; };
 		69582DAA1952C3F40072ED3E /* WYLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLoginController.m; sourceTree = "<group>"; };
+		69AA1EB81953D9D400BA0884 /* WYRegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRegisterController.h; sourceTree = "<group>"; };
+		69AA1EB91953D9D400BA0884 /* WYRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRegisterController.m; sourceTree = "<group>"; };
+		69AA1EBB1953D9F900BA0884 /* WYFindPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYFindPasswordController.h; sourceTree = "<group>"; };
+		69AA1EBC1953D9F900BA0884 /* WYFindPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYFindPasswordController.m; sourceTree = "<group>"; };
 		69D0B3431887B60D00E0AB7C /* WYDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDetailViewController.h; sourceTree = "<group>"; };
 		69D0B3441887B60D00E0AB7C /* WYDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -431,6 +437,10 @@
 				69582DAA1952C3F40072ED3E /* WYLoginController.m */,
 				5E5BC25F183EE6770003AC6D /* WYUserGuideViewController.h */,
 				5E5BC260183EE6770003AC6D /* WYUserGuideViewController.m */,
+				69AA1EB81953D9D400BA0884 /* WYRegisterController.h */,
+				69AA1EB91953D9D400BA0884 /* WYRegisterController.m */,
+				69AA1EBB1953D9F900BA0884 /* WYFindPasswordController.h */,
+				69AA1EBC1953D9F900BA0884 /* WYFindPasswordController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -674,12 +684,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E4A8CAA18604D040062934F /* WYMBookedHotel.m in Sources */,
+				69AA1EBD1953D9F900BA0884 /* WYFindPasswordController.m in Sources */,
 				5E5D676B186176A100ECA966 /* WYTripDaySpotCell.m in Sources */,
 				5EBCF75A185EFF2A0057C1AE /* WYMCountry.m in Sources */,
 				5E49CED11862863C006F6B54 /* WYTrafficController.m in Sources */,
 				5EBCF732185E95D80057C1AE /* WYTripController.m in Sources */,
 				692DFBBC1871287800076C08 /* WYCMSpot.m in Sources */,
 				5EBCF75D185EFFBC0057C1AE /* WYMHotel.m in Sources */,
+				69AA1EBA1953D9D400BA0884 /* WYRegisterController.m in Sources */,
 				5EFE0EE5184F21E3004F8859 /* WYCityCell.m in Sources */,
 				5EBCF745185EAEDC0057C1AE /* WYMCity.m in Sources */,
 				5EBCF73F185EAE290057C1AE /* WYMTrip.m in Sources */,

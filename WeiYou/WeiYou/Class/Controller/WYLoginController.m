@@ -7,6 +7,8 @@
 //
 
 #import "WYLoginController.h"
+#import "WYRegisterController.h"
+#import "WYFindPasswordController.h"
 #import "consts.h"
 
 @interface WYLoginController ()
@@ -81,6 +83,7 @@
     [forgetPWButton setTitle:@"忘记密码?" forState:UIControlStateNormal];
     [forgetPWButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [containerScrollView addSubview:forgetPWButton];
+    [forgetPWButton addTarget:self action:@selector(forgetPassword:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
     registerButton.frame = CGRectMake(255, 250, 30, 20);
@@ -89,12 +92,22 @@
     [registerButton setTitle:@"注册" forState:UIControlStateNormal];
     [registerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [containerScrollView addSubview:registerButton];
+    [registerButton addTarget:self action:@selector(registerUser:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)backToSetting:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)registerUser:(id)sender {
+    WYRegisterController *rc = [[WYRegisterController alloc] init];
+    [self.navigationController pushViewController:rc animated:YES];
+}
+
+- (void)forgetPassword:(id)sender {
+    WYFindPasswordController *fpc = [[WYFindPasswordController alloc] init];
+    [self.navigationController pushViewController:fpc animated:YES];
+}
 
 - (void)didReceiveMemoryWarning
 {
