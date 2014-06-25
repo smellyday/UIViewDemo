@@ -239,7 +239,7 @@
         
         for (NSInteger i = row+1; i < [_spotsArray count]; i++) {
             WYCMSpot *spt = [_spotsArray objectAtIndex:i];
-            spt.spotIndex = [NSNumber numberWithInt:i-1];
+            spt.spotIndex = [NSNumber numberWithInt:(int)i-1];
         }
         [self.spotsArray removeObject:spot];
         [_mTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];

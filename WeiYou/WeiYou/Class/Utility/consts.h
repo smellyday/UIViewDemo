@@ -22,6 +22,8 @@
 //========notification center========
 #define WY_CHOSEN_ARRAY_CHANGE         @"ChosenArrayChange" // for create new trip
 #define WY_TRIPS_DATA_OK               @"trips_data_ok"
+#define WY_SINA_LOGIN                  @"wy_sina_login"
+#define WY_SINA_LOGOUT                 @"wy_sina_logout"
 
 
 //========data file========

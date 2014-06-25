@@ -37,7 +37,6 @@
 
 - (void)clickBack:(id)sender {
 	[self.navigationController popViewControllerAnimated:YES];
-	self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning

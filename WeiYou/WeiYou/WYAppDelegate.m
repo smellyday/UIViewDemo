@@ -122,16 +122,22 @@
 
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response {
     if ([response isKindOfClass:WBAuthorizeResponse.class]) {
+        NSLog(@"SinaSDK -- response is WBAuthorizeResponse.");
         
         NSString *userid = [(WBAuthorizeResponse *)response userID];
         NSString *token = [(WBAuthorizeResponse *)response accessToken];
-        WYGlobalState *gState = [WYGlobalState sharedGlobalState];
-        gState.sinaWeibo.authToken = token;
-        [[WYGlobalState sharedGlobalState] setAuthToken:token];
-        gState.sinaWeibo.userID = userid;
-        gState.boolLogin = YES;
+        
+        if (token != nil) {
+            WYGlobalState *gState = [WYGlobalState sharedGlobalState];
+            gState.sinaWeibo.authToken = token;
+            gState.sinaWeibo.userID = userid;
+            gState.boolLogin = YES;
+            [[NSNotificationCenter defaultCenter] postNotificationName:WY_SINA_LOGIN object:nil userInfo:nil];
+        }
         
     }
+    
+    NSLog(@"user info : %@", [response.userInfo description]);
 }
 
 @end

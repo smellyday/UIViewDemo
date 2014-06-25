@@ -49,6 +49,9 @@
     // tmp login state;
     self.globalState = [WYGlobalState sharedGlobalState];
     _globalState.boolLogin = NO;
+    
+    // login notification.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLogin:) name:WY_SINA_LOGIN object:nil];
 }
 
 - (void)goBackPage:(id)sender {
@@ -97,13 +100,16 @@
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    cell.textLabel.textColor = [UIColor blackColor];
     
     if (section == 0 && row == 0) {
         
         if (_globalState.boolLogin) {
             cell.textLabel.text = [NSString stringWithFormat:@"owen_zhsng"];
+            cell.accessoryType = UITableViewCellAccessoryNone;
         } else {
             cell.textLabel.text = [NSString stringWithFormat:@"点击登录"];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         
     } else if (section == 1 && row == 0) {
@@ -231,6 +237,13 @@
 - (void)requestFailed:(ASIHTTPRequest *)request {
     NSError *error = [request error];
     NSLog(@"error is %@", [error description]);
+}
+
+
+#pragma notification selector
+- (void)doWhenLogin:(id)sender {
+    [self.mTableView reloadData];
+    [self.navigationController popToViewController:self animated:YES];
 }
 
 

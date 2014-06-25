@@ -281,7 +281,7 @@
         
         for (NSInteger i = row+1; i < [_daysArray count]; i++) {
             WYCMTripDay *td = (WYCMTripDay *)[self.daysArray objectAtIndex:i];
-            td.dayth = [NSNumber numberWithInt:i-1];
+            td.dayth = [NSNumber numberWithInt:(int)i-1];
         }
         
         [self.daysArray removeObjectAtIndex:row];
