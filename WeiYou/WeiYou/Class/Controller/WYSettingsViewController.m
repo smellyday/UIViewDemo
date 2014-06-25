@@ -9,6 +9,7 @@
 #import "WYSettingsViewController.h"
 #import "WYUserGuideViewController.h"
 #import "WYLoginController.h"
+#import "WYGlobalState.h"
 #import "consts.h"
 
 
@@ -105,7 +106,7 @@
     if (section == 0 && row == 0) {
         
         if (_globalState.boolLogin) {
-            cell.textLabel.text = [NSString stringWithFormat:@"owen_zhsng"];
+            cell.textLabel.text = [[[WYGlobalState sharedGlobalState] sinaWeibo] userID];
             cell.accessoryType = UITableViewCellAccessoryNone;
         } else {
             cell.textLabel.text = [NSString stringWithFormat:@"点击登录"];
