@@ -46,6 +46,13 @@
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:SinaWeiboAppKey];
     
+    if ([[WYGlobalState sharedGlobalState] ifUserLogIn]) {
+        [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserName:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_NAME]];
+        [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserID:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_ID]];
+        [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserImageUrl:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_PROFILE_IMAGE_URL]];
+        [[[WYGlobalState sharedGlobalState] sinaWeibo] setAuthToken:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_TOKEN_SINA]];
+    }
+    
 	/*
 		//test begin----
 	static int mst = 10;
@@ -128,11 +135,13 @@
         NSString *token = [(WBAuthorizeResponse *)response accessToken];
         
         if (token != nil) {
-            WYGlobalState *gState = [WYGlobalState sharedGlobalState];
-            gState.sinaWeibo.authToken = token;
-            gState.sinaWeibo.userID = userid;
-            gState.boolLogin = YES;
-            [[NSNotificationCenter defaultCenter] postNotificationName:WY_SINA_LOGIN object:nil userInfo:nil];
+            
+            [[[WYGlobalState sharedGlobalState] sinaWeibo] setAuthToken:token];
+            [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserID:userid];
+            [[NSUserDefaults standardUserDefaults] setObject:token forKey:WY_USER_TOKEN_SINA];
+            [[NSUserDefaults standardUserDefaults] setObject:userid forKey:WY_USER_ID];
+            [[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_SINA_LOGIN object:nil userInfo:nil];
+            
         }
         
     }

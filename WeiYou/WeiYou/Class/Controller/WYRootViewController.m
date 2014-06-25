@@ -53,7 +53,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenTripsDataOK:) name:WY_TRIPS_DATA_OK object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenTripsDataOK:) name:WY_NOTI_TRIPS_DATA_OK object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenCoreDataChanged:) name:NSManagedObjectContextObjectsDidChangeNotification object:[[WYCoreDataEngine sharedCoreDataEngine] context]];
     self.tripsArray = [NSMutableArray arrayWithCapacity:10];
 	// Do any additional setup after loading the view.

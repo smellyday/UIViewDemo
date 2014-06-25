@@ -38,13 +38,13 @@
 
 - (void)insertObject:(id)obj toChosenArray:(NSMutableArray *)arr {
 	[arr addObject:obj];
-	[[NSNotificationCenter defaultCenter] postNotificationName:WY_CHOSEN_ARRAY_CHANGE object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_CHOSEN_ARRAY_CHANGE object:nil];
 	return;
 }
 
 - (void)removeObject:(id)obj fromChosenArray:(NSMutableArray *)arr {
 	[arr removeObject:obj];
-	[[NSNotificationCenter defaultCenter] postNotificationName:WY_CHOSEN_ARRAY_CHANGE object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_CHOSEN_ARRAY_CHANGE object:nil];
 	return;
 }
 
@@ -211,7 +211,7 @@
 	self.cityArray = [NSMutableArray arrayWithCapacity:10];
 	[self.cityArray addObjectsFromArray:[mDataEngine getCityArray]];
 	self.chosenCityArray = [NSMutableArray arrayWithCapacity:10];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenReceiveNotification:) name:WY_CHOSEN_ARRAY_CHANGE object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenReceiveNotification:) name:WY_NOTI_CHOSEN_ARRAY_CHANGE object:nil];
 	
 		//init lazy loading state
 	_isDragging = NO;
@@ -245,7 +245,7 @@
 
 - (void)doWhenReceiveNotification:(NSNotification *)mNotification {
 	wylog;
-	if ([[mNotification name] isEqual:WY_CHOSEN_ARRAY_CHANGE]) {
+	if ([[mNotification name] isEqual:WY_NOTI_CHOSEN_ARRAY_CHANGE]) {
 			//动态的添加和删除的效果
 			//点击已选择城市，从已选择列表中删除
 		if ([_chosenCityArray count] > 0) {

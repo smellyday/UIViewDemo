@@ -7,9 +7,9 @@
 //
 
 #import "WYGlobalState.h"
+#import "consts.h"
 
 @implementation WYGlobalState
-@synthesize boolLogin = _boolLogin;
 @synthesize sinaWeibo = _sinaWeibo;
 
 + (id)sharedGlobalState {
@@ -21,6 +21,15 @@
 	});
 	
 	return sharedState;
+}
+
+- (BOOL)ifUserLogIn {
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_TOKEN_SINA];
+    NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_ID];
+    if (token != nil && uid != nil) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

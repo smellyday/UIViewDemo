@@ -12,7 +12,6 @@
 
 @interface WYSettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ASIHTTPRequestDelegate> {
 	UITableView *_mTableView;
-    WYGlobalState *_globalState;
     UIImage *_userImage;
     
     ASIHTTPRequest *_userInfoRequest;
@@ -20,7 +19,6 @@
 }
 
 @property (nonatomic, strong) UITableView *mTableView;
-@property (nonatomic, strong) WYGlobalState *globalState;
 @property (nonatomic, strong) UIImage *userImage;
 @property (nonatomic, strong) ASIHTTPRequest *userInfoRequest;
 @property (nonatomic, strong) ASIHTTPRequest *userImageRequest;

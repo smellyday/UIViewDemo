@@ -18,12 +18,17 @@
 #define WY_MAIN_COLOR_BG               [UIColor colorWithRed:0.4 green:0.5 blue:0.7 alpha:1.0]
 #define WY_CELL_COLOR                  [UIColor colorWithRed:0.9531 green:0.9414 blue:0.9140 alpha:1.0]
 
+//========SINA login info========
+#define WY_USER_ID                     @"wy_user_id"
+#define WY_USER_NAME                   @"wy_user_name"
+#define WY_USER_PROFILE_IMAGE_URL      @"wy_user_profile_image_url"
+#define WY_USER_TOKEN_SINA             @"wy_token_sina"
 
 //========notification center========
-#define WY_CHOSEN_ARRAY_CHANGE         @"ChosenArrayChange" // for create new trip
-#define WY_TRIPS_DATA_OK               @"trips_data_ok"
-#define WY_SINA_LOGIN                  @"wy_sina_login"
-#define WY_SINA_LOGOUT                 @"wy_sina_logout"
+#define WY_NOTI_CHOSEN_ARRAY_CHANGE         @"ChosenArrayChange" // for create new trip
+#define WY_NOTI_TRIPS_DATA_OK               @"trips_data_ok"
+#define WY_NOTI_SINA_LOGIN                  @"wy_sina_login"
+#define WY_NOTI_SINA_LOGOUT                 @"wy_sina_logout"
 
 
 //========data file========

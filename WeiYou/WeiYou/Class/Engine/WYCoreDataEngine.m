@@ -79,7 +79,7 @@
 	*/
 	
     self.dataOK = YES;
-    [[NSNotificationCenter defaultCenter] postNotificationName:WY_TRIPS_DATA_OK object:nil userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_TRIPS_DATA_OK object:nil userInfo:nil];
 }
 
 - (void)initData {
@@ -127,7 +127,7 @@
     [self save];
     
     self.dataOK = YES;
-    [[NSNotificationCenter defaultCenter] postNotificationName:WY_TRIPS_DATA_OK object:nil userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_TRIPS_DATA_OK object:nil userInfo:nil];
 }
 
 
