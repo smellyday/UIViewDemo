@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYSinaWeibo.h"
 
 @interface WYGlobalState : NSObject {
-    BOOL boolLogin;
+    BOOL _boolLogin;
+    WYSinaWeibo *_sinaWeibo;
 }
+
 @property (nonatomic) BOOL boolLogin;
+@property (nonatomic, strong) WYSinaWeibo *sinaWeibo;
 
 + (id)sharedGlobalState;
 

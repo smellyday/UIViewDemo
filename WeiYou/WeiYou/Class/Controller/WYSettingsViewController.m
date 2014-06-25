@@ -147,10 +147,24 @@
             [self.navigationController pushViewController:loginController animated:YES];
         }
         
-    } else if (section == 0 && row == 1) {
+    } else if (section == 1 && row == 0) {
 		WYUserGuideViewController *mc = [[WYUserGuideViewController alloc] init];
 		[self.navigationController pushViewController:mc animated:YES];
-	}
+	} else if (section == 1 && row == 1) {
+        
+        NSString *baseStr = @"https://api.weibo.com/2/statuses/public_timeline.json?";
+        NSString *token = [[[WYGlobalState sharedGlobalState] sinaWeibo] authToken];
+        NSLog(@"token is %@", token);
+        NSString *urlStr = [NSString stringWithFormat:@"%@count=%d&access_token=%@", baseStr, 1, token];
+        NSLog(@"url : %@", urlStr);
+        NSURL *url = [NSURL URLWithString:urlStr];
+
+        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+        [request setDelegate:self];
+        [request setRequestMethod:@"GET"];
+        [request startAsynchronous];
+        
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -206,6 +220,18 @@
 }
 */
 
+#pragma ASIHTTPRequestDelegate
+- (void)requestFinished:(ASIHTTPRequest *)request {
+    NSString *resposeStr = [request responseString];
+    NSLog(@"response string is %@", resposeStr);
+    NSData *resData = [request responseData];
+    NSLog(@"response data is %@", [resData description]);
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request {
+    NSError *error = [request error];
+    NSLog(@"error is %@", [error description]);
+}
 
 
 - (void)didReceiveMemoryWarning

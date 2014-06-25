@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "WYGlobalState.h"
+#import "ASIHttpRequest.h"
 
-@interface WYSettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface WYSettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ASIHTTPRequestDelegate> {
 	UITableView *_mTableView;
     WYGlobalState *_globalState;
 }

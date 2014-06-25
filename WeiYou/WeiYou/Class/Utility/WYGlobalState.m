@@ -10,12 +10,14 @@
 
 @implementation WYGlobalState
 @synthesize boolLogin = _boolLogin;
+@synthesize sinaWeibo = _sinaWeibo;
 
 + (id)sharedGlobalState {
 	static WYGlobalState *sharedState = nil;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		sharedState = [[self alloc] init];
+        sharedState.sinaWeibo = [[WYSinaWeibo alloc] init];
 	});
 	
 	return sharedState;

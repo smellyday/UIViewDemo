@@ -11,6 +11,7 @@
 #import "consts.h"
 #include <stdio.h>
 #import "WYCoreDataEngine.h"
+#import "WYGlobalState.h"
 
 @implementation WYAppDelegate
 
@@ -117,18 +118,20 @@
 #pragma sina weibo delegate.
 - (void)didReceiveWeiboRequest:(WBBaseRequest *)request {
 
-    NSLog(@"hello");
 }
 
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response {
     if ([response isKindOfClass:WBAuthorizeResponse.class]) {
+        
         NSString *userid = [(WBAuthorizeResponse *)response userID];
         NSString *token = [(WBAuthorizeResponse *)response accessToken];
-        NSLog(@"user id : %@", userid);
-        NSLog(@"token id : %@", token);
+        WYGlobalState *gState = [WYGlobalState sharedGlobalState];
+        gState.sinaWeibo.authToken = token;
+        [[WYGlobalState sharedGlobalState] setAuthToken:token];
+        gState.sinaWeibo.userID = userid;
+        gState.boolLogin = YES;
+        
     }
-    
-    NSLog(@"user info : %@", [response.userInfo description]);
 }
 
 @end

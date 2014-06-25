@@ -90,6 +90,7 @@
 		694ED3BA195A762C00917FEB /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 694ED3AE195A762C00917FEB /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		694ED3BB195A762C00917FEB /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 694ED3B0195A762C00917FEB /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		694ED3BC195A762C00917FEB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 694ED3B3195A762C00917FEB /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		694ED3C8195A8C7700917FEB /* WYSinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 694ED3C7195A8C7700917FEB /* WYSinaWeibo.m */; };
 		6953CB6B186D215100DE04E0 /* demo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6953CB6A186D215100DE04E0 /* demo.plist */; };
 		69582DA81952BACF0072ED3E /* WYGlobalState.m in Sources */ = {isa = PBXBuildFile; fileRef = 69582DA71952BACF0072ED3E /* WYGlobalState.m */; };
 		69582DAB1952C3F40072ED3E /* WYLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69582DAA1952C3F40072ED3E /* WYLoginController.m */; };
@@ -257,6 +258,8 @@
 		694ED3B1195A762C00917FEB /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
 		694ED3B2195A762C00917FEB /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		694ED3B3195A762C00917FEB /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		694ED3C6195A8C7700917FEB /* WYSinaWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSinaWeibo.h; sourceTree = "<group>"; };
+		694ED3C7195A8C7700917FEB /* WYSinaWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSinaWeibo.m; sourceTree = "<group>"; };
 		6953CB6A186D215100DE04E0 /* demo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = demo.plist; sourceTree = "<group>"; };
 		69582DA61952BACF0072ED3E /* WYGlobalState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGlobalState.h; sourceTree = "<group>"; };
 		69582DA71952BACF0072ED3E /* WYGlobalState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGlobalState.m; sourceTree = "<group>"; };
@@ -655,6 +658,8 @@
 				69AA1EBF1954112500BA0884 /* libWeiboSDK.a */,
 				69AA1EC01954112500BA0884 /* WeiboSDK.bundle */,
 				69AA1EC11954112500BA0884 /* WeiboSDK.h */,
+				694ED3C6195A8C7700917FEB /* WYSinaWeibo.h */,
+				694ED3C7195A8C7700917FEB /* WYSinaWeibo.m */,
 			);
 			name = libWeiboSDK;
 			path = WeiYou/Class/libWeiboSDK;
@@ -832,6 +837,7 @@
 				5E49CED71862866E006F6B54 /* WYHotelController.m in Sources */,
 				5E5BC2F1183EF5430003AC6D /* WYFileManager.m in Sources */,
 				5EBCF742185EAE550057C1AE /* WYMTripDay.m in Sources */,
+				694ED3C8195A8C7700917FEB /* WYSinaWeibo.m in Sources */,
 				69D0B3451887B60D00E0AB7C /* WYDetailViewController.m in Sources */,
 				692DFBC0187135CD00076C08 /* WYCoreDataEngine.m in Sources */,
 				5EBCF760185EFFC80057C1AE /* WYMTraffic.m in Sources */,
