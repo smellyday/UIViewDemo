@@ -11,5 +11,7 @@
 @implementation WYSinaWeibo
 @synthesize authToken = _authToken;
 @synthesize userID = _userID;
+@synthesize userName =_userName;
+@synthesize userImageUrl = _userImageUrl;
 
 @end

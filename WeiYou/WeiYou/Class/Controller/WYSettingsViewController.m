@@ -20,6 +20,9 @@
 @implementation WYSettingsViewController
 @synthesize mTableView = _mTableView;
 @synthesize globalState = _globalState;
+@synthesize userImage = _userImage;
+@synthesize userInfoRequest = _userInfoRequest;
+@synthesize userImageRequest = _userImageRequest;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -106,11 +109,34 @@
     if (section == 0 && row == 0) {
         
         if (_globalState.boolLogin) {
-            cell.textLabel.text = [[[WYGlobalState sharedGlobalState] sinaWeibo] userID];
+
+            NSString *username = [[[WYGlobalState sharedGlobalState] sinaWeibo] userName];
+            if (username != nil) {
+                cell.textLabel.text = username;
+            } else {
+                cell.textLabel.text = @"";
+            }
+            
+            if (_userImage == nil) {
+                NSString *imageUrl = [[[WYGlobalState sharedGlobalState] sinaWeibo] userImageUrl];
+                if (imageUrl != nil) {
+                    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:imageUrl]];
+                    [request setDelegate:self];
+                    [request setRequestMethod:@"GET"];
+                    [request startAsynchronous];
+                    self.userImageRequest = request;
+                }
+            } else {
+                cell.imageView.image = _userImage;
+            }
+            
             cell.accessoryType = UITableViewCellAccessoryNone;
+            
         } else {
+            
             cell.textLabel.text = [NSString stringWithFormat:@"点击登录"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            
         }
         
     } else if (section == 1 && row == 0) {
@@ -158,18 +184,6 @@
 		WYUserGuideViewController *mc = [[WYUserGuideViewController alloc] init];
 		[self.navigationController pushViewController:mc animated:YES];
 	} else if (section == 1 && row == 1) {
-        
-        NSString *baseStr = @"https://api.weibo.com/2/statuses/public_timeline.json?";
-        NSString *token = [[[WYGlobalState sharedGlobalState] sinaWeibo] authToken];
-        NSLog(@"token is %@", token);
-        NSString *urlStr = [NSString stringWithFormat:@"%@count=%d&access_token=%@", baseStr, 1, token];
-        NSLog(@"url : %@", urlStr);
-        NSURL *url = [NSURL URLWithString:urlStr];
-
-        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-        [request setDelegate:self];
-        [request setRequestMethod:@"GET"];
-        [request startAsynchronous];
         
     }
 }
@@ -229,22 +243,51 @@
 
 #pragma ASIHTTPRequestDelegate
 - (void)requestFinished:(ASIHTTPRequest *)request {
-    NSString *resposeStr = [request responseString];
-    NSLog(@"response string is %@", resposeStr);
-    NSData *resData = [request responseData];
-    NSLog(@"response data is %@", [resData description]);
+    
+    if (request == _userInfoRequest) {
+        
+        NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingMutableContainers error:nil];
+        
+        NSString *userName = [jsonDic objectForKey:@"name"];
+        [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserName:userName];
+        NSString *imgUrl = [jsonDic objectForKey:@"profile_image_url"];
+        [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserImageUrl:imgUrl];
+        
+        [self.mTableView reloadData];
+        [self.navigationController popToViewController:self animated:YES];
+        
+    } else if (request == _userImageRequest) {
+        
+        self.userImage = [UIImage imageWithData:[request responseData]];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.mTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
+        
+    }
+    
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
     NSError *error = [request error];
     NSLog(@"error is %@", [error description]);
+    
+    // if cant get the data using uid&token.
 }
 
 
 #pragma notification selector
 - (void)doWhenLogin:(id)sender {
-    [self.mTableView reloadData];
-    [self.navigationController popToViewController:self animated:YES];
+    NSString *userBaseStr = @"https://api.weibo.com/2/users/show.json";
+    NSString *token = [[[WYGlobalState sharedGlobalState] sinaWeibo] authToken];
+    NSString *uid = [[[WYGlobalState sharedGlobalState] sinaWeibo] userID];
+    NSString *urlStr = [NSString stringWithFormat:@"%@?uid=%@&access_token=%@", userBaseStr, uid, token];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request setRequestMethod:@"GET"];
+    [request startAsynchronous];
+    self.userInfoRequest = request;
+    
 }
 
 

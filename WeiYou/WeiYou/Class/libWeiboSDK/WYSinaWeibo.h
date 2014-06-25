@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface WYSinaWeibo : NSObject {
-    NSString *authToken;
-    NSString *userID;
+    NSString *_authToken;
+    NSString *_userID;
+    NSString *_userName;
+    NSString *_userImageUrl;
 }
 
 @property (nonatomic, strong) NSString *authToken;
 @property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) NSString *userImageUrl;
 
 @end
