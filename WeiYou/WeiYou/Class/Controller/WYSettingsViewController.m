@@ -264,12 +264,10 @@
         NSString *userName = [jsonDic objectForKey:@"name"];
         [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserName:userName];
         [[NSUserDefaults standardUserDefaults] setObject:userName forKey:WY_USER_NAME];
-        NSLog(@"user name is %@", userName);
         
         NSString *imgUrl = [jsonDic objectForKey:@"profile_image_url"];
         [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserImageUrl:imgUrl];
         [[NSUserDefaults standardUserDefaults] setObject:imgUrl forKey:WY_USER_PROFILE_IMAGE_URL];
-        NSLog(@"image url is %@", imgUrl);
         
         [self.mTableView reloadData];
         [self.navigationController popToViewController:self animated:YES];
@@ -303,9 +301,6 @@
     NSString *uid = [[[WYGlobalState sharedGlobalState] sinaWeibo] userID];
     NSString *urlStr = [NSString stringWithFormat:@"%@?uid=%@&access_token=%@", userInfoBaseStr, uid, token];
     NSURL *url = [NSURL URLWithString:urlStr];
-    NSLog(@"link uid is %@", uid);
-    NSLog(@"link token is %@", token);
-    NSLog(@"link URL is %@", urlStr);
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDelegate:self];
