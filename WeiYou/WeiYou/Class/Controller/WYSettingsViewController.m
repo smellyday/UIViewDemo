@@ -19,7 +19,6 @@
 
 @implementation WYSettingsViewController
 @synthesize mTableView = _mTableView;
-@synthesize userImage = _userImage;
 @synthesize userInfoRequest = _userInfoRequest;
 @synthesize userImageRequest = _userImageRequest;
 
@@ -100,22 +99,29 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     cell.textLabel.textColor = [UIColor blackColor];
+    cell.imageView.image = nil;
     
     if (section == 0 && row == 0) {
         
         if ([[WYGlobalState sharedGlobalState] ifUserLogIn]) {
-            NSLog(@"111");
+
             NSString *username = [[[WYGlobalState sharedGlobalState] sinaWeibo] userName];
             if (username != nil) {
-                NSLog(@"222");
+
                 cell.textLabel.text = username;
+                
             } else {
-                NSLog(@"333");
+
                 cell.textLabel.text = @"";
+                
             }
             
-            if (_userImage == nil) {
-                NSLog(@"444");
+            if ([[[WYGlobalState sharedGlobalState] sinaWeibo] userImage] != nil) {
+
+                cell.imageView.image = [[[WYGlobalState sharedGlobalState] sinaWeibo] userImage];
+                
+            } else {
+
                 NSString *imageUrl = [[[WYGlobalState sharedGlobalState] sinaWeibo] userImageUrl];
                 if (imageUrl != nil) {
                     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:imageUrl]];
@@ -124,9 +130,7 @@
                     [request startAsynchronous];
                     self.userImageRequest = request;
                 }
-            } else {
-                NSLog(@"555");
-                cell.imageView.image = _userImage;
+                
             }
             
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -186,9 +190,14 @@
         
     } else if (section == 3 && row == 0) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_PROFILE_IMAGE_URL];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_PROFILE_IMAGE_DATA];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_ID];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_NAME];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_TOKEN_SINA];
+        [[[WYGlobalState sharedGlobalState] sinaWeibo] clear];
+        [self.mTableView reloadData];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_SINA_LOGOUT object:nil];
     }
 }
 
@@ -255,17 +264,22 @@
         NSString *userName = [jsonDic objectForKey:@"name"];
         [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserName:userName];
         [[NSUserDefaults standardUserDefaults] setObject:userName forKey:WY_USER_NAME];
+        NSLog(@"user name is %@", userName);
         
         NSString *imgUrl = [jsonDic objectForKey:@"profile_image_url"];
         [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserImageUrl:imgUrl];
         [[NSUserDefaults standardUserDefaults] setObject:imgUrl forKey:WY_USER_PROFILE_IMAGE_URL];
+        NSLog(@"image url is %@", imgUrl);
         
         [self.mTableView reloadData];
         [self.navigationController popToViewController:self animated:YES];
         
     } else if (request == _userImageRequest) {
         
-        self.userImage = [UIImage imageWithData:[request responseData]];
+        NSData *imgData = [request responseData];
+        [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserImage:[UIImage imageWithData:imgData]];
+        [[NSUserDefaults standardUserDefaults] setObject:imgData forKey:WY_USER_PROFILE_IMAGE_DATA];
+
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.mTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
         
@@ -283,11 +297,15 @@
 
 #pragma notification selector
 - (void)doWhenLoginAuthSuccess:(id)sender {
+    
     NSString *userInfoBaseStr = @"https://api.weibo.com/2/users/show.json";
     NSString *token = [[[WYGlobalState sharedGlobalState] sinaWeibo] authToken];
     NSString *uid = [[[WYGlobalState sharedGlobalState] sinaWeibo] userID];
     NSString *urlStr = [NSString stringWithFormat:@"%@?uid=%@&access_token=%@", userInfoBaseStr, uid, token];
     NSURL *url = [NSURL URLWithString:urlStr];
+    NSLog(@"link uid is %@", uid);
+    NSLog(@"link token is %@", token);
+    NSLog(@"link URL is %@", urlStr);
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDelegate:self];

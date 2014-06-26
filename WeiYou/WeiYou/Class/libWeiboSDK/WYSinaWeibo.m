@@ -13,5 +13,14 @@
 @synthesize userID = _userID;
 @synthesize userName =_userName;
 @synthesize userImageUrl = _userImageUrl;
+@synthesize userImage = _userImage;
+
+- (void)clear {
+    self.authToken = nil;
+    self.userID = nil;
+    self.userName = nil;
+    self.userImage = nil;
+    self.userImageUrl = nil;
+}
 
 @end
