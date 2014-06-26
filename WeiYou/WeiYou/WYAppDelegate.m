@@ -50,6 +50,7 @@
         [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserName:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_NAME]];
         [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserID:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_ID]];
         [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserImageUrl:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_PROFILE_IMAGE_URL]];
+        [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserImage:[UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_PROFILE_IMAGE_DATA]]];
         [[[WYGlobalState sharedGlobalState] sinaWeibo] setAuthToken:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_TOKEN_SINA]];
     }
     
