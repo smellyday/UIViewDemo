@@ -100,9 +100,12 @@
     tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     cell.textLabel.textColor = [UIColor blackColor];
     cell.imageView.image = nil;
+    cell.backgroundColor = [UIColor whiteColor];
     
     if (section == 0 && row == 0) {
         
+        
+        cell.backgroundColor = [UIColor yellowColor];
         if ([[WYGlobalState sharedGlobalState] ifUserLogIn]) {
 
             NSString *username = [[[WYGlobalState sharedGlobalState] sinaWeibo] userName];
@@ -196,6 +199,7 @@
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_TOKEN_SINA];
         [[[WYGlobalState sharedGlobalState] sinaWeibo] clear];
         [self.mTableView reloadData];
+        [self.mTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_SINA_LOGOUT object:nil];
     }
