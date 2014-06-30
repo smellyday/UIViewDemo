@@ -72,8 +72,8 @@
 	self.mTableView.dataSource = self;
 	self.mTableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
 	self.mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-	[self.view addSubview:_mTableView];
     self.mTableView.backgroundColor = [UIColor whiteColor];
+	[self.view addSubview:_mTableView];
     
 		// ----- prepare data -----
     [self refresh];
