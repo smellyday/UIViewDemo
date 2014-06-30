@@ -59,11 +59,11 @@
 	// Do any additional setup after loading the view.
 	
 	self.view.backgroundColor = [UIColor lightGrayColor];
-	self.title = @"微游";
+	self.title = @"FreeTravel";
 	
-	UIBarButtonItem *mLeftButton = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(clickSettings:)];
+	UIBarButtonItem *mLeftButton = [[UIBarButtonItem alloc] initWithTitle:@"Setting" style:UIBarButtonItemStylePlain target:self action:@selector(clickSettings:)];
 	self.navigationItem.leftBarButtonItem = mLeftButton;
-	UIBarButtonItem *mRightButton = [[UIBarButtonItem alloc] initWithTitle:@"创建" style:UIBarButtonItemStylePlain target:self action:@selector(clickCreateNew:)];
+	UIBarButtonItem *mRightButton = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(clickCreateNew:)];
 	self.navigationItem.rightBarButtonItem = mRightButton;
 	
 		//add table view
@@ -71,8 +71,9 @@
 	self.mTableView.delegate = self;
 	self.mTableView.dataSource = self;
 	self.mTableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-	self.mTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
+	self.mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	[self.view addSubview:_mTableView];
+    self.mTableView.backgroundColor = [UIColor whiteColor];
     
 		// ----- prepare data -----
     [self refresh];
@@ -81,13 +82,6 @@
 
 - (void)clickSettings:(id)sender {
 	WYSettingsViewController *mSettingsController = [[WYSettingsViewController alloc] init];
-    
-//	UINavigationController *mNavController = [[UINavigationController alloc] initWithRootViewController:mSettingsController];
-//	mNavController.navigationBar.hidden = YES;
-//	mNavController.navigationBar.barTintColor = WY_MAIN_COLOR;
-//	mNavController.navigationBar.tintColor = [UIColor blackColor];
-	
-//	[self presentViewController:mNavController animated:YES completion:nil];
     [self.navigationController pushViewController:mSettingsController animated:YES];
 }
 
