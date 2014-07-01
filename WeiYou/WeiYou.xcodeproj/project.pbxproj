@@ -94,10 +94,13 @@
 		6953CB6B186D215100DE04E0 /* demo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6953CB6A186D215100DE04E0 /* demo.plist */; };
 		69582DA81952BACF0072ED3E /* WYGlobalState.m in Sources */ = {isa = PBXBuildFile; fileRef = 69582DA71952BACF0072ED3E /* WYGlobalState.m */; };
 		69582DAB1952C3F40072ED3E /* WYLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69582DAA1952C3F40072ED3E /* WYLoginController.m */; };
+		699E38EC196290970083CD3A /* localTrips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 699E38EB196290970083CD3A /* localTrips.plist */; };
 		69AA1EBA1953D9D400BA0884 /* WYRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AA1EB91953D9D400BA0884 /* WYRegisterController.m */; };
 		69AA1EBD1953D9F900BA0884 /* WYFindPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AA1EBC1953D9F900BA0884 /* WYFindPasswordController.m */; };
 		69AA1EC21954112500BA0884 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AA1EBF1954112500BA0884 /* libWeiboSDK.a */; };
 		69AA1EC31954112500BA0884 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69AA1EC01954112500BA0884 /* WeiboSDK.bundle */; };
+		69CA3F0B1962B0290004910A /* WYMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CA3F0A1962B0290004910A /* WYMainController.m */; };
+		69CA3F0D1962B6520004910A /* olderTrips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69CA3F0C1962B6520004910A /* olderTrips.plist */; };
 		69D0B3451887B60D00E0AB7C /* WYDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D0B3441887B60D00E0AB7C /* WYDetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -265,6 +268,7 @@
 		69582DA71952BACF0072ED3E /* WYGlobalState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGlobalState.m; sourceTree = "<group>"; };
 		69582DA91952C3F40072ED3E /* WYLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLoginController.h; sourceTree = "<group>"; };
 		69582DAA1952C3F40072ED3E /* WYLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLoginController.m; sourceTree = "<group>"; };
+		699E38EB196290970083CD3A /* localTrips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = localTrips.plist; sourceTree = "<group>"; };
 		69AA1EB81953D9D400BA0884 /* WYRegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRegisterController.h; sourceTree = "<group>"; };
 		69AA1EB91953D9D400BA0884 /* WYRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRegisterController.m; sourceTree = "<group>"; };
 		69AA1EBB1953D9F900BA0884 /* WYFindPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYFindPasswordController.h; sourceTree = "<group>"; };
@@ -272,6 +276,9 @@
 		69AA1EBF1954112500BA0884 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		69AA1EC01954112500BA0884 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		69AA1EC11954112500BA0884 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		69CA3F091962B0290004910A /* WYMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMainController.h; sourceTree = "<group>"; };
+		69CA3F0A1962B0290004910A /* WYMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMainController.m; sourceTree = "<group>"; };
+		69CA3F0C1962B6520004910A /* olderTrips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = olderTrips.plist; sourceTree = "<group>"; };
 		69D0B3431887B60D00E0AB7C /* WYDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDetailViewController.h; sourceTree = "<group>"; };
 		69D0B3441887B60D00E0AB7C /* WYDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -393,6 +400,8 @@
 		5E5BC241183EE5E90003AC6D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				69CA3F091962B0290004910A /* WYMainController.h */,
+				69CA3F0A1962B0290004910A /* WYMainController.m */,
 				5E5BC25C183EE6770003AC6D /* WYRootViewController.h */,
 				5E5BC25B183EE6770003AC6D /* WYRootViewController.m */,
 				69D0B3431887B60D00E0AB7C /* WYDetailViewController.h */,
@@ -475,6 +484,8 @@
 				5E5BC237183EE5D80003AC6D /* main.m */,
 				5E5BC238183EE5D80003AC6D /* WeiYou-Info.plist */,
 				5E5BC239183EE5D80003AC6D /* WeiYou-Prefix.pch */,
+				699E38EB196290970083CD3A /* localTrips.plist */,
+				69CA3F0C1962B6520004910A /* olderTrips.plist */,
 				5EBCF764185F016B0057C1AE /* trips.plist */,
 				5E21AE5B186829E600316EA6 /* location.plist */,
 				6953CB6A186D215100DE04E0 /* demo.plist */,
@@ -762,8 +773,10 @@
 				5E5BC23E183EE5D80003AC6D /* Images.xcassets in Resources */,
 				5E5BC23D183EE5D80003AC6D /* mark_reminder@2x.png in Resources */,
 				5E21AE5F1868321C00316EA6 /* star.png in Resources */,
+				699E38EC196290970083CD3A /* localTrips.plist in Resources */,
 				5E4A8C9E185FFDC70062934F /* tamp2@2x.png in Resources */,
 				5EBCF765185F016B0057C1AE /* trips.plist in Resources */,
+				69CA3F0D1962B6520004910A /* olderTrips.plist in Resources */,
 				5E21AE601868321C00316EA6 /* star@2x.png in Resources */,
 				6953CB6B186D215100DE04E0 /* demo.plist in Resources */,
 				5E4A8C9D185FFDC70062934F /* tamp2.png in Resources */,
@@ -812,6 +825,7 @@
 				5E5BC2EA183EEA3B0003AC6D /* WYAppDelegate.m in Sources */,
 				692DFBAD1871287800076C08 /* WYCMPrepareList.m in Sources */,
 				5E49CED41862865F006F6B54 /* WYSpotController.m in Sources */,
+				69CA3F0B1962B0290004910A /* WYMainController.m in Sources */,
 				5E5D6761186144FF00ECA966 /* WYTripDayController.m in Sources */,
 				5E49CEDD18629B36006F6B54 /* WYMapViewController.m in Sources */,
 				692DFBA41871287800076C08 /* WYCMTraffic.m in Sources */,

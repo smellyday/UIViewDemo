@@ -15,6 +15,7 @@
 #import "WYCoreDataEngine.h"
 #import "WYTripController.h"
 #import "consts.h"
+#import "WYDataEngine.h"
 
 @interface WYRootViewController ()
 

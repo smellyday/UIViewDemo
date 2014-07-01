@@ -44,7 +44,7 @@
 #define WY_TRIP_DES                    @"trip_description"
 #define WY_TRIP_MAIN_IMAGE             @"trip_main_image"
 #define WY_TRIP_BEGIN_DATE             @"trip_begin_date"
-//#define WY_TRIP_END_DATE               @"trip_end_date"
+#define WY_TRIP_END_DATE               @"trip_end_date"
 #define WY_TRIP_DAYS                   @"trip_days"
 #define WY_TRIP_PREPARE_LIST           @"trip_prepare_list"
 

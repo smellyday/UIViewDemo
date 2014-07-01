@@ -16,6 +16,10 @@
 
 + (id)sharedDataEngine;
 
+// user info
+- (NSMutableArray *)getAllTrips;
+
+// older
 - (NSArray *)getTrips;
 - (NSArray *)getCityArray;
 

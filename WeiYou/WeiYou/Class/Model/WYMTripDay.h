@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface WYMTripDay : NSObject {
+    /*
 	NSMutableArray *_continentsArray;
 	NSMutableArray *_hotelsArray; // item WYMBookedHotel
 	NSMutableArray *_trafficArray;
+     */
 	
 		//date
 	NSDate *_date;
@@ -23,15 +25,18 @@
 	NSString *_dayTHStr;
 }
 
-@property (nonatomic, strong) NSMutableArray *continentsArray;
-@property (nonatomic, strong) NSMutableArray *hotelsArray;
-@property (nonatomic, strong) NSMutableArray *trafficArray;
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSString *dateStr;
 @property (nonatomic, strong) NSString *weekDayStr;
 @property (nonatomic, strong) NSNumber *dayTH;
 @property (nonatomic, strong) NSString *dayTHStr;
+/*
+@property (nonatomic, strong) NSMutableArray *continentsArray;
+@property (nonatomic, strong) NSMutableArray *hotelsArray;
+@property (nonatomic, strong) NSMutableArray *trafficArray;
+ */
 
 - (id)initTripDayInfoDic:(NSDictionary *)infoDic;
+- (NSDictionary *)transferToDic;
 
 @end

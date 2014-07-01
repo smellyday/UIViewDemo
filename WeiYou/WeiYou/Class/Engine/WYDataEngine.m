@@ -15,16 +15,6 @@
 @implementation WYDataEngine
 @synthesize trips = _trips;
 
-/*
-+ (id)sharedManager {
-    static MyManager *sharedMyManager = nil;
-    @synchronized(self) {
-        if (sharedMyManager == nil)
-            sharedMyManager = [[self alloc] init];
-    }
-    return sharedMyManager;
-}
-*/
 
 + (id)sharedDataEngine {
 	static WYDataEngine *sharedEngine = nil;
@@ -36,7 +26,81 @@
 	return sharedEngine;
 }
 
+- (NSMutableArray *)getAllTrips {
+    self.trips = nil;
+    _trips = [NSMutableArray arrayWithCapacity:10];
+    
+    //判断本地和server上的版本
+    
+    //如果Server版本最新，全部用server上的
+    
+    //如果本地版本最新，全部拿本地的
+    NSArray *tripsFromLocalFile =[self getTripsFromLocalFile];
+    
+    for (NSDictionary *infoDic in tripsFromLocalFile) {
+        WYMTrip *trip = [[WYMTrip alloc] initWithTripInfoDic:infoDic];
+        [_trips addObject:trip];
+    }
+    
+    return _trips;
+}
 
+- (NSArray *)getTripsFromLocalFile {
+    NSString *dataPath = [self getDataPath];
+    
+    BOOL fileExist = [[NSFileManager defaultManager] fileExistsAtPath:dataPath];
+    if (!fileExist) {
+        return nil;
+    }
+    
+    NSMutableArray *tripsArrayFromFile = [NSMutableArray arrayWithCapacity:10];
+    [tripsArrayFromFile addObjectsFromArray:[NSArray arrayWithContentsOfFile:dataPath]];
+    
+    return tripsArrayFromFile;
+}
+
+- (NSArray *)getTripsFromServer {
+    return [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
+}
+
+- (NSString *)getDataPath {
+    NSArray *userDomainArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docPath = [userDomainArray lastObject];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@.plist", docPath, @"tripData"];
+    return filePath;
+}
+
+- (NSArray *)objectsToArray {
+    if (_trips) {
+        
+        NSMutableArray *dataArr = [NSMutableArray arrayWithCapacity:10];
+        for (WYMTrip *trip in _trips) {
+            NSDictionary *infoDic = [trip transferToDic];
+            [dataArr addObject:infoDic];
+        }
+        
+        return dataArr;
+    }
+    
+    return nil;
+}
+
+- (void)save {
+    NSArray *dataArr = [self objectsToArray];
+    if (dataArr != nil) {
+        [[self objectsToArray] writeToFile:[self getDataPath] atomically:YES];
+    }
+}
+
+
+
+
+
+
+
+
+
+// ===============
 - (NSArray *)getTrips {
 	
 	if (self.trips != nil) {

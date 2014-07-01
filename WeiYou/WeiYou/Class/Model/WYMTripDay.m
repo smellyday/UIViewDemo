@@ -13,9 +13,6 @@
 #import "consts.h"
 
 @implementation WYMTripDay
-@synthesize continentsArray = _continentsArray;
-@synthesize hotelsArray = _hotelsArray;
-@synthesize trafficArray = _trafficArray;
 @synthesize date = _date;
 @synthesize dateStr = _dateStr;
 @synthesize weekDayStr = _weekDayStr;
@@ -25,10 +22,11 @@
 - (id)initTripDayInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
 	if (self) {
-			//date
+        
+        //date & date str & weekday str
 		self.date = [infoDic objectForKey:WY_TRIP_DATE];
         if (_date != nil) {
-            //date str & weekday str
+
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setDateStyle:NSDateFormatterLongStyle];
             self.dateStr = [formatter stringFromDate:self.date];
@@ -48,6 +46,7 @@
 //		NSDateComponents *component = [calendar components:NSCalendarUnitWeekday fromDate:self.date];
 //		self.weekDayStr = [NSString stringWithFormat:@"%li", (long)[component weekday]];
 
+        /*
 			//continent
 		NSMutableArray *continentsArr = [NSMutableArray arrayWithCapacity:10];
 		for (NSDictionary *ctnDic in [infoDic objectForKey:WY_TRIP_CONTINENTS]) {
@@ -69,9 +68,14 @@
 			WYMBookedHotel *bookedHotel = [[WYMBookedHotel alloc] initWithBookedHoteInfoDic:hotelDic];
 			[self.hotelsArray addObject:bookedHotel];
 		}
+         */
 		
 	}
 	return self;
+}
+
+- (NSDictionary *)transferToDic {
+    return nil;
 }
 
 @end
