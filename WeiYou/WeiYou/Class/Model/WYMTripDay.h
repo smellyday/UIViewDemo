@@ -15,21 +15,27 @@
 	NSMutableArray *_trafficArray;
      */
 	
+		//dic info
+	NSNumber *_dayTH;
+	NSMutableArray *_spotsArray;
+	
 		//date
 	NSDate *_date;
 	NSString *_dateStr;
 	NSString *_weekDayStr;
 	
 		//dayth
-	NSNumber *_dayTH;
 	NSString *_dayTHStr;
 }
 
-@property (nonatomic, strong) NSDate *date;
-@property (nonatomic, strong) NSString *dateStr;
-@property (nonatomic, strong) NSString *weekDayStr;
 @property (nonatomic, strong) NSNumber *dayTH;
+@property (nonatomic, strong) NSMutableArray *spotsArray;
+
+@property (nonatomic, strong) NSString *dateStr;
+@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) NSString *weekDayStr;
 @property (nonatomic, strong) NSString *dayTHStr;
+
 /*
 @property (nonatomic, strong) NSMutableArray *continentsArray;
 @property (nonatomic, strong) NSMutableArray *hotelsArray;

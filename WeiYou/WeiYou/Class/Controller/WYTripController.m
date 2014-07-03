@@ -168,7 +168,7 @@
 - (void)addOneDay:(id)sender {
     WYCMTripDay *tripDay = [NSEntityDescription insertNewObjectForEntityForName:@"WYCMTripDay" inManagedObjectContext:[[WYCoreDataEngine sharedCoreDataEngine] context]];
     tripDay.trip = self.trip;
-    NSDictionary *infoDic = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:[self.trip.tripDays count]-1] forKey:WY_TRIP_DAYTH];// -1 because after tripday.trip = self.trip.
+    NSDictionary *infoDic = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:[self.trip.tripDays count]-1] forKey:WY_TRIPDAY_DAYTH];// -1 because after tripday.trip = self.trip.
     [tripDay prepareTripDayWithInfo:infoDic];
     [_daysArray addObject:tripDay];
     [_mTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:[self.trip.tripDays count]-1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];

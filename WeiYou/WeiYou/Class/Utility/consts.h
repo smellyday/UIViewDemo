@@ -49,11 +49,13 @@
 #define WY_TRIP_PREPARE_LIST           @"trip_prepare_list"
 
 	//for trip day
+#define WY_TRIPDAY_DAYTH               @"tripday_dayth"
+#define WY_TRIPDAY_SPOTS               @"tripday_spots"
+	// ==going to delete.
 #define WY_TRIP_CONTINENTS             @"trip_continents"
 #define WY_TRIP_HOTELS                 @"trip_hotels"
 #define WY_TRIP_TRAFFICS               @"trip_traffics"
 #define WY_TRIP_DATE                   @"trip_date"
-#define WY_TRIP_DAYTH                  @"trip_dayth"
 
 	//for continent
 //#define WY_CONTINENT_NAME              @"wy_continent_name"

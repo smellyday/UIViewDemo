@@ -29,21 +29,20 @@
 		self.tripEndDate = [infoDic objectForKey:WY_TRIP_END_DATE];
 		self.tripPrepareArray = [infoDic objectForKey:WY_TRIP_PREPARE_LIST];
 		
-		NSMutableArray *daysArr = [NSMutableArray arrayWithCapacity:10];
+		_tripDaysArray = [NSMutableArray arrayWithCapacity:10];
         NSArray *daysInfoArr = [infoDic objectForKey:WY_TRIP_DAYS];
         for (int cnt = 0; cnt < [daysInfoArr count]; cnt++) {
             
             NSMutableDictionary *dayDicInfo = [NSMutableDictionary dictionaryWithDictionary:[daysInfoArr objectAtIndex:cnt]];
-            [dayDicInfo setObject:[NSNumber numberWithInt:(cnt+1)] forKey:WY_TRIP_DAYTH];
+            [dayDicInfo setObject:[NSNumber numberWithInt:(cnt+1)] forKey:WY_TRIPDAY_DAYTH];
             if (_tripBeginDate != nil) {
                 NSDate *md = [NSDate dateWithTimeInterval:WY_DAY_INTERVAL*cnt sinceDate:_tripBeginDate];
                 [dayDicInfo setObject:md forKey:WY_TRIP_DATE];
             }
 			WYMTripDay *tripday = [[WYMTripDay alloc] initTripDayInfoDic:dayDicInfo];
-			[daysArr addObject:tripday];
+			[_tripDaysArray addObject:tripday];
             
         }
-		self.tripDaysArray = daysArr;
         
 	}
 	return self;

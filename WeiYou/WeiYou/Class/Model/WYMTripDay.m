@@ -14,6 +14,7 @@
 
 @implementation WYMTripDay
 @synthesize date = _date;
+@synthesize spotsArray = _spotsArray;
 @synthesize dateStr = _dateStr;
 @synthesize weekDayStr = _weekDayStr;
 @synthesize dayTH = _dayTH;
@@ -37,10 +38,18 @@
         }
         
         //dayth
-        self.dayTH = [infoDic objectForKey:WY_TRIP_DAYTH];
+        self.dayTH = [infoDic objectForKey:WY_TRIPDAY_DAYTH];
         if (_dayTH != nil) {
             self.dayTHStr = [NSString stringWithFormat:@"第%d天", [_dayTH intValue]];
         }
+		
+		//spotsDay
+		_spotsArray = [NSMutableArray arrayWithCapacity:10];
+//		NSArray *spotsInfoArr = [infoDic objectForKey:WY_TRIPDAY_SPOTS];
+//		for (NSDictionary *mInfoDic in spotsInfoArr) {
+//			
+//		}
+		
         
 //		NSCalendar *calendar = [NSCalendar currentCalendar];
 //		NSDateComponents *component = [calendar components:NSCalendarUnitWeekday fromDate:self.date];
@@ -75,7 +84,11 @@
 }
 
 - (NSDictionary *)transferToDic {
-    return nil;
+	
+	NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
+	[infoDic setObject:_dayTH forKey:WY_TRIPDAY_DAYTH];
+	
+    return (NSDictionary *)infoDic;
 }
 
 @end

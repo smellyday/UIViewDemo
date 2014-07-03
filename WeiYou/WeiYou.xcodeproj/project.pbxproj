@@ -54,6 +54,7 @@
 		5E6D03A31839F68C006A0E93 /* WeiYouTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D03A21839F68C006A0E93 /* WeiYouTests.m */; };
 		5E6EBC3918596919004E7EB6 /* WYCreateNewStepTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6EBC3818596919004E7EB6 /* WYCreateNewStepTwoViewController.m */; };
 		5E6EBC3F1859B408004E7EB6 /* WYPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6EBC3E1859B408004E7EB6 /* WYPickerView.m */; };
+		5E8A9C0E19653C1500B21F46 /* WYMSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A9C0D19653C1500B21F46 /* WYMSpot.m */; };
 		5EBCF732185E95D80057C1AE /* WYTripController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF731185E95D80057C1AE /* WYTripController.m */; };
 		5EBCF73F185EAE290057C1AE /* WYMTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF73E185EAE290057C1AE /* WYMTrip.m */; };
 		5EBCF742185EAE550057C1AE /* WYMTripDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF741185EAE550057C1AE /* WYMTripDay.m */; };
@@ -191,6 +192,8 @@
 		5E6EBC3818596919004E7EB6 /* WYCreateNewStepTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCreateNewStepTwoViewController.m; sourceTree = "<group>"; };
 		5E6EBC3D1859B408004E7EB6 /* WYPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPickerView.h; sourceTree = "<group>"; };
 		5E6EBC3E1859B408004E7EB6 /* WYPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPickerView.m; sourceTree = "<group>"; };
+		5E8A9C0C19653C1500B21F46 /* WYMSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMSpot.h; sourceTree = "<group>"; };
+		5E8A9C0D19653C1500B21F46 /* WYMSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMSpot.m; sourceTree = "<group>"; };
 		5EBCF730185E95D80057C1AE /* WYTripController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTripController.h; sourceTree = "<group>"; };
 		5EBCF731185E95D80057C1AE /* WYTripController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTripController.m; sourceTree = "<group>"; };
 		5EBCF73D185EAE290057C1AE /* WYMTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMTrip.h; sourceTree = "<group>"; };
@@ -457,6 +460,8 @@
 				5EBCF73E185EAE290057C1AE /* WYMTrip.m */,
 				5EBCF740185EAE550057C1AE /* WYMTripDay.h */,
 				5EBCF741185EAE550057C1AE /* WYMTripDay.m */,
+				5E8A9C0C19653C1500B21F46 /* WYMSpot.h */,
+				5E8A9C0D19653C1500B21F46 /* WYMSpot.m */,
 			);
 			name = Model;
 			path = WeiYou/Class/Model;
@@ -808,6 +813,7 @@
 				694ED3B8195A762C00917FEB /* ASIFormDataRequest.m in Sources */,
 				694ED3B9195A762C00917FEB /* ASIHTTPRequest.m in Sources */,
 				694ED3BA195A762C00917FEB /* ASIInputStream.m in Sources */,
+				5E8A9C0E19653C1500B21F46 /* WYMSpot.m in Sources */,
 				694ED3BB195A762C00917FEB /* ASINetworkQueue.m in Sources */,
 				694ED3BC195A762C00917FEB /* Reachability.m in Sources */,
 				5E4A8CAA18604D040062934F /* WYMBookedHotel.m in Sources */,

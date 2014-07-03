@@ -33,7 +33,7 @@
 
 
 - (void)prepareTripDayWithInfo:(NSDictionary *)infoDic {
-	self.dayth = [infoDic objectForKey:WY_TRIP_DAYTH];
+	self.dayth = [infoDic objectForKey:WY_TRIPDAY_DAYTH];
 	if (self.dayth != nil) {
 		self.dayTHStr = [NSString stringWithFormat:@"第%d天", [self.dayth intValue]+1];
 	}
