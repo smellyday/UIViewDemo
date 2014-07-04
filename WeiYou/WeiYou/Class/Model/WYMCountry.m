@@ -7,28 +7,29 @@
 //
 
 #import "WYMCountry.h"
-#import "WYMCity.h"
 #import "consts.h"
 
 @implementation WYMCountry
+@synthesize countryID = _countryID;
 @synthesize countryName = _countryName;
-@synthesize countryDes = _countryDes;
-@synthesize cityArray = _cityArray;
+@synthesize countryDescription = _countryDescription;
 
 - (id)initWithCountryInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
 	if (self) {
+		self.countryID = [infoDic objectForKey:WY_COUNTRY_ID];
 		self.countryName = [infoDic objectForKey:WY_COUNTRY_NAME];
-		self.countryDes = [infoDic objectForKey:WY_COUNTRY_DES];
-		
-		NSMutableArray *cityArr = [NSMutableArray arrayWithCapacity:10];
-		for (NSDictionary *ctyDic in [infoDic objectForKey:WY_COUNTRY_CITIES]) {
-			WYMCity *city = [[WYMCity alloc] initWithCityInfoDic:ctyDic];
-			[cityArr addObject:city];
-		}
-		self.cityArray = cityArr;
+		self.countryDescription = [infoDic objectForKey:WY_COUNTRY_DES];
 	}
 	return self;
+}
+
+- (NSArray *)getAllProvinces {
+	return nil;
+}
+
+- (NSArray *)getAllCities {
+	return nil;
 }
 
 @end

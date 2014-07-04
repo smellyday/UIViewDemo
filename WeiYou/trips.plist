@@ -3,70 +3,84 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>state</key>
+		<key>wy_trip_id</key>
 		<string></string>
-		<key>trip_key</key>
+		<key>wy_trip_name</key>
 		<string></string>
-		<key>trip_index</key>
-		<integer>0</integer>
-		<key>trip_name</key>
+		<key>wy_trip_description</key>
+		<string>0</string>
+		<key>wy_trip_main_image_url</key>
 		<string>随意旅行</string>
-		<key>trip_description</key>
-		<string>I am travelling at Africa!</string>
-		<key>trip_main_image</key>
-		<string>www.bailinglvxing.com</string>
-		<key>trip_begin_date</key>
+		<key>wy_trip_begin_date</key>
+		<date>2014-07-01T06:11:05Z</date>
+		<key>wy_trip_end_date</key>
+		<date>2014-07-14T06:11:08Z</date>
+		<key>wy_trip_create_date</key>
 		<date>2013-02-27T09:48:19Z</date>
-		<key>create_date</key>
-		<date>2014-07-01T09:32:08Z</date>
-		<key>trip_days</key>
+		<key>wy_trip_days</key>
 		<array>
 			<dict>
-				<key>trip_dayth</key>
+				<key>wy_tripday_dayth</key>
 				<integer>0</integer>
-				<key>day_spots</key>
+				<key>wy_tripday_spots</key>
 				<array>
 					<dict>
-						<key>spot_continent</key>
+						<key>wy_spot_id</key>
+						<string></string>
+						<key>wy_spot_order</key>
+						<integer>0</integer>
+						<key>wy_spot_name</key>
+						<string></string>
+						<key>wy_spot_address</key>
+						<string></string>
+						<key>wy_spot_info</key>
 						<string>0</string>
-						<key>spot_country</key>
-						<string></string>
-						<key>spot_city</key>
-						<string></string>
-						<key>spot_name</key>
-						<string></string>
-						<key>spot_address</key>
-						<string></string>
-						<key>spot_info</key>
-						<string></string>
-					</dict>
-					<dict>
-						<key>spot_continent</key>
-						<string></string>
-						<key>spot_country</key>
-						<string></string>
-						<key>spot_city</key>
-						<string></string>
-						<key>spot_name</key>
-						<string></string>
-						<key>spot_address</key>
-						<string></string>
-						<key>spot_info</key>
-						<string></string>
-					</dict>
-					<dict>
-						<key>spot_continent</key>
-						<string></string>
-						<key>spot_country</key>
-						<string></string>
-						<key>spot_city</key>
-						<string></string>
-						<key>spot_name</key>
-						<string></string>
-						<key>spot_address</key>
-						<string></string>
-						<key>spot_info</key>
-						<string></string>
+						<key>wy_spot_website</key>
+						<array>
+							<string>www.baidu.com</string>
+							<string>www.sina.com.cn</string>
+						</array>
+						<key>wy_spot_image_url_arr</key>
+						<array>
+							<string>www.baidu.com</string>
+							<string>www.sina.com.cn</string>
+						</array>
+						<key>wy_spot_city</key>
+						<dict>
+							<key>wy_city_id</key>
+							<string></string>
+							<key>wy_city_name</key>
+							<string></string>
+							<key>wy_city_des</key>
+							<string></string>
+						</dict>
+						<key>wy_spot_province</key>
+						<dict>
+							<key>wy_province_id</key>
+							<string></string>
+							<key>wy_province_name</key>
+							<string></string>
+							<key>wy_province_des</key>
+							<string></string>
+						</dict>
+						<key>wy_spot_country</key>
+						<dict>
+							<key>wy_country_id</key>
+							<string></string>
+							<key>wy_country_name</key>
+							<string></string>
+							<key>wy_country_des</key>
+							<string></string>
+						</dict>
+						<key>wy_spot_continent</key>
+						<dict>
+							<key>wy_continent_id</key>
+							<string></string>
+							<key>wy_continent_name</key>
+							<string></string>
+							<key>wy_continent_des</key>
+							<string></string>
+						</dict>
 					</dict>
 				</array>
 			</dict>

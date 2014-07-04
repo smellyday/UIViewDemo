@@ -7,9 +7,41 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYMContinent.h"
+#import "WYMCountry.h"
+#import "WYMProvince.h"
+#import "WYMCity.h"
 
 @interface WYMSpot : NSObject {
+	NSString *_spotID;
+	NSNumber *_spotOrder;
+	NSString *_spotName;
+	NSString *_spotAddress;
+	NSString *_spotInfo;
 	
+	NSArray *_spotWebsiteArray;
+	NSArray *_spotImageURLArray;
+	
+	WYMCity *_spotCity;
+	WYMProvince *_spotProvince;
+	WYMCountry *_spotCountry;
+	WYMContinent *_spotContinent;
 }
+
+@property (nonatomic, strong) NSString *spotID;
+@property (nonatomic, strong) NSNumber *spotOrder;
+@property (nonatomic, strong) NSString *spotName;
+@property (nonatomic, strong) NSString *spotAddress;
+@property (nonatomic, strong) NSString *spotInfo;
+
+@property (nonatomic, strong) NSArray *spotWebsiteArray;
+@property (nonatomic, strong) NSArray *spotImageURLArray;
+
+@property (nonatomic, strong) WYMCity *spotCity;
+@property (nonatomic, strong) WYMProvince *spotProvince;
+@property (nonatomic, strong) WYMCountry *spotCountry;
+@property (nonatomic, strong) WYMContinent *spotContinent;
+
+- (id)initWithSpotInfoDic:(NSDictionary *)infoDic;
 
 @end

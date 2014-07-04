@@ -9,22 +9,25 @@
 #import <Foundation/Foundation.h>
 
 @interface WYMTrip : NSObject {
+	NSString *_tripID;
 	NSString *_tripName;
 	NSString *_tripDescription;
-	UIImage *_tripMainImage;
+	NSString *_tripMainImageURL;
 	NSDate *_tripBeginDate;
 	NSDate *_tripEndDate;
+	NSDate *_tripCreateDate;
 	NSMutableArray *_tripDaysArray;
-	NSMutableArray *_tripPrepareArray;
+
 }
 
+@property (nonatomic, strong) NSString *tripID;
 @property (nonatomic, strong) NSString *tripName;
 @property (nonatomic, strong) NSString *tripDescription;
-@property (nonatomic, strong) UIImage *tripMainImage;
+@property (nonatomic, strong) NSString *tripMainImageURL;
 @property (nonatomic, strong) NSDate *tripBeginDate;
 @property (nonatomic, strong) NSDate *tripEndDate;
+@property (nonatomic, strong) NSDate *tripCreateDate;
 @property (nonatomic, strong) NSMutableArray *tripDaysArray;
-@property (nonatomic, strong) NSMutableArray *tripPrepareArray;
 
 - (id)initWithTripInfoDic:(NSDictionary *)infoDic;
 - (NSDictionary *)transferToDic;

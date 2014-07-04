@@ -20,16 +20,19 @@ typedef enum {
 
 @interface WYMContinent : NSObject {
 	WYContinent _continentType;
+	
+	NSString *_continentID;
 	NSString *_continentName;
-	NSString *_continentDes;
-	NSMutableArray *_countryArray;
+	NSString *_continentDescription;
 }
 
 @property (nonatomic) WYContinent continentType;
+
+@property (nonatomic, strong) NSString *continentID;
 @property (nonatomic, strong) NSString *continentName;
-@property (nonatomic, strong) NSString *continentDes;
-@property (nonatomic, strong) NSMutableArray *countryArray;
+@property (nonatomic, strong) NSString *continentDescription;
 
 - (id)initWithContinentInfoDic:(NSDictionary *)infoDic;
+- (NSArray *)getAllCountries;
 
 @end

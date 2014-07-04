@@ -11,39 +11,35 @@
 #import "consts.h"
 
 @implementation WYMTrip
+@synthesize tripID = _tripID;
 @synthesize tripName = _tripName;
 @synthesize tripDescription = _tripDescription;
-@synthesize tripMainImage = _tripMainImage;
+@synthesize tripMainImageURL = _tripMainImageURL;
 @synthesize tripBeginDate = _tripBeginDate;
 @synthesize tripEndDate = _tripEndDate;
+@synthesize tripCreateDate = _tripCreateDate;
 @synthesize tripDaysArray = _tripDaysArray;
-@synthesize tripPrepareArray = _tripPrepareArray;
 
 - (id)initWithTripInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
 	if (self) {
+		self.tripID = [infoDic objectForKey:WY_TRIP_ID];
 		self.tripName = [infoDic objectForKey:WY_TRIP_NAME];
 		self.tripDescription = [infoDic objectForKey:WY_TRIP_DES];
-		self.tripMainImage = [UIImage imageWithData:[infoDic objectForKey:WY_TRIP_MAIN_IMAGE]];
+		self.tripMainImageURL = [infoDic objectForKey:WY_TRIP_MAIN_IMAGE_URL];
 		self.tripBeginDate = [infoDic objectForKey:WY_TRIP_BEGIN_DATE];
 		self.tripEndDate = [infoDic objectForKey:WY_TRIP_END_DATE];
-		self.tripPrepareArray = [infoDic objectForKey:WY_TRIP_PREPARE_LIST];
+		self.tripCreateDate = [infoDic objectForKey:WY_TRIP_CREATE_DATE];
 		
 		_tripDaysArray = [NSMutableArray arrayWithCapacity:10];
         NSArray *daysInfoArr = [infoDic objectForKey:WY_TRIP_DAYS];
-        for (int cnt = 0; cnt < [daysInfoArr count]; cnt++) {
-            
-            NSMutableDictionary *dayDicInfo = [NSMutableDictionary dictionaryWithDictionary:[daysInfoArr objectAtIndex:cnt]];
-            [dayDicInfo setObject:[NSNumber numberWithInt:(cnt+1)] forKey:WY_TRIPDAY_DAYTH];
-            if (_tripBeginDate != nil) {
-                NSDate *md = [NSDate dateWithTimeInterval:WY_DAY_INTERVAL*cnt sinceDate:_tripBeginDate];
-                [dayDicInfo setObject:md forKey:WY_TRIP_DATE];
-            }
-			WYMTripDay *tripday = [[WYMTripDay alloc] initTripDayInfoDic:dayDicInfo];
-			[_tripDaysArray addObject:tripday];
-            
-        }
-        
+		for (NSDictionary *dayInfoDic in daysInfoArr) {
+			WYMTripDay *tripDay = [[WYMTripDay alloc] initTripDayInfoDic:dayInfoDic];
+			if (_tripBeginDate) {
+				tripDay.date = [NSDate dateWithTimeInterval:WY_DAY_INTERVAL*[[tripDay dayTH] intValue] sinceDate:_tripBeginDate];
+			}
+			[_tripDaysArray addObject:tripDay];
+		}
 	}
 	return self;
 }
@@ -53,9 +49,8 @@
     NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
     [infoDic setObject:_tripName forKey:WY_TRIP_NAME];
     [infoDic setObject:_tripDescription forKey:WY_TRIP_DES];
-    [infoDic setObject:_tripMainImage forKey:WY_TRIP_MAIN_IMAGE];
+    [infoDic setObject:_tripMainImageURL forKey:WY_TRIP_MAIN_IMAGE_URL];
     [infoDic setObject:_tripBeginDate forKey:WY_TRIP_BEGIN_DATE];
-    [infoDic setObject:_tripEndDate forKey:WY_TRIP_PREPARE_LIST];
     
     NSMutableArray *daysArr = [NSMutableArray arrayWithCapacity:10];
     for (WYMTripDay *tripDay in _tripDaysArray) {

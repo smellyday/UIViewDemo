@@ -7,9 +7,7 @@
 //
 
 #import "WYMTripDay.h"
-#import "WYMContinent.h"
-#import "WYMBookedHotel.h"
-#import "WYMTraffic.h"
+#import "WYMSpot.h"
 #import "consts.h"
 
 @implementation WYMTripDay
@@ -24,10 +22,14 @@
 	self = [super init];
 	if (self) {
         
+		//dayth
+        self.dayTH = [infoDic objectForKey:WY_TRIPDAY_DAYTH];
+        if (_dayTH != nil) {
+            self.dayTHStr = [NSString stringWithFormat:@"第%d天", [_dayTH intValue]];
+        }
+		
         //date & date str & weekday str
-		self.date = [infoDic objectForKey:WY_TRIP_DATE];
         if (_date != nil) {
-
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setDateStyle:NSDateFormatterLongStyle];
             self.dateStr = [formatter stringFromDate:self.date];
@@ -36,19 +38,14 @@
             self.weekDayStr = [formatter stringFromDate:self.date];
             
         }
-        
-        //dayth
-        self.dayTH = [infoDic objectForKey:WY_TRIPDAY_DAYTH];
-        if (_dayTH != nil) {
-            self.dayTHStr = [NSString stringWithFormat:@"第%d天", [_dayTH intValue]];
-        }
 		
 		//spotsDay
 		_spotsArray = [NSMutableArray arrayWithCapacity:10];
-//		NSArray *spotsInfoArr = [infoDic objectForKey:WY_TRIPDAY_SPOTS];
-//		for (NSDictionary *mInfoDic in spotsInfoArr) {
-//			
-//		}
+		NSArray *spotsInfoArr = [infoDic objectForKey:WY_TRIPDAY_SPOTS];
+		for (NSDictionary *spotInfoDic in spotsInfoArr) {
+			WYMSpot *spot = [[WYMSpot alloc] initWithSpotInfoDic:spotInfoDic];
+			[_spotsArray addObject:spot];
+		}
 		
         
 //		NSCalendar *calendar = [NSCalendar currentCalendar];

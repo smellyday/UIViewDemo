@@ -7,29 +7,25 @@
 //
 
 #import "WYMContinent.h"
-#import "WYMCountry.h"
 #import "consts.h"
 
 @implementation WYMContinent
 @synthesize continentType = _continentType;
 @synthesize continentName = _continentName;
-@synthesize continentDes = _continentDes;
-@synthesize countryArray = _countryArray;
+@synthesize continentDescription = _continentDescription;
 
 - (id)initWithContinentInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
 	if (self) {
-//		self.continentName = [infoDic objectForKey:WY_CONTINENT_NAME];
-		self.continentDes = [infoDic objectForKey:WY_CONTINENT_DES];
-		
-		NSMutableArray *countryArr = [NSMutableArray arrayWithCapacity:10];
-		for (NSDictionary *cnyDic in [infoDic objectForKey:WY_CONTINENT_COUNTRIES]) {
-			WYMCountry *country = [[WYMCountry alloc] initWithCountryInfoDic:cnyDic];
-			[countryArr addObject:country];
-		}
-		self.countryArray = countryArr;
+		self.continentID = [infoDic objectForKey:WY_CONTINENT_ID];
+		self.continentName = [infoDic objectForKey:WY_CONTINENT_NAME];
+		self.continentDescription = [infoDic objectForKey:WY_CONTINENT_DES];
 	}
 	return self;
+}
+
+- (NSArray *)getAllCountries {
+	return nil;
 }
 
 @end

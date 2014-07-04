@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class WYMTrip;
 @interface WYMTripDay : NSObject {
     /*
 	NSMutableArray *_continentsArray;
@@ -23,8 +24,6 @@
 	NSDate *_date;
 	NSString *_dateStr;
 	NSString *_weekDayStr;
-	
-		//dayth
 	NSString *_dayTHStr;
 }
 

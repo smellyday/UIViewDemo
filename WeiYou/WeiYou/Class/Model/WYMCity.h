@@ -9,18 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @interface WYMCity : NSObject {
+	NSString *_cityID;
 	NSString *_cityName;
-	NSString *_briefName;
-	NSString *_cityDes;
-	NSMutableArray *_spotsArray;
+	NSString *_cityDescription;
 }
 
+@property (nonatomic, strong) NSString *cityID;
 @property (nonatomic, strong) NSString *cityName;
-@property (nonatomic, strong) NSString *briefName;
-@property (nonatomic, strong) NSString *cityDes;
-@property (nonatomic, strong) NSMutableArray *spotsArray;
+@property (nonatomic, strong) NSString *cityDescription;
 
-- (id)initWithCityName:(NSString *)name;
 - (id)initWithCityInfoDic:(NSDictionary *)infoDic;
+- (NSArray *)getAllSpots;
 
 @end

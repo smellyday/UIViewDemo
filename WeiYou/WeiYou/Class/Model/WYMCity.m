@@ -7,39 +7,25 @@
 //
 
 #import "WYMCity.h"
-#import "WYMSpot.h"
 #import "consts.h"
 
 @implementation WYMCity
+@synthesize cityID = _cityID;
 @synthesize cityName = _cityName;
-@synthesize briefName = _briefName;
-@synthesize cityDes = _cityDes;
-@synthesize spotsArray = _spotsArray;
-
-- (id)initWithCityName:(NSString *)name {
-	self = [super init];
-	if (self) {
-		self.cityName = name;
-		self.briefName = @"error";
-	}
-	return self;
-}
+@synthesize cityDescription = _cityDescription;
 
 - (id)initWithCityInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
 	if (self) {
+		self.cityID = [infoDic objectForKey:WY_CITY_ID];
 		self.cityName = [infoDic objectForKey:WY_CITY_NAME];
-		self.cityDes = [infoDic objectForKey:WY_CITY_DES];
-		self.briefName = [infoDic objectForKey:WY_CITY_BRIEF_NAME];
-		
-			//spots
-		self.spotsArray = [NSMutableArray arrayWithCapacity:10];
-		for (NSDictionary *spotDic in [infoDic objectForKey:WY_CITY_SPOTS]) {
-			WYMSpot *spot = [[WYMSpot alloc] initWithSpotInfoDic:spotDic];
-			[self.spotsArray addObject:spot];
-		}
+		self.cityDescription = [infoDic objectForKey:WY_CITY_DES];
 	}
 	return self;
+}
+
+- (NSArray *)getAllSpots {
+	return nil;
 }
 
 @end
