@@ -11,6 +11,8 @@
 #import "consts.h"
 
 @implementation WYMTrip
+@synthesize tripVersion = _tripVersion;
+@synthesize tripOrder = _tripOrder;
 @synthesize tripID = _tripID;
 @synthesize tripName = _tripName;
 @synthesize tripDescription = _tripDescription;
@@ -19,10 +21,16 @@
 @synthesize tripEndDate = _tripEndDate;
 @synthesize tripCreateDate = _tripCreateDate;
 @synthesize tripDaysArray = _tripDaysArray;
+@synthesize isNewTrip = _isNewTrip;
+@synthesize deletTrip = _deletTrip;
+@synthesize shouldUpdate = _shouldUpdate;
+@synthesize changeWhenUploading = _changeWhenUploading;
 
 - (id)initWithTripInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
 	if (self) {
+		self.tripVersion = [infoDic objectForKey:WY_TRIP_VERSION];
+		self.tripOrder = [infoDic objectForKey:WY_TRIP_ORDER];
 		self.tripID = [infoDic objectForKey:WY_TRIP_ID];
 		self.tripName = [infoDic objectForKey:WY_TRIP_NAME];
 		self.tripDescription = [infoDic objectForKey:WY_TRIP_DES];
@@ -40,10 +48,18 @@
 			}
 			[_tripDaysArray addObject:tripDay];
 		}
+		
+		self.isNewTrip = NO;
+		self.deletTrip = NO;
+		self.shouldUpdate = NO;
+		self.changeWhenUploading = NO;
 	}
 	return self;
 }
 
+- (void)synchronizeWithServer {
+	
+}
 
 - (NSDictionary *)transferToDic {
     NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];

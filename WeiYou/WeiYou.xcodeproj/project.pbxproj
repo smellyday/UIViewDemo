@@ -67,7 +67,6 @@
 		5ED101D619665E5D00CAAE9B /* WYMProvince.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED101D519665E5D00CAAE9B /* WYMProvince.m */; };
 		5EFE0EDF184F0519004F8859 /* WYCreateNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFE0EDE184F0519004F8859 /* WYCreateNewViewController.m */; };
 		5EFE0EE5184F21E3004F8859 /* WYCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFE0EE4184F21E3004F8859 /* WYCityCell.m */; };
-		692DFBC0187135CD00076C08 /* WYCoreDataEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 692DFBBF187135CC00076C08 /* WYCoreDataEngine.m */; };
 		694ED396195A6ECD00917FEB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED395195A6ECD00917FEB /* CFNetwork.framework */; };
 		694ED398195A6EDD00917FEB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED397195A6EDD00917FEB /* SystemConfiguration.framework */; };
 		694ED39A195A6EEF00917FEB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED399195A6EEF00917FEB /* MobileCoreServices.framework */; };
@@ -207,8 +206,6 @@
 		5EFE0EDE184F0519004F8859 /* WYCreateNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCreateNewViewController.m; sourceTree = "<group>"; };
 		5EFE0EE3184F21E3004F8859 /* WYCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCityCell.h; sourceTree = "<group>"; };
 		5EFE0EE4184F21E3004F8859 /* WYCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCityCell.m; sourceTree = "<group>"; };
-		692DFBBE187135CC00076C08 /* WYCoreDataEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCoreDataEngine.h; sourceTree = "<group>"; };
-		692DFBBF187135CC00076C08 /* WYCoreDataEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCoreDataEngine.m; sourceTree = "<group>"; };
 		694ED395195A6ECD00917FEB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		694ED397195A6EDD00917FEB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		694ED399195A6EEF00917FEB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -396,8 +393,6 @@
 			children = (
 				5E5BC2F4183F3DB80003AC6D /* WYDataEngine.h */,
 				5E5BC2F5183F3DB80003AC6D /* WYDataEngine.m */,
-				692DFBBE187135CC00076C08 /* WYCoreDataEngine.h */,
-				692DFBBF187135CC00076C08 /* WYCoreDataEngine.m */,
 			);
 			name = Engine;
 			path = WeiYou/Class/Engine;
@@ -795,7 +790,6 @@
 				5EBCF742185EAE550057C1AE /* WYMTripDay.m in Sources */,
 				694ED3C8195A8C7700917FEB /* WYSinaWeibo.m in Sources */,
 				69D0B3451887B60D00E0AB7C /* WYDetailViewController.m in Sources */,
-				692DFBC0187135CD00076C08 /* WYCoreDataEngine.m in Sources */,
 				5EBCF760185EFFC80057C1AE /* WYMTraffic.m in Sources */,
 				69582DAB1952C3F40072ED3E /* WYLoginController.m in Sources */,
 				5E5D67681861766700ECA966 /* WYTripDayTrafficCell.m in Sources */,

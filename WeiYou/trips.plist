@@ -3,10 +3,14 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>wy_trip_version</key>
+		<integer>0</integer>
 		<key>wy_trip_id</key>
 		<string></string>
 		<key>wy_trip_name</key>
 		<string></string>
+		<key>wy_trip_order</key>
+		<integer>0</integer>
 		<key>wy_trip_description</key>
 		<string>0</string>
 		<key>wy_trip_main_image_url</key>
