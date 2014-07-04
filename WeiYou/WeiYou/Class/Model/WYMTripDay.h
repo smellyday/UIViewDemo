@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class WYMTrip;
 @interface WYMTripDay : NSObject {
     /*
 	NSMutableArray *_continentsArray;

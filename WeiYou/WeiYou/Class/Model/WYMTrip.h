@@ -24,7 +24,6 @@
 	BOOL _isNewTrip;
 	BOOL _deletTrip;
 	BOOL _shouldUpdate;
-	
 	BOOL _changeWhenUploading;
 }
 
@@ -46,7 +45,12 @@
 
 - (id)initWithTripInfoDic:(NSDictionary *)infoDic;
 
+- (void)addToServer;
+- (void)deleteFromServer;
+- (void)uploadTripInfoToServer;
+- (void)downloadTripInfoFromServer;
 - (void)synchronizeWithServer;
+
 - (NSDictionary *)transferToDic;
 
 @end

@@ -49,6 +49,10 @@
 #define WY_TRIP_END_DATE               @"wy_trip_end_date"
 #define WY_TRIP_CREATE_DATE			   @"wy_trip_create_date"
 #define WY_TRIP_DAYS                   @"wy_trip_days"
+#define WY_TRIP_ISNEW                  @"wy_trip_isnew"
+#define WY_TRIP_ISDEL                  @"wy_trip_isdel"
+#define WY_TRIP_UPDATE                 @"wy_trip_shouldUpdate"
+#define WY_TRIP_CHANGE                 @"wy_trip_changeWhenUploding"
 
 	//for trip day
 #define WY_TRIPDAY_DAYTH               @"wy_tripday_dayth"

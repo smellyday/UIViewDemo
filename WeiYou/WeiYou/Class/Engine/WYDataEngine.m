@@ -8,8 +8,6 @@
 
 #import "WYDataEngine.h"
 #import "WYMTrip.h"
-#import "WYMCity.h"
-#import "WYFileManager.h"
 #import "consts.h"
 
 @implementation WYDataEngine
@@ -26,7 +24,7 @@
 	return sharedEngine;
 }
 
-- (NSMutableArray *)getAllTrips {
+- (void)synchronizeTrips {
     self.trips = nil;
     _trips = [NSMutableArray arrayWithCapacity:10];
     
@@ -35,17 +33,22 @@
     //如果Server版本最新，全部用server上的
     
     //如果本地版本最新，全部拿本地的
-    NSArray *tripsFromLocalFile =[self getTripsFromLocalFile];
     
-    for (NSDictionary *infoDic in tripsFromLocalFile) {
-        WYMTrip *trip = [[WYMTrip alloc] initWithTripInfoDic:infoDic];
-        [_trips addObject:trip];
-    }
-    
-    return _trips;
 }
 
-- (NSArray *)getTripsFromLocalFile {
+- (NSArray *)getTripsFromServer {
+    NSMutableArray *retTripArr = [NSMutableArray arrayWithCapacity:10];
+    NSArray *basicTripArr = [self getTripBasicInfoListFromServer];
+    for (WYMTrip *trip in basicTripArr) {
+        WYMTrip *mt = [self getTripInfoFromServerWithID:trip.tripID];
+        [retTripArr addObject:mt];
+    }
+    
+    return (NSArray *)retTripArr;
+//    return [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
+}
+
+- (NSArray *)getTripsFromLocal {
     NSString *dataPath = [self getDataPath];
     
     BOOL fileExist = [[NSFileManager defaultManager] fileExistsAtPath:dataPath];
@@ -59,10 +62,22 @@
     return tripsArrayFromFile;
 }
 
-- (NSArray *)getTripsFromServer {
-    return [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
+
+
+- (NSArray *)getTripBasicInfoListFromServer {
+    return nil;// An array of WYMTrip
 }
 
+- (WYMTrip *)getTripInfoFromServerWithID:(NSString *)tripID {
+    return nil;
+}
+
+
+
+
+
+
+#pragma private function.
 - (NSString *)getDataPath {
     NSArray *userDomainArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docPath = [userDomainArray lastObject];
@@ -99,7 +114,7 @@
 
 
 
-
+/*
 // ===============
 - (NSArray *)getTrips {
 	
@@ -117,7 +132,7 @@
 	
 	return tripsarr;
 	
-	/*
+	
 	NSArray *userDomainArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *tripsFilePath = [NSString stringWithFormat:@"%@/%@", [userDomainArray objectAtIndex:0], WY_FILE_TRIPS];
 	NSFileManager *mFileManager = [[NSFileManager alloc] init];
@@ -184,7 +199,7 @@
 	self.trips = tripsArray;
 	
 	return tripsArray;
-	 */
+	 
 }
 
 
@@ -234,6 +249,6 @@
 	
 	return dataArr;
 }
-
+ */
 
 @end

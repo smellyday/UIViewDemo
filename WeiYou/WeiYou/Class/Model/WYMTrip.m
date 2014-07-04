@@ -49,16 +49,37 @@
 			[_tripDaysArray addObject:tripDay];
 		}
 		
-		self.isNewTrip = NO;
-		self.deletTrip = NO;
-		self.shouldUpdate = NO;
-		self.changeWhenUploading = NO;
+        // the 4 bool must be in the plist. Cz, plist is created by object.
+		self.isNewTrip = [infoDic objectForKey:WY_TRIP_ISNEW];
+		self.deletTrip = [infoDic objectForKey:WY_TRIP_ISDEL];
+		self.shouldUpdate = [infoDic objectForKey:WY_TRIP_UPDATE];
+		self.changeWhenUploading = [infoDic objectForKey:WY_TRIP_CHANGE];
 	}
 	return self;
 }
 
+- (void)addNewTripToServer {
+}
+
+- (void)deleteTripFromServer {
+}
+
+- (void)uploadTripInfoToServer {
+}
+
+- (void)downloadTripInfoFromServer {
+}
+
 - (void)synchronizeWithServer {
-	
+	if (_isNewTrip) {
+        // Use the api which could add a new trip to the server.
+        // Return tripID,tripOrder,tripVersion when success.
+        [self addNewTripToServer];
+        
+    } else if (_deletTrip) {
+        // Use the api which could delete a trip from the server.
+        // Delete the trip from the local truly when success.
+    }
 }
 
 - (NSDictionary *)transferToDic {

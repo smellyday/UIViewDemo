@@ -21,6 +21,14 @@
 		<date>2014-07-14T06:11:08Z</date>
 		<key>wy_trip_create_date</key>
 		<date>2013-02-27T09:48:19Z</date>
+		<key>wy_trip_isnew</key>
+		<false/>
+		<key>wy_trip_isdel</key>
+		<false/>
+		<key>wy_trip_shouldUpdate</key>
+		<false/>
+		<key>wy_trip_changeWhenUploding</key>
+		<false/>
 		<key>wy_trip_days</key>
 		<array>
 			<dict>

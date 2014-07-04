@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class WYMTrip;
 @interface WYDataEngine : NSObject {
 	NSMutableArray *_trips;
 }
@@ -16,11 +17,11 @@
 
 + (id)sharedDataEngine;
 
-// user info
-- (NSMutableArray *)getAllTrips;
+- (void)synchronizeTrips;
 
-// older
-- (NSArray *)getTrips;
-- (NSArray *)getCityArray;
+- (NSArray *)getTripBasicInfoListFromServer;
+- (WYMTrip *)getTripInfoFromServerWithID:(NSString *)tripID;
+- (NSArray *)getTripsFromServer;
+- (NSArray *)getTripsFromLocal;
 
 @end
