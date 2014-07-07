@@ -19,8 +19,8 @@
 
 - (void)synchronizeTrips;
 
-- (NSArray *)getTripBasicInfoListFromServer;
-- (WYMTrip *)getTripInfoFromServerWithID:(NSString *)tripID;
+- (NSString *)getTripListVersionFromServer;//return the version of the whole trips list.
+- (NSString *)getTripListVersionFromLocal;
 - (NSArray *)getTripsFromServer;
 - (NSArray *)getTripsFromLocal;
 
