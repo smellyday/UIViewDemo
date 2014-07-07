@@ -36,7 +36,6 @@
             formatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"EEE" options:0 locale:[NSLocale currentLocale]];
             formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
             self.weekDayStr = [formatter stringFromDate:self.date];
-            
         }
 		
 		//spotsDay
