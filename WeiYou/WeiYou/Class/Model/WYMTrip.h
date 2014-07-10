@@ -25,6 +25,8 @@
 	BOOL _deletTrip;
 	BOOL _shouldUpdate;
 	BOOL _changeWhenUploading;
+    
+    NSOperation
 }
 
 @property (nonatomic, strong) NSNumber *tripVersion;
@@ -45,11 +47,10 @@
 
 - (id)initWithTripInfoDic:(NSDictionary *)infoDic;
 
-- (void)addToServer;
-- (void)deleteFromServer;
-- (void)uploadTripInfoToServer;
-- (void)downloadTripInfoFromServer;
-- (void)synchronizeWithServer;
+- (void)addNewTripToServer;
+- (void)deleteTripFromServer;
+- (void)updateTripInfoToServer;
+- (void)updateTripInfoFromServer;
 
 - (NSDictionary *)transferToDic;
 

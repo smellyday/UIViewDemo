@@ -64,22 +64,10 @@
 - (void)deleteTripFromServer {
 }
 
-- (void)uploadTripInfoToServer {
+- (void)updateTripInfoToServer {
 }
 
-- (void)downloadTripInfoFromServer {
-}
-
-- (void)synchronizeWithServer {
-	if (_isNewTrip) {
-        // Use the api which could add a new trip to the server.
-        // Return tripID,tripOrder,tripVersion when success.
-        [self addNewTripToServer];
-        
-    } else if (_deletTrip) {
-        // Use the api which could delete a trip from the server.
-        // Delete the trip from the local truly when success.
-    }
+- (void)updateTripInfoFromServer {
 }
 
 - (NSDictionary *)transferToDic {

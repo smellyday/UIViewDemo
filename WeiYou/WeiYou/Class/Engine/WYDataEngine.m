@@ -24,7 +24,27 @@
 	return sharedEngine;
 }
 
-- (void)synchronizeTrips {
+- (BOOL)checkNewVersion {
+    NSString *lv = [self getTripListVersionFromLocal];
+    NSString *sv = [self getTripListVersionFromServer];
+    if ([lv isEqual:sv]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+
+- (void)synchronizeTrip:(WYMTrip *)trip {
+    NSDictionary *tripDic = [trip transferToDic];
+    /*
+     upload tripDic to server using api.
+     */
+    
+}
+
+
+- (void)bisynchronizeTrips {
     self.trips = nil;
     _trips = [NSMutableArray arrayWithCapacity:10];
     
@@ -137,13 +157,17 @@
     
 }
 
+
+#pragma private function.
 - (NSString *)getTripListVersionFromServer {
     return @"serverVersion";
 }
 
+
 - (NSString *)getTripListVersionFromLocal {
     return @"localVersion";
 }
+
 
 - (NSArray *)getTripsFromServer {
     NSMutableArray *retTripArr = [NSMutableArray arrayWithCapacity:10];
@@ -156,6 +180,7 @@
     return (NSArray *)retTripArr;
 //    return [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
 }
+
 
 - (NSArray *)getTripsFromLocal {
     NSString *dataPath = [self getDataPath];
@@ -172,14 +197,15 @@
 }
 
 
-#pragma private function.
 - (NSArray *)getTripBasicInfoListFromServer {
     return nil;// An array of WYMTrip
 }
 
+
 - (WYMTrip *)getTripInfoFromServerWithID:(NSString *)tripID {
     return nil;
 }
+
 
 - (NSString *)getDataPath {
     NSArray *userDomainArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -188,6 +214,10 @@
     return filePath;
 }
 
+
+/*
+ objects change to array, then can save to file.
+ */
 - (NSArray *)objectsToArray {
     if (_trips) {
         
@@ -203,17 +233,16 @@
     return nil;
 }
 
+
+/*
+ save the local version after modifying the trip.
+ */
 - (void)save {
     NSArray *dataArr = [self objectsToArray];
     if (dataArr != nil) {
         [[self objectsToArray] writeToFile:[self getDataPath] atomically:YES];
     }
 }
-
-
-
-
-
 
 
 
