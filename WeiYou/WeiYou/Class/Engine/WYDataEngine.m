@@ -36,7 +36,7 @@
 
 
 - (void)synchronizeTrip:(WYMTrip *)trip {
-    NSDictionary *tripDic = [trip transferToDic];
+//    NSDictionary *tripDic = [trip transferToDic];
     /*
      upload tripDic to server using api.
      */
@@ -44,6 +44,9 @@
 }
 
 
+/*
+ this function should be in secondary thread.
+ */
 - (void)bisynchronizeTrips {
     self.trips = nil;
     _trips = [NSMutableArray arrayWithCapacity:10];
@@ -54,6 +57,15 @@
     if (serverVersion == localVersion) {
         return;
     }
+    
+    // temp
+    NSArray *allTripsInfo = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
+    for (NSDictionary *infoDic in allTripsInfo) {
+        WYMTrip *mt = [[WYMTrip alloc] initWithTripInfoDic:infoDic];
+        [self.trips addObject:mt];
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_TRIPS_SYNC_FINISH object:nil userInfo:nil];
     
     // 某trip，是新建trip（）
     

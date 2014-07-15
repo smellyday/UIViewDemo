@@ -11,8 +11,9 @@
 #import "consts.h"
 
 @implementation WYMTripDay
+@synthesize tripBeginDate = _tripBeginDate;
 @synthesize date = _date;
-@synthesize spotsArray = _spotsArray;
+@synthesize spots = _spots;
 @synthesize dateStr = _dateStr;
 @synthesize weekDayStr = _weekDayStr;
 @synthesize dayTH = _dayTH;
@@ -25,25 +26,15 @@
 		//dayth
         self.dayTH = [infoDic objectForKey:WY_TRIPDAY_DAYTH];
         if (_dayTH != nil) {
-            self.dayTHStr = [NSString stringWithFormat:@"第%d天", [_dayTH intValue]];
-        }
-		
-        //date & date str & weekday str
-        if (_date != nil) {
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateStyle:NSDateFormatterLongStyle];
-            self.dateStr = [formatter stringFromDate:self.date];
-            formatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"EEE" options:0 locale:[NSLocale currentLocale]];
-            formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
-            self.weekDayStr = [formatter stringFromDate:self.date];
+            self.dayTHStr = [NSString stringWithFormat:@"第%d天", [_dayTH intValue]+1];
         }
 		
 		//spotsDay
-		_spotsArray = [NSMutableArray arrayWithCapacity:10];
+		self.spots = [NSMutableArray arrayWithCapacity:10];
 		NSArray *spotsInfoArr = [infoDic objectForKey:WY_TRIPDAY_SPOTS];
 		for (NSDictionary *spotInfoDic in spotsInfoArr) {
-			WYMSpot *spot = [[WYMSpot alloc] initWithSpotInfoDic:spotInfoDic];
-			[_spotsArray addObject:spot];
+			WYMSpot *mspot = [[WYMSpot alloc] initWithSpotInfoDic:spotInfoDic];
+			[_spots addObject:mspot];
 		}
 		
         
@@ -79,10 +70,52 @@
 	return self;
 }
 
+
+- (void)updateDateInfoWithBeginDate:(NSDate *)mBeginDate {
+    self.tripBeginDate = mBeginDate;
+    
+    if (_tripBeginDate != nil && _dayTH != nil) {
+        self.date = [NSDate dateWithTimeInterval:WY_DAY_INTERVAL*[_dayTH intValue] sinceDate:_tripBeginDate];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateStyle:NSDateFormatterLongStyle];
+        self.dateStr = [formatter stringFromDate:self.date];
+        formatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"EEE" options:0 locale:[NSLocale currentLocale]];
+        formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+        self.weekDayStr = [formatter stringFromDate:self.date];
+    }
+}
+
+- (void)updateDateInfoWithDayth:(NSNumber *)daythNum {
+    self.dayTH = daythNum;
+    if (_dayTH != nil) {
+        self.dayTHStr = [NSString stringWithFormat:@"第%d天", [_dayTH intValue]+1];
+        
+        if (_tripBeginDate != nil) {
+            self.date = [NSDate dateWithTimeInterval:WY_DAY_INTERVAL*[_dayTH intValue] sinceDate:_tripBeginDate];
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateStyle:NSDateFormatterLongStyle];
+            self.dateStr = [formatter stringFromDate:self.date];
+            formatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"EEE" options:0 locale:[NSLocale currentLocale]];
+            formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+            self.weekDayStr = [formatter stringFromDate:self.date];
+        }
+        
+    }
+}
+
 - (NSDictionary *)transferToDic {
 	
 	NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
 	[infoDic setObject:_dayTH forKey:WY_TRIPDAY_DAYTH];
+    
+    NSMutableArray *spotsArr = [NSMutableArray arrayWithCapacity:10];
+    for (WYMSpot *spot in _spots) {
+        NSDictionary *dayInfoDic = [spot transferToDic];
+        [spotsArr addObject:dayInfoDic];
+    }
+    [infoDic setObject:spotsArr forKey:WY_TRIPDAY_SPOTS];
 	
     return (NSDictionary *)infoDic;
 }

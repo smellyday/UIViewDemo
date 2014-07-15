@@ -17,8 +17,6 @@
 - (id)initWithBookedHoteInfoDic:(NSDictionary *)infoDic {
 	self = [super initWithHotelInfoDic:infoDic];
 	if (self) {
-		self.dateCheckIn = [infoDic objectForKey:WY_HOTEL_CHECK_IN];
-		self.dateCheckOut = [infoDic objectForKey:WY_HOTEL_CHECK_OUT];
 		
 	}
 	return self;

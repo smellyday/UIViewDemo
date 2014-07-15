@@ -25,8 +25,6 @@
 	BOOL _deletTrip;
 	BOOL _shouldUpdate;
 	BOOL _changeWhenUploading;
-    
-    NSOperation
 }
 
 @property (nonatomic, strong) NSNumber *tripVersion;

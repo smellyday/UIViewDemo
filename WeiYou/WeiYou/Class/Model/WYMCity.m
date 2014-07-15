@@ -24,6 +24,10 @@
 	return self;
 }
 
+- (NSDictionary *)transferToDic {
+    return nil;
+}
+
 - (NSArray *)getAllSpots {
 	return nil;
 }

@@ -39,13 +39,11 @@
 		self.tripEndDate = [infoDic objectForKey:WY_TRIP_END_DATE];
 		self.tripCreateDate = [infoDic objectForKey:WY_TRIP_CREATE_DATE];
 		
-		_tripDaysArray = [NSMutableArray arrayWithCapacity:10];
+		self.tripDaysArray = [NSMutableArray arrayWithCapacity:10];
         NSArray *daysInfoArr = [infoDic objectForKey:WY_TRIP_DAYS];
 		for (NSDictionary *dayInfoDic in daysInfoArr) {
 			WYMTripDay *tripDay = [[WYMTripDay alloc] initTripDayInfoDic:dayInfoDic];
-			if (_tripBeginDate) {
-				tripDay.date = [NSDate dateWithTimeInterval:WY_DAY_INTERVAL*[[tripDay dayTH] intValue] sinceDate:_tripBeginDate];
-			}
+            [tripDay updateDateInfoWithBeginDate:_tripBeginDate];
 			[_tripDaysArray addObject:tripDay];
 		}
 		
@@ -59,15 +57,19 @@
 }
 
 - (void)addNewTripToServer {
+    
 }
 
 - (void)deleteTripFromServer {
+    
 }
 
 - (void)updateTripInfoToServer {
+    
 }
 
 - (void)updateTripInfoFromServer {
+    
 }
 
 - (NSDictionary *)transferToDic {

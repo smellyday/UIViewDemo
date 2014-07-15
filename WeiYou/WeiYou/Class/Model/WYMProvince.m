@@ -24,6 +24,10 @@
 	return self;
 }
 
+- (NSDictionary *)transferToDic {
+    return nil;
+}
+
 - (NSArray *)getAllCities {
 	return nil;
 }

@@ -19,6 +19,8 @@
 @property (nonatomic, strong) NSString *cityDescription;
 
 - (id)initWithCityInfoDic:(NSDictionary *)infoDic;
+- (NSDictionary *)transferToDic;
+
 - (NSArray *)getAllSpots;
 
 @end

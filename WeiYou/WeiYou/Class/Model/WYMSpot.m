@@ -46,4 +46,22 @@
 	return self;
 }
 
+- (NSDictionary *)transferToDic {
+    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
+	[infoDic setObject:_spotID forKey:WY_SPOT_ID];
+	[infoDic setObject:_spotOrder forKey:WY_SPOT_ORDER];
+	[infoDic setObject:_spotName forKey:WY_SPOT_NAME];
+	[infoDic setObject:_spotAddress forKey:WY_SPOT_ADDRESS];
+	[infoDic setObject:_spotInfo forKey:WY_SPOT_ID];
+	[infoDic setObject:_spotWebsiteArray forKey:WY_SPOT_WEBSITE_ARR];
+	[infoDic setObject:_spotImageURLArray forKey:WY_SPOT_IMAGE_URL_ARR];
+    
+    [infoDic setObject:[_spotCity transferToDic] forKey:WY_SPOT_CITY];
+    [infoDic setObject:[_spotProvince transferToDic] forKey:WY_SPOT_PROVINCE];
+    [infoDic setObject:[_spotCountry transferToDic] forKey:WY_SPOT_COUNTRY];
+    [infoDic setObject:[_spotContinent transferToDic] forKey:WY_SPOT_CONTINENT];
+    
+    return nil;
+}
+
 @end

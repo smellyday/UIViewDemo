@@ -10,8 +10,8 @@
 #import "WYRootViewController.h"
 #import "consts.h"
 #include <stdio.h>
-#import "WYCoreDataEngine.h"
 #import "WYGlobalState.h"
+#import "WYDataEngine.h"
 
 @implementation WYAppDelegate
 
@@ -19,19 +19,16 @@
 {
 	mlog(@"WYAppDelegate -- device system version is %f --", [[[UIDevice currentDevice] systemVersion] floatValue]);
     
-    //init core data
-    [[WYCoreDataEngine sharedCoreDataEngine] open];
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
-		//iOS7 OR the version before
+    //iOS7 OR the version before
 	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
 		[application setStatusBarStyle:UIStatusBarStyleLightContent];
 		
 		self.window.clipsToBounds = YES;
 	}
 	
-		//init rootviewcontroller
+    //init rootviewcontroller
 	WYRootViewController *rootViewController = [[WYRootViewController alloc] init];
 	UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
 	rootNavigationController.navigationBar.barTintColor = WY_MAIN_COLOR;
@@ -41,6 +38,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
+    // synchronization of trips.
+    [[WYDataEngine sharedDataEngine] performSelector:@selector(bisynchronizeTrips) withObject:nil afterDelay:0];
     
     // sina weibo
     [WeiboSDK enableDebugMode:YES];
@@ -114,8 +113,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-	[[WYCoreDataEngine sharedCoreDataEngine] save];
-    [[WYCoreDataEngine sharedCoreDataEngine] close];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation

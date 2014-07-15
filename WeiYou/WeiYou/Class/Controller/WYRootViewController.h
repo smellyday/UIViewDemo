@@ -10,10 +10,10 @@
 
 @interface WYRootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
 	UITableView *_mTableView;
-	NSMutableArray *_tripsArray;
+	NSMutableArray *_trips;
 }
 
 @property (nonatomic, strong) UITableView *mTableView;
-@property (nonatomic, strong) NSArray *tripsArray;
+@property (nonatomic, strong) NSArray *trips;
 
 @end

@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSString *countryDescription;
 
 - (id)initWithCountryInfoDic:(NSDictionary *)infoDic;
+- (NSDictionary *)transferToDic;
 - (NSArray *)getAllProvinces;
 - (NSArray *)getAllCities;
 

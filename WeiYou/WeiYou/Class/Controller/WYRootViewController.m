@@ -8,24 +8,21 @@
 
 #import "WYRootViewController.h"
 #import "WYSettingsViewController.h"
-#import "WYCoverTableViewCell.h"
 #import "WYCreateNewViewController.h"
-#import "WYCMTrip.h"
-#import "WYFileManager.h"
-#import "WYCoreDataEngine.h"
 #import "WYTripController.h"
-#import "consts.h"
 #import "WYDataEngine.h"
+#import "WYMTrip.h"
+#import "consts.h"
 
 @interface WYRootViewController ()
 
-- (void)refresh;
+//- (void)refresh;
 
 @end
 
 @implementation WYRootViewController
 @synthesize mTableView = _mTableView;
-@synthesize tripsArray = _tripsArray;
+@synthesize trips = _trips;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,28 +33,12 @@
     return self;
 }
 
-- (void)refresh {
-    
-    if ([[WYCoreDataEngine sharedCoreDataEngine] dataOK]) {
-        [_tripsArray removeAllObjects];
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTrip"];
-        NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"tripIndex" ascending:YES];
-        request.sortDescriptors = [NSArray arrayWithObject:sortDes];
-        NSError *merr;
-        NSArray *trips = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
-        [_tripsArray addObjectsFromArray:trips];
-        [self.mTableView reloadData];
-    }
-    
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenTripsDataOK:) name:WY_NOTI_TRIPS_DATA_OK object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenCoreDataChanged:) name:NSManagedObjectContextObjectsDidChangeNotification object:[[WYCoreDataEngine sharedCoreDataEngine] context]];
-    self.tripsArray = [NSMutableArray arrayWithCapacity:10];
-	// Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenBiSynFinish:) name:WY_NOTI_TRIPS_SYNC_FINISH object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenCoreDataChanged:) name:NSManagedObjectContextObjectsDidChangeNotification object:[[WYCoreDataEngine sharedCoreDataEngine] context]];
+    self.trips = [[WYDataEngine sharedDataEngine] trips];
 	
 	self.view.backgroundColor = [UIColor lightGrayColor];
 	self.title = @"FreeTravel";
@@ -74,20 +55,21 @@
 	self.mTableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
 	self.mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.mTableView.backgroundColor = [UIColor whiteColor];
+	[self.mTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
 	[self.view addSubview:_mTableView];
-    
-		// ----- prepare data -----
-    [self refresh];
 	
 }
 
 - (void)clickSettings:(id)sender {
+
 	WYSettingsViewController *mSettingsController = [[WYSettingsViewController alloc] init];
     [self.navigationController pushViewController:mSettingsController animated:YES];
+
 }
 
 - (void)clickCreateNew:(id)sender {
 	
+    /*
 	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTrip"];
 	NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"tripIndex" ascending:YES];
 	request.sortDescriptors = [NSArray arrayWithObject:sortDes];
@@ -96,6 +78,7 @@
 	for (WYCMTrip *t in trips) {
 		mlog(@"%@", [t description]);
 	}
+     */
 	
 	/*
 	WYCreateNewViewController *mCreateNewController = [[WYCreateNewViewController alloc] init];
@@ -106,11 +89,11 @@
 #pragma notification received
 
 - (void)doWhenCoreDataChanged:(NSNotification *)notification {
-    [self refresh];
 }
 
-- (void)doWhenTripsDataOK:(NSNotification *)notification {
-    [self refresh];
+- (void)doWhenBiSynFinish:(NSNotification *)notification {
+    self.trips = [[WYDataEngine sharedDataEngine] trips];
+    [self.mTableView reloadData];
 }
 
 
@@ -123,27 +106,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [_tripsArray count];
+	return [_trips count];
 	
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	static NSString *NORMALCELL = @"Cell";
-	WYCoverTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NORMALCELL];
+	static NSString *NORMALCELL = @"NCell";
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NORMALCELL];
 	
 	NSInteger row = [indexPath row];
 	if (cell == nil) {
-		WYCMTrip *model = (WYCMTrip *)[_tripsArray objectAtIndex:row];
-		cell = [[WYCoverTableViewCell alloc] initWithXCModel:model reuseIdentifier:NORMALCELL];
-		
-		return cell;
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NORMALCELL];
 	}
-	
-	WYCMTrip *model2 = (WYCMTrip *)[_tripsArray objectAtIndex:row];
-	cell.xcMainImageView.image = [UIImage imageWithData:model2.tripMainImageData];
-	cell.xcNameLabel.text = model2.tripName;
-	cell.xcDesLabel.text = model2.tripDescription;
+    WYMTrip *mTrip = (WYMTrip *)[_trips objectAtIndex:row];
+    cell.textLabel.text = mTrip.tripName;
 	
 	return cell;
 }
@@ -154,9 +131,8 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	WYTripController *theTripController = [[WYTripController alloc] init];
-    WYCMTrip *trip = (WYCMTrip *)[_tripsArray objectAtIndex:[indexPath row]];
+    theTripController.trip = [_trips objectAtIndex:[indexPath row]];
     
-	theTripController.trip = trip;
 	[self.navigationController pushViewController:theTripController animated:YES];
 }
 

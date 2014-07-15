@@ -33,6 +33,7 @@ typedef enum {
 @property (nonatomic, strong) NSString *continentDescription;
 
 - (id)initWithContinentInfoDic:(NSDictionary *)infoDic;
+- (NSDictionary *)transferToDic;
 - (NSArray *)getAllCountries;
 
 @end

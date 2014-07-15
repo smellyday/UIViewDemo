@@ -43,5 +43,6 @@
 @property (nonatomic, strong) WYMContinent *spotContinent;
 
 - (id)initWithSpotInfoDic:(NSDictionary *)infoDic;
+- (NSDictionary *)transferToDic;
 
 @end

@@ -8,19 +8,10 @@
 
 #import "WYTripController.h"
 #import "WYTripDayController.h"
-#import "WYTrafficController.h"
-#import "WYHotelController.h"
-#import "WYMapViewController.h"
-#import "WYTripCell.h"
-
+#import "WYMTripDay.h"
+#import "WYDataEngine.h"
 #import "consts.h"
-#import "WYCoreDataEngine.h"
 
-#import "WYCMTripDay.h"
-#import "WYCMContinent.h"
-#import "WYCMCountry.h"
-#import "WYCMCity.h"
-#import "WYCMSpot.h"
 
 
 @interface WYTripController (private)
@@ -31,31 +22,8 @@
 
 @implementation WYTripController
 @synthesize mTableView = _mTableView;
-@synthesize daysArray = _daysArray;
+@synthesize tripDays = _tripDays;
 @synthesize trip = _trip;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-/*
-- (void)refresh {
-    [_daysArray removeAllObjects];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTripDay"];
-    request.predicate = [NSPredicate predicateWithFormat:@"SELF.trip.tripIndex == %@", self.trip.tripIndex];
-    NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"dayth" ascending:YES];
-    request.sortDescriptors = [NSArray arrayWithObject:sortDes];
-    NSError *merr;
-    NSArray *trips = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
-    [_daysArray addObjectsFromArray:trips];
-    
-}
-*/
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -66,26 +34,31 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 	
-    self.daysArray = [NSMutableArray arrayWithCapacity:10];
-	if (self.trip) {
-
-        NSSortDescriptor *sortDes = [[NSSortDescriptor alloc] initWithKey:@"dayth" ascending:YES];
-        [self.daysArray addObjectsFromArray:[[[self.trip tripDays] allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDes]]];
-		self.title = self.trip.tripName;
-		
-	}
+    self.tripDays = [_trip tripDaysArray];
+    self.title = self.trip.tripName;
 	
-	UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)];
+    self.navigationController.navigationBar.alpha = 1;
+	UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)];
 	self.navigationItem.leftBarButtonItem = leftBarItem;
-    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editDays:)];
+    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editDays:)];
 	self.navigationItem.rightBarButtonItem = rightBarItem;
+    
+    CGFloat mapviewOriginY = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
+    CGFloat mapviewHeight = 150;
+    UIView *mapView = [[UIView alloc] initWithFrame:CGRectMake(0, mapviewOriginY, self.view.frame.size.width, mapviewHeight)];
+    mapView.backgroundColor = [UIColor yellowColor];
+    [self.view addSubview:mapView];
 	
-	self.mTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    CGFloat tableviewOriginY = mapView.frame.origin.y + mapView.frame.size.height;
+	self.mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, tableviewOriginY, self.view.frame.size.width, self.view.frame.size.height-tableviewOriginY) style:UITableViewStylePlain];
 	self.mTableView.delegate = self;
 	self.mTableView.dataSource = self;
-	self.mTableView.backgroundColor = [UIColor whiteColor];
+	self.mTableView.backgroundColor = [UIColor lightGrayColor];
+    self.mTableView.alpha = 1;
+	[self.mTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
 	[self.view addSubview:_mTableView];
 	
+    /*
     //header view
 	UIView *buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 45)];
 	self.mTableView.tableHeaderView = buttonContainer;
@@ -125,6 +98,7 @@
 	hotelButton.frame = CGRectMake(240, 0, 80, 45);
 	hotelButton.titleLabel.font = [UIFont systemFontOfSize:20];
 	[buttonContainer addSubview:hotelButton];
+     */
     
     //footer view
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
@@ -148,9 +122,9 @@
 - (void)editDays:(id)sender {
     [_mTableView setEditing:!_mTableView.editing animated:YES];
     if (_mTableView.editing) {
-        self.navigationItem.rightBarButtonItem.title = @"完成";
+        self.navigationItem.rightBarButtonItem.title = @"OK";
     } else {
-        self.navigationItem.rightBarButtonItem.title = @"编辑";
+        self.navigationItem.rightBarButtonItem.title = @"Edit";
     }
 	
 	/*
@@ -166,23 +140,29 @@
 }
 
 - (void)addOneDay:(id)sender {
-    WYCMTripDay *tripDay = [NSEntityDescription insertNewObjectForEntityForName:@"WYCMTripDay" inManagedObjectContext:[[WYCoreDataEngine sharedCoreDataEngine] context]];
-    tripDay.trip = self.trip;
-    NSDictionary *infoDic = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:[self.trip.tripDays count]-1] forKey:WY_TRIPDAY_DAYTH];// -1 because after tripday.trip = self.trip.
-    [tripDay prepareTripDayWithInfo:infoDic];
-    [_daysArray addObject:tripDay];
-    [_mTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:[self.trip.tripDays count]-1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-//    [_mTableView reloadData];
+    
+    NSDictionary *infoDic = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:[_tripDays count]] forKey:WY_TRIPDAY_DAYTH];
+    WYMTripDay *nTripDay = [[WYMTripDay alloc] initTripDayInfoDic:infoDic];
+    [nTripDay updateDateInfoWithBeginDate:[_trip tripBeginDate]];
+    
+    [_tripDays addObject:nTripDay];
+    [_mTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:[_tripDays count]-1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    
+    for (WYMTrip *mt in [[WYDataEngine sharedDataEngine] trips]) {
+        NSDictionary *infoDic = [mt transferToDic];
+        mlog(@"trip info : \n %@", [infoDic description]);
+    }
     
 }
 
 - (void)clickStuffList:(id)sender {
-	mlog(@"%s", __func__);
 }
 
 - (void)clickMap:(id)sender {
+    /*
 	WYMapViewController *mapViewController = [[WYMapViewController alloc] init];
 	[self.navigationController pushViewController:mapViewController animated:YES];
+     */
 }
 
 - (void)clickTraffic:(id)sender {
@@ -220,49 +200,29 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (_daysArray == nil || [_daysArray count] == 0) {
+	if (_tripDays == nil || [_tripDays count] == 0) {
 		return 1;
 	}
-	return [_daysArray count];
+	return [_tripDays count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (_daysArray == nil || [_daysArray count] == 0) {
+	if (_tripDays == nil || [_tripDays count] == 0) {
 		UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"single"];
 		cell.textLabel.text = @"no result!";
 		return cell;
 	}
 	
-	static NSString *TRIPCELL = @"TripCell";
-	WYTripCell *cell = [tableView dequeueReusableCellWithIdentifier:TRIPCELL];
+	static NSString *TRIPDAYCELL = @"TripDayCell";
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TRIPDAYCELL];
 	
 	if (cell == nil) {
-		cell = [[WYTripCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TRIPCELL];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TRIPDAYCELL];
 	}
 	
-	WYCMTripDay *tripDay = (WYCMTripDay *)[self.daysArray objectAtIndex:[indexPath row]];
-	[tripDay prepareTripDayInfo];
-	cell.dateLabel.text = tripDay.dateStr;
-	cell.daythLabel.text = tripDay.dayTHStr;
-	cell.weekLabel.text = tripDay.weekDayStr;
-	
-    cell.citiesNameLabel.text = [NSString stringWithFormat:@"暂无安排, dayth:%d", [tripDay.dayth intValue]];
-
-	NSMutableString *cityStr = [NSMutableString stringWithCapacity:10];
-	for (WYCMContinent *continent in tripDay.continents) {
-		for (WYCMCountry *country in continent.countries) {
-			for (WYCMCity *city in country.cities) {
-				[cityStr appendFormat:@" %@", city.briefName];
-			}
-		}
-	}
-    if (cityStr == nil || [cityStr isEqualToString:@""]) {
-        cell.citiesNameLabel.text = @"暂无安排";
-    } else {
-        cell.citiesNameLabel.text = cityStr;
-    }
-
+    WYMTripDay *mTripDay = [_tripDays objectAtIndex:[indexPath row]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@, %@, %@", [mTripDay dayTHStr], [mTripDay weekDayStr], [mTripDay dateStr]];
     
 	return cell;
 }
@@ -272,22 +232,20 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    mlog(@"%s", __func__);
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSInteger row = [indexPath row];
-        WYCMTripDay *tripDay = (WYCMTripDay *)[self.daysArray objectAtIndex:row];
-        [[[WYCoreDataEngine sharedCoreDataEngine] context] deleteObject:tripDay];
-//        [self.trip removeTripDaysObject:tripDay];
         
-        for (NSInteger i = row+1; i < [_daysArray count]; i++) {
-            WYCMTripDay *td = (WYCMTripDay *)[self.daysArray objectAtIndex:i];
-            td.dayth = [NSNumber numberWithInt:(int)i-1];
+        for (NSInteger i = row+1; i < [_tripDays count]; i++) {
+            WYMTripDay *td = (WYMTripDay *)[_tripDays objectAtIndex:i];
+            [td updateDateInfoWithDayth:[NSNumber numberWithInt:(int)i-1]];
         }
         
-        [self.daysArray removeObjectAtIndex:row];
+        [self.tripDays removeObjectAtIndex:row];
         [_mTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [_mTableView reloadData];
     }
+    
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -295,19 +253,20 @@
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    
+
     if (fromIndexPath.row != toIndexPath.row) {
-        WYCMTripDay *tripDay = (WYCMTripDay *)[self.daysArray objectAtIndex:fromIndexPath.row];
-        [self.daysArray removeObject:tripDay];
-        [self.daysArray insertObject:tripDay atIndex:toIndexPath.row];
+        WYMTripDay *tripDay = (WYMTripDay *)[self.tripDays objectAtIndex:fromIndexPath.row];
+        [_tripDays removeObject:tripDay];
+        [_tripDays insertObject:tripDay atIndex:toIndexPath.row];
         
-        for (int i = 0; i < [_daysArray count]; i++) {
-            WYCMTripDay *td = (WYCMTripDay *)[self.daysArray objectAtIndex:i];
-            td.dayth = [NSNumber numberWithInt:i];
+        for (int i = 0; i < [_tripDays count]; i++) {
+            WYMTripDay *td = (WYMTripDay *)[_tripDays objectAtIndex:i];
+            [td updateDateInfoWithDayth:[NSNumber numberWithInt:i]];
         }
         
         [_mTableView reloadData];
     }
+
 }
 
 #pragma mark - UITableViewDelegate
@@ -316,7 +275,7 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
     
 	WYTripDayController *tripDayController = [[WYTripDayController alloc] init];
-	tripDayController.tripDay = (WYCMTripDay *)[self.daysArray objectAtIndex:[indexPath row]];
+	tripDayController.tripDay = (WYMTripDay *)[_tripDays objectAtIndex:[indexPath row]];
 	tripDayController.tripName = self.trip.tripName;
 	[self.navigationController pushViewController:tripDayController animated:YES];
     
