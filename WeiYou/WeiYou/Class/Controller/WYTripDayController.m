@@ -7,6 +7,7 @@
 //
 
 #import "WYTripDayController.h"
+#import "WYDataEngine.h"
 #import "WYMSpot.h"
 #import "consts.h"
 
@@ -75,6 +76,7 @@
         self.navigationItem.rightBarButtonItem.title = @"OK";
     } else {
         self.navigationItem.rightBarButtonItem.title = @"Edit";
+        [[WYDataEngine sharedDataEngine] saveTrips];
     }
 }
 
@@ -100,7 +102,7 @@
 	}
 	
     WYMSpot *mSpot = [_spots objectAtIndex:[indexPath row]];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@, %@, %@", [mSpot spotName], [mSpot spotCountry], [mSpot spotInfo]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@, %@", [mSpot spotName], [mSpot spotInfo]];
     
 	return cell;
 	

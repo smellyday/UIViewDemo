@@ -170,6 +170,35 @@
 }
 
 
+- (void)loadTrips {
+    self.trips = [NSMutableArray arrayWithCapacity:10];
+    NSArray *allTripsInfo = [self getTripsInfoDicFromLocal];
+    mlog(@"%s: trips info count %d", __func__, [allTripsInfo count]);
+    for (NSDictionary *infoDic in allTripsInfo) {
+        WYMTrip *mt = [[WYMTrip alloc] initWithTripInfoDic:infoDic];
+        [self.trips addObject:mt];
+    }
+}
+
+
+/*
+ save the local version after modifying the trip.
+ */
+- (void)saveTrips {
+    NSLog(@"save begin at %@", [[NSDate date] description]);
+    NSArray *dataArr = [self objectsToArray];
+    if (dataArr != nil) {
+        BOOL saveOK = [[self objectsToArray] writeToFile:[self getDataPath] atomically:YES];
+        if (saveOK) {
+            NSLog(@"save success.");
+        } else {
+            NSLog(@"save fail.");
+        }
+    }
+    NSLog(@"save end at %@", [[NSDate date] description]);
+}
+
+
 #pragma private function.
 - (NSString *)getTripListVersionFromServer {
     return @"serverVersion";
@@ -181,7 +210,7 @@
 }
 
 
-- (NSArray *)getTripsFromServer {
+- (NSArray *)getTripsInfoDicFromServer {
     NSMutableArray *retTripArr = [NSMutableArray arrayWithCapacity:10];
     NSArray *basicTripArr = [self getTripBasicInfoListFromServer];
     for (WYMTrip *trip in basicTripArr) {
@@ -194,11 +223,13 @@
 }
 
 
-- (NSArray *)getTripsFromLocal {
+- (NSArray *)getTripsInfoDicFromLocal {
+    mlog(@"%s", __func__);
     NSString *dataPath = [self getDataPath];
     
     BOOL fileExist = [[NSFileManager defaultManager] fileExistsAtPath:dataPath];
     if (!fileExist) {
+        mlog(@"file is not exist");
         return nil;
     }
     
@@ -243,17 +274,6 @@
     }
     
     return nil;
-}
-
-
-/*
- save the local version after modifying the trip.
- */
-- (void)save {
-    NSArray *dataArr = [self objectsToArray];
-    if (dataArr != nil) {
-        [[self objectsToArray] writeToFile:[self getDataPath] atomically:YES];
-    }
 }
 
 

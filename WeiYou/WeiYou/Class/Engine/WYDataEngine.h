@@ -19,12 +19,15 @@
 
 - (void)bisynchronizeTrips;
 - (void)synchronizeTrip:(WYMTrip *)trip;
+- (void)loadTrips;
 - (BOOL)checkNewVersion;
 
 //private
 - (NSString *)getTripListVersionFromServer;//return the version of the whole trips list.
 - (NSString *)getTripListVersionFromLocal;
-- (NSArray *)getTripsFromServer;
-- (NSArray *)getTripsFromLocal;
+- (NSArray *)getTripsInfoDicFromServer;
+- (NSArray *)getTripsInfoDicFromLocal;
+
+- (void)saveTrips;
 
 @end

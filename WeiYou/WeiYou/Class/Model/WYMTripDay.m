@@ -110,12 +110,12 @@
 	NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
 	[infoDic setObject:_dayTH forKey:WY_TRIPDAY_DAYTH];
     
-    NSMutableArray *spotsArr = [NSMutableArray arrayWithCapacity:10];
-    for (WYMSpot *spot in _spots) {
-        NSDictionary *dayInfoDic = [spot transferToDic];
-        [spotsArr addObject:dayInfoDic];
-    }
-    [infoDic setObject:spotsArr forKey:WY_TRIPDAY_SPOTS];
+//    NSMutableArray *spotsArr = [NSMutableArray arrayWithCapacity:10];
+//    for (WYMSpot *spot in _spots) {
+//        NSDictionary *spotInfoDic = [spot transferToDic];
+//        [spotsArr addObject:spotInfoDic];
+//    }
+//    [infoDic setObject:spotsArr forKey:WY_TRIPDAY_SPOTS];
 	
     return (NSDictionary *)infoDic;
 }

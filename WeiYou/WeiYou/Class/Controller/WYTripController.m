@@ -125,6 +125,7 @@
         self.navigationItem.rightBarButtonItem.title = @"OK";
     } else {
         self.navigationItem.rightBarButtonItem.title = @"Edit";
+        [[WYDataEngine sharedDataEngine] saveTrips];
     }
 	
 	/*
@@ -147,11 +148,6 @@
     
     [_tripDays addObject:nTripDay];
     [_mTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:[_tripDays count]-1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    
-    for (WYMTrip *mt in [[WYDataEngine sharedDataEngine] trips]) {
-        NSDictionary *infoDic = [mt transferToDic];
-        mlog(@"trip info : \n %@", [infoDic description]);
-    }
     
 }
 

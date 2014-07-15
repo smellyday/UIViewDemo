@@ -27,19 +27,10 @@
 		
 		self.window.clipsToBounds = YES;
 	}
-	
-    //init rootviewcontroller
-	WYRootViewController *rootViewController = [[WYRootViewController alloc] init];
-	UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-	rootNavigationController.navigationBar.barTintColor = WY_MAIN_COLOR;
-	rootNavigationController.navigationBar.tintColor = [UIColor blackColor];
-	[self.window setRootViewController:rootNavigationController];
-	
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-
+    
     // synchronization of trips.
-    [[WYDataEngine sharedDataEngine] performSelector:@selector(bisynchronizeTrips) withObject:nil afterDelay:0];
+    [[WYDataEngine sharedDataEngine] loadTrips];
+    [[WYDataEngine sharedDataEngine] performSelector:@selector(bisynchronizeTrips) withObject:nil afterDelay:10];
     
     // sina weibo
     [WeiboSDK enableDebugMode:YES];
@@ -52,38 +43,16 @@
         [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserImage:[UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_PROFILE_IMAGE_DATA]]];
         [[[WYGlobalState sharedGlobalState] sinaWeibo] setAuthToken:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_TOKEN_SINA]];
     }
-    
-	/*
-		//test begin----
-	static int mst = 10;
-	int b = 10;
-	int *a = &b;
-	__block char mychar;
-	void (^Mblock)(int) = ^(int bb) {
-		*a = bb + 10;
-		mst = 29;
-		minteger = 90;
-		mychar = 'a';
-		printf("my char is %c, my a is %d\n", mychar, *a);
-	};
 	
-	mychar = 'b';
-	Mblock(5);
+    //init rootviewcontroller
+	WYRootViewController *rootViewController = [[WYRootViewController alloc] init];
+	UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+	rootNavigationController.navigationBar.barTintColor = WY_MAIN_COLOR;
+	rootNavigationController.navigationBar.tintColor = [UIColor blackColor];
+	[self.window setRootViewController:rootNavigationController];
 	
-	*a = 20;
-	Mblock(5);
-
-		//test end------
-	 */
-	
-	/*
-	NSData *tmp1 = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"tamp1@2x" ofType:@"png"]];
-	NSData *tmp2 = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"tamp2@2x" ofType:@"png"]];
-	
-	NSLog(@"%@", [tmp1 description]);
-	NSLog(@"\n\n");
-	NSLog(@"%@", [tmp2 description]);
-	*/
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
 	 
     return YES;
 }

@@ -39,6 +39,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenBiSynFinish:) name:WY_NOTI_TRIPS_SYNC_FINISH object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenCoreDataChanged:) name:NSManagedObjectContextObjectsDidChangeNotification object:[[WYCoreDataEngine sharedCoreDataEngine] context]];
     self.trips = [[WYDataEngine sharedDataEngine] trips];
+    mlog(@"trips count is %@", [_trips description]);
 	
 	self.view.backgroundColor = [UIColor lightGrayColor];
 	self.title = @"FreeTravel";
@@ -89,11 +90,15 @@
 #pragma notification received
 
 - (void)doWhenCoreDataChanged:(NSNotification *)notification {
+    
 }
 
 - (void)doWhenBiSynFinish:(NSNotification *)notification {
     self.trips = [[WYDataEngine sharedDataEngine] trips];
     [self.mTableView reloadData];
+    
+    [[WYDataEngine sharedDataEngine] saveTrips];
+    [self.navigationController popToViewController:self animated:YES];
 }
 
 
