@@ -29,7 +29,7 @@
 	}
     
     // synchronization of trips.
-    [[WYDataEngine sharedDataEngine] loadTrips];
+    [[WYDataEngine sharedDataEngine] loadTripsFromLocal];
     [[WYDataEngine sharedDataEngine] performSelector:@selector(bisynchronizeTrips) withObject:nil afterDelay:10];
     
     // sina weibo
@@ -96,7 +96,7 @@
 
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response {
     if ([response isKindOfClass:WBAuthorizeResponse.class]) {
-        NSLog(@"SinaSDK -- response is WBAuthorizeResponse.");
+        mlog(@"SinaSDK -- response is WBAuthorizeResponse.");
         
         NSString *userid = [(WBAuthorizeResponse *)response userID];
         NSString *token = [(WBAuthorizeResponse *)response accessToken];
@@ -113,7 +113,7 @@
         
     }
     
-    NSLog(@"user info : %@", [response.userInfo description]);
+    mlog(@"user info : %@", [response.userInfo description]);
 }
 
 @end

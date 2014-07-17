@@ -30,12 +30,12 @@
     if ([lv isEqual:sv]) {
         return NO;
     }
-    
+
     return YES;
 }
 
 
-- (void)synchronizeTrip:(WYMTrip *)trip {
+- (void)updateToServerWithTrip:(WYMTrip *)trip {
 //    NSDictionary *tripDic = [trip transferToDic];
     /*
      upload tripDic to server using api.
@@ -170,10 +170,9 @@
 }
 
 
-- (void)loadTrips {
+- (void)loadTripsFromLocal {
     self.trips = [NSMutableArray arrayWithCapacity:10];
     NSArray *allTripsInfo = [self getTripsInfoDicFromLocal];
-    mlog(@"%s: trips info count %d", __func__, [allTripsInfo count]);
     for (NSDictionary *infoDic in allTripsInfo) {
         WYMTrip *mt = [[WYMTrip alloc] initWithTripInfoDic:infoDic];
         [self.trips addObject:mt];

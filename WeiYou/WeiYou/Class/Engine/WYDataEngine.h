@@ -18,16 +18,18 @@
 + (id)sharedDataEngine;
 
 - (void)bisynchronizeTrips;
-- (void)synchronizeTrip:(WYMTrip *)trip;
-- (void)loadTrips;
-- (BOOL)checkNewVersion;
+- (void)loadTripsFromServerWithPage:(int)page;
+- (void)updateToServerWithTrip:(WYMTrip *)trip;
+
+- (void)loadTripsFromLocal;
+- (void)saveTrips;
 
 //private
+- (BOOL)checkNewVersion;
 - (NSString *)getTripListVersionFromServer;//return the version of the whole trips list.
 - (NSString *)getTripListVersionFromLocal;
 - (NSArray *)getTripsInfoDicFromServer;
 - (NSArray *)getTripsInfoDicFromLocal;
 
-- (void)saveTrips;
 
 @end

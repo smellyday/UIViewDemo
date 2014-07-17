@@ -67,6 +67,8 @@
 		69582DAB1952C3F40072ED3E /* WYLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69582DAA1952C3F40072ED3E /* WYLoginController.m */; };
 		696CECB71974FD6600EE4544 /* WYTripController.m in Sources */ = {isa = PBXBuildFile; fileRef = 696CECB61974FD6600EE4544 /* WYTripController.m */; };
 		696CECBA19752D4A00EE4544 /* WYTripDayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 696CECB919752D4A00EE4544 /* WYTripDayController.m */; };
+		698013D91977CF7300AFD0B4 /* WYUploadTripOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 698013D81977CF7300AFD0B4 /* WYUploadTripOperation.m */; };
+		698013DC1977CF8D00AFD0B4 /* WYDownloadTripsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 698013DB1977CF8D00AFD0B4 /* WYDownloadTripsOperation.m */; };
 		699E38EC196290970083CD3A /* localTrips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 699E38EB196290970083CD3A /* localTrips.plist */; };
 		69AA1EBA1953D9D400BA0884 /* WYRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AA1EB91953D9D400BA0884 /* WYRegisterController.m */; };
 		69AA1EBD1953D9F900BA0884 /* WYFindPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AA1EBC1953D9F900BA0884 /* WYFindPasswordController.m */; };
@@ -187,6 +189,10 @@
 		696CECB61974FD6600EE4544 /* WYTripController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTripController.m; sourceTree = "<group>"; };
 		696CECB819752D4A00EE4544 /* WYTripDayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTripDayController.h; sourceTree = "<group>"; };
 		696CECB919752D4A00EE4544 /* WYTripDayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTripDayController.m; sourceTree = "<group>"; };
+		698013D71977CF7300AFD0B4 /* WYUploadTripOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUploadTripOperation.h; sourceTree = "<group>"; };
+		698013D81977CF7300AFD0B4 /* WYUploadTripOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYUploadTripOperation.m; sourceTree = "<group>"; };
+		698013DA1977CF8D00AFD0B4 /* WYDownloadTripsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDownloadTripsOperation.h; sourceTree = "<group>"; };
+		698013DB1977CF8D00AFD0B4 /* WYDownloadTripsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDownloadTripsOperation.m; sourceTree = "<group>"; };
 		699E38EB196290970083CD3A /* localTrips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = localTrips.plist; sourceTree = "<group>"; };
 		69AA1EB81953D9D400BA0884 /* WYRegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRegisterController.h; sourceTree = "<group>"; };
 		69AA1EB91953D9D400BA0884 /* WYRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRegisterController.m; sourceTree = "<group>"; };
@@ -327,6 +333,10 @@
 			children = (
 				5E5BC2F4183F3DB80003AC6D /* WYDataEngine.h */,
 				5E5BC2F5183F3DB80003AC6D /* WYDataEngine.m */,
+				698013D71977CF7300AFD0B4 /* WYUploadTripOperation.h */,
+				698013D81977CF7300AFD0B4 /* WYUploadTripOperation.m */,
+				698013DA1977CF8D00AFD0B4 /* WYDownloadTripsOperation.h */,
+				698013DB1977CF8D00AFD0B4 /* WYDownloadTripsOperation.m */,
 			);
 			name = Engine;
 			path = WeiYou/Class/Engine;
@@ -655,6 +665,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				698013DC1977CF8D00AFD0B4 /* WYDownloadTripsOperation.m in Sources */,
 				694ED3B4195A762C00917FEB /* ASIAuthenticationDialog.m in Sources */,
 				694ED3B5195A762C00917FEB /* ASIDataCompressor.m in Sources */,
 				694ED3B6195A762C00917FEB /* ASIDataDecompressor.m in Sources */,
@@ -665,6 +676,7 @@
 				694ED3BB195A762C00917FEB /* ASINetworkQueue.m in Sources */,
 				694ED3BC195A762C00917FEB /* Reachability.m in Sources */,
 				69AA1EBD1953D9F900BA0884 /* WYFindPasswordController.m in Sources */,
+				698013D91977CF7300AFD0B4 /* WYUploadTripOperation.m in Sources */,
 				5E5D676B186176A100ECA966 /* WYTripDaySpotCell.m in Sources */,
 				5EBCF75A185EFF2A0057C1AE /* WYMCountry.m in Sources */,
 				69AA1EBA1953D9D400BA0884 /* WYRegisterController.m in Sources */,

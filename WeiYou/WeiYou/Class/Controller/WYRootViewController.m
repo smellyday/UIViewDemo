@@ -138,6 +138,16 @@
 	WYTripController *theTripController = [[WYTripController alloc] init];
     theTripController.trip = [_trips objectAtIndex:[indexPath row]];
     
+//    NSOperationQueue *mq = [[NSOperationQueue alloc] init];
+//    [mq setMaxConcurrentOperationCount:2];
+//    WYUploadTripOperation *op = [[WYUploadTripOperation alloc] init];
+//    op.sym = 1;
+//    [mq addOperation:op];
+//    
+//    WYUploadTripOperation *op2 = [[WYUploadTripOperation alloc] init];
+//    op2.sym = 2;
+//    [mq addOperation:op2];
+
 	[self.navigationController pushViewController:theTripController animated:YES];
 }
 
@@ -149,7 +159,7 @@
 	return 0;
 }
 
-	// =======
+#pragma system
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
