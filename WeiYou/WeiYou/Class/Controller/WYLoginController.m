@@ -46,6 +46,7 @@
 	[cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17];
 	cancelBtn.showsTouchWhenHighlighted = YES;
+	[cancelBtn addTarget:self action:@selector(clickCancelButton:) forControlEvents:UIControlEventTouchUpInside];
 	
 	UIButton *registerBtn = [[UIButton alloc] init];
 	registerBtn.frame = NAV_BAR_RIGHT_BTN_FRAME;
@@ -229,6 +230,11 @@
 - (void)forgetPassword:(id)sender {
     WYFindPasswordController *fpc = [[WYFindPasswordController alloc] init];
     [self.navigationController pushViewController:fpc animated:YES];
+}
+
+#pragma UIButton Event
+- (void)clickCancelButton:(id)button {
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
