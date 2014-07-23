@@ -97,7 +97,7 @@
     self.trips = [[WYDataEngine sharedDataEngine] trips];
     [self.mTableView reloadData];
     
-    [[WYDataEngine sharedDataEngine] saveTrips];
+    [[WYDataEngine sharedDataEngine] saveTripsToLocal];
     [self.navigationController popToViewController:self animated:YES];
 }
 

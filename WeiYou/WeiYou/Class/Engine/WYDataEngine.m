@@ -8,10 +8,24 @@
 
 #import "WYDataEngine.h"
 #import "WYMTrip.h"
+#import "WYBiSyncTripsOperation.h"
 #import "consts.h"
+
+@interface WYDataEngine (private)
+
+- (void)loadTripsFromServerWithPage:(int)page;
+- (void)updateToServerWithTrip:(WYMTrip *)trip;
+
+
+- (BOOL)checkNewVersion;
+- (NSArray *)getTripsInfoDicFromServer;
+- (NSArray *)getTripsInfoDicFromLocal;
+
+@end
 
 @implementation WYDataEngine
 @synthesize trips = _trips;
+@synthesize biSyncQueue = _biSyncQueue;
 
 
 + (id)sharedDataEngine {
@@ -24,48 +38,25 @@
 	return sharedEngine;
 }
 
-- (BOOL)checkNewVersion {
-    NSString *lv = [self getTripListVersionFromLocal];
-    NSString *sv = [self getTripListVersionFromServer];
-    if ([lv isEqual:sv]) {
-        return NO;
-    }
-
-    return YES;
-}
-
-
-- (void)updateToServerWithTrip:(WYMTrip *)trip {
-//    NSDictionary *tripDic = [trip transferToDic];
-    /*
-     upload tripDic to server using api.
-     */
-    
-}
-
 
 /*
  this function should be in secondary thread.
  */
 - (void)bisynchronizeTrips {
-    self.trips = nil;
-    _trips = [NSMutableArray arrayWithCapacity:10];
+    mlog(@"%s", __func__);
     
-    NSString *serverVersion = [self getTripListVersionFromServer];
-    NSString *localVersion = [self getTripListVersionFromLocal];
-    
-    if (serverVersion == localVersion) {
-        return;
-    }
+    [self.biSyncQueue cancelAllOperations];
+    WYBiSyncTripsOperation *bisyncOp = [[WYBiSyncTripsOperation alloc] init];
+    [self.biSyncQueue addOperation:bisyncOp];
     
     // temp
-    NSArray *allTripsInfo = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
-    for (NSDictionary *infoDic in allTripsInfo) {
-        WYMTrip *mt = [[WYMTrip alloc] initWithTripInfoDic:infoDic];
-        [self.trips addObject:mt];
-    }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_TRIPS_SYNC_FINISH object:nil userInfo:nil];
+//    NSArray *allTripsInfo = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
+//    for (NSDictionary *infoDic in allTripsInfo) {
+//        WYMTrip *mt = [[WYMTrip alloc] initWithTripInfoDic:infoDic];
+//        [self.trips addObject:mt];
+//    }
+//    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_TRIPS_SYNC_FINISH object:nil userInfo:nil];
     
     // 某trip，是新建trip（）
     
@@ -170,20 +161,56 @@
 }
 
 
+- (NSOperationQueue *)biSyncQueue {
+    if (!_biSyncQueue) {
+        _biSyncQueue = [[NSOperationQueue alloc] init];
+        _biSyncQueue.name = @"bi sync queue";
+        _biSyncQueue.maxConcurrentOperationCount = 1;
+    }
+    return _biSyncQueue;
+}
+
+
+- (BOOL)checkNewVersion {
+    
+    return YES;
+}
+
+
+- (void)updateToServerWithTrip:(WYMTrip *)trip {
+    //    NSDictionary *tripDic = [trip transferToDic];
+    /*
+     upload tripDic to server using api.
+     */
+    
+}
+
 - (void)loadTripsFromLocal {
+    
     self.trips = [NSMutableArray arrayWithCapacity:10];
-    NSArray *allTripsInfo = [self getTripsInfoDicFromLocal];
+    NSArray *allTripsInfo = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
     for (NSDictionary *infoDic in allTripsInfo) {
         WYMTrip *mt = [[WYMTrip alloc] initWithTripInfoDic:infoDic];
         [self.trips addObject:mt];
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_TRIPS_SYNC_FINISH object:nil userInfo:nil];
+    
+    
+    
+//    self.trips = [NSMutableArray arrayWithCapacity:10];
+//    NSArray *allTripsInfo = [self getTripsInfoDicFromLocal];
+//    for (NSDictionary *infoDic in allTripsInfo) {
+//        WYMTrip *mt = [[WYMTrip alloc] initWithTripInfoDic:infoDic];
+//        [self.trips addObject:mt];
+//    }
 }
 
 
 /*
  save the local version after modifying the trip.
  */
-- (void)saveTrips {
+- (void)saveTripsToLocal {
     NSLog(@"save begin at %@", [[NSDate date] description]);
     NSArray *dataArr = [self objectsToArray];
     if (dataArr != nil) {
@@ -199,15 +226,6 @@
 
 
 #pragma private function.
-- (NSString *)getTripListVersionFromServer {
-    return @"serverVersion";
-}
-
-
-- (NSString *)getTripListVersionFromLocal {
-    return @"localVersion";
-}
-
 
 - (NSArray *)getTripsInfoDicFromServer {
     NSMutableArray *retTripArr = [NSMutableArray arrayWithCapacity:10];

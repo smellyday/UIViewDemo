@@ -76,7 +76,7 @@
         self.navigationItem.rightBarButtonItem.title = @"OK";
     } else {
         self.navigationItem.rightBarButtonItem.title = @"Edit";
-        [[WYDataEngine sharedDataEngine] saveTrips];
+        [[WYDataEngine sharedDataEngine] saveTripsToLocal];
     }
 }
 

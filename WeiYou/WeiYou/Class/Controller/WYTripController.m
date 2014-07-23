@@ -125,7 +125,7 @@
         self.navigationItem.rightBarButtonItem.title = @"OK";
     } else {
         self.navigationItem.rightBarButtonItem.title = @"Edit";
-        [[WYDataEngine sharedDataEngine] saveTrips];
+        [[WYDataEngine sharedDataEngine] saveTripsToLocal];
     }
 	
 	/*
@@ -270,10 +270,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-	WYTripDayController *tripDayController = [[WYTripDayController alloc] init];
-	tripDayController.tripDay = (WYMTripDay *)[_tripDays objectAtIndex:[indexPath row]];
-	tripDayController.tripName = self.trip.tripName;
-	[self.navigationController pushViewController:tripDayController animated:YES];
+    [[WYDataEngine sharedDataEngine] bisynchronizeTrips];
+    
+//	WYTripDayController *tripDayController = [[WYTripDayController alloc] init];
+//	tripDayController.tripDay = (WYMTripDay *)[_tripDays objectAtIndex:[indexPath row]];
+//	tripDayController.tripName = self.trip.tripName;
+//	[self.navigationController pushViewController:tripDayController animated:YES];
     
 }
 

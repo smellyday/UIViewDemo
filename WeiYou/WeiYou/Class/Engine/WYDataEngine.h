@@ -11,25 +11,18 @@
 @class WYMTrip;
 @interface WYDataEngine : NSObject {
 	NSMutableArray *_trips;
+    
+    NSOperationQueue *_biSyncQueue;
 }
 
 @property (nonatomic, strong) NSMutableArray *trips;
+@property (nonatomic, strong) NSOperationQueue *biSyncQueue;
 
 + (id)sharedDataEngine;
 
 - (void)bisynchronizeTrips;
-- (void)loadTripsFromServerWithPage:(int)page;
-- (void)updateToServerWithTrip:(WYMTrip *)trip;
 
 - (void)loadTripsFromLocal;
-- (void)saveTrips;
-
-//private
-- (BOOL)checkNewVersion;
-- (NSString *)getTripListVersionFromServer;//return the version of the whole trips list.
-- (NSString *)getTripListVersionFromLocal;
-- (NSArray *)getTripsInfoDicFromServer;
-- (NSArray *)getTripsInfoDicFromLocal;
-
+- (void)saveTripsToLocal;
 
 @end
