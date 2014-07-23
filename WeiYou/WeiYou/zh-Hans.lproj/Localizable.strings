@@ -6,5 +6,13 @@
   Copyright (c) 2014年 xiyuan. All rights reserved.
 */
 
+	//utility
+"cancel" = "取消";
+"ok" = "确定";
 
+	//login in page
 "login" = "登录";
+"register" = "注册";
+"user name" = "用户名";
+"password" = "密码";
+"forget password" = "忘记密码?";

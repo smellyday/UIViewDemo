@@ -6,7 +6,9 @@
 //  Copyright (c) 2013 xiyuan. All rights reserved.
 //
 #import "WYLog.h"
-#import "const_sys_pic.h"
+#import "consts_sys_pic.h"
+#import "consts_view.h"
+#import "consts_utility.h"
 
 #ifndef WeiYou_consts_h
 #define WeiYou_consts_h

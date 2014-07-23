@@ -183,7 +183,8 @@
             
         } else {
             WYLoginController *loginController = [[WYLoginController alloc] init];
-            [self.navigationController pushViewController:loginController animated:YES];
+//            [self.navigationController pushViewController:loginController animated:YES];
+			[self presentViewController:loginController animated:YES completion:nil];
         }
         
     } else if (section == 1 && row == 0) {

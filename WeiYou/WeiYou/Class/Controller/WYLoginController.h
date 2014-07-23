@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WYLoginController : UIViewController
+@interface WYLoginController : UIViewController <UITextFieldDelegate> {
+	UITextField *_userField;
+	UITextField *_passwdField;
+}
+
+@property (nonatomic, strong) UITextField *userField;
+@property (nonatomic, strong) UITextField *passwdField;
 
 @end

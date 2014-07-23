@@ -16,6 +16,8 @@
 @end
 
 @implementation WYLoginController
+@synthesize userField = _userField;
+@synthesize passwdField = _passwdField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,15 +31,115 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // background
     self.view.backgroundColor = [UIColor whiteColor]; // can not be clearColor
     UIImageView *bg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:PIC_LOGIN_BG]];
     bg.frame = self.view.bounds;
     bg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view insertSubview:bg atIndex:0];
+	
+	// fake navigation bar
+	UIButton *cancelBtn = [[UIButton alloc] init];
+	cancelBtn.frame = NAV_BAR_LEFT_BTN_FRAME;
+	[cancelBtn setBackgroundColor:[UIColor clearColor]];
+	[cancelBtn setTitle:NSLocalizedString(@"cancel", @"cancel") forState:UIControlStateNormal];
+	[cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+	cancelBtn.showsTouchWhenHighlighted = YES;
+	
+	UIButton *registerBtn = [[UIButton alloc] init];
+	registerBtn.frame = NAV_BAR_RIGHT_BTN_FRAME;
+	[registerBtn setBackgroundColor:[UIColor clearColor]];
+	[registerBtn setTitle:NSLocalizedString(@"register", @"register") forState:UIControlStateNormal];
+	[registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	registerBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+	registerBtn.showsTouchWhenHighlighted = YES;
+	
+	UILabel *loginTitle = [[UILabel alloc] init];
+	loginTitle.frame = NAV_BAR_TITLE_FRAME;
+	[loginTitle setText:NSLocalizedString(@"login", @"login")];
+	[loginTitle setTextAlignment:NSTextAlignmentCenter];
+	[loginTitle setTextColor:[UIColor whiteColor]];
+	loginTitle.font = [UIFont systemFontOfSize:19];
+	
+	UIView *topBarContainer = [[UIView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H, self.view.frame.size.width, NAV_BAR_H)];
+	topBarContainer.backgroundColor = [UIColor clearColor];
+	[topBarContainer addSubview:cancelBtn];
+	[topBarContainer addSubview:registerBtn];
+	[topBarContainer addSubview:loginTitle];
+	[self.view addSubview:topBarContainer];
     
-//    self.title = NSLocalizedString(@"test", @"test");
+	//main content
+	UIScrollView *containerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H+NAV_BAR_H, self.view.frame.size.width, self.view.frame.size.height-(STATUS_BAR_H+NAV_BAR_H))];
+    containerScrollView.scrollEnabled = YES;
+    containerScrollView.bounces = YES;
+    containerScrollView.alwaysBounceHorizontal = NO;
+	containerScrollView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:containerScrollView];
+	
+	UILabel *welcomeLabel = [[UILabel alloc] init];
+	welcomeLabel.frame = CGRectMake(60, 30, 200, 50);
+	[welcomeLabel setText:NSLocalizedString(@"welcome", @"welcome")];
+	[welcomeLabel setTextAlignment:NSTextAlignmentCenter];
+	[welcomeLabel setTextColor:[UIColor whiteColor]];
+	welcomeLabel.font = [UIFont systemFontOfSize:38];
+	[containerScrollView addSubview:welcomeLabel];
+	
+	_userField = [[UITextField alloc] init];
+	_userField.frame = CGRectMake(28, 130, 264, 40);
+	_userField.autocorrectionType = UITextAutocorrectionTypeNo;
+	_userField.returnKeyType = UIReturnKeyDone;
+	_userField.clearButtonMode = UITextFieldViewModeWhileEditing;
+	_userField.placeholder = NSLocalizedString(@"user name", @"user name");
+	_userField.backgroundColor = [UIColor whiteColor];
+	_userField.delegate = self;
+	[_userField setBorderStyle:UITextBorderStyleRoundedRect];
+	[containerScrollView addSubview:_userField];
+	
+	_passwdField = [[UITextField alloc] init];
+	_passwdField.frame = CGRectMake(28, 170, 264, 40);
+	_passwdField.autocorrectionType = UITextAutocorrectionTypeNo;
+	_passwdField.returnKeyType = UIReturnKeyDone;
+	_passwdField.clearButtonMode = UITextFieldViewModeWhileEditing;
+	_passwdField.placeholder = NSLocalizedString(@"password", @"password");
+	_passwdField.backgroundColor = [UIColor whiteColor];
+	_passwdField.delegate = self;
+	[_passwdField setBorderStyle:UITextBorderStyleRoundedRect];
+	[containerScrollView addSubview:_passwdField];
+	
+	CGFloat w = 250.0;
+	CGFloat h = 40.0;
+	UIButton *loginBtn = [[UIButton alloc] init];
+	loginBtn.frame = CGRectMake(SCREEN_WIDTH/2-w/2, 230, w, h);
+	[loginBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_N] forState:UIControlStateNormal];
+	[loginBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_H] forState:UIControlStateHighlighted];
+	[loginBtn setTintColor:[UIColor redColor]];
+	loginBtn.showsTouchWhenHighlighted = YES;
+	[loginBtn setTitle:NSLocalizedString(@"login", @"login") forState:UIControlStateNormal];
+	[loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+	[containerScrollView addSubview:loginBtn];
+	
+	UIButton *weiboBtn = [[UIButton alloc] init];
+	weiboBtn.frame = CGRectMake(SCREEN_WIDTH/2-w/2, 300, 120, h);
+	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_N] forState:UIControlStateNormal];
+	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_H] forState:UIControlStateHighlighted];
+	[containerScrollView addSubview:weiboBtn];
+	
+	UIButton *qqBtn = [[UIButton alloc] init];
+	qqBtn.frame = CGRectMake(SCREEN_WIDTH-(SCREEN_WIDTH-w)/2-120, 300, 120, h);
+	[qqBtn setBackgroundImage:[UIImage imageNamed:PIC_QQ_BTN_N] forState:UIControlStateNormal];
+	[qqBtn setBackgroundImage:[UIImage imageNamed:PIC_QQ_BTN_H] forState:UIControlStateHighlighted];
+	[containerScrollView addSubview:qqBtn];
     
+	UIButton *forgetPWBtn = [[UIButton alloc] init];
+	forgetPWBtn.frame = CGRectMake(SCREEN_WIDTH/2-60/2, SCREEN_HEIGHT-STATUS_BAR_H-NAV_BAR_H-60, 60, 30);
+	forgetPWBtn.showsTouchWhenHighlighted = YES;
+	[forgetPWBtn setTitle:NSLocalizedString(@"forget password", @"forget password") forState:UIControlStateNormal];
+	[forgetPWBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	forgetPWBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+	[containerScrollView addSubview:forgetPWBtn];
+	
     /*
     self.title = @"登录";
 	UIBarButtonItem *mLeftButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backToSetting:)];
@@ -129,6 +231,19 @@
     [self.navigationController pushViewController:fpc animated:YES];
 }
 
+
+#pragma UITextField Delegate
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+	[textField resignFirstResponder];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	return YES;
+}
+
+
+#pragma -
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
