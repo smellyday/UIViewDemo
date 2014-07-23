@@ -48,10 +48,10 @@
 		}
 		
         // the 4 bool must be in the plist. Cz, plist is created by object.
-		self.isNewTrip = [infoDic objectForKey:WY_TRIP_ISNEW];
-		self.deletTrip = [infoDic objectForKey:WY_TRIP_ISDEL];
-		self.shouldUpdate = [infoDic objectForKey:WY_TRIP_UPDATE];
-		self.changeWhenUploading = [infoDic objectForKey:WY_TRIP_CHANGE];
+		self.isNewTrip = [[infoDic objectForKey:WY_TRIP_ISNEW] boolValue];
+		self.deletTrip = [[infoDic objectForKey:WY_TRIP_ISDEL] boolValue];
+		self.shouldUpdate = [[infoDic objectForKey:WY_TRIP_UPDATE] boolValue];
+		self.changeWhenUploading = [[infoDic objectForKey:WY_TRIP_CHANGE] boolValue];
 	}
 	return self;
 }

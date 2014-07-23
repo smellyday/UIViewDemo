@@ -31,7 +31,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor]; // can not be clearColor
+    UIImageView *bg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:PIC_LOGIN_BG]];
+    bg.frame = self.view.bounds;
+    bg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [self.view insertSubview:bg atIndex:0];
     
+//    self.title = NSLocalizedString(@"test", @"test");
+    
+    /*
     self.title = @"登录";
 	UIBarButtonItem *mLeftButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backToSetting:)];
 	self.navigationItem.leftBarButtonItem = mLeftButton;
@@ -94,7 +101,7 @@
     [registerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [containerScrollView addSubview:registerButton];
     [registerButton addTarget:self action:@selector(registerUser:) forControlEvents:UIControlEventTouchUpInside];
-    
+    */
 }
 
 - (void)loginWithSina:(id)sender {

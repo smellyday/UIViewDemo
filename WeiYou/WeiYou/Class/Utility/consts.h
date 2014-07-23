@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 xiyuan. All rights reserved.
 //
 #import "WYLog.h"
+#import "const_sys_pic.h"
 
 #ifndef WeiYou_consts_h
 #define WeiYou_consts_h
@@ -104,43 +105,6 @@
 #define WY_SPOT_PROVINCE			   @"wy_spot_province"
 #define WY_SPOT_COUNTRY				   @"wy_spot_country"
 #define WY_SPOT_CONTINENT			   @"wy_spot_continent"
-	//====going to remove.
-//#define WY_SPOT_INDEX                  @"wy_spot_index"
-//#define WY_SPOT_TYPE                   @"wy_spot_type"
-//#define WY_SPOT_OPEN_TIME              @"wy_spot_open_time"
-//#define WY_SPOT_TRAFFIC_INFO           @"wy_spot_traffic_info"
-//#define WY_SPOT_ADMISSION_PRICE        @"wy_spot_admission_price"
-//#define WY_SPOT_CONTACT_WAYS           @"wy_spot_contact_ways"
-
-/*
-	//for hotel
-#define WY_HOTEL_NAME                  @"wy_hotel_name"
-#define WY_HOTEL_ADDRESS               @"wy_hotel_address"
-#define WY_HOTEL_PHONES                @"wy_hotel_phones"
-#define WY_HOTEL_IMAGES                @"wy_hotel_images"
-#define WY_HOTEL_ROOMS                 @"wy_hotel_rooms" // room type
-
-#define WY_HOTEL_CHECK_IN              @"wy_hotel_check_in"
-#define WY_HOTEL_CHECK_OUT             @"wy_hotel_check_out"
-
-#define WY_ROOM_TYPE_NAME              @"wy_room_type_name"
-#define WY_ROOM_CAPACITY               @"wy_room_capacity"
-#define WY_ROOM_DIMENSION              @"wy_room_dimension"
-#define WY_ROOM_FLOOR                  @"wy_room_floor"
-#define WY_ROOM_PRICE                  @"wy_room_price"
-
-#define WY_ROOM_COUNT                  @"wy_room_count"
-
-	//for traffic
-#define WY_TRAFFIC_TYPE                    @"wy_traffic_type"
-#define WY_TRAFFIC_TAKE_OFF_TIME           @"wy_traffic_take_off_time"
-#define WY_TRAFFIC_DEPARTURE_PLACE         @"wy_traffic_departure_place"
-#define WY_TRAFFIC_DESTINATION_PLACE       @"wy_traffic_destination_place"
-#define WY_TRAFFIC_PRICE                   @"wy_traffic_price"
-
-#define WY_TRAFFIC_FLIGHT_NUMBER           @"wy_traffic_flight_number"
-#define WY_TRAFFIC_TRAIN_NUMBER            @"wy_traffic_train_number"
- */
 
 
 //========pull & refresh========
