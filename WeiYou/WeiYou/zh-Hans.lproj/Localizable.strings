@@ -19,5 +19,5 @@
 "verify code" = "验证码";
 "register declare" = "注册帐号即表示同意用户服务协议";
 "reset password" = "重置密码";
-"login with qq" = "QQ账户登录";
-"login with sina weibo" = "新浪微博登录";
+"login with qq" = "QQ登录";
+"login with sina weibo" = "微博登录";
