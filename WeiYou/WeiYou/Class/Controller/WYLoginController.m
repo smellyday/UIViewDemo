@@ -77,6 +77,7 @@
     containerScrollView.bounces = YES;
     containerScrollView.alwaysBounceHorizontal = NO;
 	containerScrollView.backgroundColor = [UIColor clearColor];
+    containerScrollView.delaysContentTouches = NO;
     [self.view addSubview:containerScrollView];
 	
 	UILabel *welcomeLabel = [[UILabel alloc] init];
@@ -117,7 +118,6 @@
 	[loginBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_N] forState:UIControlStateNormal];
 	[loginBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_H] forState:UIControlStateHighlighted];
 	[loginBtn setTintColor:[UIColor redColor]];
-	loginBtn.showsTouchWhenHighlighted = YES;
 	[loginBtn setTitle:NSLocalizedString(@"login", @"login") forState:UIControlStateNormal];
 	[loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
@@ -136,7 +136,7 @@
 	UIButton *qqBtn = [[UIButton alloc] init];
 	qqBtn.frame = CGRectMake(SCREEN_WIDTH-(SCREEN_WIDTH-w)/2-120, 300, 120, h);
 	[qqBtn setBackgroundImage:[UIImage imageNamed:PIC_QQ_BTN_N] forState:UIControlStateNormal];
-	[qqBtn setBackgroundImage:[UIImage imageNamed:PIC_QQ_BTN_H] forState:UIControlStateHighlighted];
+	[qqBtn setBackgroundImage:[UIImage imageNamed:PIC_QQ_BTN_H] forState:UIControlStateHighlighted|UIControlStateSelected];
     qqBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 35, 0, 0);
 	[qqBtn setTitle:NSLocalizedString(@"login with qq", @"login with qq") forState:UIControlStateNormal];
 	[qqBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
