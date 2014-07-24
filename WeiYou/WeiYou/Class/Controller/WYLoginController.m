@@ -54,6 +54,7 @@
 	[registerBtn setTitle:NSLocalizedString(@"register", @"register") forState:UIControlStateNormal];
 	[registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	registerBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+	[registerBtn addTarget:self action:@selector(clickRegisterButton:) forControlEvents:UIControlEventTouchUpInside];
 	registerBtn.showsTouchWhenHighlighted = YES;
 	
 	UILabel *loginTitle = [[UILabel alloc] init];
@@ -114,9 +115,9 @@
 	UIButton *loginBtn = [[UIButton alloc] init];
 	loginBtn.frame = CGRectMake(SCREEN_WIDTH/2-w/2, 230, w, h);
 	[loginBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_N] forState:UIControlStateNormal];
-	[loginBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_H] forState:UIControlStateSelected];
+	[loginBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_H] forState:UIControlStateHighlighted];
 	[loginBtn setTintColor:[UIColor redColor]];
-//	loginBtn.showsTouchWhenHighlighted = YES;
+	loginBtn.showsTouchWhenHighlighted = YES;
 	[loginBtn setTitle:NSLocalizedString(@"login", @"login") forState:UIControlStateNormal];
 	[loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
@@ -125,7 +126,7 @@
 	UIButton *weiboBtn = [[UIButton alloc] init];
 	weiboBtn.frame = CGRectMake(SCREEN_WIDTH/2-w/2, 300, 120, h);
 	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_N] forState:UIControlStateNormal];
-	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_H] forState:UIControlStateSelected];
+	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_H] forState:UIControlStateHighlighted];
 	[containerScrollView addSubview:weiboBtn];
 	
 	UIButton *qqBtn = [[UIButton alloc] init];
@@ -236,6 +237,11 @@
 #pragma UIButton Event
 - (void)clickCancelButton:(id)button {
 	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)clickRegisterButton:(id)button {
+	WYRegisterController *rc = [[WYRegisterController alloc] init];
+	[self.navigationController pushViewController:rc animated:YES];
 }
 
 

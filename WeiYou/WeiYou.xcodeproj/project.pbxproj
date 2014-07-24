@@ -444,10 +444,10 @@
 				5E5BC25E183EE6770003AC6D /* WYSettingsViewController.m */,
 				69582DA91952C3F40072ED3E /* WYLoginController.h */,
 				69582DAA1952C3F40072ED3E /* WYLoginController.m */,
-				5E5BC25F183EE6770003AC6D /* WYUserGuideViewController.h */,
-				5E5BC260183EE6770003AC6D /* WYUserGuideViewController.m */,
 				69AA1EB81953D9D400BA0884 /* WYRegisterController.h */,
 				69AA1EB91953D9D400BA0884 /* WYRegisterController.m */,
+				5E5BC25F183EE6770003AC6D /* WYUserGuideViewController.h */,
+				5E5BC260183EE6770003AC6D /* WYUserGuideViewController.m */,
 				69AA1EBB1953D9F900BA0884 /* WYFindPasswordController.h */,
 				69AA1EBC1953D9F900BA0884 /* WYFindPasswordController.m */,
 			);

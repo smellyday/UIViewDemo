@@ -87,7 +87,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	static NSString *NORMALCELL = @"Cell";
-//	static NSString *HEADCELL = @"Info";
 	NSInteger row = [indexPath row];
 	NSInteger section = [indexPath section];
     
@@ -183,8 +182,9 @@
             
         } else {
             WYLoginController *loginController = [[WYLoginController alloc] init];
-//            [self.navigationController pushViewController:loginController animated:YES];
-			[self presentViewController:loginController animated:YES completion:nil];
+			UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:loginController];
+			[navc setNavigationBarHidden:YES];
+			[self presentViewController:navc animated:YES completion:nil];
         }
         
     } else if (section == 1 && row == 0) {
