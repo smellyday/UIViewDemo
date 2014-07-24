@@ -8,7 +8,7 @@
 
 #import "WYLoginController.h"
 #import "WYRegisterController.h"
-#import "WYFindPasswordController.h"
+#import "WYResetPasswordViewController.h"
 #import "consts.h"
 
 @interface WYLoginController ()
@@ -141,6 +141,7 @@
 	[forgetPWBtn setTitle:NSLocalizedString(@"forget password", @"forget password") forState:UIControlStateNormal];
 	[forgetPWBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	forgetPWBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+	[forgetPWBtn addTarget:self action:@selector(clickForgetPWButton:) forControlEvents:UIControlEventTouchUpInside];
 	[containerScrollView addSubview:forgetPWBtn];
 	
     /*
@@ -229,19 +230,19 @@
     [self.navigationController pushViewController:rc animated:YES];
 }
 
-- (void)forgetPassword:(id)sender {
-    WYFindPasswordController *fpc = [[WYFindPasswordController alloc] init];
-    [self.navigationController pushViewController:fpc animated:YES];
-}
-
 #pragma UIButton Event
-- (void)clickCancelButton:(id)button {
+- (void)clickCancelButton:(id)sender {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)clickRegisterButton:(id)button {
+- (void)clickRegisterButton:(id)sender {
 	WYRegisterController *rc = [[WYRegisterController alloc] init];
 	[self.navigationController pushViewController:rc animated:YES];
+}
+
+- (void)clickForgetPWButton:(id)sender {
+    WYResetPasswordViewController *rpv = [[WYResetPasswordViewController alloc] init];
+    [self.navigationController pushViewController:rpv animated:YES];
 }
 
 
