@@ -127,12 +127,20 @@
 	weiboBtn.frame = CGRectMake(SCREEN_WIDTH/2-w/2, 300, 120, h);
 	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_N] forState:UIControlStateNormal];
 	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_H] forState:UIControlStateHighlighted];
+    weiboBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+	[weiboBtn setTitle:NSLocalizedString(@"login with sina weibo", @"login with sina weibo") forState:UIControlStateNormal];
+	[weiboBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	weiboBtn.titleLabel.font = [UIFont systemFontOfSize:12];
 	[containerScrollView addSubview:weiboBtn];
 	
 	UIButton *qqBtn = [[UIButton alloc] init];
 	qqBtn.frame = CGRectMake(SCREEN_WIDTH-(SCREEN_WIDTH-w)/2-120, 300, 120, h);
 	[qqBtn setBackgroundImage:[UIImage imageNamed:PIC_QQ_BTN_N] forState:UIControlStateNormal];
 	[qqBtn setBackgroundImage:[UIImage imageNamed:PIC_QQ_BTN_H] forState:UIControlStateHighlighted];
+    qqBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 30, 0, 0);
+	[qqBtn setTitle:NSLocalizedString(@"login with qq", @"login with qq") forState:UIControlStateNormal];
+	[qqBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	qqBtn.titleLabel.font = [UIFont systemFontOfSize:12];
 	[containerScrollView addSubview:qqBtn];
     
 	UIButton *forgetPWBtn = [[UIButton alloc] init];
