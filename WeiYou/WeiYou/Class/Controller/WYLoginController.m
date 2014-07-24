@@ -105,6 +105,7 @@
 	_passwdField.placeholder = NSLocalizedString(@"password", @"password");
 	_passwdField.backgroundColor = [UIColor whiteColor];
 	_passwdField.delegate = self;
+	_passwdField.secureTextEntry = YES;
 	[_passwdField setBorderStyle:UITextBorderStyleRoundedRect];
 	[containerScrollView addSubview:_passwdField];
 	
@@ -113,9 +114,9 @@
 	UIButton *loginBtn = [[UIButton alloc] init];
 	loginBtn.frame = CGRectMake(SCREEN_WIDTH/2-w/2, 230, w, h);
 	[loginBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_N] forState:UIControlStateNormal];
-	[loginBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_H] forState:UIControlStateHighlighted];
+	[loginBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_H] forState:UIControlStateSelected];
 	[loginBtn setTintColor:[UIColor redColor]];
-	loginBtn.showsTouchWhenHighlighted = YES;
+//	loginBtn.showsTouchWhenHighlighted = YES;
 	[loginBtn setTitle:NSLocalizedString(@"login", @"login") forState:UIControlStateNormal];
 	[loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
@@ -124,7 +125,7 @@
 	UIButton *weiboBtn = [[UIButton alloc] init];
 	weiboBtn.frame = CGRectMake(SCREEN_WIDTH/2-w/2, 300, 120, h);
 	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_N] forState:UIControlStateNormal];
-	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_H] forState:UIControlStateHighlighted];
+	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_H] forState:UIControlStateSelected];
 	[containerScrollView addSubview:weiboBtn];
 	
 	UIButton *qqBtn = [[UIButton alloc] init];
@@ -134,7 +135,7 @@
 	[containerScrollView addSubview:qqBtn];
     
 	UIButton *forgetPWBtn = [[UIButton alloc] init];
-	forgetPWBtn.frame = CGRectMake(SCREEN_WIDTH/2-60/2, SCREEN_HEIGHT-STATUS_BAR_H-NAV_BAR_H-60, 60, 30);
+	forgetPWBtn.frame = CGRectMake(SCREEN_WIDTH/2-60/2, SCREEN_HEIGHT-STATUS_BAR_H-NAV_BAR_H-60, 60, 60);
 	forgetPWBtn.showsTouchWhenHighlighted = YES;
 	[forgetPWBtn setTitle:NSLocalizedString(@"forget password", @"forget password") forState:UIControlStateNormal];
 	[forgetPWBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
