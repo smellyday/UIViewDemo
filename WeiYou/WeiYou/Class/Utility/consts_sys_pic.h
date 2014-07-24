@@ -19,5 +19,7 @@
 #define PIC_WEIBO_BTN_H					 @"weibo_btn_bg_h.png"
 #define PIC_QQ_BTN_N					 @"qq_btn_bg_n.png"
 #define PIC_QQ_BTN_H					 @"qq_btn_bg_h.png"
+#define PIC_VERI_BTN_N                   @"verify_btn_bg_n.png"
+#define PIC_VERI_BTN_H                   @"verify_btn_bg_h.png"
 
 #endif

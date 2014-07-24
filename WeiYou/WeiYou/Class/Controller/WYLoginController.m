@@ -88,8 +88,11 @@
 	welcomeLabel.font = [UIFont systemFontOfSize:38];
 	[containerScrollView addSubview:welcomeLabel];
 	
+    CGFloat gaph1 = 156.0;
+    CGFloat fw = 264.0;
+    CGFloat fh = 40.0;
 	_userField = [[UITextField alloc] init];
-	_userField.frame = CGRectMake(28, 130, 264, 40);
+	_userField.frame = CGRectMake(SCREEN_WIDTH/2-fw/2, gaph1, fw, fh);
 	_userField.autocorrectionType = UITextAutocorrectionTypeNo;
 	_userField.returnKeyType = UIReturnKeyDone;
 	_userField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -100,7 +103,7 @@
 	[containerScrollView addSubview:_userField];
 	
 	_passwdField = [[UITextField alloc] init];
-	_passwdField.frame = CGRectMake(28, 170, 264, 40);
+	_passwdField.frame = CGRectMake(SCREEN_WIDTH/2-fw/2, gaph1+fh, fw, fh);
 	_passwdField.autocorrectionType = UITextAutocorrectionTypeNo;
 	_passwdField.returnKeyType = UIReturnKeyDone;
 	_passwdField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -111,10 +114,11 @@
 	[_passwdField setBorderStyle:UITextBorderStyleRoundedRect];
 	[containerScrollView addSubview:_passwdField];
 	
-	CGFloat w = 250.0;
-	CGFloat h = 40.0;
+    CGFloat gaph2 = 47.0;
+	CGFloat lbw = 264.0;
+	CGFloat lbh = 40.0;
 	UIButton *loginBtn = [[UIButton alloc] init];
-	loginBtn.frame = CGRectMake(SCREEN_WIDTH/2-w/2, 230, w, h);
+	loginBtn.frame = CGRectMake(SCREEN_WIDTH/2-lbw/2, gaph1+fh*2+gaph2, lbw, lbh);
 	[loginBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_N] forState:UIControlStateNormal];
 	[loginBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_H] forState:UIControlStateHighlighted];
 	[loginBtn setTintColor:[UIColor redColor]];
@@ -123,8 +127,11 @@
 	loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
 	[containerScrollView addSubview:loginBtn];
 	
+    CGFloat gaph3 = 19.0;
+    CGFloat wqbw = 127;
+    CGFloat wqbh = 35;
 	UIButton *weiboBtn = [[UIButton alloc] init];
-	weiboBtn.frame = CGRectMake(SCREEN_WIDTH/2-w/2, 300, 120, h);
+	weiboBtn.frame = CGRectMake(SCREEN_WIDTH/2-lbw/2, gaph1+fh*2+gaph2+lbh+gaph3, wqbw, wqbh);
 	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_N] forState:UIControlStateNormal];
 	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_H] forState:UIControlStateHighlighted];
     weiboBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 35, 0, 0);
@@ -135,7 +142,7 @@
 	[containerScrollView addSubview:weiboBtn];
 	
 	UIButton *qqBtn = [[UIButton alloc] init];
-	qqBtn.frame = CGRectMake(SCREEN_WIDTH-(SCREEN_WIDTH-w)/2-120, 300, 120, h);
+	qqBtn.frame = CGRectMake(SCREEN_WIDTH-(SCREEN_WIDTH-lbw)/2-wqbw, gaph1+fh*2+gaph2+lbh+gaph3, wqbw, wqbh);
 	[qqBtn setBackgroundImage:[UIImage imageNamed:PIC_QQ_BTN_N] forState:UIControlStateNormal];
 	[qqBtn setBackgroundImage:[UIImage imageNamed:PIC_QQ_BTN_H] forState:UIControlStateHighlighted|UIControlStateSelected];
     qqBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 35, 0, 0);
