@@ -99,6 +99,7 @@
 	_userField.placeholder = NSLocalizedString(@"user name", @"user name");
 	_userField.backgroundColor = [UIColor whiteColor];
 	_userField.delegate = self;
+	_userField.keyboardType = UIKeyboardTypeEmailAddress;
 	[_userField setBorderStyle:UITextBorderStyleRoundedRect];
 	[containerScrollView addSubview:_userField];
 	
@@ -111,6 +112,7 @@
 	_passwdField.backgroundColor = [UIColor whiteColor];
 	_passwdField.delegate = self;
 	_passwdField.secureTextEntry = YES;
+	_passwdField.keyboardType = UIKeyboardTypePhonePad;
 	[_passwdField setBorderStyle:UITextBorderStyleRoundedRect];
 	[containerScrollView addSubview:_passwdField];
 	

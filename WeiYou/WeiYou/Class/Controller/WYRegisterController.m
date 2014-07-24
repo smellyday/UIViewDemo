@@ -52,31 +52,23 @@
 	[self.view addSubview:topBarContainer];
 	
 	//main content
+    CGFloat gaph1 = 35.0;
+    CGFloat fw = 264.0;
+    CGFloat fh = 40.0;
 	_userField = [[UITextField alloc] init];
-	_userField.frame = CGRectMake(28, STATUS_BAR_H+NAV_BAR_H+50, 264, 40);
+	_userField.frame = CGRectMake(SCREEN_WIDTH/2-fw/2, STATUS_BAR_H+NAV_BAR_H+gaph1, fw, fh);
 	_userField.autocorrectionType = UITextAutocorrectionTypeNo;
 	_userField.returnKeyType = UIReturnKeyDone;
 	_userField.clearButtonMode = UITextFieldViewModeWhileEditing;
 	_userField.placeholder = NSLocalizedString(@"user name", @"user name");
 	_userField.backgroundColor = [UIColor whiteColor];
 	_userField.delegate = self;
-	_verifyField.keyboardType = UIKeyboardTypeEmailAddress;
+	_userField.keyboardType = UIKeyboardTypeEmailAddress;
 	[_userField setBorderStyle:UITextBorderStyleRoundedRect];
-	
-	_passwdField = [[UITextField alloc] init];
-	_passwdField.frame = CGRectMake(28, STATUS_BAR_H+NAV_BAR_H+90, 264, 40);
-	_passwdField.autocorrectionType = UITextAutocorrectionTypeNo;
-	_passwdField.returnKeyType = UIReturnKeyDone;
-	_passwdField.clearButtonMode = UITextFieldViewModeWhileEditing;
-	_passwdField.placeholder = NSLocalizedString(@"password", @"password");
-	_passwdField.backgroundColor = [UIColor whiteColor];
-	_passwdField.delegate = self;
-	_verifyField.keyboardType = UIKeyboardTypeEmailAddress;
-	_passwdField.secureTextEntry = YES;
-	[_passwdField setBorderStyle:UITextBorderStyleRoundedRect];
-	
+    
+    CGFloat vw = 178.0;
 	_verifyField = [[UITextField alloc] init];
-	_verifyField.frame = CGRectMake(28, STATUS_BAR_H+NAV_BAR_H+130, 264, 40);
+	_verifyField.frame = CGRectMake(SCREEN_WIDTH/2-fw/2, STATUS_BAR_H+NAV_BAR_H+gaph1+fh, vw, fh);
 	_verifyField.autocorrectionType = UITextAutocorrectionTypeNo;
 	_verifyField.returnKeyType = UIReturnKeyDone;
 	_verifyField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -85,19 +77,41 @@
 	_verifyField.delegate = self;
 	_verifyField.keyboardType = UIKeyboardTypePhonePad;
 	[_verifyField setBorderStyle:UITextBorderStyleRoundedRect];
+    
+    CGFloat vbw = 85.0;
+    CGFloat vbh = 38.0;
+    UIButton *veriBtn = [[UIButton alloc] init];
+	veriBtn.frame = CGRectMake(SCREEN_WIDTH/2-fw/2+vw+1, STATUS_BAR_H+NAV_BAR_H+gaph1+fh+1, vbw, vbh);
+	[veriBtn setBackgroundImage:[UIImage imageNamed:PIC_VERI_BTN_N] forState:UIControlStateNormal];
+	[veriBtn setBackgroundImage:[UIImage imageNamed:PIC_VERI_BTN_H] forState:UIControlStateHighlighted];
+	[veriBtn setTitle:NSLocalizedString(@"sent verify code", @"sent verify code") forState:UIControlStateNormal];
+	[veriBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	veriBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+	
+	_passwdField = [[UITextField alloc] init];
+	_passwdField.frame = CGRectMake(SCREEN_WIDTH/2-fw/2, STATUS_BAR_H+NAV_BAR_H+gaph1+fh*2, fw, fh);
+	_passwdField.autocorrectionType = UITextAutocorrectionTypeNo;
+	_passwdField.returnKeyType = UIReturnKeyDone;
+	_passwdField.clearButtonMode = UITextFieldViewModeWhileEditing;
+	_passwdField.placeholder = NSLocalizedString(@"password", @"password");
+	_passwdField.backgroundColor = [UIColor whiteColor];
+	_passwdField.delegate = self;
+	_passwdField.keyboardType = UIKeyboardTypeEmailAddress;
+	_passwdField.secureTextEntry = YES;
+	[_passwdField setBorderStyle:UITextBorderStyleRoundedRect];
 	
 	[self.view addSubview:_userField];
-	[self.view addSubview:_passwdField];
 	[self.view addSubview:_verifyField];
+    [self.view addSubview:veriBtn];
+	[self.view addSubview:_passwdField];
 	
-	CGFloat w = 250.0;
-	CGFloat h = 40.0;
+    CGFloat gaph2 = 47.0;
 	UIButton *registerBtn = [[UIButton alloc] init];
-	registerBtn.frame = CGRectMake(SCREEN_WIDTH/2-w/2, STATUS_BAR_H+NAV_BAR_H+170+20, w, h);
+	registerBtn.frame = CGRectMake(SCREEN_WIDTH/2-fw/2, STATUS_BAR_H+NAV_BAR_H+gaph1+fh*3+gaph2, fw, fh);
 	[registerBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_N] forState:UIControlStateNormal];
 	[registerBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_H] forState:UIControlStateHighlighted];
 	[registerBtn setTintColor:[UIColor redColor]];
-	registerBtn.showsTouchWhenHighlighted = YES;
+//	registerBtn.showsTouchWhenHighlighted = YES;
 	[registerBtn setTitle:NSLocalizedString(@"register", @"register") forState:UIControlStateNormal];
 	[registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	registerBtn.titleLabel.font = [UIFont systemFontOfSize:18];
@@ -106,7 +120,7 @@
 	
 	UIButton *declareBtn = [[UIButton alloc] init];
 	declareBtn.frame = CGRectMake(SCREEN_WIDTH/2-200/2, SCREEN_HEIGHT-60, 200, 60);
-	declareBtn.showsTouchWhenHighlighted = YES;
+//	declareBtn.showsTouchWhenHighlighted = YES;
 	[declareBtn setTitle:NSLocalizedString(@"register declare", @"register declare") forState:UIControlStateNormal];
 	[declareBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	declareBtn.titleLabel.font = [UIFont italicSystemFontOfSize:12];
