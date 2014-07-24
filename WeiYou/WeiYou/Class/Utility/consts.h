@@ -9,6 +9,7 @@
 #import "consts_sys_pic.h"
 #import "consts_view.h"
 #import "consts_utility.h"
+#import "WYNavigationController.h"
 
 #ifndef WeiYou_consts_h
 #define WeiYou_consts_h

@@ -52,7 +52,7 @@
 #define NAV_BAR_H       44
 
 	//navigation Bar
-#define NAV_BAR_BTN_W             40*APP_SCALE_W
+#define NAV_BAR_BTN_W             50*APP_SCALE_W
 #define NAV_BAR_LEFT_BTN_FRAME    CGRectMake(10*APP_SCALE_W, 0, NAV_BAR_BTN_W, NAV_BAR_H)
 #define NAV_BAR_RIGHT_BTN_FRAME   CGRectMake(SCREEN_WIDTH-10*APP_SCALE_W-NAV_BAR_BTN_W, 0, NAV_BAR_BTN_W, NAV_BAR_H)
 #define NAV_BAR_TITLE_W           100*APP_SCALE_W

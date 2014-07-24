@@ -21,6 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 		// background
     self.view.backgroundColor = [UIColor whiteColor]; // can not be clearColor
     UIImageView *bg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:PIC_LOGIN_BG]];
@@ -175,6 +176,7 @@
 - (void)clickCancelButton:(id)button {
 	[self.navigationController popViewControllerAnimated:YES];
 }
+
 
 /*
 #pragma mark - Navigation

@@ -8,10 +8,10 @@
 
 #import "WYAppDelegate.h"
 #import "WYRootViewController.h"
-#import "consts.h"
-#include <stdio.h>
 #import "WYGlobalState.h"
 #import "WYDataEngine.h"
+#import "consts.h"
+#include <stdio.h>
 
 @implementation WYAppDelegate
 
@@ -47,8 +47,7 @@
     //init rootviewcontroller
 	WYRootViewController *rootViewController = [[WYRootViewController alloc] init];
 	UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-	rootNavigationController.navigationBar.barTintColor = WY_MAIN_COLOR;
-	rootNavigationController.navigationBar.tintColor = [UIColor blackColor];
+    [rootNavigationController.navigationBar setBackgroundImage:[UIImage imageNamed:PIC_NAV_BAR_BG] forBarMetrics:UIBarMetricsDefault];
 	[self.window setRootViewController:rootNavigationController];
 	
     self.window.backgroundColor = [UIColor whiteColor];

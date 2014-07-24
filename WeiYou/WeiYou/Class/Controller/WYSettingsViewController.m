@@ -182,7 +182,8 @@
             
         } else {
             WYLoginController *loginController = [[WYLoginController alloc] init];
-			UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:loginController];
+			WYNavigationController *navc = [[WYNavigationController alloc] initWithRootViewController:loginController];
+            navc.delegate = self;
 			[navc setNavigationBarHidden:YES];
 			[self presentViewController:navc animated:YES completion:nil];
         }
@@ -324,6 +325,13 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - UINavigationControllerDelegate
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
 }
 
 @end

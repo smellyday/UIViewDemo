@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WYLoginController : UIViewController <UITextFieldDelegate> {
+@interface WYLoginController : UIViewController <UITextFieldDelegate, UIGestureRecognizerDelegate> {
 	UITextField *_userField;
 	UITextField *_passwdField;
 }

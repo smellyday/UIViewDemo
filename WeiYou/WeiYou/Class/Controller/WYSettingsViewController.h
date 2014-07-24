@@ -10,7 +10,7 @@
 #import "WYGlobalState.h"
 #import "ASIHttpRequest.h"
 
-@interface WYSettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ASIHTTPRequestDelegate> {
+@interface WYSettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, ASIHTTPRequestDelegate> {
 	UITableView *_mTableView;
     
     ASIHTTPRequest *_userInfoRequest;

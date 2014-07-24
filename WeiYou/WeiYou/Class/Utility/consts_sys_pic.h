@@ -10,6 +10,7 @@
 #define WeiYou_consts_sys_pic_h
 
 
+#define PIC_NAV_BAR_BG                   @"nav_bar_bg.png"
 
 // login
 #define PIC_LOGIN_BG                     @"login_bg.png"
