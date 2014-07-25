@@ -125,7 +125,6 @@
 		5E5BC238183EE5D80003AC6D /* WeiYou-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "WeiYou-Info.plist"; path = "WeiYou/WeiYou-Info.plist"; sourceTree = "<group>"; };
 		5E5BC239183EE5D80003AC6D /* WeiYou-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WeiYou-Prefix.pch"; path = "WeiYou/WeiYou-Prefix.pch"; sourceTree = "<group>"; };
 		5E5BC251183EE5E90003AC6D /* consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = consts.h; sourceTree = "<group>"; };
-		5E5BC252183EE5E90003AC6D /* WYLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLog.h; sourceTree = "<group>"; };
 		5E5BC25B183EE6770003AC6D /* WYRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRootViewController.m; sourceTree = "<group>"; };
 		5E5BC25C183EE6770003AC6D /* WYRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRootViewController.h; sourceTree = "<group>"; };
 		5E5BC25D183EE6770003AC6D /* WYSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSettingsViewController.h; sourceTree = "<group>"; };
@@ -264,6 +263,7 @@
 		69E215AB1981F2970022D432 /* WYTencentUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTencentUserInfo.m; sourceTree = "<group>"; };
 		69E215AD1981F2B00022D432 /* WYSinaWeiboUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSinaWeiboUserInfo.h; sourceTree = "<group>"; };
 		69E215AE1981F2B00022D432 /* WYSinaWeiboUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSinaWeiboUserInfo.m; sourceTree = "<group>"; };
+		69E215B7198262240022D432 /* log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,7 +457,7 @@
 				5EB6B92F19800FE600E9E695 /* consts_view.h */,
 				5EB6B92E19800FDB00E9E695 /* consts_sys_pic.h */,
 				5E5BC251183EE5E90003AC6D /* consts.h */,
-				5E5BC252183EE5E90003AC6D /* WYLog.h */,
+				69E215B7198262240022D432 /* log.h */,
 				5E5BC2EF183EF5430003AC6D /* WYFileManager.h */,
 				5E5BC2F0183EF5430003AC6D /* WYFileManager.m */,
 				69582DA61952BACF0072ED3E /* WYGlobalState.h */,

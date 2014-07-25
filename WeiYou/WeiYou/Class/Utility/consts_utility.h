@@ -9,52 +9,6 @@
 #ifndef WeiYou_consts_utility_h
 #define WeiYou_consts_utility_h
 
-#define LOGOPEN 1
-#define VC_LOGOPEN 1
-#define DB_BLOCK_LOG
-#define NET_BLOCK_LOG 1
-
-
-#pragma mark ---log  flag
-
-#define LogFrame(frame) NSLog(@"frame[X=%.1f,Y=%.1f,W=%.1f,H=%.1f",frame.origin.x,frame.origin.y,frame.size.width,frame.size.height)
-#define LogPoint(point) NSLog(@"Point[X=%.1f,Y=%.1f]",point.x,point.y)
-
-#if LOGOPEN
-#define DDDLog(FORMAT, ...) fprintf(stderr,"%s:%d\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
-#else
-#define DDDLog(FORMAT, ...)
-#endif
-
-	//viewController log
-#ifdef VC_LOGOPEN
-#define LogVC DDDLog
-#else
-#define LogVC
-#endif
-
-	//dbbase log
-#ifdef DB_BLOCK_LOG
-#define LogDB DDDLog
-#else
-#define LogDB
-#endif
-
-
-	//networking log
-#if NET_BLOCK_LOG
-#define LogNET DDDLog
-#else
-#define LogNET
-#endif
-
-	//view log
-#ifdef VIEW_BLOCK_LOG
-#define LogVIEW DDDLog
-#else
-#define LogVIEW
-#endif
-
 
 #pragma mark --time setup
 

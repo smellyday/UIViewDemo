@@ -264,10 +264,8 @@
 #pragma mark - Tencent Session Delegate
 - (void)tencentDidLogin {
     if (_tcOAuth.accessToken && 0 != [_tcOAuth.accessToken length]) {
-        mlog(@"login success! token is %@, openid is %@", _tcOAuth.accessToken, _tcOAuth.openId);
         [_tcOAuth getUserInfo];
     } else {
-        mlog(@"login fail.");
     }
 }
 
@@ -280,17 +278,17 @@
 }
 
 - (void)tencentDidNotNetWork {
-    showfunction;
+    LOGFUNCTION;
 }
 
 - (void)getUserInfoResponse:(APIResponse *)response {
-    showfunction;
+    LOGFUNCTION;
     mlog(@"response is:\n%@", [[response jsonResponse] description]);
 }
 
 
 - (void)tencentOAuth:(TencentOAuth *)tencentOAuth doCloseViewController:(UIViewController *)viewController {
-    showfunction;
+    LOGFUNCTION;
 }
 
 #pragma -

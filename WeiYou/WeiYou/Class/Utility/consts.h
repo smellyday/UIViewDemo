@@ -5,7 +5,7 @@
 //  Created by owen on 11/19/13.
 //  Copyright (c) 2013 xiyuan. All rights reserved.
 //
-#import "WYLog.h"
+#import "log.h"
 #import "consts_sys_pic.h"
 #import "consts_view.h"
 #import "consts_utility.h"
