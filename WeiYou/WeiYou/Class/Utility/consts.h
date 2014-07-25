@@ -31,11 +31,19 @@
 #define SinaRedirectUrl @"http://www.baidu.com"
 
 //========SINA login info========
-#define WY_USER_ID                          @"wy_user_id"
-#define WY_USER_NAME                        @"wy_user_name"
-#define WY_USER_PROFILE_IMAGE_URL           @"wy_user_profile_image_url"
-#define WY_USER_PROFILE_IMAGE_DATA          @"wy_user_profile_image_data"
-#define WY_USER_TOKEN_SINA                  @"wy_token_sina"
+#define SINA_USER_TOKEN                       @"sina_token"
+#define SINA_USER_ID                          @"sina_user_id"
+#define SINA_USER_NAME                        @"sina_user_name"
+#define SINA_USER_PROFILE_IMAGE_URL           @"sina_user_profile_image_url"
+#define SINA_USER_PROFILE_IMAGE_DATA          @"sina_user_profile_image_data"
+//========QQ login info========
+#define QQ_USER_TOKEN                         @"qq_token"
+#define QQ_OPEN_ID                            @"qq_open_id"
+#define QQ_EXPIRATION_DATE                    @"qq_expiration_date"
+#define QQ_USER_NAME                          @"qq_user_name"
+#define QQ_USER_PROFILE_IMAGE_URL             @"qq_user_profile_image_url"
+#define QQ_USER_PROFILE_IMAGE_DATA            @"qq_user_profile_image_data"
+
 
 //========notification center========
 #define WY_NOTI_CHOSEN_ARRAY_CHANGE         @"ChosenArrayChange" // for create new trip

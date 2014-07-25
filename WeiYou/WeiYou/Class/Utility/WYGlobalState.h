@@ -12,12 +12,14 @@
 
 
 @interface WYGlobalState : NSObject {
-    WYSinaWeiboUserInfo *_sinaWeiboInfo;
+    WYSinaWeiboUserInfo *_sinaUserInfo;
+    WYTencentUserInfo *_qqUserInfo;
 }
 
-@property (nonatomic, strong) WYSinaWeiboUserInfo *sinaWeiboInfo;
+@property (nonatomic, strong) WYSinaWeiboUserInfo *sinaUserInfo;
+@property (nonatomic, strong) WYTencentUserInfo *qqUserInfo;
 
 + (id)sharedGlobalState;
-- (BOOL)ifUserLogIn;
+- (BOOL)isLogIn;
 
 @end

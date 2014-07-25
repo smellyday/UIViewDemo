@@ -10,25 +10,34 @@
 #import "consts.h"
 
 @implementation WYGlobalState
-@synthesize sinaWeiboInfo = _sinaWeiboInfo;
+@synthesize sinaUserInfo = _sinaUserInfo;
+@synthesize qqUserInfo = _qqUserInfo;
 
 + (id)sharedGlobalState {
 	static WYGlobalState *sharedState = nil;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		sharedState = [[self alloc] init];
-        sharedState.sinaWeiboInfo = [[WYSinaWeiboUserInfo alloc] init];
 	});
 	
 	return sharedState;
 }
 
-- (BOOL)ifUserLogIn {
-    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_TOKEN_SINA];
-    NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_ID];
-    if (token != nil && uid != nil) {
-        return YES;
+- (WYSinaWeiboUserInfo *)sinaAuthInfo {
+    if (!_sinaUserInfo) {
+        _sinaUserInfo = [[WYSinaWeiboUserInfo alloc] init];
     }
+    return _sinaUserInfo;
+}
+
+- (WYTencentUserInfo *)qqAuthInfo {
+    if (!_qqUserInfo) {
+        _qqUserInfo = [[WYTencentUserInfo alloc] init];
+    }
+    return _qqUserInfo;
+}
+
+- (BOOL)isLogIn {
     return NO;
 }
 

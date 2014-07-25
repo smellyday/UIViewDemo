@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSString *userImageUrl;
 @property (nonatomic, strong) UIImage *userImage;
 
+- (BOOL)isLogin;
 - (void)clear;
 
 @end

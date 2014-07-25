@@ -61,7 +61,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    if ([[WYGlobalState sharedGlobalState] ifUserLogIn]) {
+    if ([[WYGlobalState sharedGlobalState] isLogin]) {
         return 4;
     } else {
         return 3;
@@ -105,9 +105,9 @@
         
         
         cell.backgroundColor = [UIColor yellowColor];
-        if ([[WYGlobalState sharedGlobalState] ifUserLogIn]) {
+        if ([[WYGlobalState sharedGlobalState] isLogin]) {
 
-            NSString *username = [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] userName];
+            NSString *username = [[[WYGlobalState sharedGlobalState] sinaUserInfo] userName];
             if (username != nil) {
 
                 cell.textLabel.text = username;
@@ -118,13 +118,13 @@
                 
             }
             
-            if ([[[WYGlobalState sharedGlobalState] sinaWeiboInfo] userImage] != nil) {
+            if ([[[WYGlobalState sharedGlobalState] sinaUserInfo] userImage] != nil) {
 
-                cell.imageView.image = [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] userImage];
+                cell.imageView.image = [[[WYGlobalState sharedGlobalState] sinaUserInfo] userImage];
                 
             } else {
 
-                NSString *imageUrl = [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] userImageUrl];
+                NSString *imageUrl = [[[WYGlobalState sharedGlobalState] sinaUserInfo] userImageUrl];
                 if (imageUrl != nil) {
                     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:imageUrl]];
                     [request setDelegate:self];
@@ -178,7 +178,7 @@
     
     if (section == 0 && row == 0) {
         
-        if ([[WYGlobalState sharedGlobalState] ifUserLogIn]) {
+        if ([[WYGlobalState sharedGlobalState] isLogin]) {
             
         } else {
             WYLoginController *loginController = [[WYLoginController alloc] init];
@@ -194,12 +194,12 @@
 	} else if (section == 1 && row == 1) {
         
     } else if (section == 3 && row == 0) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_PROFILE_IMAGE_URL];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_PROFILE_IMAGE_DATA];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_ID];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_NAME];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_TOKEN_SINA];
-        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] clear];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_PROFILE_IMAGE_URL];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_PROFILE_IMAGE_DATA];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_ID];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_NAME];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_TOKEN];
+        [[[WYGlobalState sharedGlobalState] sinaUserInfo] clear];
         [self.mTableView reloadData];
         [self.mTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         
@@ -268,12 +268,12 @@
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingMutableContainers error:nil];
         
         NSString *userName = [jsonDic objectForKey:@"name"];
-        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setUserName:userName];
-        [[NSUserDefaults standardUserDefaults] setObject:userName forKey:WY_USER_NAME];
+        [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserName:userName];
+        [[NSUserDefaults standardUserDefaults] setObject:userName forKey:SINA_USER_NAME];
         
         NSString *imgUrl = [jsonDic objectForKey:@"profile_image_url"];
-        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setUserImageUrl:imgUrl];
-        [[NSUserDefaults standardUserDefaults] setObject:imgUrl forKey:WY_USER_PROFILE_IMAGE_URL];
+        [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserImageUrl:imgUrl];
+        [[NSUserDefaults standardUserDefaults] setObject:imgUrl forKey:SINA_USER_PROFILE_IMAGE_URL];
         
         [self.mTableView reloadData];
         [self.navigationController popToViewController:self animated:YES];
@@ -281,8 +281,8 @@
     } else if (request == _userImageRequest) {
         
         NSData *imgData = [request responseData];
-        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setUserImage:[UIImage imageWithData:imgData]];
-        [[NSUserDefaults standardUserDefaults] setObject:imgData forKey:WY_USER_PROFILE_IMAGE_DATA];
+        [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserImage:[UIImage imageWithData:imgData]];
+        [[NSUserDefaults standardUserDefaults] setObject:imgData forKey:SINA_USER_PROFILE_IMAGE_DATA];
 
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.mTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
@@ -303,8 +303,8 @@
 - (void)doWhenLoginAuthSuccess:(id)sender {
     
     NSString *userInfoBaseStr = @"https://api.weibo.com/2/users/show.json";
-    NSString *token = [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] authToken];
-    NSString *uid = [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] userID];
+    NSString *token = [[[WYGlobalState sharedGlobalState] sinaUserInfo] authToken];
+    NSString *uid = [[[WYGlobalState sharedGlobalState] sinaUserInfo] userID];
     NSString *urlStr = [NSString stringWithFormat:@"%@?uid=%@&access_token=%@", userInfoBaseStr, uid, token];
     NSURL *url = [NSURL URLWithString:urlStr];
     
