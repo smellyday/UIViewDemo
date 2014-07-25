@@ -10,14 +10,14 @@
 #import "consts.h"
 
 @implementation WYGlobalState
-@synthesize sinaWeibo = _sinaWeibo;
+@synthesize sinaWeiboInfo = _sinaWeiboInfo;
 
 + (id)sharedGlobalState {
 	static WYGlobalState *sharedState = nil;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		sharedState = [[self alloc] init];
-        sharedState.sinaWeibo = [[WYSinaWeibo alloc] init];
+        sharedState.sinaWeiboInfo = [[WYSinaWeiboUserInfo alloc] init];
 	});
 	
 	return sharedState;

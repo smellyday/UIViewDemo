@@ -5,6 +5,7 @@
 //
 
 #import <Availability.h>
+#import "WeiboSDK.h"
 
 #ifndef __IPHONE_3_0
 #warning "This project uses features only available in iOS SDK 3.0 and later."
@@ -15,6 +16,7 @@
 	#import <Foundation/Foundation.h>
 #endif
 
-#import "WeiboSDK.h"
+#define QQAppID @"222222"
+
 #define SinaWeiboAppKey @"211678035"
 #define SinaRedirectUrl @"http://www.baidu.com"

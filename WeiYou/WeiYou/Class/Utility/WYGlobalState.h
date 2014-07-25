@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WYSinaWeibo.h"
+#import "WYSinaWeiboUserInfo.h"
+#import "WYTencentUserInfo.h"
+
 
 @interface WYGlobalState : NSObject {
-    WYSinaWeibo *_sinaWeibo;
+    WYSinaWeiboUserInfo *_sinaWeiboInfo;
 }
 
-@property (nonatomic, strong) WYSinaWeibo *sinaWeibo;
+@property (nonatomic, strong) WYSinaWeiboUserInfo *sinaWeiboInfo;
 
 + (id)sharedGlobalState;
 - (BOOL)ifUserLogIn;

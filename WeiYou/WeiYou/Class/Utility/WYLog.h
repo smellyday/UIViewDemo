@@ -8,6 +8,7 @@
 
 #define weiyou
 #define analyselog
+//#define show_function
 
 
 #ifdef weiyou
@@ -21,4 +22,10 @@
 #define mlog(...) NSLog(__VA_ARGS__)
 #else
 #define mlog(...)
+#endif
+
+#ifdef show_function
+#define showfunction NSLog(@"%s", __func__)
+#else
+#define showfunction
 #endif

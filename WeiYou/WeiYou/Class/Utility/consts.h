@@ -22,6 +22,10 @@
 #define WY_MAIN_COLOR_BG               [UIColor colorWithRed:0.4 green:0.5 blue:0.7 alpha:1.0]
 #define WY_CELL_COLOR                  [UIColor colorWithRed:0.9531 green:0.9414 blue:0.9140 alpha:1.0]
 
+//========LOGIN========
+#define PREFIX_SINA                         @"wb"
+#define PREFIX_QQ                           @"tencent"
+
 //========SINA login info========
 #define WY_USER_ID                          @"wy_user_id"
 #define WY_USER_NAME                        @"wy_user_name"

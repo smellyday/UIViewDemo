@@ -11,6 +11,7 @@
 #import "WYGlobalState.h"
 #import "WYDataEngine.h"
 #import "consts.h"
+#import <TencentOpenAPI/TencentOAuth.h>
 #include <stdio.h>
 
 @implementation WYAppDelegate
@@ -37,11 +38,11 @@
     [WeiboSDK registerApp:SinaWeiboAppKey];
     
     if ([[WYGlobalState sharedGlobalState] ifUserLogIn]) {
-        [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserName:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_NAME]];
-        [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserID:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_ID]];
-        [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserImageUrl:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_PROFILE_IMAGE_URL]];
-        [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserImage:[UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_PROFILE_IMAGE_DATA]]];
-        [[[WYGlobalState sharedGlobalState] sinaWeibo] setAuthToken:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_TOKEN_SINA]];
+        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setUserName:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_NAME]];
+        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setUserID:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_ID]];
+        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setUserImageUrl:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_PROFILE_IMAGE_URL]];
+        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setUserImage:[UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_PROFILE_IMAGE_DATA]]];
+        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setAuthToken:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_TOKEN_SINA]];
     }
 	
     //init rootviewcontroller
@@ -85,10 +86,23 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    return [WeiboSDK handleOpenURL:url delegate:self];
+    mlog(@"%s", __func__);
+    mlog(@"url : %@", [url description]);
+    mlog(@"source application : %@", sourceApplication);
+    if ([[url description] hasPrefix:PREFIX_QQ]) {
+        return [TencentOAuth HandleOpenURL:url];
+    } else if ([[url description] hasPrefix:PREFIX_SINA]) {
+        return [WeiboSDK handleOpenURL:url delegate:self];
+    }
+    
+    return NO;
 }
 
-#pragma sina weibo delegate.
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [TencentOAuth HandleOpenURL:url];
+}
+
+#pragma mark - sina weibo delegate.
 - (void)didReceiveWeiboRequest:(WBBaseRequest *)request {
 
 }
@@ -102,8 +116,8 @@
         
         if (token != nil) {
             
-            [[[WYGlobalState sharedGlobalState] sinaWeibo] setAuthToken:token];
-            [[[WYGlobalState sharedGlobalState] sinaWeibo] setUserID:userid];
+            [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setAuthToken:token];
+            [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setUserID:userid];
             [[NSUserDefaults standardUserDefaults] setObject:token forKey:WY_USER_TOKEN_SINA];
             [[NSUserDefaults standardUserDefaults] setObject:userid forKey:WY_USER_ID];
             [[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_SINA_LOGIN object:nil userInfo:nil];
@@ -114,5 +128,7 @@
     
     mlog(@"user info : %@", [response.userInfo description]);
 }
+
+#pragma mark - Tencent session delegate.
 
 @end
