@@ -26,6 +26,10 @@
 #define PREFIX_SINA                         @"wb"
 #define PREFIX_QQ                           @"tencent"
 
+#define QQAppID @"222222"
+#define SinaWeiboAppKey @"211678035"
+#define SinaRedirectUrl @"http://www.baidu.com"
+
 //========SINA login info========
 #define WY_USER_ID                          @"wy_user_id"
 #define WY_USER_NAME                        @"wy_user_name"
