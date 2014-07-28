@@ -36,14 +36,6 @@
     // sina weibo
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:SinaWeiboAppKey];
-    
-    if ([[WYGlobalState sharedGlobalState] isLogin]) {
-//        [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserName:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_NAME]];
-//        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setUserID:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_ID]];
-//        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setUserImageUrl:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_PROFILE_IMAGE_URL]];
-//        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setUserImage:[UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_PROFILE_IMAGE_DATA]]];
-//        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setAuthToken:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_TOKEN_SINA]];
-    }
 
     //init rootviewcontroller
 	WYRootViewController *rootViewController = [[WYRootViewController alloc] init];
@@ -86,9 +78,7 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    mlog(@"%s", __func__);
-    mlog(@"url : %@", [url description]);
-    mlog(@"source application : %@", sourceApplication);
+    LOGFUNCTION;
     if ([[url description] hasPrefix:PREFIX_QQ]) {
         return [TencentOAuth HandleOpenURL:url];
     } else if ([[url description] hasPrefix:PREFIX_SINA]) {
@@ -108,23 +98,16 @@
 }
 
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response {
+	LOGFUNCTION;
     if ([response isKindOfClass:WBAuthorizeResponse.class]) {
-        mlog(@"SinaSDK -- response is WBAuthorizeResponse.");
-        
         NSString *userid = [(WBAuthorizeResponse *)response userID];
         NSString *token = [(WBAuthorizeResponse *)response accessToken];
-        
         if (token != nil) {
-            
             [[[WYGlobalState sharedGlobalState] sinaUserInfo] setAuthToken:token];
             [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserID:userid];
-            [[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_SINA_LOGIN object:nil userInfo:nil];
-            
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_SINA_LOGIN object:nil userInfo:nil];
         }
-        
     }
-    
-    mlog(@"user info : %@", [response.userInfo description]);
 }
 
 #pragma mark - Tencent session delegate.

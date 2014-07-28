@@ -46,11 +46,13 @@
 
 
 //========notification center========
-#define WY_NOTI_CHOSEN_ARRAY_CHANGE         @"ChosenArrayChange" // for create new trip
-#define WY_NOTI_TRIPS_DATA_OK               @"trips_data_ok"
-#define WY_NOTI_TRIPS_SYNC_FINISH           @"trips_sync_finish"
-#define WY_NOTI_SINA_LOGIN                  @"wy_sina_login"
-#define WY_NOTI_SINA_LOGOUT                 @"wy_sina_logout"
+#define NOTI_CHOSEN_ARRAY_CHANGE         @"ChosenArrayChange" // for create new trip
+#define NOTI_TRIPS_DATA_OK               @"trips_data_ok"
+#define NOTI_TRIPS_SYNC_FINISH           @"trips_sync_finish"
+#define NOTI_SINA_LOGIN                  @"wy_sina_login"
+#define NOTI_SINA_LOGOUT                 @"wy_sina_logout"
+#define NOTI_QQ_LOGIN                    @"wy_qq_login"
+#define NOTI_QQ_LOGOUT                   @"wy_qq_logout"
 
 
 //========data file========

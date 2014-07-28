@@ -49,7 +49,8 @@
 	[self.view addSubview:self.mTableView];
     
     // login notification.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginAuthSuccess:) name:WY_NOTI_SINA_LOGIN object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenSinaLoginSuccess:) name:NOTI_SINA_LOGIN object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenQQLoginSuccess:) name:NOTI_QQ_LOGIN object:nil];
 }
 
 - (void)goBackPage:(id)sender {
@@ -203,7 +204,7 @@
         [self.mTableView reloadData];
         [self.mTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_SINA_LOGOUT object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_SINA_LOGOUT object:nil];
     }
 }
 
@@ -292,6 +293,7 @@
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
+	LOGFUNCTION;
     NSError *error = [request error];
     NSLog(@"error is %@", [error description]);
     
@@ -300,7 +302,8 @@
 
 
 #pragma notification selector
-- (void)doWhenLoginAuthSuccess:(id)sender {
+- (void)doWhenSinaLoginSuccess:(id)sender {
+	LOGFUNCTION;
     
     NSString *userInfoBaseStr = @"https://api.weibo.com/2/users/show.json";
     NSString *token = [[[WYGlobalState sharedGlobalState] sinaUserInfo] authToken];
@@ -316,6 +319,10 @@
     
 }
 
+- (void)doWhenQQLoginSuccess:(id)sender {
+	LOGFUNCTION;
+	
+}
 
 - (void)didReceiveMemoryWarning
 {

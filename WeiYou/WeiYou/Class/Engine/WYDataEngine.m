@@ -43,7 +43,7 @@
  this function should be in secondary thread.
  */
 - (void)bisynchronizeTrips {
-    mlog(@"%s", __func__);
+    LOGFUNCTION;
     
     [self.biSyncQueue cancelAllOperations];
     WYBiSyncTripsOperation *bisyncOp = [[WYBiSyncTripsOperation alloc] init];
@@ -194,7 +194,7 @@
         [self.trips addObject:mt];
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:WY_NOTI_TRIPS_SYNC_FINISH object:nil userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_TRIPS_SYNC_FINISH object:nil userInfo:nil];
     
     
     
@@ -241,7 +241,7 @@
 
 
 - (NSArray *)getTripsInfoDicFromLocal {
-    mlog(@"%s", __func__);
+    LOGFUNCTION;
     NSString *dataPath = [self getDataPath];
     
     BOOL fileExist = [[NSFileManager defaultManager] fileExistsAtPath:dataPath];

@@ -145,7 +145,7 @@
 	[weiboBtn setTitle:NSLocalizedString(@"login with sina weibo", @"login with sina weibo") forState:UIControlStateNormal];
 	[weiboBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	weiboBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [weiboBtn addTarget:self action:@selector(clickSinaLoginButton:) forControlEvents:UIControlEventTouchUpInside];
+    [weiboBtn addTarget:self action:@selector(onClickSinaLoginButton:) forControlEvents:UIControlEventTouchUpInside];
 	[containerScrollView addSubview:weiboBtn];
 	
 	UIButton *qqBtn = [[UIButton alloc] init];
@@ -156,7 +156,7 @@
 	[qqBtn setTitle:NSLocalizedString(@"login with qq", @"login with qq") forState:UIControlStateNormal];
 	[qqBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	qqBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [qqBtn addTarget:self action:@selector(clickQQLoginButton:) forControlEvents:UIControlEventTouchUpInside];
+    [qqBtn addTarget:self action:@selector(onClickQQLoginButton:) forControlEvents:UIControlEventTouchUpInside];
 	[containerScrollView addSubview:qqBtn];
     
 	UIButton *forgetPWBtn = [[UIButton alloc] init];
@@ -168,6 +168,9 @@
 	[forgetPWBtn addTarget:self action:@selector(clickForgetPWButton:) forControlEvents:UIControlEventTouchUpInside];
 	[containerScrollView addSubview:forgetPWBtn];
 	
+		// login notification.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_SINA_LOGIN object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_QQ_LOGIN object:nil];
 }
 
 
@@ -180,8 +183,13 @@
     [self.navigationController pushViewController:rc animated:YES];
 }
 
+#pragma mark - NOTI
+- (void)doWhenLoginSuccess:(id)sender {
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma UIButton Event
-- (void)clickSinaLoginButton:(id)sender {
+- (void)onClickSinaLoginButton:(id)sender {
     WBAuthorizeRequest *request = [WBAuthorizeRequest request];
     request.redirectURI = SinaRedirectUrl;
     request.scope = @"all";
@@ -192,7 +200,7 @@
     [WeiboSDK sendRequest:request];
 }
 
-- (void)clickQQLoginButton:(id)sender {
+- (void)onClickQQLoginButton:(id)sender {
     self.tcOAuth = [[TencentOAuth alloc] initWithAppId:QQAppID andDelegate:self];
     NSArray *permissions = [[NSArray alloc] initWithObjects:
                             kOPEN_PERMISSION_GET_USER_INFO,
@@ -267,14 +275,16 @@
         [_tcOAuth getUserInfo];
     } else {
     }
+	
+	[[[WYGlobalState sharedGlobalState] qqUserInfo] setAuthToken:_tcOAuth.accessToken];
+	[[[WYGlobalState sharedGlobalState] qqUserInfo] setOpenID:_tcOAuth.openId];
+	[[[WYGlobalState sharedGlobalState] qqUserInfo] setExpirationDate:_tcOAuth.expirationDate];
+	[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_QQ_LOGIN object:nil userInfo:nil];
+	
 }
 
 - (void)tencentDidNotLogin:(BOOL)cancelled {
-    if (cancelled) {
-        mlog(@"user cancel login.");
-    } else {
-        mlog(@"login fail.");
-    }
+	LOGFUNCTION;
 }
 
 - (void)tencentDidNotNetWork {
@@ -283,9 +293,7 @@
 
 - (void)getUserInfoResponse:(APIResponse *)response {
     LOGFUNCTION;
-    mlog(@"response is:\n%@", [[response jsonResponse] description]);
 }
-
 
 - (void)tencentOAuth:(TencentOAuth *)tencentOAuth doCloseViewController:(UIViewController *)viewController {
     LOGFUNCTION;

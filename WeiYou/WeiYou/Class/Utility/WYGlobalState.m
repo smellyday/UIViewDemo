@@ -38,7 +38,7 @@
 }
 
 - (BOOL)isLogin {
-    return NO;
+    return [self.sinaUserInfo isLogin]||[self.sinaUserInfo isLogin];
 }
 
 
