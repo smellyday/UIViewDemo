@@ -8,7 +8,7 @@
 
 	//utility
 "cancel" = "取消";
-"ok" = "确定";
+"ok" = "确认";
 
 	//login in page
 "login" = "登录";
@@ -22,3 +22,8 @@
 "login with qq" = "QQ登录";
 "login with sina weibo" = "微博登录";
 "sent verify code" = "发送验证码";
+"verify code" = "验证码";
+"user phone number" = "手机号";
+"next step" = "下一步";
+"new password" = "新密码";
+"reinput new password" = "确认密码";

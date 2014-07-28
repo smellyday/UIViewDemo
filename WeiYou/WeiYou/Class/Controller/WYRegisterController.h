@@ -11,12 +11,10 @@
 @interface WYRegisterController : UIViewController <UITextFieldDelegate> {
 	UITextField *_userField;
 	UITextField *_passwdField;
-	UITextField *_verifyField;
 }
 
 @property (nonatomic, strong) UITextField *userField;
 @property (nonatomic, strong) UITextField *passwdField;
-@property (nonatomic, strong) UITextField *verifyField;
 
 
 @end

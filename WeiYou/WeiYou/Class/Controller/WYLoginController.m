@@ -8,7 +8,7 @@
 
 #import "WYLoginController.h"
 #import "WYRegisterController.h"
-#import "WYResetPasswordViewController.h"
+#import "WYResetPasswordController.h"
 #import "WYGlobalState.h"
 #import "WeiboSDK.h"
 #import "consts.h"
@@ -72,8 +72,8 @@
 	UIView *topBarContainer = [[UIView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H, self.view.frame.size.width, NAV_BAR_H)];
 	topBarContainer.backgroundColor = [UIColor clearColor];
 	[topBarContainer addSubview:cancelBtn];
-	[topBarContainer addSubview:registerBtn];
 	[topBarContainer addSubview:loginTitle];
+	[topBarContainer addSubview:registerBtn];
 	[self.view addSubview:topBarContainer];
     
 	//main content
@@ -85,15 +85,15 @@
     containerScrollView.delaysContentTouches = NO;
     [self.view addSubview:containerScrollView];
 	
-	UILabel *welcomeLabel = [[UILabel alloc] init];
-	welcomeLabel.frame = CGRectMake(60, 30, 200, 50);
-	[welcomeLabel setText:NSLocalizedString(@"welcome", @"welcome")];
-	[welcomeLabel setTextAlignment:NSTextAlignmentCenter];
-	[welcomeLabel setTextColor:[UIColor whiteColor]];
-	welcomeLabel.font = [UIFont systemFontOfSize:38];
-	[containerScrollView addSubview:welcomeLabel];
+//	UILabel *welcomeLabel = [[UILabel alloc] init];
+//	welcomeLabel.frame = CGRectMake(60, 30, 200, 50);
+//	[welcomeLabel setText:NSLocalizedString(@"welcome", @"welcome")];
+//	[welcomeLabel setTextAlignment:NSTextAlignmentCenter];
+//	[welcomeLabel setTextColor:[UIColor whiteColor]];
+//	welcomeLabel.font = [UIFont systemFontOfSize:38];
+//	[containerScrollView addSubview:welcomeLabel];
 	
-    CGFloat gaph1 = 156.0;
+    CGFloat gaph1 = 100.0;
     CGFloat fw = 264.0;
     CGFloat fh = 40.0;
 	_userField = [[UITextField alloc] init];
@@ -121,9 +121,9 @@
 	[_passwdField setBorderStyle:UITextBorderStyleRoundedRect];
 	[containerScrollView addSubview:_passwdField];
 	
-    CGFloat gaph2 = 47.0;
-	CGFloat lbw = 264.0;
-	CGFloat lbh = 40.0;
+    CGFloat gaph2 = 25.0;
+	CGFloat lbw = 180.0;
+	CGFloat lbh = 38.0;
 	UIButton *loginBtn = [[UIButton alloc] init];
 	loginBtn.frame = CGRectMake(SCREEN_WIDTH/2-lbw/2, gaph1+fh*2+gaph2, lbw, lbh);
 	[loginBtn setBackgroundImage:[UIImage imageNamed:PIC_LOGIN_BTN_N] forState:UIControlStateNormal];
@@ -134,28 +134,29 @@
 	loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
 	[containerScrollView addSubview:loginBtn];
 	
-    CGFloat gaph3 = 19.0;
-    CGFloat wqbw = 127;
-    CGFloat wqbh = 35;
+    CGFloat gaph3 = 75.0;
+    CGFloat wqbw = 44.0;
+    CGFloat wqbh = 44.0;
+	CGFloat wqlw = 103.0;
 	UIButton *weiboBtn = [[UIButton alloc] init];
-	weiboBtn.frame = CGRectMake(SCREEN_WIDTH/2-lbw/2, gaph1+fh*2+gaph2+lbh+gaph3, wqbw, wqbh);
+	weiboBtn.frame = CGRectMake(SCREEN_WIDTH/2-wqlw/2, gaph1+fh*2+gaph2+lbh+gaph3, wqbw, wqbh);
 	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_N] forState:UIControlStateNormal];
 	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_H] forState:UIControlStateHighlighted];
-    weiboBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 35, 0, 0);
-	[weiboBtn setTitle:NSLocalizedString(@"login with sina weibo", @"login with sina weibo") forState:UIControlStateNormal];
-	[weiboBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	weiboBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+//    weiboBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 35, 0, 0);
+//	[weiboBtn setTitle:NSLocalizedString(@"login with sina weibo", @"login with sina weibo") forState:UIControlStateNormal];
+//	[weiboBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//	weiboBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [weiboBtn addTarget:self action:@selector(onClickSinaLoginButton:) forControlEvents:UIControlEventTouchUpInside];
 	[containerScrollView addSubview:weiboBtn];
 	
 	UIButton *qqBtn = [[UIButton alloc] init];
-	qqBtn.frame = CGRectMake(SCREEN_WIDTH-(SCREEN_WIDTH-lbw)/2-wqbw, gaph1+fh*2+gaph2+lbh+gaph3, wqbw, wqbh);
+	qqBtn.frame = CGRectMake(SCREEN_WIDTH-(SCREEN_WIDTH-wqlw)/2-wqbw, gaph1+fh*2+gaph2+lbh+gaph3, wqbw, wqbh);
 	[qqBtn setBackgroundImage:[UIImage imageNamed:PIC_QQ_BTN_N] forState:UIControlStateNormal];
 	[qqBtn setBackgroundImage:[UIImage imageNamed:PIC_QQ_BTN_H] forState:UIControlStateHighlighted|UIControlStateSelected];
-    qqBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 35, 0, 0);
-	[qqBtn setTitle:NSLocalizedString(@"login with qq", @"login with qq") forState:UIControlStateNormal];
-	[qqBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	qqBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+//    qqBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 35, 0, 0);
+//	[qqBtn setTitle:NSLocalizedString(@"login with qq", @"login with qq") forState:UIControlStateNormal];
+//	[qqBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//	qqBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [qqBtn addTarget:self action:@selector(onClickQQLoginButton:) forControlEvents:UIControlEventTouchUpInside];
 	[containerScrollView addSubview:qqBtn];
     
@@ -239,7 +240,7 @@
 }
 
 - (void)clickForgetPWButton:(id)sender {
-    WYResetPasswordViewController *rpv = [[WYResetPasswordViewController alloc] init];
+    WYResetPasswordController *rpv = [[WYResetPasswordController alloc] init];
     [self.navigationController pushViewController:rpv animated:YES];
 }
 

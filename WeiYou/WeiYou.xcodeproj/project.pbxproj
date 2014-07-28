@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5E21AE5C186829E600316EA6 /* location.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E21AE5B186829E600316EA6 /* location.plist */; };
-		5E3BD18F1980B2C900F3A423 /* WYResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3BD18E1980B2C900F3A423 /* WYResetPasswordViewController.m */; };
+		5E489B421986BE5E00059066 /* WYResetPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E489B411986BE5E00059066 /* WYResetPasswordController.m */; };
+		5E489B451986BE7600059066 /* WYResetPasswordController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E489B441986BE7600059066 /* WYResetPasswordController2.m */; };
+		5E489B481986C7CA00059066 /* WYRegisterController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E489B471986C7CA00059066 /* WYRegisterController2.m */; };
 		5E5BC23A183EE5D80003AC6D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BC230183EE5D80003AC6D /* InfoPlist.strings */; };
 		5E5BC23E183EE5D80003AC6D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BC236183EE5D80003AC6D /* Images.xcassets */; };
 		5E5BC23F183EE5D80003AC6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC237183EE5D80003AC6D /* main.m */; };
@@ -117,8 +119,12 @@
 
 /* Begin PBXFileReference section */
 		5E21AE5B186829E600316EA6 /* location.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = location.plist; sourceTree = "<group>"; };
-		5E3BD18D1980B2C900F3A423 /* WYResetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYResetPasswordViewController.h; sourceTree = "<group>"; };
-		5E3BD18E1980B2C900F3A423 /* WYResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYResetPasswordViewController.m; sourceTree = "<group>"; };
+		5E489B401986BE5E00059066 /* WYResetPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYResetPasswordController.h; sourceTree = "<group>"; };
+		5E489B411986BE5E00059066 /* WYResetPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYResetPasswordController.m; sourceTree = "<group>"; };
+		5E489B431986BE7600059066 /* WYResetPasswordController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYResetPasswordController2.h; sourceTree = "<group>"; };
+		5E489B441986BE7600059066 /* WYResetPasswordController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYResetPasswordController2.m; sourceTree = "<group>"; };
+		5E489B461986C7CA00059066 /* WYRegisterController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRegisterController2.h; sourceTree = "<group>"; };
+		5E489B471986C7CA00059066 /* WYRegisterController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRegisterController2.m; sourceTree = "<group>"; };
 		5E5BC231183EE5D80003AC6D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		5E5BC236183EE5D80003AC6D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = WeiYou/Images.xcassets; sourceTree = "<group>"; };
 		5E5BC237183EE5D80003AC6D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = WeiYou/main.m; sourceTree = "<group>"; };
@@ -497,8 +503,12 @@
 				69582DAA1952C3F40072ED3E /* WYLoginController.m */,
 				69AA1EB81953D9D400BA0884 /* WYRegisterController.h */,
 				69AA1EB91953D9D400BA0884 /* WYRegisterController.m */,
-				5E3BD18D1980B2C900F3A423 /* WYResetPasswordViewController.h */,
-				5E3BD18E1980B2C900F3A423 /* WYResetPasswordViewController.m */,
+				5E489B461986C7CA00059066 /* WYRegisterController2.h */,
+				5E489B471986C7CA00059066 /* WYRegisterController2.m */,
+				5E489B401986BE5E00059066 /* WYResetPasswordController.h */,
+				5E489B411986BE5E00059066 /* WYResetPasswordController.m */,
+				5E489B431986BE7600059066 /* WYResetPasswordController2.h */,
+				5E489B441986BE7600059066 /* WYResetPasswordController2.m */,
 				5E5BC25F183EE6770003AC6D /* WYUserGuideViewController.h */,
 				5E5BC260183EE6770003AC6D /* WYUserGuideViewController.m */,
 			);
@@ -807,8 +817,9 @@
 				69E215AF1981F2B00022D432 /* WYSinaWeiboUserInfo.m in Sources */,
 				694ED3B7195A762C00917FEB /* ASIDownloadCache.m in Sources */,
 				694ED3B8195A762C00917FEB /* ASIFormDataRequest.m in Sources */,
+				5E489B481986C7CA00059066 /* WYRegisterController2.m in Sources */,
 				694ED3B9195A762C00917FEB /* ASIHTTPRequest.m in Sources */,
-				5E3BD18F1980B2C900F3A423 /* WYResetPasswordViewController.m in Sources */,
+				5E489B421986BE5E00059066 /* WYResetPasswordController.m in Sources */,
 				694ED3BA195A762C00917FEB /* ASIInputStream.m in Sources */,
 				694ED3BB195A762C00917FEB /* ASINetworkQueue.m in Sources */,
 				69E215AC1981F2970022D432 /* WYTencentUserInfo.m in Sources */,
@@ -840,6 +851,7 @@
 				5E5BC2F6183F3DB80003AC6D /* WYDataEngine.m in Sources */,
 				693432CD197F836700C1D2A5 /* WYBiSyncTripsOperation.m in Sources */,
 				5E5BC261183EE6770003AC6D /* WYRootViewController.m in Sources */,
+				5E489B451986BE7600059066 /* WYResetPasswordController2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
