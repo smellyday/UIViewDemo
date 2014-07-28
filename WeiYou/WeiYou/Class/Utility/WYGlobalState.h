@@ -20,6 +20,6 @@
 @property (nonatomic, strong) WYTencentUserInfo *qqUserInfo;
 
 + (id)sharedGlobalState;
-- (BOOL)isLogIn;
+- (BOOL)isLogin;
 
 @end

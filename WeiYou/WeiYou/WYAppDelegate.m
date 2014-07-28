@@ -37,14 +37,14 @@
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:SinaWeiboAppKey];
     
-//    if ([[WYGlobalState sharedGlobalState] isLogin]) {
+    if ([[WYGlobalState sharedGlobalState] isLogin]) {
 //        [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserName:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_NAME]];
 //        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setUserID:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_ID]];
 //        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setUserImageUrl:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_PROFILE_IMAGE_URL]];
 //        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setUserImage:[UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_PROFILE_IMAGE_DATA]]];
 //        [[[WYGlobalState sharedGlobalState] sinaWeiboInfo] setAuthToken:[[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_TOKEN_SINA]];
-//    }
-	
+    }
+
     //init rootviewcontroller
 	WYRootViewController *rootViewController = [[WYRootViewController alloc] init];
 	UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];

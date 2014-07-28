@@ -37,8 +37,9 @@
     return _qqUserInfo;
 }
 
-- (BOOL)isLogIn {
+- (BOOL)isLogin {
     return NO;
 }
+
 
 @end
