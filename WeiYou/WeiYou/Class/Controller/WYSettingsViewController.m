@@ -58,6 +58,7 @@
     // login notification.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenSinaLoginSuccess:) name:NOTI_SINA_LOGIN object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenQQLoginSuccess:) name:NOTI_QQ_LOGIN object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenWYLoginSuccess:) name:NOTI_WY_LOGIN object:nil];
 }
 
 - (void)onClickCancelButton:(id)sender {
@@ -229,7 +230,6 @@
         [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserImageUrl:imgUrl];
         
         [self.mTableView reloadData];
-        [self.navigationController popToViewController:self animated:YES];
         
     } else if (request == _userImageRequest) {
         
@@ -272,15 +272,12 @@
 
 - (void)doWhenQQLoginSuccess:(id)sender {
 	LOGFUNCTION;
-//	
-//	NSString *userInfoBaseStr = @"http://openapi.tencentyun.com/v3/user/get_info?";
-//	NSString *token = [[[WYGlobalState sharedGlobalState] qqUserInfo] authToken];
-//	NSString *openid = [[WYGlobalState sharedGlobalState] openID];
-//	NSString *exdate = [[WYGlobalState sharedGlobalState] expirationDate];
-//	NSString *urlStr = [NSString stringWithFormat:@""];
-	
 	[self.mTableView reloadData];
-	[self.navigationController popToViewController:self animated:YES];
+}
+
+- (void)doWhenWYLoginSuccess:(id)sender {
+	LOGFUNCTION;
+	[self.mTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

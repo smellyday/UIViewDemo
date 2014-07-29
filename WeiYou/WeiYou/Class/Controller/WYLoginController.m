@@ -161,6 +161,7 @@
 		// login notification.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_SINA_LOGIN object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_QQ_LOGIN object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_WY_LOGIN object:nil];
 }
 
 
@@ -282,18 +283,16 @@
 
 #pragma mark - Tencent Session Delegate
 - (void)tencentDidLogin {
-    if (_tcOAuth.accessToken && 0 != [_tcOAuth.accessToken length]) {
-        [_tcOAuth getUserInfo];
+   
+	if (_tcOAuth.accessToken != nil && 0 != [_tcOAuth.accessToken length]) {
+		[[[WYGlobalState sharedGlobalState] qqUserInfo] setAuthToken:_tcOAuth.accessToken];
+		[[[WYGlobalState sharedGlobalState] qqUserInfo] setOpenID:_tcOAuth.openId];
+		[[[WYGlobalState sharedGlobalState] qqUserInfo] setExpirationDate:_tcOAuth.expirationDate];
+		[_tcOAuth performSelectorOnMainThread:@selector(getUserInfo) withObject:nil waitUntilDone:YES];
     } else {
+		mlog(@"-- qq fail to login.");
     }
-	
-	[[[WYGlobalState sharedGlobalState] qqUserInfo] setAuthToken:_tcOAuth.accessToken];
-	[[[WYGlobalState sharedGlobalState] qqUserInfo] setOpenID:_tcOAuth.openId];
-	[[[WYGlobalState sharedGlobalState] qqUserInfo] setExpirationDate:_tcOAuth.expirationDate];
-	
-	[self.tcOAuth performSelectorOnMainThread:@selector(getUserInfo) withObject:nil waitUntilDone:YES];
-	
-	
+
 }
 
 - (void)tencentDidNotLogin:(BOOL)cancelled {
@@ -328,7 +327,22 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
 	NSString *response = [[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding];
-	mlog(@"Finish Response : %@", response);
+	mlog(@"Finish Response : \n%@", response);
+	
+	NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableContainers error:nil];
+	mlog(@"wyuser respone info dic : \n%@", [infoDic description]);
+	
+	NSNumber *state = [infoDic objectForKey:@"st"];
+	if ([state intValue] == 0) {
+		mlog(@"---login success & state : %i", [state intValue]);
+		[[[WYGlobalState sharedGlobalState] wyUserInfo] setAuthToken:[infoDic objectForKey:@"ut"]];
+		[[[WYGlobalState sharedGlobalState] wyUserInfo] setUserID:_userField.text];
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_WY_LOGIN object:nil userInfo:nil];
+	} else {
+		mlog(@"---login fail \n state : %i \n info : %@", [state intValue], [infoDic objectForKey:@"msg"]);
+	}
+	
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
