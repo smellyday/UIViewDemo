@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <TencentOpenAPI/TencentOAuth.h>
+#import "ASIFormDataRequest.h"
 
 
-@interface WYLoginController : UIViewController <UITextFieldDelegate, UIGestureRecognizerDelegate, TencentSessionDelegate> {
+@interface WYLoginController : UIViewController <UITextFieldDelegate, UIGestureRecognizerDelegate, TencentSessionDelegate, ASIHTTPRequestDelegate> {
 	UITextField *_userField;
 	UITextField *_passwdField;
     

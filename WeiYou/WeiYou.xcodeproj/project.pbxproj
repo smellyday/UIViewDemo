@@ -155,6 +155,7 @@
 		5E4D772919878012005720BD /* SecurityUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityUtil.m; sourceTree = "<group>"; };
 		5E4D772F198786F7005720BD /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSON.h"; sourceTree = "<group>"; };
 		5E4D7730198786F7005720BD /* NSObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSON.m"; sourceTree = "<group>"; };
+		5E4D773219879447005720BD /* consts_network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = consts_network.h; sourceTree = "<group>"; };
 		5E5BC231183EE5D80003AC6D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		5E5BC236183EE5D80003AC6D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = WeiYou/Images.xcassets; sourceTree = "<group>"; };
 		5E5BC237183EE5D80003AC6D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = WeiYou/main.m; sourceTree = "<group>"; };
@@ -543,6 +544,7 @@
 		5E5BC250183EE5E90003AC6D /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				5E4D773219879447005720BD /* consts_network.h */,
 				5EB6B93019801F8C00E9E695 /* consts_utility.h */,
 				5EB6B92F19800FE600E9E695 /* consts_view.h */,
 				5EB6B92E19800FDB00E9E695 /* consts_sys_pic.h */,

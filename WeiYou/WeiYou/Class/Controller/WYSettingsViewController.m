@@ -34,18 +34,25 @@
 
 - (void)viewDidLoad
 {
+	LOGFUNCTION;
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-	self.mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
+	self.view.backgroundColor = [UIColor whiteColor];
+	self.navigationController.navigationBar.hidden = YES;
+	UIImageView *fakeNavBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUS_BAR_H+NAV_BAR_H)];
+	[fakeNavBar setImage:[UIImage imageNamed:PIC_NAV_BAR_BG]];
+
+	UIButton *cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H, 44, 44)];
+	[cancelBtn setBackgroundImage:[UIImage imageNamed:PIC_BACK_N] forState:UIControlStateNormal];
+	[cancelBtn addTarget:self action:@selector(onClickCancelButton:) forControlEvents:UIControlEventTouchUpInside];
+
+	[self.view addSubview:fakeNavBar];
+	[self.view addSubview:cancelBtn];
+	
+	self.mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H+NAV_BAR_H, SCREEN_WIDTH, SCREEN_HEIGHT-STATUS_BAR_H-NAV_BAR_H) style:UITableViewStylePlain];
 	self.mTableView.delegate = self;
 	self.mTableView.dataSource = self;
 	self.mTableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-	
-    self.title = @"设置";
-	
-	UIBarButtonItem *mLeftButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(goBackPage:)];
-	self.navigationItem.leftBarButtonItem = mLeftButton;
-    
+	self.mTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 	[self.view addSubview:self.mTableView];
     
     // login notification.
@@ -53,8 +60,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenQQLoginSuccess:) name:NOTI_QQ_LOGIN object:nil];
 }
 
-- (void)goBackPage:(id)sender {
-	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+- (void)onClickCancelButton:(id)sender {
+	LOGFUNCTION;
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source

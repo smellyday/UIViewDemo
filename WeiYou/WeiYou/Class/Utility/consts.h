@@ -9,6 +9,7 @@
 #import "consts_sys_pic.h"
 #import "consts_view.h"
 #import "consts_utility.h"
+#import "consts_network.h"
 #import "WYNavigationController.h"
 
 #ifndef WeiYou_consts_h
@@ -16,9 +17,6 @@
 
 //========one day interval=======
 #define WY_DAY_INTERVAL 86400
-
-//========main color========
-#define WY_CELL_COLOR                  [UIColor colorWithRed:0.9531 green:0.9414 blue:0.9140 alpha:1.0]
 
 //========LOGIN========
 #define PREFIX_SINA                         @"wb"
@@ -28,13 +26,13 @@
 #define SinaWeiboAppKey @"211678035"
 #define SinaRedirectUrl @"http://www.baidu.com"
 
-//========SINA login info========
+//========KEY SINA login info========
 #define SINA_USER_TOKEN                       @"sina_token"
 #define SINA_USER_ID                          @"sina_user_id"
 #define SINA_USER_NAME                        @"sina_user_name"
 #define SINA_USER_PROFILE_IMAGE_URL           @"sina_user_profile_image_url"
 #define SINA_USER_PROFILE_IMAGE_DATA          @"sina_user_profile_image_data"
-//========QQ login info========
+//========KEY QQ login info========
 #define QQ_USER_TOKEN                         @"qq_token"
 #define QQ_OPEN_ID                            @"qq_open_id"
 #define QQ_EXPIRATION_DATE                    @"qq_expiration_date"

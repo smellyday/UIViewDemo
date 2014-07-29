@@ -12,6 +12,8 @@
 #import "WYGlobalState.h"
 #import "WeiboSDK.h"
 #import "consts.h"
+#import "SecurityUtil.h"
+#import "NSObject+JSON.h"
 
 @interface WYLoginController ()
 
@@ -85,14 +87,6 @@
     containerScrollView.delaysContentTouches = NO;
     [self.view addSubview:containerScrollView];
 	
-//	UILabel *welcomeLabel = [[UILabel alloc] init];
-//	welcomeLabel.frame = CGRectMake(60, 30, 200, 50);
-//	[welcomeLabel setText:NSLocalizedString(@"welcome", @"welcome")];
-//	[welcomeLabel setTextAlignment:NSTextAlignmentCenter];
-//	[welcomeLabel setTextColor:[UIColor whiteColor]];
-//	welcomeLabel.font = [UIFont systemFontOfSize:38];
-//	[containerScrollView addSubview:welcomeLabel];
-	
     CGFloat gaph1 = 100.0;
     CGFloat fw = 264.0;
     CGFloat fh = 40.0;
@@ -107,6 +101,7 @@
 	_userField.keyboardType = UIKeyboardTypeEmailAddress;
 	[_userField setBorderStyle:UITextBorderStyleRoundedRect];
 	[containerScrollView addSubview:_userField];
+	_userField.text = @"13402112880";
 	
 	_passwdField = [[UITextField alloc] init];
 	_passwdField.frame = CGRectMake(SCREEN_WIDTH/2-fw/2, gaph1+fh, fw, fh);
@@ -120,6 +115,7 @@
 	_passwdField.keyboardType = UIKeyboardTypePhonePad;
 	[_passwdField setBorderStyle:UITextBorderStyleRoundedRect];
 	[containerScrollView addSubview:_passwdField];
+	_passwdField.text = @"123456";
 	
     CGFloat gaph2 = 25.0;
 	CGFloat lbw = 180.0;
@@ -132,6 +128,7 @@
 	[loginBtn setTitle:NSLocalizedString(@"login", @"login") forState:UIControlStateNormal];
 	[loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+	[loginBtn addTarget:self action:@selector(onClickLogin:) forControlEvents:UIControlEventTouchUpInside];
 	[containerScrollView addSubview:loginBtn];
 	
     CGFloat gaph3 = 75.0;
@@ -142,10 +139,6 @@
 	weiboBtn.frame = CGRectMake(SCREEN_WIDTH/2-wqlw/2, gaph1+fh*2+gaph2+lbh+gaph3, wqbw, wqbh);
 	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_N] forState:UIControlStateNormal];
 	[weiboBtn setBackgroundImage:[UIImage imageNamed:PIC_WEIBO_BTN_H] forState:UIControlStateHighlighted];
-//    weiboBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 35, 0, 0);
-//	[weiboBtn setTitle:NSLocalizedString(@"login with sina weibo", @"login with sina weibo") forState:UIControlStateNormal];
-//	[weiboBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//	weiboBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [weiboBtn addTarget:self action:@selector(onClickSinaLoginButton:) forControlEvents:UIControlEventTouchUpInside];
 	[containerScrollView addSubview:weiboBtn];
 	
@@ -153,10 +146,6 @@
 	qqBtn.frame = CGRectMake(SCREEN_WIDTH-(SCREEN_WIDTH-wqlw)/2-wqbw, gaph1+fh*2+gaph2+lbh+gaph3, wqbw, wqbh);
 	[qqBtn setBackgroundImage:[UIImage imageNamed:PIC_QQ_BTN_N] forState:UIControlStateNormal];
 	[qqBtn setBackgroundImage:[UIImage imageNamed:PIC_QQ_BTN_H] forState:UIControlStateHighlighted|UIControlStateSelected];
-//    qqBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 35, 0, 0);
-//	[qqBtn setTitle:NSLocalizedString(@"login with qq", @"login with qq") forState:UIControlStateNormal];
-//	[qqBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//	qqBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [qqBtn addTarget:self action:@selector(onClickQQLoginButton:) forControlEvents:UIControlEventTouchUpInside];
 	[containerScrollView addSubview:qqBtn];
     
@@ -228,6 +217,27 @@
                             nil];
     
     [_tcOAuth authorize:permissions inSafari:YES];
+}
+
+- (void)onClickLogin:(id)sender {
+	if (_userField.text == nil || [_userField.text length]==0 || _passwdField.text == nil || [_passwdField.text length]==0) {
+			//show alert.
+		return;
+	}
+	
+	NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
+	[infoDic setObject:_userField.text forKey:JSON_KEY_TEL];
+	[infoDic setObject:_passwdField.text forKey:JSON_KEY_PWD];
+	
+	NSString *cp = @"WANGTIEBINTESTUID|1000|Aplle|iPhone4S|iOS 7.2|1|1.0.1|960|540|1406621461";
+	NSString *ev = @"1";
+	NSString *urlStr = [NSString stringWithFormat:@"%@%@&cp=%@&ev=%@", BASE_URL, @"/passport/login", [SecurityUtil encodeBase64String:cp], ev];
+	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlStr]];
+	[request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"logindata"];
+	request.delegate = self;
+	[request startAsynchronous];
+	
 }
 
 - (void)clickCancelButton:(id)sender {
@@ -307,15 +317,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - HTTP
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)requestFinished:(ASIHTTPRequest *)request {
+	NSString *response = [[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding];
+	mlog(@"Finish Response : %@", response);
 }
-*/
+
+- (void)requestFailed:(ASIHTTPRequest *)request {
+	mlog(@"Failed Response : %@", [request.responseData description]);
+}
+
+//- (void)request:(ASIHTTPRequest *)request didReceiveData:(NSData *)data {
+//	NSString *rs = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//	mlog(@"Receive Dada : \n%@", rs);
+//}
+
+
 
 @end
