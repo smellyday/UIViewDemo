@@ -216,7 +216,7 @@
                             kOPEN_PERMISSION_MATCH_NICK_TIPS_WEIBO,
                             nil];
     
-    [_tcOAuth authorize:permissions inSafari:YES];
+    [_tcOAuth authorize:permissions inSafari:NO];
 }
 
 - (void)onClickLogin:(id)sender {
@@ -290,7 +290,9 @@
 	[[[WYGlobalState sharedGlobalState] qqUserInfo] setAuthToken:_tcOAuth.accessToken];
 	[[[WYGlobalState sharedGlobalState] qqUserInfo] setOpenID:_tcOAuth.openId];
 	[[[WYGlobalState sharedGlobalState] qqUserInfo] setExpirationDate:_tcOAuth.expirationDate];
-	[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_QQ_LOGIN object:nil userInfo:nil];
+	
+	[self.tcOAuth performSelectorOnMainThread:@selector(getUserInfo) withObject:nil waitUntilDone:YES];
+	
 	
 }
 
@@ -304,6 +306,11 @@
 
 - (void)getUserInfoResponse:(APIResponse *)response {
     LOGFUNCTION;
+	mlog(@"response json : \n%@", [response.jsonResponse description]);
+	[[[WYGlobalState sharedGlobalState] qqUserInfo] setUserName:[response.jsonResponse objectForKey:@"nickname"]];
+	[[[WYGlobalState sharedGlobalState] qqUserInfo] setUserImageUrl:[response.jsonResponse objectForKey:@"figureurl_1"]];
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_QQ_LOGIN object:nil userInfo:nil];
 }
 
 - (void)tencentOAuth:(TencentOAuth *)tencentOAuth doCloseViewController:(UIViewController *)viewController {

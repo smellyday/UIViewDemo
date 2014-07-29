@@ -45,6 +45,12 @@
 #define QQ_USER_NAME                          @"qq_user_name"
 #define QQ_USER_PROFILE_IMAGE_URL             @"qq_user_profile_image_url"
 #define QQ_USER_PROFILE_IMAGE_DATA            @"qq_user_profile_image_data"
+//========KEY Global login info========
+#define GLOBAL_USER_NAME					  @"global_user_name"
+#define GLOBAL_LOGIN_ACCOUNT				  @"global_login_account"
+#define GLOBAL_USER_PROFILE_IMAGE_URL         @"global_user_profile_image_url"
+#define GLOBAL_USER_PROFILE_IMAGE             @"global_user_profile_image"
+#define GLOBAL_ACCOUNT						  @"global_account"
 
 
 //========notification center========

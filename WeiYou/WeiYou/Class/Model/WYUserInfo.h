@@ -14,14 +14,12 @@
 	
     NSString *_userName;
     NSString *_userImageUrl;
-    UIImage *_userImage;
 }
 
 @property (nonatomic, strong) NSString *authToken;
 @property (nonatomic, strong) NSString *userID;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *userImageUrl;
-@property (nonatomic, strong) UIImage *userImage;
 
 - (BOOL)isLogin;
 - (void)logout;

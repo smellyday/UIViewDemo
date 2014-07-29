@@ -7,6 +7,7 @@
 //
 
 #import "WYSinaWeiboUserInfo.h"
+#import "WYGlobalState.h"
 #import "consts.h"
 
 @implementation WYSinaWeiboUserInfo
@@ -14,7 +15,6 @@
 @synthesize userID = _userID;
 @synthesize userName =_userName;
 @synthesize userImageUrl = _userImageUrl;
-@synthesize userImage = _userImage;
 
 
 - (BOOL)isLogin {
@@ -28,6 +28,7 @@
 - (NSString *)authToken {
     if (_authToken == nil) {
         _authToken = [[NSUserDefaults standardUserDefaults] objectForKey:SINA_USER_TOKEN];
+		[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:SinaAccount] forKey:GLOBAL_ACCOUNT];
     }
     
     return _authToken;
@@ -62,6 +63,7 @@
 - (void)setUserName:(NSString *)userName {
     _userName = userName;
     [[NSUserDefaults standardUserDefaults] setObject:_userName forKey:SINA_USER_NAME];
+	[[NSUserDefaults standardUserDefaults] setObject:_userName forKey:GLOBAL_USER_NAME];
 }
 
 - (NSString *)userImageUrl {
@@ -75,6 +77,7 @@
 - (void)setUserImageUrl:(NSString *)userImageUrl {
     _userImageUrl = userImageUrl;
     [[NSUserDefaults standardUserDefaults] setObject:_userImageUrl forKey:SINA_USER_PROFILE_IMAGE_URL];
+    [[NSUserDefaults standardUserDefaults] setObject:_userImageUrl forKey:GLOBAL_USER_PROFILE_IMAGE_URL];
 }
 
 - (void)logout {
@@ -86,7 +89,6 @@
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_NAME];
 	self.userImageUrl = nil;
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_PROFILE_IMAGE_URL];
-	self.userImage = nil;
 }
 
 @end

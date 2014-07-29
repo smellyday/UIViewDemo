@@ -7,6 +7,7 @@
 //
 
 #import "WYTencentUserInfo.h"
+#import "WYGlobalState.h"
 #import "consts.h"
 
 @implementation WYTencentUserInfo
@@ -14,7 +15,6 @@
 @synthesize openID = _openID;
 @synthesize expirationDate = _expirationDate;
 @synthesize userName = _userName;
-@synthesize userImage = _userImage;
 @synthesize userImageUrl = _userImageUrl;
 
 - (BOOL)isLogin {
@@ -35,6 +35,7 @@
 - (void)setAuthToken:(NSString *)authToken {
     _authToken = authToken;
     [[NSUserDefaults standardUserDefaults] setObject:_authToken forKey:QQ_USER_TOKEN];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:TencentAccount] forKey:GLOBAL_ACCOUNT];
 }
 
 - (NSString *)openID {
@@ -74,6 +75,7 @@
 - (void)setUserName:(NSString *)userName {
     _userName = userName;
     [[NSUserDefaults standardUserDefaults] setObject:_userName forKey:QQ_USER_NAME];
+	[[NSUserDefaults standardUserDefaults] setObject:_userName forKey:GLOBAL_USER_NAME];
 }
 
 - (NSString *)userImageUrl {
@@ -86,6 +88,7 @@
 - (void)setUserImageUrl:(NSString *)userImageUrl {
     _userImageUrl = userImageUrl;
     [[NSUserDefaults standardUserDefaults] setObject:_userImageUrl forKey:QQ_USER_PROFILE_IMAGE_URL];
+    [[NSUserDefaults standardUserDefaults] setObject:_userImageUrl forKey:GLOBAL_USER_PROFILE_IMAGE_URL];
 }
 
 - (void)logout {
@@ -99,7 +102,6 @@
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:QQ_USER_NAME];
 	self.userImageUrl = nil;
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:QQ_USER_PROFILE_IMAGE_URL];
-	self.userImage = nil;
 }
 
 

@@ -115,25 +115,18 @@
         cell.backgroundColor = [UIColor yellowColor];
         if ([[WYGlobalState sharedGlobalState] isLogin]) {
 
-            NSString *username = [[[WYGlobalState sharedGlobalState] sinaUserInfo] userName];
+            NSString *username = [[WYGlobalState sharedGlobalState] userName];
 			mlog(@"global state : is login \nuser name : %@", username);
             if (username != nil) {
-
                 cell.textLabel.text = username;
-                
             } else {
-
                 cell.textLabel.text = @"";
-                
             }
             
-            if ([[[WYGlobalState sharedGlobalState] sinaUserInfo] userImage] != nil) {
-
-                cell.imageView.image = [[[WYGlobalState sharedGlobalState] sinaUserInfo] userImage];
-                
+            if ([[WYGlobalState sharedGlobalState] userImage] != nil) {
+                cell.imageView.image = [[WYGlobalState sharedGlobalState] userImage];
             } else {
-
-                NSString *imageUrl = [[[WYGlobalState sharedGlobalState] sinaUserInfo] userImageUrl];
+                NSString *imageUrl = [[WYGlobalState sharedGlobalState] userImageUrl];
                 if (imageUrl != nil) {
                     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:imageUrl]];
                     [request setDelegate:self];
@@ -141,11 +134,9 @@
                     [request startAsynchronous];
                     self.userImageRequest = request;
                 }
-                
             }
-            
+			
             cell.accessoryType = UITableViewCellAccessoryNone;
-            
         } else {
             
 			mlog(@"not log in");
@@ -224,44 +215,6 @@
 	return 20;
 }
 
-
-/*
-- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return 0;
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-	if (section == 2) {
-		return 200;
-	}
-	
-	return 0;
-}
-
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-	if (section == 2) {
-		UIView *mFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-		UIImage *mImg = [UIImage imageNamed:@"logo.jpg"];
-		UIImageView *mImgView = [[UIImageView alloc] initWithImage:mImg];
-		[mFooterView addSubview:mImgView];
-		return mFooterView;
-	}
-	return nil;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForFooterInSection:(NSInteger)section {
-	return 500;
-}
-
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-	wylog(@"touch me!!!!");
-}
-*/
-
 #pragma ASIHTTPRequestDelegate
 - (void)requestFinished:(ASIHTTPRequest *)request {
     
@@ -281,7 +234,7 @@
     } else if (request == _userImageRequest) {
         
         NSData *imgData = [request responseData];
-        [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserImage:[UIImage imageWithData:imgData]];
+        [[WYGlobalState sharedGlobalState] setUserImage:[UIImage imageWithData:imgData]];
 
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.mTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
@@ -319,7 +272,15 @@
 
 - (void)doWhenQQLoginSuccess:(id)sender {
 	LOGFUNCTION;
+//	
+//	NSString *userInfoBaseStr = @"http://openapi.tencentyun.com/v3/user/get_info?";
+//	NSString *token = [[[WYGlobalState sharedGlobalState] qqUserInfo] authToken];
+//	NSString *openid = [[WYGlobalState sharedGlobalState] openID];
+//	NSString *exdate = [[WYGlobalState sharedGlobalState] expirationDate];
+//	NSString *urlStr = [NSString stringWithFormat:@""];
 	
+	[self.mTableView reloadData];
+	[self.navigationController popToViewController:self animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
