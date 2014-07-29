@@ -23,7 +23,6 @@ typedef enum _LoginAccount {
 	WYUserInfo *_wyUserInfo;
 	
 	NSNumber *_account;
-	
 	NSString *_userName;
     NSString *_userImageUrl;
     UIImage *_userImage;
