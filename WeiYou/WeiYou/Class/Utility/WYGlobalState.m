@@ -19,34 +19,16 @@
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		sharedState = [[self alloc] init];
+		sharedState.sinaUserInfo = [[WYSinaWeiboUserInfo alloc] init];
+		sharedState.qqUserInfo = [[WYTencentUserInfo alloc] init];
+		sharedState.wyUserInfo = [[WYUserInfo alloc] init];
 	});
 	
 	return sharedState;
 }
 
-- (WYSinaWeiboUserInfo *)sinaAuthInfo {
-    if (!_sinaUserInfo) {
-        _sinaUserInfo = [[WYSinaWeiboUserInfo alloc] init];
-    }
-    return _sinaUserInfo;
-}
-
-- (WYTencentUserInfo *)qqAuthInfo {
-    if (!_qqUserInfo) {
-        _qqUserInfo = [[WYTencentUserInfo alloc] init];
-    }
-    return _qqUserInfo;
-}
-
-- (WYUserInfo *)wyUserInfo {
-	if (!_wyUserInfo) {
-        _wyUserInfo = [[WYUserInfo alloc] init];
-    }
-    return _wyUserInfo;
-}
-
 - (BOOL)isLogin {
-    return [self.sinaUserInfo isLogin]||[self.sinaUserInfo isLogin]||[self.wyUserInfo isLogin];
+    return [self.sinaUserInfo isLogin]||[self.qqUserInfo isLogin]||[self.wyUserInfo isLogin];
 }
 
 

@@ -112,11 +112,11 @@
     
     if (section == 0 && row == 0) {
         
-        
         cell.backgroundColor = [UIColor yellowColor];
         if ([[WYGlobalState sharedGlobalState] isLogin]) {
 
             NSString *username = [[[WYGlobalState sharedGlobalState] sinaUserInfo] userName];
+			mlog(@"global state : is login \nuser name : %@", username);
             if (username != nil) {
 
                 cell.textLabel.text = username;
@@ -148,6 +148,7 @@
             
         } else {
             
+			mlog(@"not log in");
             cell.textLabel.text = [NSString stringWithFormat:@"点击登录"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
@@ -191,8 +192,7 @@
             
         } else {
             WYLoginController *loginController = [[WYLoginController alloc] init];
-			WYNavigationController *navc = [[WYNavigationController alloc] initWithRootViewController:loginController];
-            navc.delegate = self;
+			UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:loginController];
 			[navc setNavigationBarHidden:YES];
 			[self presentViewController:navc animated:YES completion:nil];
         }
@@ -278,11 +278,9 @@
         
         NSString *userName = [jsonDic objectForKey:@"name"];
         [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserName:userName];
-        [[NSUserDefaults standardUserDefaults] setObject:userName forKey:SINA_USER_NAME];
         
         NSString *imgUrl = [jsonDic objectForKey:@"profile_image_url"];
         [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserImageUrl:imgUrl];
-        [[NSUserDefaults standardUserDefaults] setObject:imgUrl forKey:SINA_USER_PROFILE_IMAGE_URL];
         
         [self.mTableView reloadData];
         [self.navigationController popToViewController:self animated:YES];
@@ -291,7 +289,6 @@
         
         NSData *imgData = [request responseData];
         [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserImage:[UIImage imageWithData:imgData]];
-        [[NSUserDefaults standardUserDefaults] setObject:imgData forKey:SINA_USER_PROFILE_IMAGE_DATA];
 
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.mTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];

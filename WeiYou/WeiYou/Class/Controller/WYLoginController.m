@@ -36,7 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+//    self.navigationController.interactivePopGestureRecognizer.delegate = self;
     
     // background
     self.view.backgroundColor = [UIColor whiteColor]; // can not be clearColor

@@ -124,7 +124,7 @@
     if ([response isKindOfClass:WBAuthorizeResponse.class]) {
         NSString *userid = [(WBAuthorizeResponse *)response userID];
         NSString *token = [(WBAuthorizeResponse *)response accessToken];
-        if (token != nil) {
+        if (token != nil && userid != nil) {
             [[[WYGlobalState sharedGlobalState] sinaUserInfo] setAuthToken:token];
             [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserID:userid];
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_SINA_LOGIN object:nil userInfo:nil];
