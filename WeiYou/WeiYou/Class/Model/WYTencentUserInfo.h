@@ -8,9 +8,10 @@
 #import <Foundation/Foundation.h>
 
 @interface WYTencentUserInfo : NSObject {
-    NSString *_authToken;
-    NSString *_openID;
-    NSDate *_expirationDate;
+    NSString *_authToken;/*must have*/
+    NSString *_openID;/*must have*/
+    NSDate *_expirationDate;/*must have*/
+	
     NSString *_userName;
     NSString *_userImageUrl;
     UIImage *_userImage;

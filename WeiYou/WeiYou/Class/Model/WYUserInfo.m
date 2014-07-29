@@ -1,15 +1,15 @@
 //
-//  WYSinaWeiboUserInfo.m
+//  WYUserInfo.m
 //  WeiYou
 //
-//  Created by zhangpan on 14-7-25.
-//  Copyright (c) 2014年 xiyuan. All rights reserved.
+//  Created by owen on 7/29/14.
+//  Copyright (c) 2014 xiyuan. All rights reserved.
 //
 
-#import "WYSinaWeiboUserInfo.h"
+#import "WYUserInfo.h"
 #import "consts.h"
 
-@implementation WYSinaWeiboUserInfo
+@implementation WYUserInfo
 @synthesize authToken = _authToken;
 @synthesize userID = _userID;
 @synthesize userName =_userName;
@@ -27,7 +27,7 @@
 
 - (NSString *)authToken {
     if (_authToken == nil) {
-        _authToken = [[NSUserDefaults standardUserDefaults] objectForKey:SINA_USER_TOKEN];
+        _authToken = [[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_TOKEN];
     }
     
     return _authToken;
@@ -35,12 +35,12 @@
 
 - (void)setAuthToken:(NSString *)authToken {
     _authToken = authToken;
-    [[NSUserDefaults standardUserDefaults] setObject:_authToken forKey:SINA_USER_TOKEN];
+    [[NSUserDefaults standardUserDefaults] setObject:_authToken forKey:WY_USER_TOKEN];
 }
 
 - (NSString *)userID {
     if (_userID == nil) {
-        _userID = [[NSUserDefaults standardUserDefaults] objectForKey:SINA_USER_ID];
+        _userID = [[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_ID];
     }
     
     return _userID;
@@ -48,12 +48,12 @@
 
 - (void)setUserID:(NSString *)userID {
     _userID = userID;
-    [[NSUserDefaults standardUserDefaults] setObject:_userID forKey:SINA_USER_ID];
+    [[NSUserDefaults standardUserDefaults] setObject:_userID forKey:WY_USER_ID];
 }
 
 - (NSString *)userName {
     if (_userName == nil) {
-        _userName = [[NSUserDefaults standardUserDefaults] objectForKey:SINA_USER_NAME];
+        _userName = [[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_NAME];
     }
     
     return _userName;
@@ -61,12 +61,12 @@
 
 - (void)setUserName:(NSString *)userName {
     _userName = userName;
-    [[NSUserDefaults standardUserDefaults] setObject:_userName forKey:SINA_USER_NAME];
+    [[NSUserDefaults standardUserDefaults] setObject:_userName forKey:WY_USER_NAME];
 }
 
 - (NSString *)userImageUrl {
     if (_userImageUrl == nil) {
-        _userImageUrl = [[NSUserDefaults standardUserDefaults] objectForKey:SINA_USER_PROFILE_IMAGE_URL];
+        _userImageUrl = [[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_PROFILE_IMAGE_URL];
     }
     
     return _userImageUrl;
@@ -74,11 +74,12 @@
 
 - (void)setUserImageUrl:(NSString *)userImageUrl {
     _userImageUrl = userImageUrl;
-    [[NSUserDefaults standardUserDefaults] setObject:_userImageUrl forKey:SINA_USER_PROFILE_IMAGE_URL];
+    [[NSUserDefaults standardUserDefaults] setObject:_userImageUrl forKey:WY_USER_PROFILE_IMAGE_URL];
 }
 
 - (void)clear {
 
 }
+
 
 @end

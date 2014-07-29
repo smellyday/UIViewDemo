@@ -11,9 +11,10 @@
 #import "WYDataEngine.h"
 #import "consts.h"
 #import <TencentOpenAPI/TencentOAuth.h>
-#include <stdio.h>
+//#include <stdio.h>
 #import "WYRecommendItineraryController.h"
 #import "WYMyItineraryController.h"
+#import "WYLoginController.h"
 
 @implementation WYAppDelegate
 
@@ -131,6 +132,15 @@
     }
 }
 
-#pragma mark - Tencent session delegate.
+#pragma mark - tabbar delegate
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+//	if (tabBarController.selectedIndex == 1 && ![[WYGlobalState sharedGlobalState] isLogin]) {
+//		tabBarController.selectedIndex = 0;
+//		WYLoginController *loginController = [[WYLoginController alloc] init];
+//		UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:loginController];
+//		[navc setNavigationBarHidden:YES];
+//		[tabBarController presentViewController:navc animated:YES completion:nil];
+//	}
+}
 
 @end

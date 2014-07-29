@@ -12,6 +12,7 @@
 @implementation WYGlobalState
 @synthesize sinaUserInfo = _sinaUserInfo;
 @synthesize qqUserInfo = _qqUserInfo;
+@synthesize wyUserInfo = _wyUserInfo;
 
 + (id)sharedGlobalState {
 	static WYGlobalState *sharedState = nil;
@@ -37,8 +38,15 @@
     return _qqUserInfo;
 }
 
+- (WYUserInfo *)wyUserInfo {
+	if (!_wyUserInfo) {
+        _wyUserInfo = [[WYUserInfo alloc] init];
+    }
+    return _wyUserInfo;
+}
+
 - (BOOL)isLogin {
-    return [self.sinaUserInfo isLogin]||[self.sinaUserInfo isLogin];
+    return [self.sinaUserInfo isLogin]||[self.sinaUserInfo isLogin]||[self.wyUserInfo isLogin];
 }
 
 

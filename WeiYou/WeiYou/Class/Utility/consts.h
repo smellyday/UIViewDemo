@@ -32,6 +32,12 @@
 #define SINA_USER_NAME                        @"sina_user_name"
 #define SINA_USER_PROFILE_IMAGE_URL           @"sina_user_profile_image_url"
 #define SINA_USER_PROFILE_IMAGE_DATA          @"sina_user_profile_image_data"
+//========KEY wy login info========
+#define WY_USER_TOKEN                         @"wy_token"
+#define WY_USER_ID                            @"wy_user_id"
+#define WY_USER_NAME                          @"wy_user_name"
+#define WY_USER_PROFILE_IMAGE_URL             @"wy_user_profile_image_url"
+#define WY_USER_PROFILE_IMAGE_DATA            @"wy_user_profile_image_data"
 //========KEY QQ login info========
 #define QQ_USER_TOKEN                         @"qq_token"
 #define QQ_OPEN_ID                            @"qq_open_id"

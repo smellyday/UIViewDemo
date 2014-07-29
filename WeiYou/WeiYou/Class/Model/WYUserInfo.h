@@ -1,14 +1,14 @@
 //
-//  WYSinaWeiboUserInfo.h
+//  WYUserInfo.h
 //  WeiYou
 //
-//  Created by zhangpan on 14-7-25.
-//  Copyright (c) 2014年 xiyuan. All rights reserved.
+//  Created by owen on 7/29/14.
+//  Copyright (c) 2014 xiyuan. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface WYSinaWeiboUserInfo : NSObject {
+@interface WYUserInfo : NSObject {
     NSString *_authToken;/*must have*/
     NSString *_userID;/*must have*/
 	

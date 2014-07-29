@@ -16,6 +16,7 @@
 		5E4D772C19878012005720BD /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D772719878012005720BD /* NSString+MD5.m */; };
 		5E4D772D19878012005720BD /* SecurityUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D772919878012005720BD /* SecurityUtil.m */; };
 		5E4D7731198786F7005720BD /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D7730198786F7005720BD /* NSObject+JSON.m */; };
+		5E4D77351987BE03005720BD /* WYUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D77341987BE03005720BD /* WYUserInfo.m */; };
 		5E5BC23A183EE5D80003AC6D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BC230183EE5D80003AC6D /* InfoPlist.strings */; };
 		5E5BC23E183EE5D80003AC6D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BC236183EE5D80003AC6D /* Images.xcassets */; };
 		5E5BC23F183EE5D80003AC6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC237183EE5D80003AC6D /* main.m */; };
@@ -156,6 +157,8 @@
 		5E4D772F198786F7005720BD /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSON.h"; sourceTree = "<group>"; };
 		5E4D7730198786F7005720BD /* NSObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSON.m"; sourceTree = "<group>"; };
 		5E4D773219879447005720BD /* consts_network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = consts_network.h; sourceTree = "<group>"; };
+		5E4D77331987BE03005720BD /* WYUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUserInfo.h; sourceTree = "<group>"; };
+		5E4D77341987BE03005720BD /* WYUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYUserInfo.m; sourceTree = "<group>"; };
 		5E5BC231183EE5D80003AC6D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		5E5BC236183EE5D80003AC6D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = WeiYou/Images.xcassets; sourceTree = "<group>"; };
 		5E5BC237183EE5D80003AC6D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = WeiYou/main.m; sourceTree = "<group>"; };
@@ -760,6 +763,8 @@
 				69E215AB1981F2970022D432 /* WYTencentUserInfo.m */,
 				69E215AD1981F2B00022D432 /* WYSinaWeiboUserInfo.h */,
 				69E215AE1981F2B00022D432 /* WYSinaWeiboUserInfo.m */,
+				5E4D77331987BE03005720BD /* WYUserInfo.h */,
+				5E4D77341987BE03005720BD /* WYUserInfo.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -946,6 +951,7 @@
 				696CECB71974FD6600EE4544 /* WYTripController.m in Sources */,
 				5E5D676E186176B000ECA966 /* WYTripDayHotelCell.m in Sources */,
 				5ED101D619665E5D00CAAE9B /* WYMProvince.m in Sources */,
+				5E4D77351987BE03005720BD /* WYUserInfo.m in Sources */,
 				5E5BC263183EE6770003AC6D /* WYUserGuideViewController.m in Sources */,
 				5EBCF763185EFFD30057C1AE /* WYMSpot.m in Sources */,
 				69582DA81952BACF0072ED3E /* WYGlobalState.m in Sources */,
