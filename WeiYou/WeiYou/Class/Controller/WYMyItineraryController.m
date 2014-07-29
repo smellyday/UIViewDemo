@@ -37,15 +37,12 @@
 	self.view.backgroundColor = [UIColor whiteColor];
     self.trips = [[WYDataEngine sharedDataEngine] trips];
 	
-	CGFloat bw = 44.0;
-	CGFloat bh = 44.0;
-	UIButton *settingBtn = [[UIButton alloc] init];
-	settingBtn.frame = CGRectMake(0, 0, bw, bh);
-	[settingBtn setBackgroundImage:[UIImage imageNamed:PIC_SETTING_N] forState:UIControlStateNormal];
-	[settingBtn addTarget:self action:@selector(onClickSetting:) forControlEvents:UIControlEventTouchUpInside];
-	[self.navigationController.navigationBar addSubview:settingBtn];
+	UIBarButtonItem *mLeftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:PIC_SETTING_N] style:UIBarButtonItemStyleBordered target:self action:@selector(onClickSetting:)];
+	mLeftButton.tintColor = [UIColor whiteColor];
+	self.navigationItem.leftBarButtonItem = mLeftButton;
 	
 	UIBarButtonItem *mRightButton = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(onClickCreateNew:)];
+	mRightButton.tintColor = [UIColor whiteColor];
 	self.navigationItem.rightBarButtonItem = mRightButton;
 	
 	//add table view
@@ -63,7 +60,8 @@
 
 #pragma mark - Event Click
 - (void)onClickSetting:(id)sender {
-	
+	WYSettingsViewController *mSettingsController = [[WYSettingsViewController alloc] init];
+    [self.navigationController pushViewController:mSettingsController animated:YES];
 }
 
 - (void)onClickCreateNew:(id)sender {

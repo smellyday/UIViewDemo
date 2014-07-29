@@ -18,8 +18,6 @@
 #define WY_DAY_INTERVAL 86400
 
 //========main color========
-#define WY_MAIN_COLOR                  [UIColor colorWithRed:0.3 green:0.4 blue:0.6 alpha:1.0]
-#define WY_MAIN_COLOR_BG               [UIColor colorWithRed:0.4 green:0.5 blue:0.7 alpha:1.0]
 #define WY_CELL_COLOR                  [UIColor colorWithRed:0.9531 green:0.9414 blue:0.9140 alpha:1.0]
 
 //========LOGIN========

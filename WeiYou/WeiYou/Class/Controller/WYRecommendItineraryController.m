@@ -7,6 +7,7 @@
 //
 
 #import "WYRecommendItineraryController.h"
+#import "WYSettingsViewController.h"
 #import "consts.h"
 
 @interface WYRecommendItineraryController ()
@@ -30,12 +31,9 @@
     // Do any additional setup after loading the view.
 	self.view.backgroundColor = [UIColor redColor];
 	
-	CGFloat bw = 44.0;
-	CGFloat bh = 44.0;
-	UIButton *settingBtn = [[UIButton alloc] init];
-	settingBtn.frame = CGRectMake(0, 0, bw, bh);
-	[settingBtn setBackgroundImage:[UIImage imageNamed:PIC_SETTING_N] forState:UIControlStateNormal];
-	[self.navigationController.navigationBar addSubview:settingBtn];
+	UIBarButtonItem *mLeftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:PIC_SETTING_N] style:UIBarButtonItemStyleBordered target:self action:@selector(onClickSetting:)];
+	mLeftButton.tintColor = [UIColor whiteColor];
+	self.navigationItem.leftBarButtonItem = mLeftButton;
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,7 +44,8 @@
 
 #pragma mark - Event Click
 - (void)onClickSetting:(id)sender {
-	
+	WYSettingsViewController *mSettingsController = [[WYSettingsViewController alloc] init];
+    [self.navigationController pushViewController:mSettingsController animated:YES];
 }
 
 /*
