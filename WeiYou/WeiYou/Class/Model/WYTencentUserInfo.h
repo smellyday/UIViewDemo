@@ -25,7 +25,7 @@
 @property (nonatomic, strong) UIImage *userImage;
 
 - (BOOL)isLogin;
-- (void)clear;
+- (void)logout;
 
 @end
 //  Created by zhangpan on 14-7-25.

@@ -203,16 +203,9 @@
 	} else if (section == 1 && row == 1) {
         
     } else if (section == 3 && row == 0) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_PROFILE_IMAGE_URL];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_PROFILE_IMAGE_DATA];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_ID];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_NAME];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_TOKEN];
-        [[[WYGlobalState sharedGlobalState] sinaUserInfo] clear];
+        [[WYGlobalState sharedGlobalState] logout];
         [self.mTableView reloadData];
         [self.mTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_SINA_LOGOUT object:nil];
     }
 }
 

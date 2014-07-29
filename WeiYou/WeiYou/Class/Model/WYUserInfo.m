@@ -77,8 +77,16 @@
     [[NSUserDefaults standardUserDefaults] setObject:_userImageUrl forKey:WY_USER_PROFILE_IMAGE_URL];
 }
 
-- (void)clear {
-
+- (void)logout {
+	self.authToken = nil;
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_TOKEN];
+	self.userID = nil;
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_ID];
+	self.userName = nil;
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_NAME];
+	self.userImageUrl = nil;
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_PROFILE_IMAGE_URL];
+	self.userImage = nil;
 }
 
 

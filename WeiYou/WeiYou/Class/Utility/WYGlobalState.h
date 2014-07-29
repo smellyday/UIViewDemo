@@ -24,5 +24,6 @@
 
 + (id)sharedGlobalState;
 - (BOOL)isLogin;
+- (void)logout;
 
 @end

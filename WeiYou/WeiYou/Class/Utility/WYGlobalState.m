@@ -31,5 +31,8 @@
     return [self.sinaUserInfo isLogin]||[self.qqUserInfo isLogin]||[self.wyUserInfo isLogin];
 }
 
+- (void)logout {
+	[_sinaUserInfo logout];
+}
 
 @end

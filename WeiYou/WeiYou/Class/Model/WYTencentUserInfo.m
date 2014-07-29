@@ -88,8 +88,18 @@
     [[NSUserDefaults standardUserDefaults] setObject:_userImageUrl forKey:QQ_USER_PROFILE_IMAGE_URL];
 }
 
-- (void)clear {
-    
+- (void)logout {
+	self.authToken = nil;
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:QQ_USER_TOKEN];
+	self.openID = nil;
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:QQ_OPEN_ID];
+	self.expirationDate = nil;
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:QQ_EXPIRATION_DATE];
+	self.userName = nil;
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:QQ_USER_NAME];
+	self.userImageUrl = nil;
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:QQ_USER_PROFILE_IMAGE_URL];
+	self.userImage = nil;
 }
 
 
