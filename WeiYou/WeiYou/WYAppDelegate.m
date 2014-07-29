@@ -13,6 +13,8 @@
 #import "consts.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #include <stdio.h>
+#import "WYRecommendItineraryController.h"
+#import "WYMyItineraryController.h"
 
 @implementation WYAppDelegate
 
@@ -38,10 +40,27 @@
     [WeiboSDK registerApp:SinaWeiboAppKey];
 
     //init rootviewcontroller
-	WYRootViewController *rootViewController = [[WYRootViewController alloc] init];
-	UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-    [rootNavigationController.navigationBar setBackgroundImage:[UIImage imageNamed:PIC_NAV_BAR_BG] forBarMetrics:UIBarMetricsDefault];
-	[self.window setRootViewController:rootNavigationController];
+	UITabBarController *rootController = [[UITabBarController alloc] init];
+	[rootController.tabBar setBackgroundColor:[UIColor whiteColor]];
+	rootController.delegate = self;
+	
+	WYRecommendItineraryController *ric = [[WYRecommendItineraryController alloc] init];
+	UINavigationController *ricnav = [[UINavigationController alloc] initWithRootViewController:ric];
+	[ricnav.navigationBar setBackgroundImage:[UIImage imageNamed:PIC_NAV_BAR_BG] forBarMetrics:UIBarMetricsDefault];
+	
+	UITabBarItem *firstItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"first tab item", @"first tab item") image:[UIImage imageNamed:PIC_FIRST_TAB_ITEM_N] selectedImage:[UIImage imageNamed:PIC_FIRST_TAB_ITEM_H]];
+	ricnav.tabBarItem = firstItem;
+	
+	WYMyItineraryController *mic = [[WYMyItineraryController alloc] init];
+	UINavigationController *micnav = [[UINavigationController alloc] initWithRootViewController:mic];
+	[micnav.navigationBar setBackgroundImage:[UIImage imageNamed:PIC_NAV_BAR_BG] forBarMetrics:UIBarMetricsDefault];
+	
+	UITabBarItem *secondItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"second tab item", @"second tab item") image:[UIImage imageNamed:PIC_SECOND_TAB_ITEM_N] selectedImage:[UIImage imageNamed:PIC_SECOND_TAB_ITEM_H]];
+	micnav.tabBarItem = secondItem;
+	
+	rootController.viewControllers = [NSArray arrayWithObjects:ricnav, micnav, nil];
+	rootController.selectedIndex = 0;
+	[self.window setRootViewController:rootController];
 	
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

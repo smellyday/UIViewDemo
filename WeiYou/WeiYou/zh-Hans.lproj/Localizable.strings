@@ -9,6 +9,7 @@
 	//utility
 "cancel" = "取消";
 "ok" = "确认";
+"app name" = "自由";
 
 	//login in page
 "login" = "登录";
@@ -27,3 +28,5 @@
 "next step" = "下一步";
 "new password" = "新密码";
 "reinput new password" = "确认密码";
+"first tab item" = "推荐行程";
+"second tab item" = "我的行程";

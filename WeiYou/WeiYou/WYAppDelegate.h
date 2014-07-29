@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WeiboSDK.h"
 
-@interface WYAppDelegate : UIResponder <UIApplicationDelegate, WeiboSDKDelegate>
+@interface WYAppDelegate : UIResponder <UIApplicationDelegate, WeiboSDKDelegate, UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

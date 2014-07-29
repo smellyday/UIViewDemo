@@ -1,12 +1,12 @@
 //
-//  WYRootViewController.m
+//  WYMyItineraryController.m
 //  WeiYou
 //
-//  Created by owen on 11/18/13.
-//  Copyright (c) 2013 xiyuan. All rights reserved.
+//  Created by owen on 7/29/14.
+//  Copyright (c) 2014 xiyuan. All rights reserved.
 //
 
-#import "WYRootViewController.h"
+#import "WYMyItineraryController.h"
 #import "WYSettingsViewController.h"
 #import "WYCreateNewViewController.h"
 #import "WYTripController.h"
@@ -14,13 +14,11 @@
 #import "WYMTrip.h"
 #import "consts.h"
 
-@interface WYRootViewController ()
-
-//- (void)refresh;
+@interface WYMyItineraryController ()
 
 @end
 
-@implementation WYRootViewController
+@implementation WYMyItineraryController
 @synthesize mTableView = _mTableView;
 @synthesize trips = _trips;
 
@@ -36,53 +34,40 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	self.view.backgroundColor = [UIColor whiteColor];
     self.trips = [[WYDataEngine sharedDataEngine] trips];
 	
-	self.view.backgroundColor = [UIColor lightGrayColor];
-	self.title = @"FreeTravel";
+	CGFloat bw = 44.0;
+	CGFloat bh = 44.0;
+	UIButton *settingBtn = [[UIButton alloc] init];
+	settingBtn.frame = CGRectMake(0, 0, bw, bh);
+	[settingBtn setBackgroundImage:[UIImage imageNamed:PIC_SETTING_N] forState:UIControlStateNormal];
+	[settingBtn addTarget:self action:@selector(onClickSetting:) forControlEvents:UIControlEventTouchUpInside];
+	[self.navigationController.navigationBar addSubview:settingBtn];
 	
-	UIBarButtonItem *mLeftButton = [[UIBarButtonItem alloc] initWithTitle:@"Setting" style:UIBarButtonItemStylePlain target:self action:@selector(clickSettings:)];
-	self.navigationItem.leftBarButtonItem = mLeftButton;
-	UIBarButtonItem *mRightButton = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(clickCreateNew:)];
+	UIBarButtonItem *mRightButton = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(onClickCreateNew:)];
 	self.navigationItem.rightBarButtonItem = mRightButton;
 	
-		//add table view
+	//add table view
 	self.mTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
 	self.mTableView.delegate = self;
 	self.mTableView.dataSource = self;
 	self.mTableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-	self.mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+	self.mTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.mTableView.backgroundColor = [UIColor whiteColor];
-	[self.mTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+	self.mTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 	[self.view addSubview:_mTableView];
 	
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenBiSynFinish:) name:NOTI_TRIPS_SYNC_FINISH object:nil];
 }
 
-- (void)clickSettings:(id)sender {
-
-	WYSettingsViewController *mSettingsController = [[WYSettingsViewController alloc] init];
-    [self.navigationController pushViewController:mSettingsController animated:YES];
-
+#pragma mark - Event Click
+- (void)onClickSetting:(id)sender {
+	
 }
 
-- (void)clickCreateNew:(id)sender {
+- (void)onClickCreateNew:(id)sender {
 	
-    /*
-	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"WYCMTrip"];
-	NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"tripIndex" ascending:YES];
-	request.sortDescriptors = [NSArray arrayWithObject:sortDes];
-	NSError *merr;
-	NSArray *trips = [[[WYCoreDataEngine sharedCoreDataEngine] context] executeFetchRequest:request error:&merr];
-	for (WYCMTrip *t in trips) {
-		mlog(@"%@", [t description]);
-	}
-     */
-	
-	/*
-	WYCreateNewViewController *mCreateNewController = [[WYCreateNewViewController alloc] init];
-	[self presentViewController:mCreateNewController animated:YES completion:nil];
-	*/
 }
 
 #pragma notification received
@@ -136,16 +121,16 @@
 	WYTripController *theTripController = [[WYTripController alloc] init];
     theTripController.trip = [_trips objectAtIndex:[indexPath row]];
     
-//    NSOperationQueue *mq = [[NSOperationQueue alloc] init];
-//    [mq setMaxConcurrentOperationCount:2];
-//    WYUploadTripOperation *op = [[WYUploadTripOperation alloc] init];
-//    op.sym = 1;
-//    [mq addOperation:op];
-//    
-//    WYUploadTripOperation *op2 = [[WYUploadTripOperation alloc] init];
-//    op2.sym = 2;
-//    [mq addOperation:op2];
-
+		//    NSOperationQueue *mq = [[NSOperationQueue alloc] init];
+		//    [mq setMaxConcurrentOperationCount:2];
+		//    WYUploadTripOperation *op = [[WYUploadTripOperation alloc] init];
+		//    op.sym = 1;
+		//    [mq addOperation:op];
+		//
+		//    WYUploadTripOperation *op2 = [[WYUploadTripOperation alloc] init];
+		//    op2.sym = 2;
+		//    [mq addOperation:op2];
+	
 	[self.navigationController pushViewController:theTripController animated:YES];
 }
 
@@ -161,11 +146,23 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+		// Dispose of any resources that can be recreated.
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

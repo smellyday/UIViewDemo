@@ -23,4 +23,16 @@
 #define PIC_VERI_BTN_N                   @"verify_btn_bg_n.png"
 #define PIC_VERI_BTN_H                   @"verify_btn_bg_h.png"
 
+// root view
+#define PIC_FIRST_TAB_ITEM_N             @"first_tab_item_n.png"
+#define PIC_FIRST_TAB_ITEM_H             @"first_tab_item_h.png"
+#define PIC_SECOND_TAB_ITEM_N            @"second_tab_item_n.png"
+#define PIC_SECOND_TAB_ITEM_H            @"second_tab_item_h.png"
+#define PIC_SETTING_N                    @"setting_icon_n.png"
+#define PIC_SETTING_H
+#define PIC_OK_N						 @"ok_icon_n.png"
+#define PIC_OK_H
+#define PIC_BACK_N						 @"back_icon_n.png"
+#define PIC_BACK_H
+
 #endif
