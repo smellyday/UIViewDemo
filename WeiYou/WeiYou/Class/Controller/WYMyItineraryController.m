@@ -61,7 +61,9 @@
 #pragma mark - Event Click
 - (void)onClickSetting:(id)sender {
 	WYSettingsViewController *mSettingsController = [[WYSettingsViewController alloc] init];
-    [self.navigationController pushViewController:mSettingsController animated:YES];
+	UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mSettingsController];
+	[nav.navigationBar setBackgroundImage:[UIImage imageNamed:PIC_NAV_BAR_BG] forBarMetrics:UIBarMetricsDefault];
+	[self.tabBarController presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)onClickCreateNew:(id)sender {

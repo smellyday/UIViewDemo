@@ -60,7 +60,10 @@
 	
 	rootController.viewControllers = [NSArray arrayWithObjects:ricnav, micnav, nil];
 	rootController.selectedIndex = 0;
-	[self.window setRootViewController:rootController];
+	
+	UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:rootController];
+	rootNav.navigationBar.hidden = YES;
+	[self.window setRootViewController:rootNav];
 	
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
