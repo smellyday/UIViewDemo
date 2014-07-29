@@ -11,10 +11,14 @@
 		5E489B421986BE5E00059066 /* WYResetPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E489B411986BE5E00059066 /* WYResetPasswordController.m */; };
 		5E489B451986BE7600059066 /* WYResetPasswordController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E489B441986BE7600059066 /* WYResetPasswordController2.m */; };
 		5E489B481986C7CA00059066 /* WYRegisterController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E489B471986C7CA00059066 /* WYRegisterController2.m */; };
+		5E4D772A19878012005720BD /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D772219878012005720BD /* GTMBase64.m */; };
+		5E4D772B19878012005720BD /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D772519878012005720BD /* NSData+AES.m */; };
+		5E4D772C19878012005720BD /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D772719878012005720BD /* NSString+MD5.m */; };
+		5E4D772D19878012005720BD /* SecurityUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D772919878012005720BD /* SecurityUtil.m */; };
+		5E4D7731198786F7005720BD /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D7730198786F7005720BD /* NSObject+JSON.m */; };
 		5E5BC23A183EE5D80003AC6D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BC230183EE5D80003AC6D /* InfoPlist.strings */; };
 		5E5BC23E183EE5D80003AC6D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BC236183EE5D80003AC6D /* Images.xcassets */; };
 		5E5BC23F183EE5D80003AC6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC237183EE5D80003AC6D /* main.m */; };
-		5E5BC261183EE6770003AC6D /* WYRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC25B183EE6770003AC6D /* WYRootViewController.m */; };
 		5E5BC262183EE6770003AC6D /* WYSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC25E183EE6770003AC6D /* WYSettingsViewController.m */; };
 		5E5BC263183EE6770003AC6D /* WYUserGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC260183EE6770003AC6D /* WYUserGuideViewController.m */; };
 		5E5BC2EA183EEA3B0003AC6D /* WYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC2E9183EEA3B0003AC6D /* WYAppDelegate.m */; };
@@ -140,14 +144,23 @@
 		5E489B441986BE7600059066 /* WYResetPasswordController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYResetPasswordController2.m; sourceTree = "<group>"; };
 		5E489B461986C7CA00059066 /* WYRegisterController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRegisterController2.h; sourceTree = "<group>"; };
 		5E489B471986C7CA00059066 /* WYRegisterController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRegisterController2.m; sourceTree = "<group>"; };
+		5E4D772119878012005720BD /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		5E4D772219878012005720BD /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		5E4D772319878012005720BD /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		5E4D772419878012005720BD /* NSData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
+		5E4D772519878012005720BD /* NSData+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES.m"; sourceTree = "<group>"; };
+		5E4D772619878012005720BD /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		5E4D772719878012005720BD /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		5E4D772819878012005720BD /* SecurityUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityUtil.h; sourceTree = "<group>"; };
+		5E4D772919878012005720BD /* SecurityUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityUtil.m; sourceTree = "<group>"; };
+		5E4D772F198786F7005720BD /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSON.h"; sourceTree = "<group>"; };
+		5E4D7730198786F7005720BD /* NSObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSON.m"; sourceTree = "<group>"; };
 		5E5BC231183EE5D80003AC6D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		5E5BC236183EE5D80003AC6D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = WeiYou/Images.xcassets; sourceTree = "<group>"; };
 		5E5BC237183EE5D80003AC6D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = WeiYou/main.m; sourceTree = "<group>"; };
 		5E5BC238183EE5D80003AC6D /* WeiYou-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "WeiYou-Info.plist"; path = "WeiYou/WeiYou-Info.plist"; sourceTree = "<group>"; };
 		5E5BC239183EE5D80003AC6D /* WeiYou-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WeiYou-Prefix.pch"; path = "WeiYou/WeiYou-Prefix.pch"; sourceTree = "<group>"; };
 		5E5BC251183EE5E90003AC6D /* consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = consts.h; sourceTree = "<group>"; };
-		5E5BC25B183EE6770003AC6D /* WYRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRootViewController.m; sourceTree = "<group>"; };
-		5E5BC25C183EE6770003AC6D /* WYRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRootViewController.h; sourceTree = "<group>"; };
 		5E5BC25D183EE6770003AC6D /* WYSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSettingsViewController.h; sourceTree = "<group>"; };
 		5E5BC25E183EE6770003AC6D /* WYSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSettingsViewController.m; sourceTree = "<group>"; };
 		5E5BC25F183EE6770003AC6D /* WYUserGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUserGuideViewController.h; sourceTree = "<group>"; };
@@ -370,13 +383,39 @@
 			name = Spot;
 			sourceTree = "<group>";
 		};
+		5E4D771F19878012005720BD /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				5E4D772019878012005720BD /* GTMBase64 */,
+				5E4D772419878012005720BD /* NSData+AES.h */,
+				5E4D772519878012005720BD /* NSData+AES.m */,
+				5E4D772619878012005720BD /* NSString+MD5.h */,
+				5E4D772719878012005720BD /* NSString+MD5.m */,
+				5E4D772819878012005720BD /* SecurityUtil.h */,
+				5E4D772919878012005720BD /* SecurityUtil.m */,
+			);
+			name = Security;
+			path = WeiYou/Class/Security;
+			sourceTree = "<group>";
+		};
+		5E4D772019878012005720BD /* GTMBase64 */ = {
+			isa = PBXGroup;
+			children = (
+				5E4D772119878012005720BD /* GTMBase64.h */,
+				5E4D772219878012005720BD /* GTMBase64.m */,
+				5E4D772319878012005720BD /* GTMDefines.h */,
+			);
+			path = GTMBase64;
+			sourceTree = "<group>";
+		};
 		5E5BC22E183EE5B90003AC6D /* WeiYou */ = {
 			isa = PBXGroup;
 			children = (
+				694ED39D195A762C00917FEB /* ASIHttpRequest */,
+				5E4D771F19878012005720BD /* Security */,
+				69AA1EBE1954112500BA0884 /* libWeiboSDK */,
 				5E5BC2E8183EEA3B0003AC6D /* WYAppDelegate.h */,
 				5E5BC2E9183EEA3B0003AC6D /* WYAppDelegate.m */,
-				694ED39D195A762C00917FEB /* ASIHttpRequest */,
-				69AA1EBE1954112500BA0884 /* libWeiboSDK */,
 				5E5BC241183EE5E90003AC6D /* Controller */,
 				5E5BC249183EE5E90003AC6D /* View */,
 				5E5BC248183EE5E90003AC6D /* Engine */,
@@ -447,8 +486,6 @@
 		5E5BC241183EE5E90003AC6D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5E5BC25C183EE6770003AC6D /* WYRootViewController.h */,
-				5E5BC25B183EE6770003AC6D /* WYRootViewController.m */,
 				5E7D177C198722A9003F4208 /* WYRecommendItineraryController.h */,
 				5E7D177D198722A9003F4208 /* WYRecommendItineraryController.m */,
 				5E7D177F198722CD003F4208 /* WYMyItineraryController.h */,
@@ -517,6 +554,8 @@
 				69582DA71952BACF0072ED3E /* WYGlobalState.m */,
 				6979F7FB198119F400011428 /* WYNavigationController.h */,
 				6979F7FC198119F400011428 /* WYNavigationController.m */,
+				5E4D772F198786F7005720BD /* NSObject+JSON.h */,
+				5E4D7730198786F7005720BD /* NSObject+JSON.m */,
 			);
 			name = Utility;
 			path = WeiYou/Class/Utility;
@@ -876,7 +915,9 @@
 				694ED3B5195A762C00917FEB /* ASIDataCompressor.m in Sources */,
 				694ED3B6195A762C00917FEB /* ASIDataDecompressor.m in Sources */,
 				69E215AF1981F2B00022D432 /* WYSinaWeiboUserInfo.m in Sources */,
+				5E4D772B19878012005720BD /* NSData+AES.m in Sources */,
 				694ED3B7195A762C00917FEB /* ASIDownloadCache.m in Sources */,
+				5E4D7731198786F7005720BD /* NSObject+JSON.m in Sources */,
 				694ED3B8195A762C00917FEB /* ASIFormDataRequest.m in Sources */,
 				5E489B481986C7CA00059066 /* WYRegisterController2.m in Sources */,
 				694ED3B9195A762C00917FEB /* ASIHTTPRequest.m in Sources */,
@@ -892,10 +933,12 @@
 				5EBCF75A185EFF2A0057C1AE /* WYMCountry.m in Sources */,
 				69AA1EBA1953D9D400BA0884 /* WYRegisterController.m in Sources */,
 				5EBCF745185EAEDC0057C1AE /* WYMCity.m in Sources */,
+				5E4D772C19878012005720BD /* NSString+MD5.m in Sources */,
 				5EBCF73F185EAE290057C1AE /* WYMTrip.m in Sources */,
 				5E5BC2EA183EEA3B0003AC6D /* WYAppDelegate.m in Sources */,
 				5E5BC262183EE6770003AC6D /* WYSettingsViewController.m in Sources */,
 				6979F7FD198119F400011428 /* WYNavigationController.m in Sources */,
+				5E4D772D19878012005720BD /* SecurityUtil.m in Sources */,
 				5EBCF748185EE7630057C1AE /* WYMContinent.m in Sources */,
 				5E5BC23F183EE5D80003AC6D /* main.m in Sources */,
 				696CECB71974FD6600EE4544 /* WYTripController.m in Sources */,
@@ -906,13 +949,13 @@
 				69582DA81952BACF0072ED3E /* WYGlobalState.m in Sources */,
 				696CECBA19752D4A00EE4544 /* WYTripDayController.m in Sources */,
 				5E5BC2F1183EF5430003AC6D /* WYFileManager.m in Sources */,
+				5E4D772A19878012005720BD /* GTMBase64.m in Sources */,
 				5EBCF742185EAE550057C1AE /* WYMTripDay.m in Sources */,
 				69582DAB1952C3F40072ED3E /* WYLoginController.m in Sources */,
 				5E5D67681861766700ECA966 /* WYTripDayTrafficCell.m in Sources */,
 				5E5D67641861451600ECA966 /* WYTripDayCell.m in Sources */,
 				5E5BC2F6183F3DB80003AC6D /* WYDataEngine.m in Sources */,
 				693432CD197F836700C1D2A5 /* WYBiSyncTripsOperation.m in Sources */,
-				5E5BC261183EE6770003AC6D /* WYRootViewController.m in Sources */,
 				5E489B451986BE7600059066 /* WYResetPasswordController2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,6 @@
 //
 
 #import "WYAppDelegate.h"
-#import "WYRootViewController.h"
 #import "WYGlobalState.h"
 #import "WYDataEngine.h"
 #import "consts.h"
