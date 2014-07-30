@@ -151,9 +151,6 @@
 
 #pragma mark - HTTP
 - (void)requestFinished:(ASIHTTPRequest *)request {
-	NSString *response = [[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding];
-	mlog(@"== WY Register Response : \n%@", response);
-	
 	NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableContainers error:nil];
 	mlog(@"== WY Register Response info dic : \n%@", [infoDic description]);
 	
@@ -170,7 +167,7 @@
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-	mlog(@"Failed Response : %@", [request.responseData description]);
+	mlog(@"== WY Register Failed Response : %@", [request.responseData description]);
 }
 
 @end
