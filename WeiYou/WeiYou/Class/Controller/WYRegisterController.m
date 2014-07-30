@@ -8,9 +8,15 @@
 
 #import "WYRegisterController.h"
 #import "WYRegisterController2.h"
+#import "WYURLUtility.h"
+#import "SecurityUtil.h"
+#import "NSObject+JSON.h"
+#import "WYGlobalState.h"
 #import "consts.h"
 
 @interface WYRegisterController ()
+
+- (void)rgsNextStep;
 
 @end
 
@@ -128,20 +134,54 @@
 }
 
 - (void)onClickNextStep:(id)sender {
-	WYRegisterController2 *rc = [[WYRegisterController2 alloc] init];
-	[self.navigationController pushViewController:rc animated:YES];
+    if (!_userField.text || [_userField.text length]==0) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"please input phone number" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+		return;
+    }
+    
+    if (!_passwdField.text || [_passwdField.text length]==0) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"please input password" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+		return;
+    }
+    
+    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
+	[infoDic setObject:_userField.text forKey:JSON_KEY_TEL];
+	[infoDic setObject:[WYGlobalState getUUID] forKey:JSON_KEY_UID];
+	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getWYSendMsgURL]];
+	[request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"smsdata"];
+	request.delegate = self;
+	[request startAsynchronous];
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - HTTP
+- (void)requestFinished:(ASIHTTPRequest *)request {
+	NSString *response = [[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding];
+	mlog(@"== WY Login Response : \n%@", response);
+	
+	NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableContainers error:nil];
+	mlog(@"== WY Login Response info dic : \n%@", [infoDic description]);
+	
+	NSNumber *state = [infoDic objectForKey:JSON_KEY_RES_ST];
+	if ([state intValue] == 0) {
+        [self performSelectorOnMainThread:@selector(rgsNextStep) withObject:nil waitUntilDone:NO];
+        mlog(@"== WY Login Success & msg : %@", [infoDic objectForKey:JSON_KEY_RES_MSG]);
+	} else {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_KEY_RES_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+    }
 }
-*/
+
+- (void)requestFailed:(ASIHTTPRequest *)request {
+	mlog(@"== WY Login Failed & Response : %@", [request.responseData description]);
+}
+
+#pragma mark - private
+- (void)rgsNextStep {
+    WYRegisterController2 *rc = [[WYRegisterController2 alloc] init];
+    [self.navigationController pushViewController:rc animated:YES];
+}
 
 @end

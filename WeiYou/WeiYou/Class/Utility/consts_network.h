@@ -14,5 +14,9 @@
 #define JSON_KEY_EMAIL				@"email"
 #define JSON_KEY_NICKNAME			@"nickname"
 #define JSON_KEY_PWD				@"pwd"
+#define JSON_KEY_UID                @"uid"
+
+#define JSON_KEY_RES_ST             @"st"
+#define JSON_KEY_RES_MSG            @"msg"
 
 #endif

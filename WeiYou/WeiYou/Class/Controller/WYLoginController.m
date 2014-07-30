@@ -326,32 +326,25 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
 	NSString *response = [[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding];
-	mlog(@"Finish Response : \n%@", response);
+	mlog(@"== WY Login Response : \n%@", response);
 	
 	NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableContainers error:nil];
-	mlog(@"wyuser respone info dic : \n%@", [infoDic description]);
+	mlog(@"== WY Login Response info dic : \n%@", [infoDic description]);
 	
-	NSNumber *state = [infoDic objectForKey:@"st"];
+	NSNumber *state = [infoDic objectForKey:JSON_KEY_RES_ST];
 	if ([state intValue] == 0) {
-		mlog(@"---login success & state : %i", [state intValue]);
 		[[[WYGlobalState sharedGlobalState] wyUserInfo] setAuthToken:[infoDic objectForKey:@"ut"]];
 		[[[WYGlobalState sharedGlobalState] wyUserInfo] setUserID:_userField.text];
-		
 		[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_WY_LOGIN object:nil userInfo:nil];
 	} else {
-		mlog(@"---login fail \n state : %i \n info : %@", [state intValue], [infoDic objectForKey:@"msg"]);
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_KEY_RES_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
 	}
-	
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	mlog(@"Failed Response : %@", [request.responseData description]);
 }
-
-//- (void)request:(ASIHTTPRequest *)request didReceiveData:(NSData *)data {
-//	NSString *rs = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//	mlog(@"Receive Dada : \n%@", rs);
-//}
 
 
 

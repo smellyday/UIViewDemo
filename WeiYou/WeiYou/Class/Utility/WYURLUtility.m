@@ -22,4 +22,14 @@
     return [NSURL URLWithString:urlStr];
 }
 
++ (NSURL *)getWYSendMsgURL {
+    
+    NSString *cp = [[WYGlobalState sharedGlobalState] cp];
+	NSString *ev = @"1";
+    NSString *mode = @"0";
+	NSString *urlStr = [NSString stringWithFormat:@"%@%@&cp=%@&ev=%@&mode=%@", BASE_WY_URL_STR, INTERFACE_SENDMSG, cp, ev, mode];
+    
+    return [NSURL URLWithString:urlStr];
+}
+
 @end

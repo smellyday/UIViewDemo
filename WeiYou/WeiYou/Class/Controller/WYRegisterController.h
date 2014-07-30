@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIFormDataRequest.h"
 
-@interface WYRegisterController : UIViewController <UITextFieldDelegate> {
+@interface WYRegisterController : UIViewController <UITextFieldDelegate, ASIHTTPRequestDelegate> {
 	UITextField *_userField;
 	UITextField *_passwdField;
 }
