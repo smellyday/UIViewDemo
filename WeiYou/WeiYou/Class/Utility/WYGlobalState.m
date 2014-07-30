@@ -69,6 +69,7 @@
 
 - (NSString *)cp {
     if (_cp == nil) {
+        mlog(@"--------------------- cp is nil");
         _cp = [[NSUserDefaults standardUserDefaults] objectForKey:GLOBAL_PARAM_CP];
         mlog(@"== get cp from user defaults : %@", _cp);
         if (_cp == nil || [_cp length]==0) {
@@ -80,9 +81,11 @@
             NSString *platform = @"1001";
             NSString *appversion = APP_VERSION;
             
-            NSString *initCP = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@|%@|%f|%f|", uuid, channel, factory, device, os, platform, appversion, SCREEN_WIDTH, SCREEN_HEIGHT];
+            CGFloat scale = [[UIScreen mainScreen] scale];
+            NSString *initCP = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@|%@|%i|%i|", uuid, channel, factory, device, os, platform, appversion, (int)(scale*SCREEN_WIDTH), (int)(scale*SCREEN_HEIGHT)];
             mlog(@"== create init cp : %@", initCP);
             _cp = [SecurityUtil encodeBase64String:initCP];
+            [[NSUserDefaults standardUserDefaults] setObject:_cp forKey:GLOBAL_PARAM_CP];
             mlog(@"== create final cp : %@", _cp);
         }
     }
@@ -94,7 +97,7 @@
     NSString *mUUID = [[NSUserDefaults standardUserDefaults] objectForKey:GLOBAL_PARAM_UUID];
     mlog(@"== get mUUID from user defaults : %@", mUUID);
     if (mUUID == nil || [mUUID length]==0) {
-        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"WHATEVER" accessGroup:APP_GROUP];
+        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:KEYCHAIN_ID accessGroup:APP_GROUP];
         
         mUUID = [wrapper objectForKey:(__bridge id)kSecValueData];
         mlog(@"== get mUUID from keychain : %@", mUUID);

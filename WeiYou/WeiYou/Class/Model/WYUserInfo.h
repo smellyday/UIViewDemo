@@ -10,8 +10,8 @@
 
 @interface WYUserInfo : NSObject {
     NSString *_authToken;/*must have*/
-    NSString *_userID;/*must have*/
-	
+
+    NSString *_userID;
     NSString *_userName;
     NSString *_userImageUrl;
 }

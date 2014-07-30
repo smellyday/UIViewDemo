@@ -19,6 +19,7 @@
 #define APP_GROUP                           @"4RH97J3HKQ.com.200.WeiYou"
 #define APP_CHANNEL                         @"1001"
 #define APP_VERSION                         @"0.0.0.1"
+#define KEYCHAIN_ID                         @"WHATEVER"
 
 //========one day interval=======
 #define WY_DAY_INTERVAL 86400

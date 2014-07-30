@@ -13,6 +13,7 @@
 #import "WeiboSDK.h"
 #import "consts.h"
 #import "SecurityUtil.h"
+#import "WYURLUtility.h"
 #import "NSObject+JSON.h"
 
 @interface WYLoginController ()
@@ -221,8 +222,10 @@
 }
 
 - (void)onClickLogin:(id)sender {
+
 	if (_userField.text == nil || [_userField.text length]==0 || _passwdField.text == nil || [_passwdField.text length]==0) {
-			//show alert.
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"please input both username & password" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
 		return;
 	}
 	
@@ -230,11 +233,7 @@
 	[infoDic setObject:_userField.text forKey:JSON_KEY_TEL];
 	[infoDic setObject:_passwdField.text forKey:JSON_KEY_PWD];
 	
-	NSString *cp = @"WANGTIEBINTESTUID|1000|Aplle|iPhone4S|iOS 7.2|1|1.0.1|960|540|1406621461";
-	NSString *ev = @"1";
-	NSString *urlStr = [NSString stringWithFormat:@"%@%@&cp=%@&ev=%@", BASE_URL, @"/passport/login", [SecurityUtil encodeBase64String:cp], ev];
-	
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlStr]];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getWYLoginURL]];
 	[request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"logindata"];
 	request.delegate = self;
 	[request startAsynchronous];

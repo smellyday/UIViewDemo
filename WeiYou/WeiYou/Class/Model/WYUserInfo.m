@@ -18,7 +18,7 @@
 
 
 - (BOOL)isLogin {
-    if (self.authToken != nil && [self.authToken length]!=0 && self.userID != nil && [self.userID length]!=0) {
+    if (self.authToken != nil && [self.authToken length]!=0) {
         return YES;
     }
     
