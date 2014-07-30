@@ -247,10 +247,12 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	LOGFUNCTION;
-    NSError *error = [request error];
-    NSLog(@"error is %@", [error description]);
-    
-    // if cant get the data using uid&token.
+    mlog(@"== WY Login Failed Response : %@", [request.error description]);
+    NSError *error = request.error;
+    if (error.code == 1) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"Connection Failure Occur!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+    }
 }
 
 

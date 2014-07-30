@@ -167,7 +167,13 @@
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-	mlog(@"== WY Register Failed Response : %@", [request.responseData description]);
+    LOGFUNCTION;
+    mlog(@"== WY Login Failed Response : %@", [request.error description]);
+    NSError *error = request.error;
+    if (error.code == 1) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"Connection Failure Occur!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+    }
 }
 
 @end
