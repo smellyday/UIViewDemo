@@ -11,7 +11,6 @@
 #import "WYDataEngine.h"
 #import "consts.h"
 #import <TencentOpenAPI/TencentOAuth.h>
-//#include <stdio.h>
 #import "WYRecommendItineraryController.h"
 #import "WYMyItineraryController.h"
 #import "WYLoginController.h"
