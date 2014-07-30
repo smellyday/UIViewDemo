@@ -283,6 +283,7 @@
 
 - (void)doWhenWYRegisterSuccess:(id)sender {
     LOGFUNCTION;
+    [self.mTableView reloadData];
 }
 
 #pragma mark - UINavigationControllerDelegate

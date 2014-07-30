@@ -16,7 +16,7 @@
 
 @interface WYRegisterController ()
 
-- (void)rgsNextStep;
+- (void)regNextStep;
 
 @end
 
@@ -163,7 +163,7 @@
 	
 	NSNumber *state = [infoDic objectForKey:JSON_RES_KEY_ST];
 	if ([state intValue] == 0) {
-        [self performSelectorOnMainThread:@selector(rgsNextStep) withObject:nil waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(regNextStep) withObject:nil waitUntilDone:NO];
         mlog(@"== WY SendSMS Success & msg : %@", [infoDic objectForKey:JSON_RES_KEY_MSG]);
 	} else {
         UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_RES_KEY_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
@@ -176,7 +176,7 @@
 }
 
 #pragma mark - private
-- (void)rgsNextStep {
+- (void)regNextStep {
     WYRegisterController2 *rc = [[WYRegisterController2 alloc] init];
     rc.phoneNumber = _userField.text;
     rc.password = _passwdField.text;
