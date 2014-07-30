@@ -72,7 +72,7 @@
 #define NOTI_WY_LOGIN_OK                    @"noti_wy_login"
 #define NOTI_WY_LOGOUT                      @"noti_wy_logout"
 #define NOTI_WY_REG_OK                      @"noti_wy_reg_ok"
-
+#define NOTI_WY_RESET_PWD_OK                @"noti_wy_reset_pwd_ok"
 
 //========data file========
 #define WY_FILE_TRIPS                  @"trips.plist"

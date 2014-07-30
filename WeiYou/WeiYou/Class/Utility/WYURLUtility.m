@@ -22,7 +22,7 @@
     return [NSURL URLWithString:urlStr];
 }
 
-+ (NSURL *)getWYSendMsgURL {
++ (NSURL *)getWYRegSendMsgURL {
     
     NSString *cp = [[WYGlobalState sharedGlobalState] cp];
 	NSString *ev = @"1";
@@ -36,6 +36,23 @@
     NSString *cp = [[WYGlobalState sharedGlobalState] cp];
 	NSString *ev = @"1";
 	NSString *urlStr = [NSString stringWithFormat:@"%@%@&cp=%@&ev=%@", BASE_WY_URL_STR, INTERFACE_REG, cp, ev];
+    
+    return [NSURL URLWithString:urlStr];
+}
+
++ (NSURL *)getWYResetSendMsgURL {
+    NSString *cp = [[WYGlobalState sharedGlobalState] cp];
+	NSString *ev = @"1";
+    NSString *mode = @"1";
+	NSString *urlStr = [NSString stringWithFormat:@"%@%@&cp=%@&ev=%@&mode=%@", BASE_WY_URL_STR, INTERFACE_SENDMSG, cp, ev, mode];
+    
+    return [NSURL URLWithString:urlStr];
+}
+
++ (NSURL *)getWYResetPWDURL {
+    NSString *cp = [[WYGlobalState sharedGlobalState] cp];
+	NSString *ev = @"1";
+	NSString *urlStr = [NSString stringWithFormat:@"%@%@&cp=%@&ev=%@", BASE_WY_URL_STR, INTERFACE_LOGIN, cp, ev];
     
     return [NSURL URLWithString:urlStr];
 }

@@ -7,6 +7,10 @@
 //
 
 #import "WYResetPasswordController2.h"
+#import "WYGlobalState.h"
+#import "NSObject+JSON.h"
+#import "WYURLUtility.h"
+#import "SecurityUtil.h"
 #import "consts.h"
 
 @interface WYResetPasswordController2 ()
@@ -14,6 +18,7 @@
 @end
 
 @implementation WYResetPasswordController2
+@synthesize phoneNumber = _phoneNumber;
 @synthesize verifyNumberTextField =_verifyNumberTextField;
 @synthesize inputPWTextField = _inputPWTextField;
 @synthesize reInputPWTextField = _reInputPWTextField;
@@ -102,7 +107,7 @@
 	[nextBtn setTitle:NSLocalizedString(@"next step", @"next step") forState:UIControlStateNormal];
 	[nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	nextBtn.titleLabel.font = [UIFont systemFontOfSize:18];
-	[nextBtn addTarget:self action:@selector(onClickNextStepBtn:) forControlEvents:UIControlEventTouchUpInside];
+	[nextBtn addTarget:self action:@selector(onClickOKButton:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:nextBtn];
 }
 
@@ -128,19 +133,67 @@
 }
 
 #pragma mark - onClick
-- (void)onClickNextStepBtn:(id)sender {
+- (void)onClickOKButton:(id)sender {
+    
+    NSString *veriNum = _verifyNumberTextField.text;
+    NSString *pwd1 = _inputPWTextField.text;
+    NSString *pwd2 = _reInputPWTextField.text;
+    
+    if (!_phoneNumber || [_phoneNumber length]==0) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"Hi, No phone number!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+        return;
+    }
+    
+	if (!veriNum || [veriNum length]==0) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"Hi, input verify code man!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+        return;
+    }
+    
+    if (!pwd1 || [pwd1 length]==0 || !pwd2 || [pwd2 length]==0) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"Blind you are? Input both password, ok!?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+        return;
+    }
+    
+    if (![pwd1 isEqualToString:pwd2]) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"Two pwds are not the same!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+        return;
+    }
+    
+    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
+	[infoDic setObject:_phoneNumber forKey:JSON_BODY_KEY_TEL];
+	[infoDic setObject:pwd1 forKey:JSON_BODY_KEY_NEW_PWD];
+	[infoDic setObject:veriNum forKey:JSON_BODY_KEY_SMS];
 	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getWYRegURL]];
+	[request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"resetpwddata"];
+	request.delegate = self;
+	[request startAsynchronous];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - HTTP
+- (void)requestFinished:(ASIHTTPRequest *)request {
+	NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableContainers error:nil];
+	mlog(@"== WY Reset Response info dic : \n%@", [infoDic description]);
+	
+	NSNumber *state = [infoDic objectForKey:JSON_RES_KEY_ST];
+	if ([state intValue] == 0) {
+		[[[WYGlobalState sharedGlobalState] wyUserInfo] setAuthToken:[infoDic objectForKey:JSON_RES_KEY_UT]];
+		[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_WY_RESET_PWD_OK object:nil userInfo:nil];
+        mlog(@"== WY Reset Success & msg : %@", [infoDic objectForKey:JSON_RES_KEY_MSG]);
+	} else {
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_RES_KEY_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+	}
+    
 }
-*/
+
+- (void)requestFailed:(ASIHTTPRequest *)request {
+	mlog(@"== WY Reset Failed Response : %@", [request.responseData description]);
+}
+
 
 @end

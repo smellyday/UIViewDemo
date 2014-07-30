@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIFormDataRequest.h"
 
-@interface WYResetPasswordController : UIViewController <UITextFieldDelegate> {
-	UITextField *_userPhoneNumberField;
+@interface WYResetPasswordController : UIViewController <UITextFieldDelegate, ASIHTTPRequestDelegate> {
+	UITextField *_phoneNumberField;
 }
 
-@property (nonatomic, strong) UITextField *userPhoneNumberField;
+@property (nonatomic, strong) UITextField *phoneNumberField;
 
 @end

@@ -14,6 +14,7 @@
 #define JSON_BODY_KEY_EMAIL				@"email"
 #define JSON_BODY_KEY_NICKNAME			@"nickname"
 #define JSON_BODY_KEY_PWD				@"pwd"
+#define JSON_BODY_KEY_NEW_PWD           @"newpwd"
 #define JSON_BODY_KEY_UID               @"uid"
 #define JSON_BODY_KEY_SMS               @"smscode"
 

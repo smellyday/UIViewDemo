@@ -12,6 +12,7 @@
 #define INTERFACE_LOGIN             @"/passport/login"
 #define INTERFACE_SENDMSG           @"/passport/sendsmscode"
 #define INTERFACE_REG               @"/passport/reg"
+#define INTERFACE_RESET             @"/passport/resetpwd"
 
 #define PARAM_CP                    @"cp"
 #define PARAM_EV                    @"ev"
@@ -20,7 +21,9 @@
 @interface WYURLUtility : NSObject
 
 + (NSURL *)getWYLoginURL;
-+ (NSURL *)getWYSendMsgURL;
++ (NSURL *)getWYRegSendMsgURL;
 + (NSURL *)getWYRegURL;
++ (NSURL *)getWYResetSendMsgURL;
++ (NSURL *)getWYResetPWDURL;
 
 @end

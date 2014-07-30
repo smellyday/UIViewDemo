@@ -60,6 +60,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenQQLoginSuccess:) name:NOTI_QQ_LOGIN_OK object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenWYLoginSuccess:) name:NOTI_WY_LOGIN_OK object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenWYRegisterSuccess:) name:NOTI_WY_REG_OK object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenWYRegisterSuccess:) name:NOTI_WY_RESET_PWD_OK object:nil];
 }
 
 - (void)onClickCancelButton:(id)sender {

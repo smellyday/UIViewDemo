@@ -150,7 +150,7 @@
 	[infoDic setObject:_userField.text forKey:JSON_BODY_KEY_TEL];
 	[infoDic setObject:[WYGlobalState getUUID] forKey:JSON_BODY_KEY_UID];
 	
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getWYSendMsgURL]];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getWYRegSendMsgURL]];
 	[request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"smsdata"];
 	request.delegate = self;
 	[request startAsynchronous];
