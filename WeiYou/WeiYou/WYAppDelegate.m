@@ -126,7 +126,7 @@
         if (token != nil && userid != nil) {
             [[[WYGlobalState sharedGlobalState] sinaUserInfo] setAuthToken:token];
             [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserID:userid];
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_SINA_LOGIN object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_SINA_LOGIN_OK object:nil userInfo:nil];
         }
     }
 }

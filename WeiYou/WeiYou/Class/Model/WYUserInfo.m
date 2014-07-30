@@ -12,7 +12,6 @@
 
 @implementation WYUserInfo
 @synthesize authToken = _authToken;
-@synthesize userID = _userID;
 @synthesize userName =_userName;
 @synthesize userImageUrl = _userImageUrl;
 
@@ -37,19 +36,6 @@
 - (void)setAuthToken:(NSString *)authToken {
     _authToken = authToken;
     [[NSUserDefaults standardUserDefaults] setObject:_authToken forKey:WY_USER_TOKEN];
-}
-
-- (NSString *)userID {
-    if (_userID == nil) {
-        _userID = [[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_ID];
-    }
-    
-    return _userID;
-}
-
-- (void)setUserID:(NSString *)userID {
-    _userID = userID;
-    [[NSUserDefaults standardUserDefaults] setObject:_userID forKey:WY_USER_ID];
 }
 
 - (NSString *)userName {
@@ -83,8 +69,6 @@
 - (void)logout {
 	self.authToken = nil;
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_TOKEN];
-	self.userID = nil;
-	[[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_ID];
 	self.userName = nil;
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:WY_USER_NAME];
 	self.userImageUrl = nil;

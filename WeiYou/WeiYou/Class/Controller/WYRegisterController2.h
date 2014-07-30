@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIFormDataRequest.h"
 
-@interface WYRegisterController2 : UIViewController <UITextFieldDelegate> {
-	UITextField *_phoneNumberField;
+@interface WYRegisterController2 : UIViewController <UITextFieldDelegate, ASIHTTPRequestDelegate> {
+    NSString *_phoneNumber;
+    NSString *_password;
+    
 	UITextField *_verifyField;
 }
 
-@property (nonatomic, strong) UITextField *phoneNumberField;
+@property (nonatomic, strong) NSString *phoneNumber;
+@property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) UITextField *verifyField;
 
 @end

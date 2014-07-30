@@ -11,6 +11,7 @@
 #define BASE_WY_URL_STR             @"http://app.bailinglvxing.com/?r="
 #define INTERFACE_LOGIN             @"/passport/login"
 #define INTERFACE_SENDMSG           @"/passport/sendsmscode"
+#define INTERFACE_REG               @"/passport/reg"
 
 #define PARAM_CP                    @"cp"
 #define PARAM_EV                    @"ev"
@@ -20,5 +21,6 @@
 
 + (NSURL *)getWYLoginURL;
 + (NSURL *)getWYSendMsgURL;
++ (NSURL *)getWYRegURL;
 
 @end

@@ -10,13 +10,15 @@
 #define WeiYou_consts_network_h
 
 
-#define JSON_KEY_TEL				@"tel"
-#define JSON_KEY_EMAIL				@"email"
-#define JSON_KEY_NICKNAME			@"nickname"
-#define JSON_KEY_PWD				@"pwd"
-#define JSON_KEY_UID                @"uid"
+#define JSON_BODY_KEY_TEL				@"tel"
+#define JSON_BODY_KEY_EMAIL				@"email"
+#define JSON_BODY_KEY_NICKNAME			@"nickname"
+#define JSON_BODY_KEY_PWD				@"pwd"
+#define JSON_BODY_KEY_UID               @"uid"
+#define JSON_BODY_KEY_SMS               @"smscode"
 
-#define JSON_KEY_RES_ST             @"st"
-#define JSON_KEY_RES_MSG            @"msg"
+#define JSON_RES_KEY_ST             @"st"
+#define JSON_RES_KEY_MSG            @"msg"
+#define JSON_RES_KEY_UT             @"ut"
 
 #endif

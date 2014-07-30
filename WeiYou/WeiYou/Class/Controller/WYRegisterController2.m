@@ -7,6 +7,10 @@
 //
 
 #import "WYRegisterController2.h"
+#import "WYGlobalState.h"
+#import "WYURLUtility.h"
+#import "SecurityUtil.h"
+#import "NSObject+JSON.h"
 #import "consts.h"
 
 @interface WYRegisterController2 ()
@@ -14,7 +18,8 @@
 @end
 
 @implementation WYRegisterController2
-@synthesize phoneNumberField = _phoneNumberField;
+@synthesize phoneNumber = _phoneNumber;
+@synthesize password = _password;
 @synthesize verifyField = _verifyField;
 
 - (void)viewDidLoad
@@ -55,17 +60,18 @@
     CGFloat gaph1 = 100.0;
     CGFloat fw = 264.0;
     CGFloat fh = 40.0;
-	_phoneNumberField = [[UITextField alloc] init];
-	_phoneNumberField.frame = CGRectMake(SCREEN_WIDTH/2-fw/2, STATUS_BAR_H+NAV_BAR_H+gaph1, fw, fh);
-	_phoneNumberField.autocorrectionType = UITextAutocorrectionTypeNo;
-	_phoneNumberField.returnKeyType = UIReturnKeyDone;
-	_phoneNumberField.clearButtonMode = UITextFieldViewModeWhileEditing;
-//	_phoneNumberField.placeholder = NSLocalizedString(@"user phone number", @"user phone number");
-	_phoneNumberField.backgroundColor = [UIColor whiteColor];
-	_phoneNumberField.delegate = self;
-	_phoneNumberField.enabled = NO;
-	_phoneNumberField.keyboardType = UIKeyboardTypeEmailAddress;
-	[_phoneNumberField setBorderStyle:UITextBorderStyleRoundedRect];
+	UITextField *phoneNumberField = [[UITextField alloc] init];
+	phoneNumberField.frame = CGRectMake(SCREEN_WIDTH/2-fw/2, STATUS_BAR_H+NAV_BAR_H+gaph1, fw, fh);
+	phoneNumberField.autocorrectionType = UITextAutocorrectionTypeNo;
+	phoneNumberField.returnKeyType = UIReturnKeyDone;
+	phoneNumberField.clearButtonMode = UITextFieldViewModeWhileEditing;
+	phoneNumberField.backgroundColor = [UIColor whiteColor];
+	phoneNumberField.enabled = NO;
+	phoneNumberField.keyboardType = UIKeyboardTypeEmailAddress;
+	[phoneNumberField setBorderStyle:UITextBorderStyleRoundedRect];
+    if (_phoneNumber && [_phoneNumber length]>0) {
+        phoneNumberField.text = _phoneNumber;
+    }
 	
 	_verifyField = [[UITextField alloc] init];
 	_verifyField.frame = CGRectMake(SCREEN_WIDTH/2-fw/2, STATUS_BAR_H+NAV_BAR_H+gaph1+fh, fw, fh);
@@ -75,11 +81,11 @@
 	_verifyField.placeholder = NSLocalizedString(@"verify code", @"verify code");
 	_verifyField.backgroundColor = [UIColor whiteColor];
 	_verifyField.delegate = self;
-	_verifyField.keyboardType = UIKeyboardTypeEmailAddress;
+	_verifyField.keyboardType = UIKeyboardTypePhonePad;
 	_verifyField.secureTextEntry = YES;
 	[_verifyField setBorderStyle:UITextBorderStyleRoundedRect];
 	
-	[self.view addSubview:_phoneNumberField];
+	[self.view addSubview:phoneNumberField];
 	[self.view addSubview:_verifyField];
 	
     CGFloat gaph2 = 25.0;
@@ -92,6 +98,7 @@
 	[okBtn setTitle:NSLocalizedString(@"ok", @"ok") forState:UIControlStateNormal];
 	[okBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	okBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+    [okBtn addTarget:self action:@selector(onClickRegButton:) forControlEvents:UIControlEventTouchUpInside];
 	
 	[self.view addSubview:okBtn];
 	
@@ -118,15 +125,52 @@
 	[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)onClickRegButton:(id)sender {
+    if (!_phoneNumber || [_phoneNumber length]==0) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"There must be something wrong." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+		return;
+    }
+    
+    if (!_verifyField.text || [_verifyField.text length]==0) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"please input verify code" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+		return;
+    }
+    
+    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
+	[infoDic setObject:_phoneNumber forKey:JSON_BODY_KEY_TEL];
+	[infoDic setObject:_password forKey:JSON_BODY_KEY_PWD];
+	[infoDic setObject:_verifyField.text forKey:JSON_BODY_KEY_SMS];
+	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getWYRegURL]];
+	[request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"regdata"];
+	request.delegate = self;
+	[request startAsynchronous];
 }
-*/
+
+#pragma mark - HTTP
+- (void)requestFinished:(ASIHTTPRequest *)request {
+	NSString *response = [[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding];
+	mlog(@"== WY Register Response : \n%@", response);
+	
+	NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableContainers error:nil];
+	mlog(@"== WY Register Response info dic : \n%@", [infoDic description]);
+	
+	NSNumber *state = [infoDic objectForKey:JSON_RES_KEY_ST];
+	if ([state intValue] == 0) {
+		[[[WYGlobalState sharedGlobalState] wyUserInfo] setAuthToken:[infoDic objectForKey:JSON_RES_KEY_UT]];
+		[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_WY_REG_OK object:nil userInfo:nil];
+        mlog(@"== WY Register Success & msg : %@", [infoDic objectForKey:JSON_RES_KEY_MSG]);
+	} else {
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_RES_KEY_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+	}
+    
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request {
+	mlog(@"Failed Response : %@", [request.responseData description]);
+}
 
 @end

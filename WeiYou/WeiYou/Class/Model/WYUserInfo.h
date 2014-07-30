@@ -11,13 +11,11 @@
 @interface WYUserInfo : NSObject {
     NSString *_authToken;/*must have*/
 
-    NSString *_userID;
     NSString *_userName;
     NSString *_userImageUrl;
 }
 
 @property (nonatomic, strong) NSString *authToken;
-@property (nonatomic, strong) NSString *userID;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *userImageUrl;
 

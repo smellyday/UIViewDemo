@@ -160,9 +160,9 @@
 	[containerScrollView addSubview:forgetPWBtn];
 	
 		// login notification.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_SINA_LOGIN object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_QQ_LOGIN object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_WY_LOGIN object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_SINA_LOGIN_OK object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_QQ_LOGIN_OK object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_WY_LOGIN_OK object:nil];
 }
 
 
@@ -230,8 +230,8 @@
 	}
 	
 	NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
-	[infoDic setObject:_userField.text forKey:JSON_KEY_TEL];
-	[infoDic setObject:_passwdField.text forKey:JSON_KEY_PWD];
+	[infoDic setObject:_userField.text forKey:JSON_BODY_KEY_TEL];
+	[infoDic setObject:_passwdField.text forKey:JSON_BODY_KEY_PWD];
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getWYLoginURL]];
 	[request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"logindata"];
@@ -308,7 +308,7 @@
 	[[[WYGlobalState sharedGlobalState] qqUserInfo] setUserName:[response.jsonResponse objectForKey:@"nickname"]];
 	[[[WYGlobalState sharedGlobalState] qqUserInfo] setUserImageUrl:[response.jsonResponse objectForKey:@"figureurl_1"]];
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_QQ_LOGIN object:nil userInfo:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_QQ_LOGIN_OK object:nil userInfo:nil];
 }
 
 - (void)tencentOAuth:(TencentOAuth *)tencentOAuth doCloseViewController:(UIViewController *)viewController {
@@ -331,13 +331,12 @@
 	NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableContainers error:nil];
 	mlog(@"== WY Login Response info dic : \n%@", [infoDic description]);
 	
-	NSNumber *state = [infoDic objectForKey:JSON_KEY_RES_ST];
+	NSNumber *state = [infoDic objectForKey:JSON_RES_KEY_ST];
 	if ([state intValue] == 0) {
-		[[[WYGlobalState sharedGlobalState] wyUserInfo] setAuthToken:[infoDic objectForKey:@"ut"]];
-		[[[WYGlobalState sharedGlobalState] wyUserInfo] setUserID:_userField.text];
-		[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_WY_LOGIN object:nil userInfo:nil];
+		[[[WYGlobalState sharedGlobalState] wyUserInfo] setAuthToken:[infoDic objectForKey:JSON_RES_KEY_UT]];
+		[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_WY_LOGIN_OK object:nil userInfo:nil];
 	} else {
-		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_KEY_RES_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_RES_KEY_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         [alertview show];
 	}
 }

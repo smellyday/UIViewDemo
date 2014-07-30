@@ -70,7 +70,7 @@
 	_userField.placeholder = NSLocalizedString(@"user phone number", @"user phone number");
 	_userField.backgroundColor = [UIColor whiteColor];
 	_userField.delegate = self;
-	_userField.keyboardType = UIKeyboardTypeEmailAddress;
+	_userField.keyboardType = UIKeyboardTypePhonePad;
 	[_userField setBorderStyle:UITextBorderStyleRoundedRect];
 	
 	_passwdField = [[UITextField alloc] init];
@@ -147,8 +147,8 @@
     }
     
     NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
-	[infoDic setObject:_userField.text forKey:JSON_KEY_TEL];
-	[infoDic setObject:[WYGlobalState getUUID] forKey:JSON_KEY_UID];
+	[infoDic setObject:_userField.text forKey:JSON_BODY_KEY_TEL];
+	[infoDic setObject:[WYGlobalState getUUID] forKey:JSON_BODY_KEY_UID];
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getWYSendMsgURL]];
 	[request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"smsdata"];
@@ -159,17 +159,17 @@
 #pragma mark - HTTP
 - (void)requestFinished:(ASIHTTPRequest *)request {
 	NSString *response = [[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding];
-	mlog(@"== WY Login Response : \n%@", response);
+	mlog(@"== WY SendSMS Response : \n%@", response);
 	
 	NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableContainers error:nil];
-	mlog(@"== WY Login Response info dic : \n%@", [infoDic description]);
+	mlog(@"== WY SendSMS Response info dic : \n%@", [infoDic description]);
 	
-	NSNumber *state = [infoDic objectForKey:JSON_KEY_RES_ST];
+	NSNumber *state = [infoDic objectForKey:JSON_RES_KEY_ST];
 	if ([state intValue] == 0) {
         [self performSelectorOnMainThread:@selector(rgsNextStep) withObject:nil waitUntilDone:NO];
-        mlog(@"== WY Login Success & msg : %@", [infoDic objectForKey:JSON_KEY_RES_MSG]);
+        mlog(@"== WY SendSMS Success & msg : %@", [infoDic objectForKey:JSON_RES_KEY_MSG]);
 	} else {
-        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_KEY_RES_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_RES_KEY_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         [alertview show];
     }
 }
@@ -181,6 +181,8 @@
 #pragma mark - private
 - (void)rgsNextStep {
     WYRegisterController2 *rc = [[WYRegisterController2 alloc] init];
+    rc.phoneNumber = _userField.text;
+    rc.password = _passwdField.text;
     [self.navigationController pushViewController:rc animated:YES];
 }
 

@@ -56,9 +56,10 @@
 	[self.view addSubview:self.mTableView];
     
     // login notification.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenSinaLoginSuccess:) name:NOTI_SINA_LOGIN object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenQQLoginSuccess:) name:NOTI_QQ_LOGIN object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenWYLoginSuccess:) name:NOTI_WY_LOGIN object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenSinaLoginSuccess:) name:NOTI_SINA_LOGIN_OK object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenQQLoginSuccess:) name:NOTI_QQ_LOGIN_OK object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenWYLoginSuccess:) name:NOTI_WY_LOGIN_OK object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenWYRegisterSuccess:) name:NOTI_WY_REG_OK object:nil];
 }
 
 - (void)onClickCancelButton:(id)sender {
@@ -252,7 +253,7 @@
 }
 
 
-#pragma notification selector
+#pragma mark - NOTI
 - (void)doWhenSinaLoginSuccess:(id)sender {
 	LOGFUNCTION;
     
@@ -280,6 +281,18 @@
 	[self.mTableView reloadData];
 }
 
+- (void)doWhenWYRegisterSuccess:(id)sender {
+    LOGFUNCTION;
+}
+
+#pragma mark - UINavigationControllerDelegate
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -288,13 +301,6 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-#pragma mark - UINavigationControllerDelegate
-- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        navigationController.interactivePopGestureRecognizer.enabled = YES;
-    }
 }
 
 @end
