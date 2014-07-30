@@ -15,6 +15,11 @@
 #ifndef WeiYou_consts_h
 #define WeiYou_consts_h
 
+
+#define APP_GROUP                           @"4RH97J3HKQ.com.200.WeiYou"
+#define APP_CHANNEL                         @"1001"
+#define APP_VERSION                         @"0.0.0.1"
+
 //========one day interval=======
 #define WY_DAY_INTERVAL 86400
 
@@ -51,6 +56,8 @@
 #define GLOBAL_USER_PROFILE_IMAGE_URL         @"global_user_profile_image_url"
 #define GLOBAL_USER_PROFILE_IMAGE             @"global_user_profile_image"
 #define GLOBAL_ACCOUNT						  @"global_account"
+#define GLOBAL_PARAM_CP                       @"global_wy_cp"
+#define GLOBAL_PARAM_UUID                     @"global_wy_uuid"
 
 
 //========notification center========

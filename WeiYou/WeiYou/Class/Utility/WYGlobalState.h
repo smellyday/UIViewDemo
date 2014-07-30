@@ -26,6 +26,8 @@ typedef enum _LoginAccount {
 	NSString *_userName;
     NSString *_userImageUrl;
     UIImage *_userImage;
+    
+    NSString *_cp;
 }
 
 @property (nonatomic, strong) WYSinaWeiboUserInfo *sinaUserInfo;
@@ -35,8 +37,11 @@ typedef enum _LoginAccount {
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *userImageUrl;
 @property (nonatomic, strong) UIImage *userImage;
+@property (nonatomic, strong) NSString *cp;
 
 + (id)sharedGlobalState;
++ (NSString *)getUUID;
+
 - (BOOL)isLogin;
 - (void)logout;
 

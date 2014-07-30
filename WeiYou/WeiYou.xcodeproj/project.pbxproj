@@ -112,6 +112,8 @@
 		6979F7FD198119F400011428 /* WYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6979F7FC198119F400011428 /* WYNavigationController.m */; };
 		698013D91977CF7300AFD0B4 /* WYUploadTripOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 698013D81977CF7300AFD0B4 /* WYUploadTripOperation.m */; };
 		698013DC1977CF8D00AFD0B4 /* WYDownloadTripsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 698013DB1977CF8D00AFD0B4 /* WYDownloadTripsOperation.m */; };
+		699BE2F41988A7AD00FE6917 /* WYURLUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 699BE2F31988A7AD00FE6917 /* WYURLUtility.m */; };
+		699BE2F71988AF1500FE6917 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 699BE2F61988AF1500FE6917 /* KeychainItemWrapper.m */; };
 		699E38EC196290970083CD3A /* localTrips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 699E38EB196290970083CD3A /* localTrips.plist */; };
 		69AA1EBA1953D9D400BA0884 /* WYRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AA1EB91953D9D400BA0884 /* WYRegisterController.m */; };
 		69AA1EC21954112500BA0884 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AA1EBF1954112500BA0884 /* libWeiboSDK.a */; };
@@ -300,6 +302,11 @@
 		698013D81977CF7300AFD0B4 /* WYUploadTripOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYUploadTripOperation.m; sourceTree = "<group>"; };
 		698013DA1977CF8D00AFD0B4 /* WYDownloadTripsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDownloadTripsOperation.h; sourceTree = "<group>"; };
 		698013DB1977CF8D00AFD0B4 /* WYDownloadTripsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDownloadTripsOperation.m; sourceTree = "<group>"; };
+		699BE2F21988A7AD00FE6917 /* WYURLUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYURLUtility.h; sourceTree = "<group>"; };
+		699BE2F31988A7AD00FE6917 /* WYURLUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYURLUtility.m; sourceTree = "<group>"; };
+		699BE2F51988AF1500FE6917 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		699BE2F61988AF1500FE6917 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		699BE2F81988C39F00FE6917 /* WeiYou.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = WeiYou.entitlements; path = WeiYou/WeiYou.entitlements; sourceTree = "<group>"; };
 		699E38EB196290970083CD3A /* localTrips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = localTrips.plist; sourceTree = "<group>"; };
 		69AA1EB81953D9D400BA0884 /* WYRegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRegisterController.h; sourceTree = "<group>"; };
 		69AA1EB91953D9D400BA0884 /* WYRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRegisterController.m; sourceTree = "<group>"; };
@@ -397,6 +404,8 @@
 				5E4D772719878012005720BD /* NSString+MD5.m */,
 				5E4D772819878012005720BD /* SecurityUtil.h */,
 				5E4D772919878012005720BD /* SecurityUtil.m */,
+				699BE2F51988AF1500FE6917 /* KeychainItemWrapper.h */,
+				699BE2F61988AF1500FE6917 /* KeychainItemWrapper.m */,
 			);
 			name = Security;
 			path = WeiYou/Class/Security;
@@ -415,6 +424,7 @@
 		5E5BC22E183EE5B90003AC6D /* WeiYou */ = {
 			isa = PBXGroup;
 			children = (
+				699BE2F81988C39F00FE6917 /* WeiYou.entitlements */,
 				694ED39D195A762C00917FEB /* ASIHttpRequest */,
 				5E4D771F19878012005720BD /* Security */,
 				69AA1EBE1954112500BA0884 /* libWeiboSDK */,
@@ -561,6 +571,8 @@
 				6979F7FC198119F400011428 /* WYNavigationController.m */,
 				5E4D772F198786F7005720BD /* NSObject+JSON.h */,
 				5E4D7730198786F7005720BD /* NSObject+JSON.m */,
+				699BE2F21988A7AD00FE6917 /* WYURLUtility.h */,
+				699BE2F31988A7AD00FE6917 /* WYURLUtility.m */,
 			);
 			name = Utility;
 			path = WeiYou/Class/Utility;
@@ -819,6 +831,11 @@
 				TargetAttributes = {
 					5E6D03791839F68C006A0E93 = {
 						DevelopmentTeam = 4RH97J3HKQ;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					5E6D03941839F68C006A0E93 = {
 						TestTargetID = 5E6D03791839F68C006A0E93;
@@ -945,6 +962,7 @@
 				5E5BC2EA183EEA3B0003AC6D /* WYAppDelegate.m in Sources */,
 				5E5BC262183EE6770003AC6D /* WYSettingsViewController.m in Sources */,
 				6979F7FD198119F400011428 /* WYNavigationController.m in Sources */,
+				699BE2F71988AF1500FE6917 /* KeychainItemWrapper.m in Sources */,
 				5E4D772D19878012005720BD /* SecurityUtil.m in Sources */,
 				5EBCF748185EE7630057C1AE /* WYMContinent.m in Sources */,
 				5E5BC23F183EE5D80003AC6D /* main.m in Sources */,
@@ -952,6 +970,7 @@
 				5E5D676E186176B000ECA966 /* WYTripDayHotelCell.m in Sources */,
 				5ED101D619665E5D00CAAE9B /* WYMProvince.m in Sources */,
 				5E4D77351987BE03005720BD /* WYUserInfo.m in Sources */,
+				699BE2F41988A7AD00FE6917 /* WYURLUtility.m in Sources */,
 				5E5BC263183EE6770003AC6D /* WYUserGuideViewController.m in Sources */,
 				5EBCF763185EFFD30057C1AE /* WYMSpot.m in Sources */,
 				69582DA81952BACF0072ED3E /* WYGlobalState.m in Sources */,
@@ -1105,9 +1124,13 @@
 		5E6D03A71839F68C006A0E93 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = WeiYou/WeiYou.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WeiYou/Class/libQQSDK",
@@ -1121,6 +1144,7 @@
 				);
 				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1128,9 +1152,13 @@
 		5E6D03A81839F68C006A0E93 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = WeiYou/WeiYou.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WeiYou/Class/libQQSDK",
@@ -1144,6 +1172,7 @@
 				);
 				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

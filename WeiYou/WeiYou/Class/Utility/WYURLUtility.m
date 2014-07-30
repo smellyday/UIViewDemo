@@ -7,7 +7,20 @@
 //
 
 #import "WYURLUtility.h"
+#import "consts.h"
+#import "WYGlobalState.h"
+#import "SecurityUtil.h"
 
 @implementation WYURLUtility
+
++ (NSURL *)getWYLoginURL {
+    
+	NSString *cp = [[WYGlobalState sharedGlobalState] cp];
+	NSString *ev = @"1";
+	NSString *urlStr = [NSString stringWithFormat:@"%@%@&cp=%@&ev=%@", BASE_WY_URL_STR, INTERFACE_LOGIN, [SecurityUtil encodeBase64String:cp], ev];
+    
+    return nil;
+    
+}
 
 @end

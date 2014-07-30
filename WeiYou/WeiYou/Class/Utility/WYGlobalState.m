@@ -8,6 +8,9 @@
 
 #import "WYGlobalState.h"
 #import "consts.h"
+#import "KeychainItemWrapper.h"
+#import <Security/Security.h>
+#import "SecurityUtil.h"
 
 @implementation WYGlobalState
 @synthesize sinaUserInfo = _sinaUserInfo;
@@ -17,6 +20,7 @@
 @synthesize userImage = _userImage;
 @synthesize userName = _userName;
 @synthesize userImageUrl = _userImageUrl;
+@synthesize cp = _cp;
 
 + (id)sharedGlobalState {
 	static WYGlobalState *sharedState = nil;
@@ -61,6 +65,50 @@
 	}
 	
 	return _userImage;
+}
+
+- (NSString *)cp {
+    if (_cp == nil) {
+        _cp = [[NSUserDefaults standardUserDefaults] objectForKey:GLOBAL_PARAM_CP];
+        mlog(@"== get cp from user defaults : %@", _cp);
+        if (_cp == nil || [_cp length]==0) {
+            NSString *uuid = [WYGlobalState getUUID];
+            NSString *channel = APP_CHANNEL;
+            NSString *factory = @"AppleInc";
+            NSString *device = [[UIDevice currentDevice] model];
+            NSString *os = [[UIDevice currentDevice] systemVersion];
+            NSString *platform = @"1001";
+            NSString *appversion = APP_VERSION;
+            
+            NSString *initCP = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@|%@|%f|%f|", uuid, channel, factory, device, os, platform, appversion, SCREEN_WIDTH, SCREEN_HEIGHT];
+            mlog(@"== create init cp : %@", initCP);
+            _cp = [SecurityUtil encodeBase64String:initCP];
+            mlog(@"== create final cp : %@", _cp);
+        }
+    }
+    
+    return _cp;
+}
+
++ (NSString *)getUUID {
+    NSString *mUUID = [[NSUserDefaults standardUserDefaults] objectForKey:GLOBAL_PARAM_UUID];
+    mlog(@"== get mUUID from user defaults : %@", mUUID);
+    if (mUUID == nil || [mUUID length]==0) {
+        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"WHATEVER" accessGroup:APP_GROUP];
+        
+        mUUID = [wrapper objectForKey:(__bridge id)kSecValueData];
+        mlog(@"== get mUUID from keychain : %@", mUUID);
+        if (mUUID == nil || [mUUID length]==0) {
+            mUUID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+            mlog(@"== init mUUID from uuid : %@", mUUID);
+            
+            [wrapper setObject:@"uuid" forKey:(__bridge id)kSecAttrService];
+            [wrapper setObject:mUUID forKey:(__bridge id)kSecValueData];
+            [[NSUserDefaults standardUserDefaults] setObject:mUUID forKey:GLOBAL_PARAM_UUID];
+        }
+    }
+    
+    return mUUID;
 }
 
 - (BOOL)isLogin {
