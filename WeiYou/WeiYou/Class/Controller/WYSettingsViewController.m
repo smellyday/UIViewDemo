@@ -10,6 +10,7 @@
 #import "WYUserGuideViewController.h"
 #import "WYLoginController.h"
 #import "WYGlobalState.h"
+#import "WYFakeNavBar.h"
 #import "consts.h"
 
 
@@ -38,16 +39,18 @@
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
 	self.navigationController.navigationBar.hidden = YES;
-	UIImageView *fakeNavBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUS_BAR_H+NAV_BAR_H)];
-	[fakeNavBar setImage:[UIImage imageNamed:PIC_NAV_BAR_BG]];
-
-	UIButton *cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H, 44, 44)];
+    
+    // nav bar
+	UIButton *cancelBtn = [[UIButton alloc] init];
+    cancelBtn.frame = NAV_BAR_LEFT_BTN_FRAME;
 	[cancelBtn setBackgroundImage:[UIImage imageNamed:PIC_BACK_N] forState:UIControlStateNormal];
 	[cancelBtn addTarget:self action:@selector(onClickCancelButton:) forControlEvents:UIControlEventTouchUpInside];
-
+    
+    WYFakeNavBar *fakeNavBar = [[WYFakeNavBar alloc] init];
+    [fakeNavBar addSubview:cancelBtn];
 	[self.view addSubview:fakeNavBar];
-	[self.view addSubview:cancelBtn];
-	
+    
+    // table view
 	self.mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H+NAV_BAR_H, SCREEN_WIDTH, SCREEN_HEIGHT-STATUS_BAR_H-NAV_BAR_H) style:UITableViewStylePlain];
 	self.mTableView.delegate = self;
 	self.mTableView.dataSource = self;

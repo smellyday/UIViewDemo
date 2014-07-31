@@ -15,6 +15,7 @@
 #import "SecurityUtil.h"
 #import "WYURLUtility.h"
 #import "NSObject+JSON.h"
+#import "WYFakeNavBar.h"
 
 @interface WYLoginController ()
 
@@ -46,14 +47,10 @@
     bg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view insertSubview:bg atIndex:0];
 	
-	// fake navigation bar
+	// nav bar
 	UIButton *cancelBtn = [[UIButton alloc] init];
 	cancelBtn.frame = NAV_BAR_LEFT_BTN_FRAME;
-	[cancelBtn setBackgroundColor:[UIColor clearColor]];
-	[cancelBtn setTitle:NSLocalizedString(@"cancel", @"cancel") forState:UIControlStateNormal];
-	[cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-	cancelBtn.showsTouchWhenHighlighted = YES;
+	[cancelBtn setBackgroundImage:[UIImage imageNamed:PIC_BACK_N] forState:UIControlStateNormal];
 	[cancelBtn addTarget:self action:@selector(clickCancelButton:) forControlEvents:UIControlEventTouchUpInside];
 	
 	UIButton *registerBtn = [[UIButton alloc] init];
@@ -72,12 +69,12 @@
 	[loginTitle setTextColor:[UIColor whiteColor]];
 	loginTitle.font = [UIFont systemFontOfSize:19];
 	
-	UIView *topBarContainer = [[UIView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H, self.view.frame.size.width, NAV_BAR_H)];
-	topBarContainer.backgroundColor = [UIColor clearColor];
-	[topBarContainer addSubview:cancelBtn];
-	[topBarContainer addSubview:loginTitle];
-	[topBarContainer addSubview:registerBtn];
-	[self.view addSubview:topBarContainer];
+    WYFakeNavBar *fakeNavBar = [[WYFakeNavBar alloc] init];
+	fakeNavBar.backgroundColor = [UIColor clearColor];
+	[fakeNavBar addSubview:cancelBtn];
+	[fakeNavBar addSubview:loginTitle];
+	[fakeNavBar addSubview:registerBtn];
+	[self.view addSubview:fakeNavBar];
     
 	//main content
 	UIScrollView *containerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H+NAV_BAR_H, self.view.frame.size.width, self.view.frame.size.height-(STATUS_BAR_H+NAV_BAR_H))];

@@ -52,7 +52,7 @@
 + (NSURL *)getWYResetPWDURL {
     NSString *cp = [[WYGlobalState sharedGlobalState] cp];
 	NSString *ev = @"1";
-	NSString *urlStr = [NSString stringWithFormat:@"%@%@&cp=%@&ev=%@", BASE_WY_URL_STR, INTERFACE_LOGIN, cp, ev];
+	NSString *urlStr = [NSString stringWithFormat:@"%@%@&cp=%@&ev=%@", BASE_WY_URL_STR, INTERFACE_RESET, cp, ev];
     
     return [NSURL URLWithString:urlStr];
 }

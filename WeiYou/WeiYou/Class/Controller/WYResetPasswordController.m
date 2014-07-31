@@ -12,6 +12,7 @@
 #import "NSObject+JSON.h"
 #import "WYGlobalState.h"
 #import "WYURLUtility.h"
+#import "WYFakeNavBar.h"
 #import "consts.h"
 
 @interface WYResetPasswordController ()
@@ -32,14 +33,10 @@
     bg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view insertSubview:bg atIndex:0];
 	
-		// fake navigation bar
+    // fake navigation bar
 	UIButton *cancelBtn = [[UIButton alloc] init];
-	cancelBtn.frame = NAV_BAR_LEFT_BTN_FRAME;
-	[cancelBtn setBackgroundColor:[UIColor clearColor]];
-	[cancelBtn setTitle:NSLocalizedString(@"cancel", @"cancel") forState:UIControlStateNormal];
-	[cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-	cancelBtn.showsTouchWhenHighlighted = YES;
+    cancelBtn.frame = NAV_BAR_LEFT_BTN_FRAME;
+	[cancelBtn setBackgroundImage:[UIImage imageNamed:PIC_BACK_N] forState:UIControlStateNormal];
 	[cancelBtn addTarget:self action:@selector(clickCancelButton:) forControlEvents:UIControlEventTouchUpInside];
 	
 	UILabel *resetPWTitle = [[UILabel alloc] init];
@@ -49,11 +46,11 @@
 	[resetPWTitle setTextColor:[UIColor whiteColor]];
 	resetPWTitle.font = [UIFont systemFontOfSize:19];
 	
-	UIView *topBarContainer = [[UIView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H, self.view.frame.size.width, NAV_BAR_H)];
-	topBarContainer.backgroundColor = [UIColor clearColor];
-	[topBarContainer addSubview:cancelBtn];
-	[topBarContainer addSubview:resetPWTitle];
-	[self.view addSubview:topBarContainer];
+    WYFakeNavBar *fakeNavBar = [[WYFakeNavBar alloc] init];
+	fakeNavBar.backgroundColor = [UIColor clearColor];
+	[fakeNavBar addSubview:cancelBtn];
+	[fakeNavBar addSubview:resetPWTitle];
+	[self.view addSubview:fakeNavBar];
 	
 		// content
 	CGFloat gaph1 = 100.0;

@@ -12,6 +12,7 @@
 #import "SecurityUtil.h"
 #import "NSObject+JSON.h"
 #import "WYGlobalState.h"
+#import "WYFakeNavBar.h"
 #import "consts.h"
 
 @interface WYRegisterController ()
@@ -35,14 +36,10 @@
     bg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view insertSubview:bg atIndex:0];
 	
-		// fake navigation bar
+    // fake navigation bar
 	UIButton *cancelBtn = [[UIButton alloc] init];
-	cancelBtn.frame = NAV_BAR_LEFT_BTN_FRAME;
-	[cancelBtn setBackgroundColor:[UIColor clearColor]];
-	[cancelBtn setTitle:NSLocalizedString(@"cancel", @"cancel") forState:UIControlStateNormal];
-	[cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-	cancelBtn.showsTouchWhenHighlighted = YES;
+    cancelBtn.frame = NAV_BAR_LEFT_BTN_FRAME;
+	[cancelBtn setBackgroundImage:[UIImage imageNamed:PIC_BACK_N] forState:UIControlStateNormal];
 	[cancelBtn addTarget:self action:@selector(popBack:) forControlEvents:UIControlEventTouchUpInside];
 	
 	UILabel *registerTitle = [[UILabel alloc] init];
@@ -52,11 +49,11 @@
 	[registerTitle setTextColor:[UIColor whiteColor]];
 	registerTitle.font = [UIFont systemFontOfSize:19];
 	
-	UIView *topBarContainer = [[UIView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H, self.view.frame.size.width, NAV_BAR_H)];
-	topBarContainer.backgroundColor = [UIColor clearColor];
-	[topBarContainer addSubview:cancelBtn];
-	[topBarContainer addSubview:registerTitle];
-	[self.view addSubview:topBarContainer];
+    WYFakeNavBar *fakeNavBar = [[WYFakeNavBar alloc] init];
+	fakeNavBar.backgroundColor = [UIColor clearColor];
+	[fakeNavBar addSubview:cancelBtn];
+	[fakeNavBar addSubview:registerTitle];
+	[self.view addSubview:fakeNavBar];
 	
 	//main content
     CGFloat gaph1 = 100.0;

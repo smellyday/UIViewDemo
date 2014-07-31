@@ -11,6 +11,7 @@
 #import "NSObject+JSON.h"
 #import "WYURLUtility.h"
 #import "SecurityUtil.h"
+#import "WYFakeNavBar.h"
 #import "consts.h"
 
 @interface WYResetPasswordController2 ()
@@ -33,14 +34,10 @@
     bg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view insertSubview:bg atIndex:0];
 	
-		// fake navigation bar
+    // nav bar
 	UIButton *cancelBtn = [[UIButton alloc] init];
-	cancelBtn.frame = NAV_BAR_LEFT_BTN_FRAME;
-	[cancelBtn setBackgroundColor:[UIColor clearColor]];
-	[cancelBtn setTitle:NSLocalizedString(@"cancel", @"cancel") forState:UIControlStateNormal];
-	[cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-	cancelBtn.showsTouchWhenHighlighted = YES;
+    cancelBtn.frame = NAV_BAR_LEFT_BTN_FRAME;
+	[cancelBtn setBackgroundImage:[UIImage imageNamed:PIC_BACK_N] forState:UIControlStateNormal];
 	[cancelBtn addTarget:self action:@selector(clickCancelButton:) forControlEvents:UIControlEventTouchUpInside];
 	
 	UILabel *resetPWTitle = [[UILabel alloc] init];
@@ -50,11 +47,11 @@
 	[resetPWTitle setTextColor:[UIColor whiteColor]];
 	resetPWTitle.font = [UIFont systemFontOfSize:19];
 	
-	UIView *topBarContainer = [[UIView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H, self.view.frame.size.width, NAV_BAR_H)];
-	topBarContainer.backgroundColor = [UIColor clearColor];
-	[topBarContainer addSubview:cancelBtn];
-	[topBarContainer addSubview:resetPWTitle];
-	[self.view addSubview:topBarContainer];
+    WYFakeNavBar *fakeNavBar = [[WYFakeNavBar alloc] init];
+	fakeNavBar.backgroundColor = [UIColor clearColor];
+	[fakeNavBar addSubview:cancelBtn];
+	[fakeNavBar addSubview:resetPWTitle];
+	[self.view addSubview:fakeNavBar];
 	
 		// content
 	CGFloat gaph1 = 100.0;
@@ -167,8 +164,9 @@
 	[infoDic setObject:_phoneNumber forKey:JSON_BODY_KEY_TEL];
 	[infoDic setObject:pwd1 forKey:JSON_BODY_KEY_NEW_PWD];
 	[infoDic setObject:veriNum forKey:JSON_BODY_KEY_SMS];
+    mlog(@"Body : \n%@", [infoDic description]);
 	
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getWYRegURL]];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getWYResetPWDURL]];
 	[request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"resetpwddata"];
 	request.delegate = self;
 	[request startAsynchronous];
@@ -193,7 +191,7 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
     LOGFUNCTION;
-    mlog(@"== WY Login Failed Response : %@", [request.error description]);
+    mlog(@"== WY Reset Failed Response : %@", [request.error description]);
     NSError *error = request.error;
     if (error.code == 1) {
         UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"Connection Failure Occur!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];

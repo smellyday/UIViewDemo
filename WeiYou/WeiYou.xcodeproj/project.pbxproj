@@ -118,6 +118,7 @@
 		69AA1EBA1953D9D400BA0884 /* WYRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AA1EB91953D9D400BA0884 /* WYRegisterController.m */; };
 		69AA1EC21954112500BA0884 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AA1EBF1954112500BA0884 /* libWeiboSDK.a */; };
 		69AA1EC31954112500BA0884 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69AA1EC01954112500BA0884 /* WeiboSDK.bundle */; };
+		69B68D2A1989FBBD00DF29AF /* WYFakeNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B68D291989FBBD00DF29AF /* WYFakeNavBar.m */; };
 		69CA3F0D1962B6520004910A /* olderTrips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69CA3F0C1962B6520004910A /* olderTrips.plist */; };
 		69E2159E1981E16E0022D432 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69E2159D1981E16E0022D432 /* TencentOpenAPI.framework */; };
 		69E215A01981E2040022D432 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69E2159F1981E2040022D432 /* Security.framework */; };
@@ -313,6 +314,8 @@
 		69AA1EBF1954112500BA0884 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		69AA1EC01954112500BA0884 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		69AA1EC11954112500BA0884 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		69B68D281989FBBD00DF29AF /* WYFakeNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYFakeNavBar.h; sourceTree = "<group>"; };
+		69B68D291989FBBD00DF29AF /* WYFakeNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYFakeNavBar.m; sourceTree = "<group>"; };
 		69CA3F0C1962B6520004910A /* olderTrips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = olderTrips.plist; sourceTree = "<group>"; };
 		69E2159D1981E16E0022D432 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = WeiYou/Class/libQQSDK/TencentOpenAPI.framework; sourceTree = "<group>"; };
 		69E2159F1981E2040022D432 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -532,6 +535,7 @@
 		5E5BC249183EE5E90003AC6D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				69B68D2B1989FBC500DF29AF /* UtilityView */,
 				5E5D67651861455A00ECA966 /* TripDay */,
 			);
 			name = View;
@@ -761,6 +765,15 @@
 			path = WeiYou/Class/libWeiboSDK;
 			sourceTree = "<group>";
 		};
+		69B68D2B1989FBC500DF29AF /* UtilityView */ = {
+			isa = PBXGroup;
+			children = (
+				69B68D281989FBBD00DF29AF /* WYFakeNavBar.h */,
+				69B68D291989FBBD00DF29AF /* WYFakeNavBar.m */,
+			);
+			name = UtilityView;
+			sourceTree = "<group>";
+		};
 		69D0B3421887B4E400E0AB7C /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -938,6 +951,7 @@
 				694ED3B4195A762C00917FEB /* ASIAuthenticationDialog.m in Sources */,
 				694ED3B5195A762C00917FEB /* ASIDataCompressor.m in Sources */,
 				694ED3B6195A762C00917FEB /* ASIDataDecompressor.m in Sources */,
+				69B68D2A1989FBBD00DF29AF /* WYFakeNavBar.m in Sources */,
 				69E215AF1981F2B00022D432 /* WYSinaWeiboUserInfo.m in Sources */,
 				5E4D772B19878012005720BD /* NSData+AES.m in Sources */,
 				694ED3B7195A762C00917FEB /* ASIDownloadCache.m in Sources */,
