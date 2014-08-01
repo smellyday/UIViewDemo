@@ -65,6 +65,8 @@
 		5EC7E92219803A0900F5A40B /* login_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC7E92019803A0900F5A40B /* login_bg.png */; };
 		5EC7E92319803A0900F5A40B /* login_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC7E92119803A0900F5A40B /* login_bg@2x.png */; };
 		5ED101D619665E5D00CAAE9B /* WYMProvince.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED101D519665E5D00CAAE9B /* WYMProvince.m */; };
+		5EF93530198B1AED0035E486 /* EGORefreshTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9352C198B1AED0035E486 /* EGORefreshTableFooterView.m */; };
+		5EF93531198B1AED0035E486 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9352E198B1AED0035E486 /* EGORefreshTableHeaderView.m */; };
 		693432CD197F836700C1D2A5 /* WYBiSyncTripsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 693432CC197F836700C1D2A5 /* WYBiSyncTripsOperation.m */; };
 		693432F4197FAE3800C1D2A5 /* login_btn_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 693432EE197FAE3800C1D2A5 /* login_btn_h.png */; };
 		693432F6197FAE3800C1D2A5 /* login_btn_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 693432F0197FAE3800C1D2A5 /* login_btn_n.png */; };
@@ -235,6 +237,11 @@
 		5EC7E92119803A0900F5A40B /* login_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login_bg@2x.png"; path = "Resources/login_bg@2x.png"; sourceTree = SOURCE_ROOT; };
 		5ED101D419665E5D00CAAE9B /* WYMProvince.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMProvince.h; sourceTree = "<group>"; };
 		5ED101D519665E5D00CAAE9B /* WYMProvince.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMProvince.m; sourceTree = "<group>"; };
+		5EF9352B198B1AED0035E486 /* EGORefreshTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableFooterView.h; sourceTree = "<group>"; };
+		5EF9352C198B1AED0035E486 /* EGORefreshTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableFooterView.m; sourceTree = "<group>"; };
+		5EF9352D198B1AED0035E486 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		5EF9352E198B1AED0035E486 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		5EF9352F198B1AED0035E486 /* EGOViewCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOViewCommon.h; sourceTree = "<group>"; };
 		693432CB197F836700C1D2A5 /* WYBiSyncTripsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYBiSyncTripsOperation.h; sourceTree = "<group>"; };
 		693432CC197F836700C1D2A5 /* WYBiSyncTripsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYBiSyncTripsOperation.m; sourceTree = "<group>"; };
 		693432EE197FAE3800C1D2A5 /* login_btn_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_btn_h.png; path = Resources/login_btn_h.png; sourceTree = SOURCE_ROOT; };
@@ -535,6 +542,7 @@
 		5E5BC249183EE5E90003AC6D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5EF9352A198B1AED0035E486 /* EGO */,
 				69B68D2B1989FBC500DF29AF /* UtilityView */,
 				5E5D67651861455A00ECA966 /* TripDay */,
 			);
@@ -705,6 +713,18 @@
 				696CECB919752D4A00EE4544 /* WYTripDayController.m */,
 			);
 			name = Trip;
+			sourceTree = "<group>";
+		};
+		5EF9352A198B1AED0035E486 /* EGO */ = {
+			isa = PBXGroup;
+			children = (
+				5EF9352B198B1AED0035E486 /* EGORefreshTableFooterView.h */,
+				5EF9352C198B1AED0035E486 /* EGORefreshTableFooterView.m */,
+				5EF9352D198B1AED0035E486 /* EGORefreshTableHeaderView.h */,
+				5EF9352E198B1AED0035E486 /* EGORefreshTableHeaderView.m */,
+				5EF9352F198B1AED0035E486 /* EGOViewCommon.h */,
+			);
+			path = EGO;
 			sourceTree = "<group>";
 		};
 		5EFE0EDC184F04EE004F8859 /* CreateNew */ = {
@@ -954,6 +974,7 @@
 				69B68D2A1989FBBD00DF29AF /* WYFakeNavBar.m in Sources */,
 				69E215AF1981F2B00022D432 /* WYSinaWeiboUserInfo.m in Sources */,
 				5E4D772B19878012005720BD /* NSData+AES.m in Sources */,
+				5EF93531198B1AED0035E486 /* EGORefreshTableHeaderView.m in Sources */,
 				694ED3B7195A762C00917FEB /* ASIDownloadCache.m in Sources */,
 				5E4D7731198786F7005720BD /* NSObject+JSON.m in Sources */,
 				694ED3B8195A762C00917FEB /* ASIFormDataRequest.m in Sources */,
@@ -989,6 +1010,7 @@
 				5EBCF763185EFFD30057C1AE /* WYMSpot.m in Sources */,
 				69582DA81952BACF0072ED3E /* WYGlobalState.m in Sources */,
 				696CECBA19752D4A00EE4544 /* WYTripDayController.m in Sources */,
+				5EF93530198B1AED0035E486 /* EGORefreshTableFooterView.m in Sources */,
 				5E5BC2F1183EF5430003AC6D /* WYFileManager.m in Sources */,
 				5E4D772A19878012005720BD /* GTMBase64.m in Sources */,
 				5EBCF742185EAE550057C1AE /* WYMTripDay.m in Sources */,
