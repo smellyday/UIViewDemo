@@ -15,11 +15,14 @@
     
     ASIHTTPRequest *_userInfoRequest;
     ASIHTTPRequest *_userImageRequest;
+    
+    ASIHTTPRequest *_callbackRequest;
 }
 
 @property (nonatomic, strong) UITableView *mTableView;
 @property (nonatomic, strong) ASIHTTPRequest *userInfoRequest;
 @property (nonatomic, strong) ASIHTTPRequest *userImageRequest;
+@property (nonatomic, strong) ASIHTTPRequest *callbackRequest;
 
 
 @end

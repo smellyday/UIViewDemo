@@ -13,6 +13,7 @@
 #import "WYDataEngine.h"
 #import "WYMTrip.h"
 #import "consts.h"
+#import "WYNewItineraryController.h"
 
 @interface WYMyItineraryController ()
 
@@ -41,7 +42,7 @@
 	mLeftButton.tintColor = [UIColor whiteColor];
 	self.navigationItem.leftBarButtonItem = mLeftButton;
 	
-	UIBarButtonItem *mRightButton = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(onClickCreateNew:)];
+	UIBarButtonItem *mRightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:PIC_ADD_NEW_TRIP] style:UIBarButtonItemStyleBordered target:self action:@selector(onClickCreateNew:)];
 	mRightButton.tintColor = [UIColor whiteColor];
 	self.navigationItem.rightBarButtonItem = mRightButton;
 	
@@ -65,7 +66,12 @@
 }
 
 - (void)onClickCreateNew:(id)sender {
-	
+
+//    WYNewItineraryController *newitn = [[WYNewItineraryController alloc] init];
+//    
+//	UINavigationController *ricnav = [[UINavigationController alloc] initWithRootViewController:ric];
+//	[ricnav.navigationBar setBackgroundImage:[UIImage imageNamed:PIC_NAV_BAR_BG] forBarMetrics:UIBarMetricsDefault];
+
 }
 
 #pragma notification received

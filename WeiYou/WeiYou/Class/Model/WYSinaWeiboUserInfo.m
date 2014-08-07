@@ -15,6 +15,7 @@
 @synthesize userID = _userID;
 @synthesize userName =_userName;
 @synthesize userImageUrl = _userImageUrl;
+@synthesize wyToken = _wyToken;
 
 
 - (BOOL)isLogin {
@@ -28,7 +29,6 @@
 - (NSString *)authToken {
     if (_authToken == nil) {
         _authToken = [[NSUserDefaults standardUserDefaults] objectForKey:SINA_USER_TOKEN];
-		[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:SinaAccount] forKey:GLOBAL_ACCOUNT];
     }
     
     return _authToken;
@@ -63,7 +63,6 @@
 - (void)setUserName:(NSString *)userName {
     _userName = userName;
     [[NSUserDefaults standardUserDefaults] setObject:_userName forKey:SINA_USER_NAME];
-	[[NSUserDefaults standardUserDefaults] setObject:_userName forKey:GLOBAL_USER_NAME];
 }
 
 - (NSString *)userImageUrl {
@@ -77,12 +76,26 @@
 - (void)setUserImageUrl:(NSString *)userImageUrl {
     _userImageUrl = userImageUrl;
     [[NSUserDefaults standardUserDefaults] setObject:_userImageUrl forKey:SINA_USER_PROFILE_IMAGE_URL];
-    [[NSUserDefaults standardUserDefaults] setObject:_userImageUrl forKey:GLOBAL_USER_PROFILE_IMAGE_URL];
+}
+
+- (NSString *)wyToken {
+    if (_authToken == nil) {
+        _authToken = [[NSUserDefaults standardUserDefaults] objectForKey:SINA_USER_WY_TOKEN];
+    }
+    
+    return _authToken;
+}
+
+- (void)setWyToken:(NSString *)authToken {
+    _authToken = authToken;
+    [[NSUserDefaults standardUserDefaults] setObject:_authToken forKey:SINA_USER_WY_TOKEN];
 }
 
 - (void)logout {
 	self.authToken = nil;
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_TOKEN];
+    self.wyToken = nil;
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_WY_TOKEN];
 	self.userID = nil;
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_USER_ID];
 	self.userName = nil;

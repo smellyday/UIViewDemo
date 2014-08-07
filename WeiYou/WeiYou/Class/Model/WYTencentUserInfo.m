@@ -16,6 +16,7 @@
 @synthesize expirationDate = _expirationDate;
 @synthesize userName = _userName;
 @synthesize userImageUrl = _userImageUrl;
+@synthesize wyToken = _wyToken;
 
 - (BOOL)isLogin {
     if (self.authToken != nil && [self.authToken length]!=0 && self.openID != nil && [self.openID length]!=0 && self.expirationDate != nil) {
@@ -35,7 +36,6 @@
 - (void)setAuthToken:(NSString *)authToken {
     _authToken = authToken;
     [[NSUserDefaults standardUserDefaults] setObject:_authToken forKey:QQ_USER_TOKEN];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:TencentAccount] forKey:GLOBAL_ACCOUNT];
 }
 
 - (NSString *)openID {
@@ -75,7 +75,6 @@
 - (void)setUserName:(NSString *)userName {
     _userName = userName;
     [[NSUserDefaults standardUserDefaults] setObject:_userName forKey:QQ_USER_NAME];
-	[[NSUserDefaults standardUserDefaults] setObject:_userName forKey:GLOBAL_USER_NAME];
 }
 
 - (NSString *)userImageUrl {
@@ -88,12 +87,26 @@
 - (void)setUserImageUrl:(NSString *)userImageUrl {
     _userImageUrl = userImageUrl;
     [[NSUserDefaults standardUserDefaults] setObject:_userImageUrl forKey:QQ_USER_PROFILE_IMAGE_URL];
-    [[NSUserDefaults standardUserDefaults] setObject:_userImageUrl forKey:GLOBAL_USER_PROFILE_IMAGE_URL];
+}
+
+- (NSString *)wyToken {
+    if (_authToken == nil) {
+        _authToken = [[NSUserDefaults standardUserDefaults] objectForKey:QQ_USER_WY_TOKEN];
+    }
+    
+    return _authToken;
+}
+
+- (void)setWyToken:(NSString *)authToken {
+    _authToken = authToken;
+    [[NSUserDefaults standardUserDefaults] setObject:_authToken forKey:QQ_USER_WY_TOKEN];
 }
 
 - (void)logout {
 	self.authToken = nil;
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:QQ_USER_TOKEN];
+    self.wyToken = nil;
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:QQ_USER_WY_TOKEN];
 	self.openID = nil;
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:QQ_OPEN_ID];
 	self.expirationDate = nil;

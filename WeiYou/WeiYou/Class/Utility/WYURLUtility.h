@@ -13,6 +13,7 @@
 #define INTERFACE_SENDMSG           @"/passport/sendsmscode"
 #define INTERFACE_REG               @"/passport/reg"
 #define INTERFACE_RESET             @"/passport/resetpwd"
+#define INTERFACE_CALLBACK          @"/passport/login_3rd"
 
 #define PARAM_CP                    @"cp"
 #define PARAM_EV                    @"ev"
@@ -25,5 +26,6 @@
 + (NSURL *)getWYRegURL;
 + (NSURL *)getWYResetSendMsgURL;
 + (NSURL *)getWYResetPWDURL;
++ (NSURL *)getThirdPartLoginCallBackURL;
 
 @end

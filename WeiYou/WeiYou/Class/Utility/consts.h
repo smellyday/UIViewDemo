@@ -34,6 +34,7 @@
 
 //========KEY SINA login info========
 #define SINA_USER_TOKEN                       @"sina_token"
+#define SINA_USER_WY_TOKEN                    @"sina_wy_token"
 #define SINA_USER_ID                          @"sina_user_id"
 #define SINA_USER_NAME                        @"sina_user_name"
 #define SINA_USER_PROFILE_IMAGE_URL           @"sina_user_profile_image_url"
@@ -46,17 +47,18 @@
 #define WY_USER_PROFILE_IMAGE_DATA            @"wy_user_profile_image_data"
 //========KEY QQ login info========
 #define QQ_USER_TOKEN                         @"qq_token"
+#define QQ_USER_WY_TOKEN                      @"qq_wy_token"
 #define QQ_OPEN_ID                            @"qq_open_id"
 #define QQ_EXPIRATION_DATE                    @"qq_expiration_date"
 #define QQ_USER_NAME                          @"qq_user_name"
 #define QQ_USER_PROFILE_IMAGE_URL             @"qq_user_profile_image_url"
 #define QQ_USER_PROFILE_IMAGE_DATA            @"qq_user_profile_image_data"
 //========KEY Global login info========
-#define GLOBAL_USER_NAME					  @"global_user_name"
-#define GLOBAL_LOGIN_ACCOUNT				  @"global_login_account"
-#define GLOBAL_USER_PROFILE_IMAGE_URL         @"global_user_profile_image_url"
-#define GLOBAL_USER_PROFILE_IMAGE             @"global_user_profile_image"
-#define GLOBAL_ACCOUNT						  @"global_account"
+//#define GLOBAL_USER_NAME					  @"global_user_name"
+//#define GLOBAL_LOGIN_ACCOUNT				  @"global_login_account"
+//#define GLOBAL_USER_PROFILE_IMAGE_URL         @"global_user_profile_image_url"
+//#define GLOBAL_USER_PROFILE_IMAGE             @"global_user_profile_image"
+//#define GLOBAL_ACCOUNT						  @"global_account"
 #define GLOBAL_PARAM_CP                       @"global_wy_cp"
 #define GLOBAL_PARAM_UUID                     @"global_wy_uuid"
 
@@ -65,8 +67,10 @@
 #define NOTI_CHOSEN_ARRAY_CHANGE            @"ChosenArrayChange" // for create new trip
 #define NOTI_TRIPS_DATA_OK                  @"trips_data_ok"
 #define NOTI_TRIPS_SYNC_FINISH              @"trips_sync_finish"
+#define NOTI_SINA_AUTH_OK                   @"noti_sina_auth_ok"
 #define NOTI_SINA_LOGIN_OK                  @"noti_sina_login"
 #define NOTI_SINA_LOGOUT                    @"noti_sina_logout"
+#define NOTI_QQ_AUTH_OK                     @"noti_qq_auth_ok"
 #define NOTI_QQ_LOGIN_OK                    @"noti_qq_login"
 #define NOTI_QQ_LOGOUT                      @"noti_qq_logout"
 #define NOTI_WY_LOGIN_OK                    @"noti_wy_login"

@@ -14,6 +14,7 @@
 	
     NSString *_userName;
     NSString *_userImageUrl;
+    NSString *_wyToken;
 }
 
 @property (nonatomic, strong) NSString *authToken;
@@ -21,6 +22,7 @@
 @property (nonatomic, strong) NSDate *expirationDate;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *userImageUrl;
+@property (nonatomic, strong) NSString *wyToken;
 
 - (BOOL)isLogin;
 - (void)logout;

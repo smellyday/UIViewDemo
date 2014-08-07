@@ -11,21 +11,17 @@
 #import "WYTencentUserInfo.h"
 #import "WYUserInfo.h"
 
-typedef enum _LoginAccount {
-	SinaAccount = 0,
-    TencentAccount = 1,
-	WYAccount = 2
-} LoginAccount;
+//typedef enum _WhoLogin {
+//    NOLogin = 0,
+//	SinaLogin = 1,
+//    TencentLogin = 2,
+//	WYLogin = 3
+//} WhoLogin;
 
 @interface WYGlobalState : NSObject {
     WYSinaWeiboUserInfo *_sinaUserInfo;
     WYTencentUserInfo *_qqUserInfo;
 	WYUserInfo *_wyUserInfo;
-	
-	NSNumber *_account;
-	NSString *_userName;
-    NSString *_userImageUrl;
-    UIImage *_userImage;
     
     NSString *_cp;
 }
@@ -33,10 +29,6 @@ typedef enum _LoginAccount {
 @property (nonatomic, strong) WYSinaWeiboUserInfo *sinaUserInfo;
 @property (nonatomic, strong) WYTencentUserInfo *qqUserInfo;
 @property (nonatomic, strong) WYUserInfo *wyUserInfo;
-@property (nonatomic, strong) NSNumber *account;
-@property (nonatomic, strong) NSString *userName;
-@property (nonatomic, strong) NSString *userImageUrl;
-@property (nonatomic, strong) UIImage *userImage;
 @property (nonatomic, strong) NSString *cp;
 
 + (id)sharedGlobalState;

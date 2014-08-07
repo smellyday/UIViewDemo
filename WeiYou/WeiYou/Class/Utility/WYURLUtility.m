@@ -57,4 +57,12 @@
     return [NSURL URLWithString:urlStr];
 }
 
++ (NSURL *)getThirdPartLoginCallBackURL {
+    NSString *cp = [[WYGlobalState sharedGlobalState] cp];
+	NSString *ev = @"1";
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@&cp=%@&ev=%@", BASE_WY_URL_STR, INTERFACE_CALLBACK, cp, ev];
+    
+    return [NSURL URLWithString:urlStr];
+}
+
 @end

@@ -17,6 +17,8 @@
 #define JSON_BODY_KEY_NEW_PWD           @"newpwd"
 #define JSON_BODY_KEY_UID               @"uid"
 #define JSON_BODY_KEY_SMS               @"smscode"
+#define JSON_BODY_KEY_LOGINFROM         @"login_from"
+#define JSON_BODY_KEY_UID3RD            @"uid3rd"
 
 #define JSON_RES_KEY_ST             @"st"
 #define JSON_RES_KEY_MSG            @"msg"

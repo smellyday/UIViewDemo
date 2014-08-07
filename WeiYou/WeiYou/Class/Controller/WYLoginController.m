@@ -157,8 +157,8 @@
 	[containerScrollView addSubview:forgetPWBtn];
 	
 		// login notification.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_SINA_LOGIN_OK object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_QQ_LOGIN_OK object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenSinaAuthSuccess:) name:NOTI_SINA_AUTH_OK object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_QQ_AUTH_OK object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_WY_LOGIN_OK object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_WY_REG_OK object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_WY_RESET_PWD_OK object:nil];
@@ -175,6 +175,35 @@
 }
 
 #pragma mark - NOTI
+- (void)doWhenSinaAuthSuccess:(id)sender {
+    //fetch user info from sina.
+    NSString *userInfoBaseStr = @"https://api.weibo.com/2/users/show.json";
+    NSString *token = [[[WYGlobalState sharedGlobalState] sinaUserInfo] authToken];
+    NSString *uid = [[[WYGlobalState sharedGlobalState] sinaUserInfo] userID];
+    NSString *urlStr = [NSString stringWithFormat:@"%@?uid=%@&access_token=%@", userInfoBaseStr, uid, token];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    request.tag = 2;
+    [request setDelegate:self];
+    [request setRequestMethod:@"GET"];
+    [request startAsynchronous];
+
+}
+
+- (void)doWhenQQAuthSuccess:(id)sender {
+    //fetch user info from qq.
+    
+//    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
+//	[infoDic setObject:@"qq" forKey:JSON_BODY_KEY_LOGINFROM];/*must be "qq"*/
+//	[infoDic setObject:[[[WYGlobalState sharedGlobalState] sinaUserInfo] userID] forKey:JSON_BODY_KEY_UID3RD];
+//	
+//	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getThirdPartLoginCallBackURL]];
+//	[request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"third_data"];
+//	request.delegate = self;
+//	[request startAsynchronous];
+}
+
 - (void)doWhenLoginSuccess:(id)sender {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -233,6 +262,7 @@
 	[infoDic setObject:_passwdField.text forKey:JSON_BODY_KEY_PWD];
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getWYLoginURL]];
+    request.tag = 1;
 	[request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"logindata"];
 	request.delegate = self;
 	[request startAsynchronous];
@@ -251,6 +281,122 @@
 - (void)clickForgetPWButton:(id)sender {
     WYResetPasswordController *rpv = [[WYResetPasswordController alloc] init];
     [self.navigationController pushViewController:rpv animated:YES];
+}
+
+
+//===
+#pragma mark - Tencent Session Delegate
+- (void)tencentDidLogin {
+    LOGFUNCTION;
+	if (_tcOAuth.accessToken != nil && 0 != [_tcOAuth.accessToken length]) {
+		[[[WYGlobalState sharedGlobalState] qqUserInfo] setAuthToken:_tcOAuth.accessToken];
+		[[[WYGlobalState sharedGlobalState] qqUserInfo] setOpenID:_tcOAuth.openId];
+		[[[WYGlobalState sharedGlobalState] qqUserInfo] setExpirationDate:_tcOAuth.expirationDate];
+		[_tcOAuth performSelectorOnMainThread:@selector(getUserInfo) withObject:nil waitUntilDone:YES];
+    } else {
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"It's must be Tencent's Fault!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+    }
+
+}
+
+- (void)tencentDidNotLogin:(BOOL)cancelled {
+    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"QQ登录失败" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    [alertview show];
+}
+
+- (void)tencentDidNotNetWork {
+    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"QQ登录，没有网络！" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    [alertview show];
+}
+
+- (void)getUserInfoResponse:(APIResponse *)response {
+    LOGFUNCTION;
+	mlog(@"QQ getUserInfo response : \n%@", [response.jsonResponse description]);
+	[[[WYGlobalState sharedGlobalState] qqUserInfo] setUserName:[response.jsonResponse objectForKey:@"nickname"]];
+	[[[WYGlobalState sharedGlobalState] qqUserInfo] setUserImageUrl:[response.jsonResponse objectForKey:@"figureurl_1"]];
+	
+    //Callback
+    
+    
+	[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_QQ_LOGIN_OK object:nil userInfo:nil];
+}
+
+- (void)tencentOAuth:(TencentOAuth *)tencentOAuth doCloseViewController:(UIViewController *)viewController {
+    LOGFUNCTION;
+}
+
+
+//===
+#pragma mark - ASIHttpRequest
+
+- (void)requestFinished:(ASIHTTPRequest *)request {
+	NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableContainers error:nil];
+	mlog(@"== WY Login Response tag :%i, info dic : \n%@", request.tag, [infoDic description]);
+	
+    if (request.tag == 1/*WY*/) {
+        
+        NSNumber *state = [infoDic objectForKey:JSON_RES_KEY_ST];
+        if ([state intValue] == 0) {
+            [[[WYGlobalState sharedGlobalState] wyUserInfo] setAuthToken:[infoDic objectForKey:JSON_RES_KEY_UT]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_WY_LOGIN_OK object:nil userInfo:nil];
+        } else {
+            UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_RES_KEY_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+            [alertview show];
+        }
+        
+    } else if (request.tag == 2/*SINA*/) {
+        mlog(@"== SINA Request User Info");
+        
+        NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingMutableContainers error:nil];
+        NSString *userName = [jsonDic objectForKey:@"name"];
+        [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserName:userName];
+        NSString *imgUrl = [jsonDic objectForKey:@"profile_image_url"];
+        [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserImageUrl:imgUrl];
+        
+        // call back
+        NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
+        [infoDic setObject:@"weibo" forKey:JSON_BODY_KEY_LOGINFROM];/*must be "weibo"*/
+        [infoDic setObject:[[[WYGlobalState sharedGlobalState] sinaUserInfo] userID] forKey:JSON_BODY_KEY_UID3RD];
+        [infoDic setObject:userName forKey:JSON_BODY_KEY_NICKNAME];
+        
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getThirdPartLoginCallBackURL]];
+        request.tag = 3;
+        [request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"third_data"];
+        request.delegate = self;
+        [request startAsynchronous];
+        
+    } else if (request.tag == 3/*SINA CALLBACK*/) {
+        
+        NSNumber *state = [infoDic objectForKey:JSON_RES_KEY_ST];
+        if ([state intValue] == 0) {
+            mlog(@"== Callback state is 0");
+            [[[WYGlobalState sharedGlobalState] sinaUserInfo] setWyToken:[infoDic objectForKey:JSON_RES_KEY_UT]];
+            [self performSelectorOnMainThread:@selector(doWhenLoginSuccess:) withObject:nil waitUntilDone:NO];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_WY_LOGIN_OK object:nil userInfo:nil];
+        } else {
+            UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_RES_KEY_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+            [alertview show];
+        }
+        
+    } else if (request.tag == 4/*QQ*/) {
+        
+        //call back
+        
+    } else if (request.tag == 5/*QQ CALLBACK*/) {
+        
+    }
+	
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request {
+    LOGFUNCTION;
+    mlog(@"== WY Login Failed Response : %@", [request.error description]);
+    NSError *error = request.error;
+    if (error.code == 1) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"Connection Failure Occur!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+    }
 }
 
 
@@ -279,74 +425,11 @@
     return YES;
 }
 
-#pragma mark - Tencent Session Delegate
-- (void)tencentDidLogin {
-   
-	if (_tcOAuth.accessToken != nil && 0 != [_tcOAuth.accessToken length]) {
-		[[[WYGlobalState sharedGlobalState] qqUserInfo] setAuthToken:_tcOAuth.accessToken];
-		[[[WYGlobalState sharedGlobalState] qqUserInfo] setOpenID:_tcOAuth.openId];
-		[[[WYGlobalState sharedGlobalState] qqUserInfo] setExpirationDate:_tcOAuth.expirationDate];
-		[_tcOAuth performSelectorOnMainThread:@selector(getUserInfo) withObject:nil waitUntilDone:YES];
-    } else {
-		mlog(@"-- qq fail to login.");
-    }
-
-}
-
-- (void)tencentDidNotLogin:(BOOL)cancelled {
-	LOGFUNCTION;
-}
-
-- (void)tencentDidNotNetWork {
-    LOGFUNCTION;
-}
-
-- (void)getUserInfoResponse:(APIResponse *)response {
-    LOGFUNCTION;
-	mlog(@"response json : \n%@", [response.jsonResponse description]);
-	[[[WYGlobalState sharedGlobalState] qqUserInfo] setUserName:[response.jsonResponse objectForKey:@"nickname"]];
-	[[[WYGlobalState sharedGlobalState] qqUserInfo] setUserImageUrl:[response.jsonResponse objectForKey:@"figureurl_1"]];
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_QQ_LOGIN_OK object:nil userInfo:nil];
-}
-
-- (void)tencentOAuth:(TencentOAuth *)tencentOAuth doCloseViewController:(UIViewController *)viewController {
-    LOGFUNCTION;
-}
-
 #pragma -
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - HTTP
-
-- (void)requestFinished:(ASIHTTPRequest *)request {
-	NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableContainers error:nil];
-	mlog(@"== WY Login Response info dic : \n%@", [infoDic description]);
-	
-	NSNumber *state = [infoDic objectForKey:JSON_RES_KEY_ST];
-	if ([state intValue] == 0) {
-		[[[WYGlobalState sharedGlobalState] wyUserInfo] setAuthToken:[infoDic objectForKey:JSON_RES_KEY_UT]];
-		[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_WY_LOGIN_OK object:nil userInfo:nil];
-	} else {
-		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_RES_KEY_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-        [alertview show];
-	}
-}
-
-- (void)requestFailed:(ASIHTTPRequest *)request {
-    LOGFUNCTION;
-    mlog(@"== WY Login Failed Response : %@", [request.error description]);
-    NSError *error = request.error;
-    if (error.code == 1) {
-        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"Connection Failure Occur!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-        [alertview show];
-    }
-}
-
-
 
 @end

@@ -27,7 +27,6 @@
 - (NSString *)authToken {
     if (_authToken == nil) {
         _authToken = [[NSUserDefaults standardUserDefaults] objectForKey:WY_USER_TOKEN];
-		[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:WYAccount] forKey:GLOBAL_ACCOUNT];
     }
     
     return _authToken;
@@ -49,7 +48,6 @@
 - (void)setUserName:(NSString *)userName {
     _userName = userName;
     [[NSUserDefaults standardUserDefaults] setObject:_userName forKey:WY_USER_NAME];
-	[[NSUserDefaults standardUserDefaults] setObject:_userName forKey:GLOBAL_USER_NAME];
 }
 
 - (NSString *)userImageUrl {
@@ -63,7 +61,6 @@
 - (void)setUserImageUrl:(NSString *)userImageUrl {
     _userImageUrl = userImageUrl;
     [[NSUserDefaults standardUserDefaults] setObject:_userImageUrl forKey:WY_USER_PROFILE_IMAGE_URL];
-    [[NSUserDefaults standardUserDefaults] setObject:_userImageUrl forKey:GLOBAL_USER_PROFILE_IMAGE_URL];
 }
 
 - (void)logout {

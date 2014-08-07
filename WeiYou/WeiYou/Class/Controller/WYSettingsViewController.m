@@ -11,6 +11,9 @@
 #import "WYLoginController.h"
 #import "WYGlobalState.h"
 #import "WYFakeNavBar.h"
+#import "WYURLUtility.h"
+#import "SecurityUtil.h"
+#import "NSObject+JSON.h"
 #import "consts.h"
 
 
@@ -22,6 +25,7 @@
 @synthesize mTableView = _mTableView;
 @synthesize userInfoRequest = _userInfoRequest;
 @synthesize userImageRequest = _userImageRequest;
+@synthesize callbackRequest = _callbackRequest;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -121,31 +125,30 @@
         cell.backgroundColor = [UIColor yellowColor];
         if ([[WYGlobalState sharedGlobalState] isLogin]) {
 
-            NSString *username = [[WYGlobalState sharedGlobalState] userName];
-			mlog(@"global state : is login \nuser name : %@", username);
-            if (username != nil) {
-                cell.textLabel.text = username;
-            } else {
-                cell.textLabel.text = @"";
-            }
-            
-            if ([[WYGlobalState sharedGlobalState] userImage] != nil) {
-                cell.imageView.image = [[WYGlobalState sharedGlobalState] userImage];
-            } else {
-                NSString *imageUrl = [[WYGlobalState sharedGlobalState] userImageUrl];
-                if (imageUrl != nil) {
-                    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:imageUrl]];
-                    [request setDelegate:self];
-                    [request setRequestMethod:@"GET"];
-                    [request startAsynchronous];
-                    self.userImageRequest = request;
-                }
-            }
+//            NSString *username = [[WYGlobalState sharedGlobalState] userName];
+//			mlog(@"global state : is login \nuser name : %@", username);
+//            if (username != nil) {
+//                cell.textLabel.text = username;
+//            } else {
+//                cell.textLabel.text = @"";
+//            }
+//
+//            if ([[WYGlobalState sharedGlobalState] userImage] != nil) {
+//                cell.imageView.image = [[WYGlobalState sharedGlobalState] userImage];
+//            } else {
+//                NSString *imageUrl = [[WYGlobalState sharedGlobalState] userImageUrl];
+//                if (imageUrl != nil) {
+//                    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:imageUrl]];
+//                    [request setDelegate:self];
+//                    [request setRequestMethod:@"GET"];
+//                    [request startAsynchronous];
+//                    self.userImageRequest = request;
+//                }
+//            }
 			
             cell.accessoryType = UITableViewCellAccessoryNone;
         } else {
             
-			mlog(@"not log in");
             cell.textLabel.text = [NSString stringWithFormat:@"点击登录"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
@@ -224,27 +227,44 @@
 #pragma ASIHTTPRequestDelegate
 - (void)requestFinished:(ASIHTTPRequest *)request {
     
-    if (request == _userInfoRequest) {
-        
-        NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingMutableContainers error:nil];
-        
-        NSString *userName = [jsonDic objectForKey:@"name"];
-        [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserName:userName];
-        
-        NSString *imgUrl = [jsonDic objectForKey:@"profile_image_url"];
-        [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserImageUrl:imgUrl];
-        
-        [self.mTableView reloadData];
-        
-    } else if (request == _userImageRequest) {
-        
-        NSData *imgData = [request responseData];
-        [[WYGlobalState sharedGlobalState] setUserImage:[UIImage imageWithData:imgData]];
-
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        [self.mTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
-        
-    }
+//    if (request == _userInfoRequest) {
+//        
+//        NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingMutableContainers error:nil];
+//        
+//        NSString *userName = [jsonDic objectForKey:@"name"];
+//        [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserName:userName];
+//        
+//        NSString *imgUrl = [jsonDic objectForKey:@"profile_image_url"];
+//        [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserImageUrl:imgUrl];
+//        
+//        [self.mTableView reloadData];
+//        
+//    } else
+    
+//    if (request == _userImageRequest) {
+//
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//        [self.mTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
+//        
+//    }
+    
+//    else if (request == _callbackRequest) {
+//        NSString *restr = request.responseString;
+//        mlog(@"response string : %@", restr);
+//        
+//        
+//        NSError *merr = nil;
+//        NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableContainers error:&merr];
+//        mlog(@"== WY Callback Response info dic : \n%@", [infoDic description]);
+//        
+//        mlog(@"msg : %@", [NSString stringWithCString:[[infoDic objectForKey:@"msg"] UTF8String] encoding:NSUTF8StringEncoding]);
+//        
+//        if (merr != nil) {
+//            mlog(@"error info : %@", [merr description]);
+//        } else {
+//            mlog(@"no error");
+//        }
+//    }
     
 }
 
@@ -262,24 +282,35 @@
 #pragma mark - NOTI
 - (void)doWhenSinaLoginSuccess:(id)sender {
 	LOGFUNCTION;
+    [self.mTableView reloadData];
     
-    NSString *userInfoBaseStr = @"https://api.weibo.com/2/users/show.json";
-    NSString *token = [[[WYGlobalState sharedGlobalState] sinaUserInfo] authToken];
-    NSString *uid = [[[WYGlobalState sharedGlobalState] sinaUserInfo] userID];
-    NSString *urlStr = [NSString stringWithFormat:@"%@?uid=%@&access_token=%@", userInfoBaseStr, uid, token];
-    NSURL *url = [NSURL URLWithString:urlStr];
     
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-    [request setDelegate:self];
-    [request setRequestMethod:@"GET"];
-    [request startAsynchronous];
-    self.userInfoRequest = request;
-    
+//    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
+//	[infoDic setObject:@"weibo" forKey:JSON_BODY_KEY_LOGINFROM];/*must be "weibo"*/
+//	[infoDic setObject:[[[WYGlobalState sharedGlobalState] sinaUserInfo] userID] forKey:JSON_BODY_KEY_UID3RD];
+//	
+//	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getThirdPartLoginCallBackURL]];
+//	[request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"third_data"];
+//	request.delegate = self;
+//	[request startAsynchronous];
+//    self.callbackRequest = request;
+
 }
 
 - (void)doWhenQQLoginSuccess:(id)sender {
 	LOGFUNCTION;
 	[self.mTableView reloadData];
+    
+//    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
+//	[infoDic setObject:@"qq" forKey:JSON_BODY_KEY_LOGINFROM];/*must be "qq"*/
+//	[infoDic setObject:[[[WYGlobalState sharedGlobalState] qqUserInfo] openID] forKey:JSON_BODY_KEY_UID3RD];
+//    NSLog(@"QQ openid is %@", [[[WYGlobalState sharedGlobalState] qqUserInfo] openID]);
+//	
+//	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getThirdPartLoginCallBackURL]];
+//	[request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"third_data"];
+//	request.delegate = self;
+//	[request startAsynchronous];
+//    self.callbackRequest = request;
 }
 
 - (void)doWhenWYLoginSuccess:(id)sender {

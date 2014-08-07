@@ -34,5 +34,6 @@
 #define PIC_OK_H
 #define PIC_BACK_N						 @"back_icon_n.png"
 #define PIC_BACK_H
+#define PIC_ADD_NEW_TRIP                 @"add_new_trip_btn.png"
 
 #endif
