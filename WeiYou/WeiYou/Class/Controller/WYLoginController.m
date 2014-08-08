@@ -158,8 +158,7 @@
 	
 		// login notification.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenSinaAuthSuccess:) name:NOTI_SINA_AUTH_OK object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_QQ_AUTH_OK object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_WY_LOGIN_OK object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenQQAuthSuccess:) name:NOTI_QQ_AUTH_OK object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_WY_REG_OK object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_WY_RESET_PWD_OK object:nil];
 }
@@ -222,31 +221,31 @@
 
 - (void)onClickQQLoginButton:(id)sender {
     self.tcOAuth = [[TencentOAuth alloc] initWithAppId:QQAppID andDelegate:self];
-    NSArray *permissions = [[NSArray alloc] initWithObjects:
-                            kOPEN_PERMISSION_GET_USER_INFO,
-                            kOPEN_PERMISSION_ADD_ALBUM,
-                            kOPEN_PERMISSION_ADD_IDOL,
-                            kOPEN_PERMISSION_ADD_ONE_BLOG,
-                            kOPEN_PERMISSION_ADD_PIC_T,
-                            kOPEN_PERMISSION_ADD_SHARE,
-                            kOPEN_PERMISSION_ADD_TOPIC,
-                            kOPEN_PERMISSION_CHECK_PAGE_FANS,
-                            kOPEN_PERMISSION_DEL_IDOL,
-                            kOPEN_PERMISSION_DEL_T,
-                            kOPEN_PERMISSION_GET_FANSLIST,
-                            kOPEN_PERMISSION_GET_IDOLLIST,
-                            kOPEN_PERMISSION_GET_INFO,
-                            kOPEN_PERMISSION_GET_OTHER_INFO,
-                            kOPEN_PERMISSION_GET_REPOST_LIST,
-                            kOPEN_PERMISSION_LIST_ALBUM,
-                            kOPEN_PERMISSION_UPLOAD_PIC,
-                            kOPEN_PERMISSION_GET_VIP_INFO,
-                            kOPEN_PERMISSION_GET_VIP_RICH_INFO,
-                            kOPEN_PERMISSION_GET_INTIMATE_FRIENDS_WEIBO,
-                            kOPEN_PERMISSION_MATCH_NICK_TIPS_WEIBO,
-                            nil];
-    
+    NSArray *permissions = [[NSArray alloc] initWithObjects:kOPEN_PERMISSION_GET_USER_INFO, nil];
     [_tcOAuth authorize:permissions inSafari:NO];
+	
+	/*
+	 kOPEN_PERMISSION_ADD_ALBUM,
+	 kOPEN_PERMISSION_ADD_IDOL,
+	 kOPEN_PERMISSION_ADD_ONE_BLOG,
+	 kOPEN_PERMISSION_ADD_PIC_T,
+	 kOPEN_PERMISSION_ADD_SHARE,
+	 kOPEN_PERMISSION_ADD_TOPIC,
+	 kOPEN_PERMISSION_CHECK_PAGE_FANS,
+	 kOPEN_PERMISSION_DEL_IDOL,
+	 kOPEN_PERMISSION_DEL_T,
+	 kOPEN_PERMISSION_GET_FANSLIST,
+	 kOPEN_PERMISSION_GET_IDOLLIST,
+	 kOPEN_PERMISSION_GET_INFO,
+	 kOPEN_PERMISSION_GET_OTHER_INFO,
+	 kOPEN_PERMISSION_GET_REPOST_LIST,
+	 kOPEN_PERMISSION_LIST_ALBUM,
+	 kOPEN_PERMISSION_UPLOAD_PIC,
+	 kOPEN_PERMISSION_GET_VIP_INFO,
+	 kOPEN_PERMISSION_GET_VIP_RICH_INFO,
+	 kOPEN_PERMISSION_GET_INTIMATE_FRIENDS_WEIBO,
+	 kOPEN_PERMISSION_MATCH_NICK_TIPS_WEIBO,
+	 */
 }
 
 - (void)onClickLogin:(id)sender {
@@ -318,12 +317,27 @@
 	
     //Callback
     
-    
+	[self performSelectorOnMainThread:@selector(doWhenLoginSuccess:) withObject:nil waitUntilDone:NO];
 	[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_QQ_LOGIN_OK object:nil userInfo:nil];
 }
 
 - (void)tencentOAuth:(TencentOAuth *)tencentOAuth doCloseViewController:(UIViewController *)viewController {
     LOGFUNCTION;
+}
+
+- (BOOL)tencentNeedPerformIncrAuth:(TencentOAuth *)tencentOAuth withPermissions:(NSArray *)permissions {
+	LOGFUNCTION;
+	return YES;
+}
+
+- (BOOL)tencentNeedPerformReAuth:(TencentOAuth *)tencentOAuth {
+	LOGFUNCTION;
+	return YES;
+}
+
+- (NSArray *)getAuthorizedPermissions:(NSArray *)permissions withExtraParams:(NSDictionary *)extraParams {
+	LOGFUNCTION;
+	return permissions;
 }
 
 
@@ -339,6 +353,7 @@
         NSNumber *state = [infoDic objectForKey:JSON_RES_KEY_ST];
         if ([state intValue] == 0) {
             [[[WYGlobalState sharedGlobalState] wyUserInfo] setAuthToken:[infoDic objectForKey:JSON_RES_KEY_UT]];
+            [self performSelectorOnMainThread:@selector(doWhenLoginSuccess:) withObject:nil waitUntilDone:NO];
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_WY_LOGIN_OK object:nil userInfo:nil];
         } else {
             UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_RES_KEY_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];

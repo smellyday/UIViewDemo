@@ -50,7 +50,7 @@
             mlog(@"== create init cp : %@", initCP);
             _cp = [SecurityUtil encodeBase64String:initCP];
             [[NSUserDefaults standardUserDefaults] setObject:_cp forKey:GLOBAL_PARAM_CP];
-            mlog(@"== create final cp : %@", _cp);
+            mlog(@"== create encoded cp : %@", _cp);
         }
     }
     
