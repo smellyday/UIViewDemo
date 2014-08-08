@@ -300,25 +300,53 @@
 }
 
 - (void)tencentDidNotLogin:(BOOL)cancelled {
-    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"QQ登录失败" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-    [alertview show];
+    if (cancelled) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"用户取消登录" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+    } else {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"QQ登录失败" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+    }
 }
 
 - (void)tencentDidNotNetWork {
-    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"QQ登录，没有网络！" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"没有网络，谁都无能为力！" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
     [alertview show];
 }
 
 - (void)getUserInfoResponse:(APIResponse *)response {
     LOGFUNCTION;
 	mlog(@"QQ getUserInfo response : \n%@", [response.jsonResponse description]);
-	[[[WYGlobalState sharedGlobalState] qqUserInfo] setUserName:[response.jsonResponse objectForKey:@"nickname"]];
-	[[[WYGlobalState sharedGlobalState] qqUserInfo] setUserImageUrl:[response.jsonResponse objectForKey:@"figureurl_1"]];
 	
-    //Callback
+    if (response.retCode == 0) {
+        int retCode = [[response.jsonResponse objectForKey:@"ret"] intValue];
+        if (retCode == 0) {
+            [[[WYGlobalState sharedGlobalState] qqUserInfo] setUserName:[response.jsonResponse objectForKey:@"nickname"]];
+            [[[WYGlobalState sharedGlobalState] qqUserInfo] setUserImageUrl:[response.jsonResponse objectForKey:@"figureurl_1"]];
+            
+            //Callback
+            NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
+            [infoDic setObject:@"qq" forKey:JSON_BODY_KEY_LOGINFROM];/*must be "qq"*/
+            [infoDic setObject:[[[WYGlobalState sharedGlobalState] qqUserInfo] openID] forKey:JSON_BODY_KEY_UID3RD];
+            [infoDic setObject:[response.jsonResponse objectForKey:@"nickname"] forKey:JSON_BODY_KEY_NICKNAME];
+            
+            ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getThirdPartLoginCallBackURL]];
+            request.tag = 4;
+            [request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"third_data"];
+            request.delegate = self;
+            [request performSelectorOnMainThread:@selector(startAsynchronous) withObject:nil waitUntilDone:NO];
+            
+        } else {
+            NSString *errStr = [response.jsonResponse objectForKey:@"msg"];
+            UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:errStr delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+            [alertview show];
+        }
+        
+    } else {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"QQ网络异常" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+    }
     
-	[self performSelectorOnMainThread:@selector(doWhenLoginSuccess:) withObject:nil waitUntilDone:NO];
-	[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_QQ_LOGIN_OK object:nil userInfo:nil];
 }
 
 - (void)tencentOAuth:(TencentOAuth *)tencentOAuth doCloseViewController:(UIViewController *)viewController {
@@ -354,7 +382,7 @@
         if ([state intValue] == 0) {
             [[[WYGlobalState sharedGlobalState] wyUserInfo] setAuthToken:[infoDic objectForKey:JSON_RES_KEY_UT]];
             [self performSelectorOnMainThread:@selector(doWhenLoginSuccess:) withObject:nil waitUntilDone:NO];
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_WY_LOGIN_OK object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_LOGIN_OK object:nil userInfo:nil];
         } else {
             UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_RES_KEY_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
             [alertview show];
@@ -379,7 +407,7 @@
         request.tag = 3;
         [request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"third_data"];
         request.delegate = self;
-        [request startAsynchronous];
+        [request performSelectorOnMainThread:@selector(startAsynchronous) withObject:nil waitUntilDone:NO];
         
     } else if (request.tag == 3/*SINA CALLBACK*/) {
         
@@ -388,17 +416,24 @@
             mlog(@"== Callback state is 0");
             [[[WYGlobalState sharedGlobalState] sinaUserInfo] setWyToken:[infoDic objectForKey:JSON_RES_KEY_UT]];
             [self performSelectorOnMainThread:@selector(doWhenLoginSuccess:) withObject:nil waitUntilDone:NO];
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_WY_LOGIN_OK object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_LOGIN_OK object:nil userInfo:nil];
         } else {
             UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_RES_KEY_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
             [alertview show];
         }
         
-    } else if (request.tag == 4/*QQ*/) {
+    } else if (request.tag == 4/*QQ CALLBACK*/) {
         
-        //call back
-        
-    } else if (request.tag == 5/*QQ CALLBACK*/) {
+        NSNumber *state = [infoDic objectForKey:JSON_RES_KEY_ST];
+        if ([state intValue] == 0) {
+            mlog(@"== Callback state is 0");
+            [[[WYGlobalState sharedGlobalState] qqUserInfo] setWyToken:[infoDic objectForKey:JSON_RES_KEY_UT]];
+            [self performSelectorOnMainThread:@selector(doWhenLoginSuccess:) withObject:nil waitUntilDone:NO];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_LOGIN_OK object:nil userInfo:nil];
+        } else {
+            UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_RES_KEY_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+            [alertview show];
+        }
         
     }
 	
