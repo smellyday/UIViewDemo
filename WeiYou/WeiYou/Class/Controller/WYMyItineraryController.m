@@ -66,12 +66,10 @@
 }
 
 - (void)onClickCreateNew:(id)sender {
-
-//    WYNewItineraryController *newitn = [[WYNewItineraryController alloc] init];
-//    
-//	UINavigationController *ricnav = [[UINavigationController alloc] initWithRootViewController:ric];
-//	[ricnav.navigationBar setBackgroundImage:[UIImage imageNamed:PIC_NAV_BAR_BG] forBarMetrics:UIBarMetricsDefault];
-
+    WYNewItineraryController *newitn = [[WYNewItineraryController alloc] init];
+	UINavigationController *ricnav = [[UINavigationController alloc] initWithRootViewController:newitn];
+	[ricnav.navigationBar setBackgroundImage:[UIImage imageNamed:PIC_NAV_BAR_BG] forBarMetrics:UIBarMetricsDefault];
+	[self.tabBarController.navigationController presentViewController:ricnav animated:YES completion:nil];
 }
 
 #pragma notification received

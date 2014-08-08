@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WYNewItineraryController : UIViewController
+@interface WYNewItineraryController : UIViewController {
+	UITextField *_tripNameField;
+	UITextField *_daysCountField;
+	UITextField *_sDateField;
+}
 
 @end
