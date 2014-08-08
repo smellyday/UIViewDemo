@@ -224,6 +224,17 @@
     NSArray *permissions = [[NSArray alloc] initWithObjects:kOPEN_PERMISSION_GET_USER_INFO, nil];
     [_tcOAuth authorize:permissions inSafari:NO];
     
+//    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
+//    [infoDic setObject:@"qq" forKey:JSON_BODY_KEY_LOGINFROM];/*must be "qq"*/
+//    [infoDic setObject:@"123456789" forKey:JSON_BODY_KEY_UID3RD];
+//    [infoDic setObject:@"owen" forKey:JSON_BODY_KEY_NICKNAME];
+//    
+//    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getThirdPartLoginCallBackURL]];
+//    request.tag = 4;
+//    [request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"third_data"];
+//    request.delegate = self;
+//    [request performSelectorOnMainThread:@selector(startAsynchronous) withObject:nil waitUntilDone:NO];
+    
 	
 	/*
 	 kOPEN_PERMISSION_ADD_ALBUM,
@@ -295,6 +306,7 @@
 		[[[WYGlobalState sharedGlobalState] qqUserInfo] setOpenID:_tcOAuth.openId];
 		[[[WYGlobalState sharedGlobalState] qqUserInfo] setExpirationDate:_tcOAuth.expirationDate];
 		[_tcOAuth performSelectorOnMainThread:@selector(getUserInfo) withObject:nil waitUntilDone:YES];
+        mlog(@"open id is %@", _tcOAuth.openId);
     } else {
 		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"It's must be Tencent's Fault!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         [alertview show];
@@ -379,8 +391,16 @@
 #pragma mark - ASIHttpRequest
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
+    mlog(@"res data content : %@", [[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding]);
 	NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableContainers error:nil];
 	mlog(@"== WY Login Response tag :%i, info dic : \n%@", request.tag, [infoDic description]);
+    
+    if (!infoDic) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"we got nothing from server." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertview show];
+        
+        return;
+    }
 	
     if (request.tag == 1/*WY*/) {
         

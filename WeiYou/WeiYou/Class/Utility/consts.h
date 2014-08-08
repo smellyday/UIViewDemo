@@ -28,7 +28,7 @@
 #define PREFIX_SINA                         @"wb"
 #define PREFIX_QQ                           @"tencent"
 
-#define QQAppID /*@"222222"*/@"1101890874"
+#define QQAppID @"222222"/*@"1101890874"*/
 #define SinaWeiboAppKey @"211678035"
 #define SinaRedirectUrl @"http://www.baidu.com"
 
