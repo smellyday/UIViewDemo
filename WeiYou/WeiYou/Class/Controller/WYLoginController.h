@@ -12,12 +12,15 @@
 
 
 @interface WYLoginController : UIViewController <UITextFieldDelegate, UIGestureRecognizerDelegate, TencentSessionDelegate, ASIHTTPRequestDelegate> {
+    UIActivityIndicatorView *_aiv;
+    
 	UITextField *_userField;
 	UITextField *_passwdField;
     
     TencentOAuth *_tcOAuth;
 }
 
+@property (nonatomic, strong) UIActivityIndicatorView *aiv;
 @property (nonatomic, strong) UITextField *userField;
 @property (nonatomic, strong) UITextField *passwdField;
 @property (nonatomic, strong) TencentOAuth *tcOAuth;

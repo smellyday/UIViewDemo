@@ -25,6 +25,7 @@
 @synthesize userField = _userField;
 @synthesize passwdField = _passwdField;
 @synthesize tcOAuth = _tcOAuth;
+@synthesize aiv = _aiv;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -155,10 +156,18 @@
 	forgetPWBtn.titleLabel.font = [UIFont systemFontOfSize:13];
 	[forgetPWBtn addTarget:self action:@selector(clickForgetPWButton:) forControlEvents:UIControlEventTouchUpInside];
 	[containerScrollView addSubview:forgetPWBtn];
+    
+    // activity indicator animation.
+    self.aiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    CGFloat aw = 80.0;
+    CGFloat ah = 80.0;
+    _aiv.frame = CGRectMake(SCREEN_WIDTH/2-aw/2, SCREEN_HEIGHT/2-ah/2, aw, ah);
+    _aiv.hidesWhenStopped = YES;
+    [_aiv stopAnimating];
+    [self.view addSubview:_aiv];
 	
 		// login notification.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenSinaAuthSuccess:) name:NOTI_SINA_AUTH_OK object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenQQAuthSuccess:) name:NOTI_QQ_AUTH_OK object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_WY_REG_OK object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenLoginSuccess:) name:NOTI_WY_RESET_PWD_OK object:nil];
 }
@@ -190,25 +199,13 @@
 
 }
 
-- (void)doWhenQQAuthSuccess:(id)sender {
-    //fetch user info from qq.
-    
-//    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
-//	[infoDic setObject:@"qq" forKey:JSON_BODY_KEY_LOGINFROM];/*must be "qq"*/
-//	[infoDic setObject:[[[WYGlobalState sharedGlobalState] sinaUserInfo] userID] forKey:JSON_BODY_KEY_UID3RD];
-//	
-//	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[WYURLUtility getThirdPartLoginCallBackURL]];
-//	[request setPostValue:[SecurityUtil encodeBase64String:[infoDic toJSONString]] forKey:@"third_data"];
-//	request.delegate = self;
-//	[request startAsynchronous];
-}
-
 - (void)doWhenLoginSuccess:(id)sender {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma UIButton Event
 - (void)onClickSinaLoginButton:(id)sender {
+    
     WBAuthorizeRequest *request = [WBAuthorizeRequest request];
     request.redirectURI = SinaRedirectUrl;
     request.scope = @"all";
@@ -217,12 +214,16 @@
                          @"Other_Info_2": @[@"obj1", @"obj2"],
                          @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
     [WeiboSDK sendRequest:request];
+    
 }
 
 - (void)onClickQQLoginButton:(id)sender {
+    [_aiv startAnimating];
+    
     self.tcOAuth = [[TencentOAuth alloc] initWithAppId:QQAppID andDelegate:self];
     NSArray *permissions = [[NSArray alloc] initWithObjects:kOPEN_PERMISSION_GET_USER_INFO, nil];
     [_tcOAuth authorize:permissions inSafari:NO];
+    
 	
 	/*
 	 kOPEN_PERMISSION_ADD_ALBUM,
@@ -249,7 +250,9 @@
 }
 
 - (void)onClickLogin:(id)sender {
-
+    
+    [_aiv startAnimating];
+    
 	if (_userField.text == nil || [_userField.text length]==0 || _passwdField.text == nil || [_passwdField.text length]==0) {
         UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"please input both username & password" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         [alertview show];
@@ -300,6 +303,7 @@
 }
 
 - (void)tencentDidNotLogin:(BOOL)cancelled {
+    [_aiv stopAnimating];
     if (cancelled) {
         UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"用户取消登录" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         [alertview show];
@@ -310,13 +314,13 @@
 }
 
 - (void)tencentDidNotNetWork {
+    [_aiv stopAnimating];
     UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"没有网络，谁都无能为力！" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
     [alertview show];
 }
 
 - (void)getUserInfoResponse:(APIResponse *)response {
-    LOGFUNCTION;
-	mlog(@"QQ getUserInfo response : \n%@", [response.jsonResponse description]);
+    LOGFUNCTION;mlog(@"QQ getUserInfo response : \n%@", [response.jsonResponse description]);
 	
     if (response.retCode == 0) {
         int retCode = [[response.jsonResponse objectForKey:@"ret"] intValue];
@@ -337,12 +341,14 @@
             [request performSelectorOnMainThread:@selector(startAsynchronous) withObject:nil waitUntilDone:NO];
             
         } else {
+            [_aiv stopAnimating];
             NSString *errStr = [response.jsonResponse objectForKey:@"msg"];
             UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:errStr delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
             [alertview show];
         }
         
     } else {
+        [_aiv stopAnimating];
         UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"QQ网络异常" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         [alertview show];
     }
@@ -378,6 +384,7 @@
 	
     if (request.tag == 1/*WY*/) {
         
+        [_aiv stopAnimating];
         NSNumber *state = [infoDic objectForKey:JSON_RES_KEY_ST];
         if ([state intValue] == 0) {
             [[[WYGlobalState sharedGlobalState] wyUserInfo] setAuthToken:[infoDic objectForKey:JSON_RES_KEY_UT]];
@@ -411,6 +418,7 @@
         
     } else if (request.tag == 3/*SINA CALLBACK*/) {
         
+        [_aiv stopAnimating];
         NSNumber *state = [infoDic objectForKey:JSON_RES_KEY_ST];
         if ([state intValue] == 0) {
             mlog(@"== Callback state is 0");
@@ -424,6 +432,7 @@
         
     } else if (request.tag == 4/*QQ CALLBACK*/) {
         
+        [_aiv stopAnimating];
         NSNumber *state = [infoDic objectForKey:JSON_RES_KEY_ST];
         if ([state intValue] == 0) {
             mlog(@"== Callback state is 0");
