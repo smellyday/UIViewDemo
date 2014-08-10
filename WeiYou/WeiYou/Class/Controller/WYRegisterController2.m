@@ -124,13 +124,21 @@
 
 - (void)onClickRegButton:(id)sender {
     if (!_phoneNumber || [_phoneNumber length]==0) {
-        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"There must be something wrong." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert"
+                                                            message:@"There must be something wrong."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:nil];
         [alertview show];
 		return;
     }
     
     if (!_verifyField.text || [_verifyField.text length]==0) {
-        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"please input verify code" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert"
+                                                            message:@"please input verify code"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:nil];
         [alertview show];
 		return;
     }
@@ -157,7 +165,11 @@
 		[[NSNotificationCenter defaultCenter] postNotificationName:NOTI_WY_REG_OK object:nil userInfo:nil];
         mlog(@"== WY Register Success & msg : %@", [infoDic objectForKey:JSON_RES_KEY_MSG]);
 	} else {
-		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_RES_KEY_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+		UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert"
+                                                            message:[infoDic objectForKey:JSON_RES_KEY_MSG]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:nil];
         [alertview show];
 	}
     

@@ -265,7 +265,11 @@
     [_aiv startAnimating];
     
 	if (_userField.text == nil || [_userField.text length]==0 || _passwdField.text == nil || [_passwdField.text length]==0) {
-        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"please input both username & password" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert"
+                                                            message:@"please input both username & password"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:nil];
         [alertview show];
 		return;
 	}
@@ -393,7 +397,7 @@
 - (void)requestFinished:(ASIHTTPRequest *)request {
     mlog(@"res data content : %@", [[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding]);
 	NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableContainers error:nil];
-	mlog(@"== WY Login Response tag :%i, info dic : \n%@", request.tag, [infoDic description]);
+	mlog(@"== WY Login Response tag :%li, info dic : \n%@", (long)request.tag, [infoDic description]);
     
     if (!infoDic) {
         UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:@"we got nothing from server." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
@@ -411,7 +415,11 @@
             [self performSelectorOnMainThread:@selector(doWhenLoginSuccess:) withObject:nil waitUntilDone:NO];
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_LOGIN_OK object:nil userInfo:nil];
         } else {
-            UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert" message:[infoDic objectForKey:JSON_RES_KEY_MSG] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+            UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"alert"
+                                                                message:[infoDic objectForKey:JSON_RES_KEY_MSG]
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Cancel"
+                                                      otherButtonTitles:nil];
             [alertview show];
         }
         
