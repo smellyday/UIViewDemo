@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WYNewItineraryController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UIActionSheetDelegate> {
+@interface WYNewItineraryController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate> {
 	UITextField *_tripNameField;
 	UITextField *_daysCountField;
 	UITextField *_sDateField;
     
     UIPickerView *_datePickerView;
+    
 }
 
 @property (nonatomic, strong) UITextField *tripNameField;

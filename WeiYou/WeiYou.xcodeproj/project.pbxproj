@@ -91,6 +91,7 @@
 		691771951998BCBC0046D69D /* back_icon_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6917716D1998BCBC0046D69D /* back_icon_n@2x.png */; };
 		691771961998BCBC0046D69D /* ok_icon_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6917716E1998BCBC0046D69D /* ok_icon_n@2x.png */; };
 		691771971998BCBC0046D69D /* setting_icon_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6917716F1998BCBC0046D69D /* setting_icon_n@2x.png */; };
+		6917719A1998C3B20046D69D /* WYFunctionUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 691771991998C3B20046D69D /* WYFunctionUtility.m */; };
 		693432CD197F836700C1D2A5 /* WYBiSyncTripsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 693432CC197F836700C1D2A5 /* WYBiSyncTripsOperation.m */; };
 		69343304197FB4F500C1D2A5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69343302197FB4F500C1D2A5 /* InfoPlist.strings */; };
 		69343307197FB69D00C1D2A5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69343305197FB69D00C1D2A5 /* Localizable.strings */; };
@@ -270,6 +271,8 @@
 		6917716D1998BCBC0046D69D /* back_icon_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back_icon_n@2x.png"; path = "Resources/back_icon_n@2x.png"; sourceTree = SOURCE_ROOT; };
 		6917716E1998BCBC0046D69D /* ok_icon_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ok_icon_n@2x.png"; path = "Resources/ok_icon_n@2x.png"; sourceTree = SOURCE_ROOT; };
 		6917716F1998BCBC0046D69D /* setting_icon_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "setting_icon_n@2x.png"; path = "Resources/setting_icon_n@2x.png"; sourceTree = SOURCE_ROOT; };
+		691771981998C3B20046D69D /* WYFunctionUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYFunctionUtility.h; sourceTree = "<group>"; };
+		691771991998C3B20046D69D /* WYFunctionUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYFunctionUtility.m; sourceTree = "<group>"; };
 		693432CB197F836700C1D2A5 /* WYBiSyncTripsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYBiSyncTripsOperation.h; sourceTree = "<group>"; };
 		693432CC197F836700C1D2A5 /* WYBiSyncTripsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYBiSyncTripsOperation.m; sourceTree = "<group>"; };
 		69343303197FB4F500C1D2A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -596,6 +599,8 @@
 				5E4D7730198786F7005720BD /* NSObject+JSON.m */,
 				699BE2F21988A7AD00FE6917 /* WYURLUtility.h */,
 				699BE2F31988A7AD00FE6917 /* WYURLUtility.m */,
+				691771981998C3B20046D69D /* WYFunctionUtility.h */,
+				691771991998C3B20046D69D /* WYFunctionUtility.m */,
 			);
 			name = Utility;
 			path = WeiYou/Class/Utility;
@@ -1031,6 +1036,7 @@
 				5EF93530198B1AED0035E486 /* EGORefreshTableFooterView.m in Sources */,
 				5E5BC2F1183EF5430003AC6D /* WYFileManager.m in Sources */,
 				5E4D772A19878012005720BD /* GTMBase64.m in Sources */,
+				6917719A1998C3B20046D69D /* WYFunctionUtility.m in Sources */,
 				5EBCF742185EAE550057C1AE /* WYMTripDay.m in Sources */,
 				69582DAB1952C3F40072ED3E /* WYLoginController.m in Sources */,
 				5E5D67681861766700ECA966 /* WYTripDayTrafficCell.m in Sources */,

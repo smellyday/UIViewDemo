@@ -7,13 +7,24 @@
 //
 
 #import "WYNewItineraryController.h"
+#import "WYFunctionUtility.h"
 #import "consts.h"
 
 @interface WYNewItineraryController ()
 
+- (void)initPickerData;
+
 @end
 
-@implementation WYNewItineraryController
+@implementation WYNewItineraryController {
+    NSMutableArray *yearsArray;
+    NSArray *monthsArray;
+    NSMutableArray *daysArray;
+    
+    NSInteger selectedYearRow;
+    NSInteger selectedMonthRow;
+    NSInteger selectedDayRow;
+}
 @synthesize tripNameField = _tripNameField;
 @synthesize daysCountField = _daysCountField;
 @synthesize sDateField = _sDateField;
@@ -25,7 +36,11 @@
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
 	self.title = NSLocalizedString(@"create new trip", @"create new trip");
+    
+    // prepare data for date picker.
+    [self initPickerData];
 	
+    // nav bar.
 	UIBarButtonItem *mCancelBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:PIC_BACK_N]
 																   style:UIBarButtonItemStyleBordered
 																  target:self
@@ -92,6 +107,7 @@
     _datePickerView.dataSource = self;
     _datePickerView.delegate = self;
     _datePickerView.showsSelectionIndicator = YES;
+
     
     UIView *inputView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, KEYBOARD_HEIGHT_P+40)];
     [inputView addSubview:okbtn];
@@ -101,6 +117,46 @@
     
     UITapGestureRecognizer *tapForHideKeyboard = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
     [self.view addGestureRecognizer:tapForHideKeyboard];
+    
+    // init date picker
+    NSDate *nowdate = [NSDate date];
+    NSDateFormatter *dFormatter = [[NSDateFormatter alloc] init];
+    [dFormatter setDateFormat:@"yyyy"];
+    NSString *currentYearStr = [dFormatter stringFromDate:nowdate];
+    selectedYearRow = [yearsArray indexOfObject:currentYearStr];
+    mlog(@"current year string : %@, at row %d", currentYearStr, selectedYearRow);
+    
+    [dFormatter setDateFormat:@"MM"];
+    NSString *currentMonthStr = [dFormatter stringFromDate:nowdate];
+    selectedMonthRow = [monthsArray indexOfObject:currentMonthStr];
+    mlog(@"current month string : %@, at row %d", currentMonthStr, selectedMonthRow);
+    
+    [dFormatter setDateFormat:@"dd"];
+    NSString *currentDayStr = [dFormatter stringFromDate:nowdate];
+    selectedDayRow = [daysArray indexOfObject:currentDayStr];
+    mlog(@"current day string : %@, at row %d", currentDayStr, selectedDayRow);
+    
+    [_datePickerView selectRow:selectedYearRow inComponent:0 animated:YES];
+    [_datePickerView selectRow:selectedMonthRow inComponent:1 animated:YES];
+    [_datePickerView selectRow:selectedDayRow inComponent:2 animated:YES];
+}
+
+- (void)initPickerData {
+    yearsArray = [NSMutableArray arrayWithCapacity:50];
+    for (int i = 1980; i <= 2100; i++) {
+        [yearsArray addObject:[NSString stringWithFormat:@"%d", i]];
+    }
+    
+    monthsArray = @[@"01", @"02", @"03", @"04", @"05", @"06", @"07", @"08", @"09", @"10", @"11", @"12"];
+    
+    daysArray = [NSMutableArray arrayWithCapacity:31];
+    for (int i = 1; i<=31; i++) {
+        if (i < 10) {
+            [daysArray addObject:[NSString stringWithFormat:@"0%d", i]];
+        } else {
+            [daysArray addObject:[NSString stringWithFormat:@"%d", i]];
+        }
+    }
 }
 
 #pragma mark - Click Event
@@ -113,6 +169,17 @@
 }
 
 - (void)onClickDateOK:(id)sender {
+    NSString *ys = [yearsArray objectAtIndex:selectedYearRow];
+    NSString *ms = [monthsArray objectAtIndex:selectedMonthRow];
+    NSString *ds = [daysArray objectAtIndex:selectedDayRow];
+    NSString *datestr = [NSString stringWithFormat:@"%@-%@-%@", ys, ms, ds];
+    
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//    NSDate *sDate = [[NSDate alloc] init];
+//    sDate = [dateFormatter dateFromString:datestr];
+    
+    [_sDateField setText:datestr];
     [_sDateField resignFirstResponder];
 }
 
@@ -132,15 +199,56 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return 10;
+    if (component == 0) {
+        return [yearsArray count];
+    } else if (component == 1) {
+        return [monthsArray count];
+    } else {
+        
+        if (selectedMonthRow == 0 || selectedMonthRow == 2 || selectedMonthRow == 4 || selectedMonthRow == 6 ||
+            selectedMonthRow == 7 || selectedMonthRow == 9 || selectedMonthRow == 11) {
+            
+            return 31;
+            
+        } else if (selectedMonthRow == 3 || selectedMonthRow == 5 ||
+                   selectedMonthRow == 8 || selectedMonthRow == 10) {
+            
+            return 30;
+            
+        } else {
+            
+            NSInteger currentYearInt = [[yearsArray objectAtIndex:selectedYearRow] integerValue];
+            if ([WYFunctionUtility isLeapYear:currentYearInt]) {
+                return 29;
+            } else {
+                return 28;
+            }
+            
+        }
+        
+    }
 }
 
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return @"hello";
+    if (component == 0) {
+        return [yearsArray objectAtIndex:row];
+    } else if (component == 1) {
+        return [monthsArray objectAtIndex:row];
+    } else {
+        return [daysArray objectAtIndex:row];
+    }
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    
+    if (component == 0) {
+        selectedYearRow = row;
+        [_datePickerView reloadComponent:2];
+    } else if (component == 1) {
+        selectedMonthRow = row;
+        [_datePickerView reloadComponent:2];
+    } else {
+        selectedDayRow = row;
+    }
 }
 
 
