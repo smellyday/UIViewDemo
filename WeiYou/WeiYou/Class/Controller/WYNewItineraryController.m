@@ -17,6 +17,7 @@
 @synthesize tripNameField = _tripNameField;
 @synthesize daysCountField = _daysCountField;
 @synthesize sDateField = _sDateField;
+@synthesize datePickerView = _datePickerView;
 
 
 - (void)viewDidLoad
@@ -57,20 +58,49 @@
 //	[_tripNameField setNeedsDisplay];
 	[self.view addSubview:_tripNameField];
 	
-	self.daysCountField = [[UITextField alloc] initWithFrame:CGRectMake(leftx, gap1+fh, fw, fh)];
-	_daysCountField.placeholder = NSLocalizedString(@"trip begin date", @"trip begin date");
-	_daysCountField.autocorrectionType = UITextAutocorrectionTypeNo;
-	_daysCountField.returnKeyType = UIReturnKeyDone;
-	_daysCountField.clearButtonMode = UITextFieldViewModeWhileEditing;
-	[self.view addSubview:_daysCountField];
-	
-	self.sDateField = [[UITextField alloc] initWithFrame:CGRectMake(leftx, gap1+fh*2, fw, fh)];
-	_sDateField.placeholder = NSLocalizedString(@"trip days count", @"trip days count");
+	self.sDateField = [[UITextField alloc] initWithFrame:CGRectMake(leftx, gap1+fh, fw, fh)];
+	_sDateField.placeholder = NSLocalizedString(@"trip begin date", @"trip begin date");
 	_sDateField.autocorrectionType = UITextAutocorrectionTypeNo;
 	_sDateField.returnKeyType = UIReturnKeyDone;
 	_sDateField.clearButtonMode = UITextFieldViewModeWhileEditing;
 	[self.view addSubview:_sDateField];
 	
+	self.daysCountField = [[UITextField alloc] initWithFrame:CGRectMake(leftx, gap1+fh*2, fw, fh)];
+	_daysCountField.placeholder = NSLocalizedString(@"trip days count", @"trip days count");
+	_daysCountField.autocorrectionType = UITextAutocorrectionTypeNo;
+	_daysCountField.returnKeyType = UIReturnKeyDone;
+	_daysCountField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _daysCountField.keyboardType = UIKeyboardTypeNumberPad;
+	[self.view addSubview:_daysCountField];
+    
+    CGFloat bh = 40.0;
+    CGFloat bw = 60.0;
+    UIButton *okbtn = [[UIButton alloc] init];
+    okbtn.frame = CGRectMake(SCREEN_WIDTH-bw, 0, bw, bh);
+    [okbtn setTitle:NSLocalizedString(@"ok", @"ok") forState:UIControlStateNormal];
+    [okbtn setTitleColor:CHAR_COLOR_ON_BTN forState:UIControlStateNormal];
+    [okbtn addTarget:self action:@selector(onClickDateOK:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *cancelbtn = [[UIButton alloc] init];
+    cancelbtn.frame = CGRectMake(0, 0, bw, bh);
+    [cancelbtn setTitle:NSLocalizedString(@"cancel", @"cancel") forState:UIControlStateNormal];
+    [cancelbtn setTitleColor:CHAR_COLOR_ON_BTN forState:UIControlStateNormal];
+    [cancelbtn addTarget:self action:@selector(onClickDateCancel:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.datePickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, KEYBOARD_HEIGHT_P)];
+    _datePickerView.backgroundColor = [UIColor whiteColor];
+    _datePickerView.dataSource = self;
+    _datePickerView.delegate = self;
+    _datePickerView.showsSelectionIndicator = YES;
+    
+    UIView *inputView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, KEYBOARD_HEIGHT_P+40)];
+    [inputView addSubview:okbtn];
+    [inputView addSubview:cancelbtn];
+    [inputView addSubview:_datePickerView];
+    [_sDateField setInputView:inputView];
+    
+    UITapGestureRecognizer *tapForHideKeyboard = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    [self.view addGestureRecognizer:tapForHideKeyboard];
 }
 
 #pragma mark - Click Event
@@ -78,13 +108,43 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
 - (void)onClickOK:(id)sender {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)onClickDateOK:(id)sender {
+    [_sDateField resignFirstResponder];
+}
+
+- (void)onClickDateCancel:(id)sender {
+    [_sDateField resignFirstResponder];
+}
+
+- (void)dismissKeyboard:(id)sender {
+    [_sDateField resignFirstResponder];
+    [_daysCountField resignFirstResponder];
+    [_tripNameField resignFirstResponder];
+}
+
+#pragma mark - UIPicker Data Source & Delegate
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 3;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return 10;
+}
+
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return @"hello";
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+}
 
 
+// ==
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

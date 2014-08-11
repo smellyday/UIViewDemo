@@ -50,6 +50,7 @@
 	//utility
 #define STATUS_BAR_H    20
 #define NAV_BAR_H       44
+#define KEYBOARD_HEIGHT_P 216
 
 	//navigation Bar
 #define NAV_BAR_BTN_W             44

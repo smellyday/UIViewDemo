@@ -21,6 +21,9 @@
 #define APP_VERSION                         @"0.0.0.1"
 #define KEYCHAIN_ID                         @"WHATEVER"
 
+//========character color========
+#define CHAR_COLOR_ON_BTN                  [UIColor colorWithRed:0 green:136/256 blue:187/256 alpha:1.0]
+
 //========one day interval=======
 #define WY_DAY_INTERVAL 86400
 
