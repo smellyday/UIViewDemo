@@ -65,7 +65,9 @@
 	_tripNameField.autocorrectionType = UITextAutocorrectionTypeNo;
 	_tripNameField.returnKeyType = UIReturnKeyDone;
 	_tripNameField.clearButtonMode = UITextFieldViewModeWhileEditing;
-//	_tripNameField.delegate = self;
+    _tripNameField.keyboardType = UIKeyboardTypeDefault;
+    _tripNameField.tag = 0;
+	_tripNameField.delegate = self;
 //	UIImage *img = [UIImage imageNamed:@"add_new_trip_btn.png"];
 //	UIEdgeInsets edge = UIEdgeInsetsMake(10, 20, 10, 20);
 //	[img resizableImageWithCapInsets:edge resizingMode:UIImageResizingModeTile];
@@ -77,7 +79,9 @@
 	_sDateField.placeholder = NSLocalizedString(@"trip begin date", @"trip begin date");
 	_sDateField.autocorrectionType = UITextAutocorrectionTypeNo;
 	_sDateField.returnKeyType = UIReturnKeyDone;
-	_sDateField.clearButtonMode = UITextFieldViewModeWhileEditing;
+	_sDateField.clearButtonMode = UITextFieldViewModeWhileEditing;;
+    _sDateField.tag = 1;
+	_sDateField.delegate = self;
 	[self.view addSubview:_sDateField];
 	
 	self.daysCountField = [[UITextField alloc] initWithFrame:CGRectMake(leftx, gap1+fh*2, fw, fh)];
@@ -86,6 +90,8 @@
 	_daysCountField.returnKeyType = UIReturnKeyDone;
 	_daysCountField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _daysCountField.keyboardType = UIKeyboardTypeNumberPad;
+    _daysCountField.tag = 2;
+	_daysCountField.delegate = self;
 	[self.view addSubview:_daysCountField];
     
     CGFloat bh = 40.0;
@@ -181,6 +187,10 @@
     
     [_sDateField setText:datestr];
     [_sDateField resignFirstResponder];
+    UIResponder *nr = [_sDateField.superview viewWithTag:(_sDateField.tag+1)];
+    if (nr) {
+        [nr becomeFirstResponder];
+    }
 }
 
 - (void)onClickDateCancel:(id)sender {

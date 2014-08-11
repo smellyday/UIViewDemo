@@ -92,6 +92,7 @@
 		691771961998BCBC0046D69D /* ok_icon_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6917716E1998BCBC0046D69D /* ok_icon_n@2x.png */; };
 		691771971998BCBC0046D69D /* setting_icon_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6917716F1998BCBC0046D69D /* setting_icon_n@2x.png */; };
 		6917719A1998C3B20046D69D /* WYFunctionUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 691771991998C3B20046D69D /* WYFunctionUtility.m */; };
+		6917719E1998DF700046D69D /* countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6917719D1998DF700046D69D /* countries.plist */; };
 		693432CD197F836700C1D2A5 /* WYBiSyncTripsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 693432CC197F836700C1D2A5 /* WYBiSyncTripsOperation.m */; };
 		69343304197FB4F500C1D2A5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69343302197FB4F500C1D2A5 /* InfoPlist.strings */; };
 		69343307197FB69D00C1D2A5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69343305197FB69D00C1D2A5 /* Localizable.strings */; };
@@ -118,7 +119,6 @@
 		6979F7FD198119F400011428 /* WYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6979F7FC198119F400011428 /* WYNavigationController.m */; };
 		698013D91977CF7300AFD0B4 /* WYUploadTripOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 698013D81977CF7300AFD0B4 /* WYUploadTripOperation.m */; };
 		698013DC1977CF8D00AFD0B4 /* WYDownloadTripsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 698013DB1977CF8D00AFD0B4 /* WYDownloadTripsOperation.m */; };
-		698EECEF19987CA6004B6CBB /* countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = 698EECEE19987CA6004B6CBB /* countries.plist */; };
 		699BE2F41988A7AD00FE6917 /* WYURLUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 699BE2F31988A7AD00FE6917 /* WYURLUtility.m */; };
 		699BE2F71988AF1500FE6917 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 699BE2F61988AF1500FE6917 /* KeychainItemWrapper.m */; };
 		699E38EC196290970083CD3A /* localTrips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 699E38EB196290970083CD3A /* localTrips.plist */; };
@@ -273,6 +273,7 @@
 		6917716F1998BCBC0046D69D /* setting_icon_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "setting_icon_n@2x.png"; path = "Resources/setting_icon_n@2x.png"; sourceTree = SOURCE_ROOT; };
 		691771981998C3B20046D69D /* WYFunctionUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYFunctionUtility.h; sourceTree = "<group>"; };
 		691771991998C3B20046D69D /* WYFunctionUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYFunctionUtility.m; sourceTree = "<group>"; };
+		6917719D1998DF700046D69D /* countries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = countries.plist; sourceTree = "<group>"; };
 		693432CB197F836700C1D2A5 /* WYBiSyncTripsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYBiSyncTripsOperation.h; sourceTree = "<group>"; };
 		693432CC197F836700C1D2A5 /* WYBiSyncTripsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYBiSyncTripsOperation.m; sourceTree = "<group>"; };
 		69343303197FB4F500C1D2A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -321,7 +322,6 @@
 		698013D81977CF7300AFD0B4 /* WYUploadTripOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYUploadTripOperation.m; sourceTree = "<group>"; };
 		698013DA1977CF8D00AFD0B4 /* WYDownloadTripsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDownloadTripsOperation.h; sourceTree = "<group>"; };
 		698013DB1977CF8D00AFD0B4 /* WYDownloadTripsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDownloadTripsOperation.m; sourceTree = "<group>"; };
-		698EECEE19987CA6004B6CBB /* countries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = countries.plist; sourceTree = "<group>"; };
 		699BE2F21988A7AD00FE6917 /* WYURLUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYURLUtility.h; sourceTree = "<group>"; };
 		699BE2F31988A7AD00FE6917 /* WYURLUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYURLUtility.m; sourceTree = "<group>"; };
 		699BE2F51988AF1500FE6917 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
@@ -609,6 +609,7 @@
 		5E5BC2A5183EE8020003AC6D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6917719D1998DF700046D69D /* countries.plist */,
 				5E5BC232183EE5D80003AC6D /* Images */,
 				69343301197FB4F500C1D2A5 /* zh-Hans.lproj */,
 				5E5BC22F183EE5D80003AC6D /* en.lproj */,
@@ -616,7 +617,6 @@
 				5E5BC237183EE5D80003AC6D /* main.m */,
 				5E5BC238183EE5D80003AC6D /* WeiYou-Info.plist */,
 				5E5BC239183EE5D80003AC6D /* WeiYou-Prefix.pch */,
-				698EECEE19987CA6004B6CBB /* countries.plist */,
 				699E38EB196290970083CD3A /* localTrips.plist */,
 				69CA3F0C1962B6520004910A /* olderTrips.plist */,
 				5EBCF764185F016B0057C1AE /* trips.plist */,
@@ -950,7 +950,6 @@
 				691771701998BCBC0046D69D /* add_new_trip_btn.png in Resources */,
 				691771821998BCBC0046D69D /* ok_icon_n.png in Resources */,
 				6917717D1998BCBC0046D69D /* login_btn_h@2x.png in Resources */,
-				698EECEF19987CA6004B6CBB /* countries.plist in Resources */,
 				691771901998BCBC0046D69D /* weibo_btn_bg_h.png in Resources */,
 				691771911998BCBC0046D69D /* weibo_btn_bg_h@2x.png in Resources */,
 				691771761998BCBC0046D69D /* first_tab_item_n.png in Resources */,
@@ -964,6 +963,7 @@
 				691771781998BCBC0046D69D /* line.png in Resources */,
 				6917717C1998BCBC0046D69D /* login_btn_h.png in Resources */,
 				691771801998BCBC0046D69D /* nav_bar_bg.png in Resources */,
+				6917719E1998DF700046D69D /* countries.plist in Resources */,
 				6953CB6B186D215100DE04E0 /* demo.plist in Resources */,
 				691771711998BCBC0046D69D /* back_icon_n.png in Resources */,
 				691771751998BCBC0046D69D /* first_tab_item_h@2x.png in Resources */,
