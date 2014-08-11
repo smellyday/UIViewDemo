@@ -77,12 +77,8 @@
 		69343316197FDE0B00C1D2A5 /* nav_bar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6934330C197FDE0B00C1D2A5 /* nav_bar_bg@2x.png */; };
 		69343317197FDE0B00C1D2A5 /* qq_btn_bg_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 6934330D197FDE0B00C1D2A5 /* qq_btn_bg_n.png */; };
 		69343318197FDE0B00C1D2A5 /* qq_btn_bg_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6934330E197FDE0B00C1D2A5 /* qq_btn_bg_n@2x.png */; };
-		69343319197FDE0B00C1D2A5 /* qq_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6934330F197FDE0B00C1D2A5 /* qq_logo.png */; };
-		6934331A197FDE0B00C1D2A5 /* qq_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69343310197FDE0B00C1D2A5 /* qq_logo@2x.png */; };
 		6934331B197FDE0B00C1D2A5 /* weibo_btn_bg_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 69343311197FDE0B00C1D2A5 /* weibo_btn_bg_n.png */; };
 		6934331C197FDE0B00C1D2A5 /* weibo_btn_bg_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69343312197FDE0B00C1D2A5 /* weibo_btn_bg_n@2x.png */; };
-		6934331D197FDE0B00C1D2A5 /* weibo_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 69343313197FDE0B00C1D2A5 /* weibo_logo.png */; };
-		6934331E197FDE0B00C1D2A5 /* weibo_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69343314197FDE0B00C1D2A5 /* weibo_logo@2x.png */; };
 		694ED396195A6ECD00917FEB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED395195A6ECD00917FEB /* CFNetwork.framework */; };
 		694ED398195A6EDD00917FEB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED397195A6EDD00917FEB /* SystemConfiguration.framework */; };
 		694ED39A195A6EEF00917FEB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED399195A6EEF00917FEB /* MobileCoreServices.framework */; };
@@ -256,12 +252,8 @@
 		6934330C197FDE0B00C1D2A5 /* nav_bar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nav_bar_bg@2x.png"; path = "Resources/nav_bar_bg@2x.png"; sourceTree = SOURCE_ROOT; };
 		6934330D197FDE0B00C1D2A5 /* qq_btn_bg_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = qq_btn_bg_n.png; path = Resources/qq_btn_bg_n.png; sourceTree = SOURCE_ROOT; };
 		6934330E197FDE0B00C1D2A5 /* qq_btn_bg_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "qq_btn_bg_n@2x.png"; path = "Resources/qq_btn_bg_n@2x.png"; sourceTree = SOURCE_ROOT; };
-		6934330F197FDE0B00C1D2A5 /* qq_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = qq_logo.png; path = Resources/qq_logo.png; sourceTree = SOURCE_ROOT; };
-		69343310197FDE0B00C1D2A5 /* qq_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "qq_logo@2x.png"; path = "Resources/qq_logo@2x.png"; sourceTree = SOURCE_ROOT; };
 		69343311197FDE0B00C1D2A5 /* weibo_btn_bg_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weibo_btn_bg_n.png; path = Resources/weibo_btn_bg_n.png; sourceTree = SOURCE_ROOT; };
 		69343312197FDE0B00C1D2A5 /* weibo_btn_bg_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weibo_btn_bg_n@2x.png"; path = "Resources/weibo_btn_bg_n@2x.png"; sourceTree = SOURCE_ROOT; };
-		69343313197FDE0B00C1D2A5 /* weibo_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weibo_logo.png; path = Resources/weibo_logo.png; sourceTree = SOURCE_ROOT; };
-		69343314197FDE0B00C1D2A5 /* weibo_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weibo_logo@2x.png"; path = "Resources/weibo_logo@2x.png"; sourceTree = SOURCE_ROOT; };
 		694ED395195A6ECD00917FEB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		694ED397195A6EDD00917FEB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		694ED399195A6EEF00917FEB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -501,12 +493,8 @@
 				6934330C197FDE0B00C1D2A5 /* nav_bar_bg@2x.png */,
 				6934330D197FDE0B00C1D2A5 /* qq_btn_bg_n.png */,
 				6934330E197FDE0B00C1D2A5 /* qq_btn_bg_n@2x.png */,
-				6934330F197FDE0B00C1D2A5 /* qq_logo.png */,
-				69343310197FDE0B00C1D2A5 /* qq_logo@2x.png */,
 				69343311197FDE0B00C1D2A5 /* weibo_btn_bg_n.png */,
 				69343312197FDE0B00C1D2A5 /* weibo_btn_bg_n@2x.png */,
-				69343313197FDE0B00C1D2A5 /* weibo_logo.png */,
-				69343314197FDE0B00C1D2A5 /* weibo_logo@2x.png */,
 				693432F0197FAE3800C1D2A5 /* login_btn_n.png */,
 				6979F7E91980EA0000011428 /* login_btn_n@2x.png */,
 				693432EE197FAE3800C1D2A5 /* login_btn_h.png */,
@@ -914,14 +902,12 @@
 				6934330A197FB6AF00C1D2A5 /* Localizable.strings in Resources */,
 				5E7D179A19874C71003F4208 /* second_tab_item_n@2x.png in Resources */,
 				69343318197FDE0B00C1D2A5 /* qq_btn_bg_n@2x.png in Resources */,
-				69343319197FDE0B00C1D2A5 /* qq_logo.png in Resources */,
 				5E5BC23A183EE5D80003AC6D /* InfoPlist.strings in Resources */,
 				5EC7E92219803A0900F5A40B /* login_bg.png in Resources */,
 				5E7D17A5198750E1003F4208 /* setting_icon_n.png in Resources */,
 				6979F7F8198101BE00011428 /* verify_btn_bg_h@2x.png in Resources */,
 				69516B591993509A00D404E7 /* add_new_trip_btn.png in Resources */,
 				69AA1EC31954112500BA0884 /* WeiboSDK.bundle in Resources */,
-				6934331D197FDE0B00C1D2A5 /* weibo_logo.png in Resources */,
 				6979F7ED1980FD7D00011428 /* verify_btn_bg_n.png in Resources */,
 				69343304197FB4F500C1D2A5 /* InfoPlist.strings in Resources */,
 				6979F7FA198101BE00011428 /* weibo_btn_bg_h@2x.png in Resources */,
@@ -945,7 +931,6 @@
 				6979F7E81980E9C900011428 /* login_btn_h@2x.png in Resources */,
 				5E7D179919874C71003F4208 /* second_tab_item_n.png in Resources */,
 				5EBCF765185F016B0057C1AE /* trips.plist in Resources */,
-				6934331A197FDE0B00C1D2A5 /* qq_logo@2x.png in Resources */,
 				6979F7F6198101BE00011428 /* qq_btn_bg_h@2x.png in Resources */,
 				69343315197FDE0B00C1D2A5 /* nav_bar_bg.png in Resources */,
 				6934331B197FDE0B00C1D2A5 /* weibo_btn_bg_n.png in Resources */,
@@ -956,7 +941,6 @@
 				69343307197FB69D00C1D2A5 /* Localizable.strings in Resources */,
 				5E7D179319874C71003F4208 /* first_tab_item_h.png in Resources */,
 				6953CB6B186D215100DE04E0 /* demo.plist in Resources */,
-				6934331E197FDE0B00C1D2A5 /* weibo_logo@2x.png in Resources */,
 				69516B5A1993509A00D404E7 /* add_new_trip_btn@2x.png in Resources */,
 				5E7D17A3198750E1003F4208 /* ok_icon_n.png in Resources */,
 				6934331C197FDE0B00C1D2A5 /* weibo_btn_bg_n@2x.png in Resources */,

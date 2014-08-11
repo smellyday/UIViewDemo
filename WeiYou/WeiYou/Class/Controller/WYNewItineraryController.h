@@ -14,4 +14,8 @@
 	UITextField *_sDateField;
 }
 
+@property (nonatomic, strong) UITextField *tripNameField;
+@property (nonatomic, strong) UITextField *daysCountField;
+@property (nonatomic, strong) UITextField *sDateField;
+
 @end

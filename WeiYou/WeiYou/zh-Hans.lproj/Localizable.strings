@@ -30,3 +30,10 @@
 "reinput new password" = "确认密码";
 "first tab item" = "推荐行程";
 "second tab item" = "我的行程";
+
+	//create new trip
+"create new trip" = "创建行程";
+"trip name" = "行程名称";
+"trip begin date" = "出发日期";
+"trip days count" = "出行天数";
+
