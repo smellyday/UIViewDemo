@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WYNewItineraryController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate> {
+@interface WYNewItineraryController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIAlertViewDelegate> {
 	UITextField *_tripNameField;
 	UITextField *_daysCountField;
 	UITextField *_sDateField;

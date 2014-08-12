@@ -196,10 +196,30 @@
 
 #pragma mark - Click Event
 - (void)onClickCancel:(id)sender {
-	[self dismissViewControllerAnimated:YES completion:nil];
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+													message:@"确定放弃？"
+												   delegate:self
+										  cancelButtonTitle:@"NO"
+										  otherButtonTitles:@"YES", nil];
+	alert.tag = 1;
+	[alert show];
 }
 
 - (void)onClickOK:(id)sender {
+	
+	if (!_tripNameField.text || [_tripNameField.text length]==0) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+														message:@"行程名称不能为空"
+													   delegate:self
+											  cancelButtonTitle:@"确定"
+											  otherButtonTitles:nil];
+		alert.tag = 2;
+		[alert show];
+		
+		return;
+	}
+	
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -290,6 +310,17 @@
     }
 }
 
+
+#pragma mark - AlertView Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (alertView.tag == 1) {
+		if (buttonIndex == 0) {
+				// do nothing.
+		} else if (buttonIndex == 1) {
+			[self dismissViewControllerAnimated:YES completion:nil];
+		}
+	}
+}
 
 // ==
 - (void)didReceiveMemoryWarning
