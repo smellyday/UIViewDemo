@@ -36,4 +36,9 @@
 #define PIC_BACK_H
 #define PIC_ADD_NEW_TRIP                 @"add_new_trip_btn.png"
 
+// create new trip
+#define PIC_ICON_TRIP_NAME               @"trip_name_icon.png"
+#define PIC_ICON_DAYS_COUNT              @"trip_days_count_icon.png"
+#define PIC_ICON_BEGIN_DATE              @"trip_begin_date.png"
+
 #endif
