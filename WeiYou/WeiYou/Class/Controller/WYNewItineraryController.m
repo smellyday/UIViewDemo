@@ -55,12 +55,19 @@
 	mOKBtn.tintColor = [UIColor whiteColor];
 	self.navigationItem.rightBarButtonItem = mOKBtn;
 	
-	// main content.
-	CGFloat gap1 = 30.0;
-	CGFloat fw = 280.0;
-	CGFloat fh = 50.0;
+		// main content.
+	CGFloat hgap1 = 30.0;
+	CGFloat wgap1 = 10.0;
 	CGFloat leftx = 20.0;
-	self.tripNameField = [[UITextField alloc] initWithFrame:CGRectMake(leftx, gap1, fw, fh)];
+	CGFloat iconw = 16.0;
+	CGFloat iconh = 16.0;
+	CGFloat fw = SCREEN_WIDTH-leftx*2-iconw-wgap1;
+	CGFloat fh = 45.0;
+	CGFloat linew = 295.0;
+	CGFloat lineh = 1.0;
+	
+		// init trip name field.
+	self.tripNameField = [[UITextField alloc] initWithFrame:CGRectMake(leftx+iconw+wgap1, hgap1, fw, fh)];
 	_tripNameField.placeholder = NSLocalizedString(@"trip name", @"trip name");
 	_tripNameField.autocorrectionType = UITextAutocorrectionTypeNo;
 	_tripNameField.returnKeyType = UIReturnKeyDone;
@@ -68,16 +75,18 @@
     _tripNameField.keyboardType = UIKeyboardTypeDefault;
     _tripNameField.tag = 0;
 	_tripNameField.delegate = self;
-    
-	UIImage *img = [UIImage imageNamed:PIC_ICON_TRIP_NAME];
-	UIEdgeInsets edge = UIEdgeInsetsMake(5, 15, 5, 5);
-	[img resizableImageWithCapInsets:edge resizingMode:UIImageResizingModeTile];
-	[_tripNameField setBackground:img];
-	[_tripNameField setNeedsDisplay];
-    
 	[self.view addSubview:_tripNameField];
+    
+	UIImageView *iconImgView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:PIC_ICON_TRIP_NAME]];
+	iconImgView1.frame = CGRectMake(leftx, hgap1+fh/2-iconh/2, iconw, iconh);
+	[self.view addSubview:iconImgView1];
 	
-	self.sDateField = [[UITextField alloc] initWithFrame:CGRectMake(leftx, gap1+fh, fw, fh)];
+	UIImageView *lineView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:PIC_LINE]];
+	lineView1.frame = CGRectMake(SCREEN_WIDTH/2-linew/2, hgap1+fh, linew, lineh);
+	[self.view addSubview:lineView1];
+	
+		// init begin date field.
+	self.sDateField = [[UITextField alloc] initWithFrame:CGRectMake(leftx+iconw+wgap1, hgap1+fh+lineh, fw, fh)];
 	_sDateField.placeholder = NSLocalizedString(@"trip begin date", @"trip begin date");
 	_sDateField.autocorrectionType = UITextAutocorrectionTypeNo;
 	_sDateField.returnKeyType = UIReturnKeyDone;
@@ -86,7 +95,16 @@
 	_sDateField.delegate = self;
 	[self.view addSubview:_sDateField];
 	
-	self.daysCountField = [[UITextField alloc] initWithFrame:CGRectMake(leftx, gap1+fh*2, fw, fh)];
+	UIImageView *iconImgView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:PIC_ICON_BEGIN_DATE]];
+	iconImgView2.frame = CGRectMake(leftx, hgap1+fh+lineh+fh/2-iconh/2, iconw, iconh);
+	[self.view addSubview:iconImgView2];
+	
+	UIImageView *lineView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:PIC_LINE]];
+	lineView2.frame = CGRectMake(SCREEN_WIDTH/2-linew/2, hgap1+fh+lineh+fh, linew, lineh);
+	[self.view addSubview:lineView2];
+	
+		// init days count field.
+	self.daysCountField = [[UITextField alloc] initWithFrame:CGRectMake(leftx+iconw+wgap1, hgap1+fh*2+lineh*2, fw, fh)];
 	_daysCountField.placeholder = NSLocalizedString(@"trip days count", @"trip days count");
 	_daysCountField.autocorrectionType = UITextAutocorrectionTypeNo;
 	_daysCountField.returnKeyType = UIReturnKeyDone;
@@ -95,7 +113,16 @@
     _daysCountField.tag = 2;
 	_daysCountField.delegate = self;
 	[self.view addSubview:_daysCountField];
+	
+	UIImageView *iconImgView3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:PIC_ICON_DAYS_COUNT]];
+	iconImgView3.frame = CGRectMake(leftx, hgap1+fh*2+lineh*2+fh/2-iconh/2, iconw, iconh);
+	[self.view addSubview:iconImgView3];
+	
+	UIImageView *lineView3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:PIC_LINE]];
+	lineView3.frame = CGRectMake(SCREEN_WIDTH/2-linew/2, hgap1+fh*2+lineh*2+fh, linew, lineh);
+	[self.view addSubview:lineView3];
     
+		// picker view.
     CGFloat bh = 40.0;
     CGFloat bw = 60.0;
     UIButton *okbtn = [[UIButton alloc] init];

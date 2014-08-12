@@ -40,5 +40,6 @@
 #define PIC_ICON_TRIP_NAME               @"trip_name_icon.png"
 #define PIC_ICON_DAYS_COUNT              @"trip_days_count_icon.png"
 #define PIC_ICON_BEGIN_DATE              @"trip_begin_date.png"
+#define PIC_LINE						 @"line.png"
 
 #endif
