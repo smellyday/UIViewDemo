@@ -68,11 +68,13 @@
     _tripNameField.keyboardType = UIKeyboardTypeDefault;
     _tripNameField.tag = 0;
 	_tripNameField.delegate = self;
-//	UIImage *img = [UIImage imageNamed:@"add_new_trip_btn.png"];
-//	UIEdgeInsets edge = UIEdgeInsetsMake(10, 20, 10, 20);
-//	[img resizableImageWithCapInsets:edge resizingMode:UIImageResizingModeTile];
-//	[_tripNameField setBackground:img];
-//	[_tripNameField setNeedsDisplay];
+    
+	UIImage *img = [UIImage imageNamed:PIC_ICON_TRIP_NAME];
+	UIEdgeInsets edge = UIEdgeInsetsMake(5, 15, 5, 5);
+	[img resizableImageWithCapInsets:edge resizingMode:UIImageResizingModeTile];
+	[_tripNameField setBackground:img];
+	[_tripNameField setNeedsDisplay];
+    
 	[self.view addSubview:_tripNameField];
 	
 	self.sDateField = [[UITextField alloc] initWithFrame:CGRectMake(leftx, gap1+fh, fw, fh)];
