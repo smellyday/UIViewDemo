@@ -130,17 +130,17 @@
     [dFormatter setDateFormat:@"yyyy"];
     NSString *currentYearStr = [dFormatter stringFromDate:nowdate];
     selectedYearRow = [yearsArray indexOfObject:currentYearStr];
-    mlog(@"current year string : %@, at row %d", currentYearStr, selectedYearRow);
+    mlog(@"current year string : %@, at row %ld", currentYearStr, (long)selectedYearRow);
     
     [dFormatter setDateFormat:@"MM"];
     NSString *currentMonthStr = [dFormatter stringFromDate:nowdate];
     selectedMonthRow = [monthsArray indexOfObject:currentMonthStr];
-    mlog(@"current month string : %@, at row %d", currentMonthStr, selectedMonthRow);
+    mlog(@"current month string : %@, at row %ld", currentMonthStr, (long)selectedMonthRow);
     
     [dFormatter setDateFormat:@"dd"];
     NSString *currentDayStr = [dFormatter stringFromDate:nowdate];
     selectedDayRow = [daysArray indexOfObject:currentDayStr];
-    mlog(@"current day string : %@, at row %d", currentDayStr, selectedDayRow);
+    mlog(@"current day string : %@, at row %ld", currentDayStr, (long)selectedDayRow);
     
     [_datePickerView selectRow:selectedYearRow inComponent:0 animated:YES];
     [_datePickerView selectRow:selectedMonthRow inComponent:1 animated:YES];
