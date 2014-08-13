@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "WYMContinent.h"
 #import "WYMCountry.h"
-#import "WYMProvince.h"
 #import "WYMCity.h"
 
 @interface WYMSpot : NSObject {
@@ -23,7 +22,6 @@
 	NSArray *_spotImageURLArray;
 	
 	WYMCity *_spotCity;
-	WYMProvince *_spotProvince;
 	WYMCountry *_spotCountry;
 	WYMContinent *_spotContinent;
 }
@@ -38,7 +36,6 @@
 @property (nonatomic, strong) NSArray *spotImageURLArray;
 
 @property (nonatomic, strong) WYMCity *spotCity;
-@property (nonatomic, strong) WYMProvince *spotProvince;
 @property (nonatomic, strong) WYMCountry *spotCountry;
 @property (nonatomic, strong) WYMContinent *spotContinent;
 

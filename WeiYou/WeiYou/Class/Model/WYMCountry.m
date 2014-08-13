@@ -11,15 +11,17 @@
 
 @implementation WYMCountry
 @synthesize countryID = _countryID;
+@synthesize parentID = _parentID;
+@synthesize level = _level;
 @synthesize countryName = _countryName;
-@synthesize countryDescription = _countryDescription;
 
 - (id)initWithCountryInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
 	if (self) {
-		self.countryID = [infoDic objectForKey:WY_COUNTRY_ID];
-		self.countryName = [infoDic objectForKey:WY_COUNTRY_NAME];
-		self.countryDescription = [infoDic objectForKey:WY_COUNTRY_DES];
+		_countryID = [infoDic objectForKey:WY_COUNTRY_ID];
+		_parentID = [infoDic objectForKey:WY_COUNTRY_PARENT_ID];
+		_level = [infoDic objectForKey:WY_SPOT_LEVEL];
+		_countryName = [infoDic objectForKey:WY_COUNTRY_NAME];
 	}
 	return self;
 }

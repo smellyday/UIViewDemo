@@ -21,6 +21,10 @@
 @synthesize tripEndDate = _tripEndDate;
 @synthesize tripCreateDate = _tripCreateDate;
 @synthesize tripDaysArray = _tripDaysArray;
+@synthesize tripContinentsArray = _tripContinentsArray;
+@synthesize tripCountriesArray = _tripCountriesArray;
+@synthesize tripCitiesArray = _tripCitiesArray;
+
 @synthesize isNewTrip = _isNewTrip;
 @synthesize deletTrip = _deletTrip;
 @synthesize shouldUpdate = _shouldUpdate;
@@ -39,13 +43,17 @@
 		self.tripEndDate = [infoDic objectForKey:WY_TRIP_END_DATE];
 		self.tripCreateDate = [infoDic objectForKey:WY_TRIP_CREATE_DATE];
 		
-		self.tripDaysArray = [NSMutableArray arrayWithCapacity:10];
+		_tripDaysArray = [NSMutableArray arrayWithCapacity:10];
         NSArray *daysInfoArr = [infoDic objectForKey:WY_TRIP_DAYS];
 		for (NSDictionary *dayInfoDic in daysInfoArr) {
 			WYMTripDay *tripDay = [[WYMTripDay alloc] initTripDayInfoDic:dayInfoDic];
             [tripDay updateDateInfoWithBeginDate:_tripBeginDate];
 			[_tripDaysArray addObject:tripDay];
 		}
+		
+		_tripContinentsArray = [NSMutableArray arrayWithCapacity:10];
+		_tripCountriesArray = [NSMutableArray arrayWithCapacity:10];
+		_tripCitiesArray = [NSMutableArray arrayWithCapacity:10];
 		
         // the 4 bool must be in the plist. Cz, plist is created by object.
 		self.isNewTrip = [[infoDic objectForKey:WY_TRIP_ISNEW] boolValue];
@@ -70,6 +78,15 @@
 
 - (void)updateTripInfoFromServer {
     
+}
+
+
+- (void)addCity:(WYMCity *)city {
+	[_tripCitiesArray addObject:city];
+}
+
+- (void)delCity:(WYMCity *)city {
+	
 }
 
 - (NSDictionary *)transferToDic {

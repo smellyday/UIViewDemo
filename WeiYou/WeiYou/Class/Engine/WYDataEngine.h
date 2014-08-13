@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYMCity.h"
+#import "WYMCountry.h"
+#import "WYMContinent.h"
 
 @class WYMTrip;
 @interface WYDataEngine : NSObject {
@@ -24,5 +27,10 @@
 
 - (void)loadTripsFromLocal;
 - (void)saveTripsToLocal;
+
+	//Spot data
+- (WYMCity *)getCityByID:(NSNumber *)city_id;
+- (WYMCountry *)getCountryByID:(NSNumber *)country_id;
+- (WYMContinent *)getContinentByID:(NSNumber *)continent_id;
 
 @end

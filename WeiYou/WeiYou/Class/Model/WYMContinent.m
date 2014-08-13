@@ -11,15 +11,17 @@
 
 @implementation WYMContinent
 @synthesize continentType = _continentType;
+@synthesize parentID = _parentID;
+@synthesize level = _level;
 @synthesize continentName = _continentName;
-@synthesize continentDescription = _continentDescription;
 
 - (id)initWithContinentInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
 	if (self) {
-		self.continentID = [infoDic objectForKey:WY_CONTINENT_ID];
-		self.continentName = [infoDic objectForKey:WY_CONTINENT_NAME];
-		self.continentDescription = [infoDic objectForKey:WY_CONTINENT_DES];
+		_continentID = [infoDic objectForKey:WY_CONTINENT_ID];
+		_parentID = [infoDic objectForKey:WY_CONTINENT_PARENT_ID];
+		_level = [infoDic objectForKey:WY_SPOT_LEVEL];
+		_continentName = [infoDic objectForKey:WY_CONTINENT_NAME];
 	}
 	return self;
 }

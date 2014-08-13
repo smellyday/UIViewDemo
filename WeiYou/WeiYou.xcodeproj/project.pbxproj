@@ -48,7 +48,6 @@
 		5EBCF75A185EFF2A0057C1AE /* WYMCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF759185EFF2A0057C1AE /* WYMCountry.m */; };
 		5EBCF763185EFFD30057C1AE /* WYMSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF762185EFFD30057C1AE /* WYMSpot.m */; };
 		5EBCF765185F016B0057C1AE /* trips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EBCF764185F016B0057C1AE /* trips.plist */; };
-		5ED101D619665E5D00CAAE9B /* WYMProvince.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED101D519665E5D00CAAE9B /* WYMProvince.m */; };
 		5EF93530198B1AED0035E486 /* EGORefreshTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9352C198B1AED0035E486 /* EGORefreshTableFooterView.m */; };
 		5EF93531198B1AED0035E486 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9352E198B1AED0035E486 /* EGORefreshTableHeaderView.m */; };
 		6917719A1998C3B20046D69D /* WYFunctionUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 691771991998C3B20046D69D /* WYFunctionUtility.m */; };
@@ -230,8 +229,7 @@
 		5EBCF761185EFFD30057C1AE /* WYMSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMSpot.h; sourceTree = "<group>"; };
 		5EBCF762185EFFD30057C1AE /* WYMSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMSpot.m; sourceTree = "<group>"; };
 		5EBCF764185F016B0057C1AE /* trips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = trips.plist; sourceTree = "<group>"; };
-		5ED101D419665E5D00CAAE9B /* WYMProvince.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMProvince.h; sourceTree = "<group>"; };
-		5ED101D519665E5D00CAAE9B /* WYMProvince.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMProvince.m; sourceTree = "<group>"; };
+		5EF07C45199AE5FD004A617C /* consts_language.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = consts_language.h; sourceTree = "<group>"; };
 		5EF9352B198B1AED0035E486 /* EGORefreshTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableFooterView.h; sourceTree = "<group>"; };
 		5EF9352C198B1AED0035E486 /* EGORefreshTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableFooterView.m; sourceTree = "<group>"; };
 		5EF9352D198B1AED0035E486 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -414,16 +412,14 @@
 		5E4A8CA718604C630062934F /* Spot */ = {
 			isa = PBXGroup;
 			children = (
-				5EBCF761185EFFD30057C1AE /* WYMSpot.h */,
-				5EBCF762185EFFD30057C1AE /* WYMSpot.m */,
 				5EBCF746185EE7630057C1AE /* WYMContinent.h */,
 				5EBCF747185EE7630057C1AE /* WYMContinent.m */,
 				5EBCF758185EFF2A0057C1AE /* WYMCountry.h */,
 				5EBCF759185EFF2A0057C1AE /* WYMCountry.m */,
-				5ED101D419665E5D00CAAE9B /* WYMProvince.h */,
-				5ED101D519665E5D00CAAE9B /* WYMProvince.m */,
 				5EBCF743185EAEDC0057C1AE /* WYMCity.h */,
 				5EBCF744185EAEDC0057C1AE /* WYMCity.m */,
+				5EBCF761185EFFD30057C1AE /* WYMSpot.h */,
+				5EBCF762185EFFD30057C1AE /* WYMSpot.m */,
 			);
 			name = Spot;
 			sourceTree = "<group>";
@@ -605,6 +601,7 @@
 				5EB6B93019801F8C00E9E695 /* consts_utility.h */,
 				5EB6B92F19800FE600E9E695 /* consts_view.h */,
 				5EB6B92E19800FDB00E9E695 /* consts_sys_pic.h */,
+				5EF07C45199AE5FD004A617C /* consts_language.h */,
 				5E5BC251183EE5E90003AC6D /* consts.h */,
 				69E215B7198262240022D432 /* log.h */,
 				5E5BC2EF183EF5430003AC6D /* WYFileManager.h */,
@@ -627,12 +624,12 @@
 		5E5BC2A5183EE8020003AC6D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6917719D1998DF700046D69D /* countries.plist */,
 				5E5BC232183EE5D80003AC6D /* Images */,
 				69343301197FB4F500C1D2A5 /* zh-Hans.lproj */,
 				5E5BC22F183EE5D80003AC6D /* en.lproj */,
 				69E215A71981E2E80022D432 /* TencentOpenApi_IOS_Bundle.bundle */,
 				5E5BC237183EE5D80003AC6D /* main.m */,
+				6917719D1998DF700046D69D /* countries.plist */,
 				5E5BC238183EE5D80003AC6D /* WeiYou-Info.plist */,
 				5E5BC239183EE5D80003AC6D /* WeiYou-Prefix.pch */,
 				699E38EB196290970083CD3A /* localTrips.plist */,
@@ -1050,7 +1047,6 @@
 				5E5BC23F183EE5D80003AC6D /* main.m in Sources */,
 				696CECB71974FD6600EE4544 /* WYTripController.m in Sources */,
 				5E5D676E186176B000ECA966 /* WYTripDayHotelCell.m in Sources */,
-				5ED101D619665E5D00CAAE9B /* WYMProvince.m in Sources */,
 				5E4D77351987BE03005720BD /* WYUserInfo.m in Sources */,
 				699BE2F41988A7AD00FE6917 /* WYURLUtility.m in Sources */,
 				5E5BC263183EE6770003AC6D /* WYUserGuideViewController.m in Sources */,

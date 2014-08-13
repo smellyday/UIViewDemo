@@ -11,15 +11,17 @@
 
 @implementation WYMCity
 @synthesize cityID = _cityID;
+@synthesize parentID = _parentID;
+@synthesize level = _level;
 @synthesize cityName = _cityName;
-@synthesize cityDescription = _cityDescription;
 
 - (id)initWithCityInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
 	if (self) {
-		self.cityID = [infoDic objectForKey:WY_CITY_ID];
-		self.cityName = [infoDic objectForKey:WY_CITY_NAME];
-		self.cityDescription = [infoDic objectForKey:WY_CITY_DES];
+		_cityID = [infoDic objectForKey:WY_CITY_ID];
+		_parentID = [infoDic objectForKey:WY_CITY_PARENT_ID];
+		_level = [infoDic objectForKey:WY_SPOT_LEVEL];
+		_cityName = [infoDic objectForKey:WY_CITY_NAME];
 	}
 	return self;
 }

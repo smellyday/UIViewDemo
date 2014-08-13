@@ -9,18 +9,19 @@
 #import <Foundation/Foundation.h>
 
 @interface WYMCountry : NSObject {
-	NSString *_countryID;
+	NSNumber *_countryID;
+	NSNumber *_parentID;
+	NSNumber *_level;
 	NSString *_countryName;
-	NSString *_countryDescription;
 }
 
-@property (nonatomic, strong) NSString *countryID;
-@property (nonatomic, strong) NSString *countryName;
-@property (nonatomic, strong) NSString *countryDescription;
+@property (nonatomic, readonly) NSNumber *countryID;
+@property (nonatomic, readonly) NSNumber *parentID;
+@property (nonatomic, readonly) NSNumber *level;
+@property (nonatomic, readonly) NSString *countryName;
 
 - (id)initWithCountryInfoDic:(NSDictionary *)infoDic;
 - (NSDictionary *)transferToDic;
-- (NSArray *)getAllProvinces;
 - (NSArray *)getAllCities;
 
 @end

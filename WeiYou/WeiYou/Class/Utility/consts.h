@@ -10,6 +10,7 @@
 #import "consts_view.h"
 #import "consts_utility.h"
 #import "consts_network.h"
+#import "consts_language.h"
 #import "WYNavigationController.h"
 
 #ifndef WeiYou_consts_h
@@ -107,16 +108,13 @@
 	//for trip day
 #define WY_TRIPDAY_DAYTH               @"wy_tripday_dayth"
 #define WY_TRIPDAY_SPOTS               @"wy_tripday_spots"
-	// ==going to delete.
-//#define WY_TRIP_CONTINENTS             @"trip_continents"
-//#define WY_TRIP_HOTELS                 @"trip_hotels"
-//#define WY_TRIP_TRAFFICS               @"trip_traffics"
-//#define WY_TRIP_DATE                   @"trip_date"
 
+
+#define WY_SPOT_LEVEL   			   @"level"
 	//for continent
-#define WY_CONTINENT_ID                @"wy_continent_id"
-#define WY_CONTINENT_NAME              @"wy_continent_name"
-#define WY_CONTINENT_DES               @"wy_continent_des"
+#define WY_CONTINENT_ID                @"id"
+#define WY_CONTINENT_PARENT_ID		   @"parent_id"
+#define WY_CONTINENT_NAME              @"name"
 
 #define WY_ASIA                        @"Asia"
 #define WY_EUROPE                      @"Europe"
@@ -127,19 +125,14 @@
 #define WY_ANTARCTICA                  @"Antarctica"
 
 	//for country
-#define WY_COUNTRY_ID				   @"wy_country_id"
-#define WY_COUNTRY_NAME                @"wy_country_name"
-#define WY_COUNTRY_DES                 @"wy_country_des"
-
-	//for province
-#define WY_PROVINCE_ID				   @"wy_province_id"
-#define WY_PROVINCE_NAME               @"wy_province_name"
-#define WY_PROVINCE_DES                @"wy_province_des"
+#define WY_COUNTRY_ID				   @"id"
+#define WY_COUNTRY_PARENT_ID		   @"parent_id"
+#define WY_COUNTRY_NAME                @"name"
 
 	//for city
-#define WY_CITY_ID					   @"wy_city_id"
-#define WY_CITY_NAME                   @"wy_city_name"
-#define WY_CITY_DES                    @"wy_city_des"
+#define WY_CITY_ID					   @"id"
+#define WY_CITY_PARENT_ID			   @"parent_id"
+#define WY_CITY_NAME                   @"name"
 
 	//for spot
 #define WY_SPOT_ID					   @"wy_spot_id"

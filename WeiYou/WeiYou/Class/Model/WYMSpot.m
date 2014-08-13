@@ -8,7 +8,6 @@
 
 #import "WYMSpot.h"
 #import "WYMCity.h"
-#import "WYMProvince.h"
 #import "WYMCountry.h"
 #import "WYMContinent.h"
 #import "consts.h"
@@ -22,7 +21,6 @@
 @synthesize spotWebsiteArray = _spotWebsiteArray;
 @synthesize spotImageURLArray = _spotImageURLArray;
 @synthesize spotCity = _spotCity;
-@synthesize spotProvince = _spotProvince;
 @synthesize spotCountry = _spotCountry;
 @synthesize spotContinent = _spotContinent;
 
@@ -39,7 +37,6 @@
 		self.spotImageURLArray = [infoDic objectForKey:WY_SPOT_IMAGE_URL_ARR];
 		
 		self.spotCity = [[WYMCity alloc] initWithCityInfoDic:[infoDic objectForKey:WY_SPOT_CITY]];
-		self.spotProvince = [[WYMProvince alloc] initWithProvinceInfoDic:[infoDic objectForKey:WY_SPOT_PROVINCE]];
 		self.spotCountry = [[WYMCountry alloc] initWithCountryInfoDic:[infoDic objectForKey:WY_SPOT_COUNTRY]];
 		self.spotContinent = [[WYMContinent alloc] initWithContinentInfoDic:[infoDic objectForKey:WY_SPOT_CONTINENT]];
 	}
