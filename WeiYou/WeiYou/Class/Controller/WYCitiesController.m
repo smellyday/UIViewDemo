@@ -71,6 +71,7 @@
     
     for (int i = 0; i < [allCities count]; i++) {
         WYPlaceButton *pb = [[WYPlaceButton alloc] initButtonWithPlace:[allCities objectAtIndex:i] atIndex:i];
+        [pb addTarget:self action:@selector(onClickCity:) forControlEvents:UIControlEventTouchUpInside];
         [scrollContainer addSubview:pb];
     }
     
@@ -83,6 +84,11 @@
 
 - (void)onClickOK:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)onClickCity:(id)sender {
+    if ([sender isKindOfClass:[WYPlaceButton class]]) {
+    }
 }
 
 

@@ -10,6 +10,7 @@
 #import "consts.h"
 
 @implementation WYPlaceButton
+@synthesize thePlace = _thePlace;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -32,6 +33,8 @@
     int hn = index / 3;
     
     self = [self initWithFrame:CGRectMake(gapLeftW+wn*w+wn*gapMidW, gapTopH+hn*h+hn*gapMidH, w, h)];
+    
+    _thePlace = place;
     
     [self setTitleColor:COLOR_ON_PLACE_N forState:UIControlStateNormal];
     [self setTitleColor:COLOR_ON_PLACE_H forState:UIControlStateHighlighted];
