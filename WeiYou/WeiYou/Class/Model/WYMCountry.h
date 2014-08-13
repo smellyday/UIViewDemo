@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "WYMPlace.h"
 
+
 @interface WYMCountry : WYMPlace {
+    NSMutableArray *_allCities;
+    NSMutableArray *_chosenCities;
 }
 
-- (id)initWithCountryInfoDic:(NSDictionary *)infoDic;
+@property (nonatomic, readonly) NSMutableArray *allCities;
+@property (nonatomic, readonly) NSMutableArray *chosenCities;
+
 - (NSDictionary *)transferToDic;
-- (NSArray *)getAllCities;
 
 @end

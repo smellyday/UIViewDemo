@@ -8,29 +8,31 @@
 
 #import "WYMCountry.h"
 #import "consts.h"
+#import "WYMCity.h"
 
 @implementation WYMCountry
+@synthesize allCities = _allCities;
+@synthesize chosenCities = _chosenCities;
 
-- (id)initWithCountryInfoDic:(NSDictionary *)infoDic {
-	self = [super init];
-	if (self) {
-        _ID = [infoDic objectForKey:WY_PLACE_ID];
-        _parentID = [infoDic objectForKey:WY_PLACE_PARENT_ID];
-        _name = [[infoDic objectForKey:WY_PLACE_NAME] objectForKey:WY_NAME_ZHCH];
-	}
-	return self;
+
+- (NSMutableArray *)allCities {
+    if (!_allCities) {
+        _allCities = [NSMutableArray arrayWithCapacity:10];
+        
+        for (int i = 0; i < 100; i++) {
+            NSDictionary *infoDic = @{@"id":@"1002", @"parent_id":@"208", @"name":@{@"en":@"Beijing", @"zh-CN":@"北京"}};
+            WYMCity *mcity = [[WYMCity alloc] initWithInfoDic:infoDic];
+            [_allCities addObject:mcity];
+        }
+        
+    }
+    
+    return _allCities;
 }
 
 - (NSDictionary *)transferToDic {
     return nil;
 }
 
-- (NSArray *)getAllProvinces {
-	return nil;
-}
-
-- (NSArray *)getAllCities {
-	return nil;
-}
 
 @end

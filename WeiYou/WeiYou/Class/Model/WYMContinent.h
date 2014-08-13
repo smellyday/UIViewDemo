@@ -18,9 +18,6 @@
 @property (nonatomic, readonly) NSMutableArray *allCountries;
 @property (nonatomic, readonly) NSMutableArray *chosenCountries;
 
-
-- (id)initWithContinentInfoDic:(NSDictionary *)infoDic;
-
 - (void)addToAllCountry:(WYMCountry *)country;
 - (void)chooseCountry:(WYMCountry *)country;
 - (void)unchooseCountry:(WYMCountry *)country;

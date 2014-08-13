@@ -13,15 +13,6 @@
 @synthesize allCountries = _allCountries;
 @synthesize chosenCountries = _chosenCountries;
 
-- (id)initWithContinentInfoDic:(NSDictionary *)infoDic {
-	self = [super init];
-	if (self) {
-        _ID = [infoDic objectForKey:WY_PLACE_ID];
-        _parentID = [infoDic objectForKey:WY_PLACE_PARENT_ID];
-        _name = [[infoDic objectForKey:WY_PLACE_NAME] objectForKey:WY_NAME_ZHCH];
-	}
-	return self;
-}
 
 - (void)addToAllCountry:(WYMCountry *)country {
     if (!_allCountries) {

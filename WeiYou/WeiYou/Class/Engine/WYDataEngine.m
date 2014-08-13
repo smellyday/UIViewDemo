@@ -355,7 +355,7 @@
     NSString *continentsPlistPath = [[NSBundle mainBundle] pathForResource:@"continents" ofType:@"plist"];
     NSArray *continentInfoArr = [NSArray arrayWithContentsOfFile:continentsPlistPath];
     for (NSDictionary *infoDic in continentInfoArr) {
-        WYMContinent *conti = [[WYMContinent alloc] initWithContinentInfoDic:infoDic];
+        WYMContinent *conti = [[WYMContinent alloc] initWithInfoDic:infoDic];
         [_allContinents addObject:conti];
         
         switch ([conti.ID intValue]) {
@@ -390,7 +390,7 @@
     NSString *countriesPlistPath = [[NSBundle mainBundle] pathForResource:@"countries" ofType:@"plist"];
     NSArray *countryInfoArr = [NSArray arrayWithContentsOfFile:countriesPlistPath];
     for (NSDictionary *infoDic in countryInfoArr) {
-        WYMCountry *cty = [[WYMCountry alloc] initWithCountryInfoDic:infoDic];
+        WYMCountry *cty = [[WYMCountry alloc] initWithInfoDic:infoDic];
         
         switch ([cty.parentID intValue]) {
             case 1:

@@ -11,12 +11,6 @@
 
 @implementation WYMCity
 
-- (id)initWithCityInfoDic:(NSDictionary *)infoDic {
-	self = [super init];
-	if (self) {
-	}
-	return self;
-}
 
 - (NSDictionary *)transferToDic {
     return nil;

@@ -11,6 +11,7 @@
 #import "WYDataEngine.h"
 #import "WYCountryButton.h"
 #import "WYMContinent.h"
+#import "WYCitiesController.h"
 
 @interface WYCountriesController ()
 
@@ -72,6 +73,7 @@
                 [contiView addSubview:cb];
             } else {
                 WYCountryButton *cb = [[WYCountryButton alloc] initButtonWithPlace:[cntyArr objectAtIndex:ci] atIndex:ci];
+                [cb addTarget:self action:@selector(onClickCountryBtn:) forControlEvents:UIControlEventTouchUpInside];
                 [contiView addSubview:cb];
             }
         }
@@ -92,6 +94,13 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+- (void)onClickCountryBtn:(id)sender {
+    if ([sender isKindOfClass:[WYCountryButton class]]) {
+        WYCitiesController *citiesc = [[WYCitiesController alloc] init];
+        citiesc.country = [(WYCountryButton *)sender theCountry];
+        [self.navigationController pushViewController:citiesc animated:YES];
+    }
+}
 
 
 

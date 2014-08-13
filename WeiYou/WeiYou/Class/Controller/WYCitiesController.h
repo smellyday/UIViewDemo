@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WYCitiesController : UIViewController
+@class WYMCountry;
+@interface WYCitiesController : UIViewController {
+    WYMCountry *_country;
+}
+
+@property (nonatomic, strong) WYMCountry *country;
 
 @end

@@ -36,9 +36,9 @@
 		self.spotWebsiteArray = [infoDic objectForKey:WY_SPOT_WEBSITE_ARR];
 		self.spotImageURLArray = [infoDic objectForKey:WY_SPOT_IMAGE_URL_ARR];
 		
-		self.spotCity = [[WYMCity alloc] initWithCityInfoDic:[infoDic objectForKey:WY_SPOT_CITY]];
-		self.spotCountry = [[WYMCountry alloc] initWithCountryInfoDic:[infoDic objectForKey:WY_SPOT_COUNTRY]];
-		self.spotContinent = [[WYMContinent alloc] initWithContinentInfoDic:[infoDic objectForKey:WY_SPOT_CONTINENT]];
+		self.spotCity = [[WYMCity alloc] initWithInfoDic:[infoDic objectForKey:WY_SPOT_CITY]];
+		self.spotCountry = [[WYMCountry alloc] initWithInfoDic:[infoDic objectForKey:WY_SPOT_COUNTRY]];
+		self.spotContinent = [[WYMContinent alloc] initWithInfoDic:[infoDic objectForKey:WY_SPOT_CONTINENT]];
 	}
 	return self;
 }

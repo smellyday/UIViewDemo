@@ -10,10 +10,9 @@
 #import "WYMPlace.h"
 
 @interface WYMCity : WYMPlace {
+    
 }
 
-
-- (id)initWithCityInfoDic:(NSDictionary *)infoDic;
 
 - (NSArray *)getAllSpots;
 - (NSDictionary *)transferToDic;

@@ -18,4 +18,6 @@
 @property (nonatomic, readonly) NSNumber *parentID;
 @property (nonatomic, readonly) NSString *name;
 
+- (id)initWithInfoDic:(NSDictionary *)infoDic;
+
 @end
