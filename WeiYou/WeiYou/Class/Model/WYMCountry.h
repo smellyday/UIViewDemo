@@ -7,18 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYPlace.h"
 
-@interface WYMCountry : NSObject {
-	NSNumber *_countryID;
-	NSNumber *_parentID;
-	NSNumber *_level;
-	NSString *_countryName;
+@interface WYMCountry : WYPlace {
 }
-
-@property (nonatomic, readonly) NSNumber *countryID;
-@property (nonatomic, readonly) NSNumber *parentID;
-@property (nonatomic, readonly) NSNumber *level;
-@property (nonatomic, readonly) NSString *countryName;
 
 - (id)initWithCountryInfoDic:(NSDictionary *)infoDic;
 - (NSDictionary *)transferToDic;

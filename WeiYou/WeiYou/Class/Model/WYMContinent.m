@@ -10,28 +10,33 @@
 #import "consts.h"
 
 @implementation WYMContinent
-@synthesize continentType = _continentType;
-@synthesize parentID = _parentID;
-@synthesize level = _level;
-@synthesize continentName = _continentName;
+@synthesize allCountries = _allCountries;
+@synthesize chosenCountries = _chosenCountries;
 
 - (id)initWithContinentInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
 	if (self) {
-		_continentID = [infoDic objectForKey:WY_CONTINENT_ID];
-		_parentID = [infoDic objectForKey:WY_CONTINENT_PARENT_ID];
-		_level = [infoDic objectForKey:WY_SPOT_LEVEL];
-		_continentName = [infoDic objectForKey:WY_CONTINENT_NAME];
+        _ID = [infoDic objectForKey:WY_PLACE_ID];
+        _parentID = [infoDic objectForKey:WY_PLACE_PARENT_ID];
+        _name = [[infoDic objectForKey:WY_PLACE_NAME] objectForKey:WY_NAME_ZHCH];
 	}
 	return self;
 }
 
-- (NSDictionary *)transferToDic {
-    return nil;
+- (void)addToAllCountry:(WYMCountry *)country {
+    
 }
 
-- (NSArray *)getAllCountries {
-	return nil;
+- (void)chooseCountry:(WYMCountry *)country {
+    
+}
+
+- (void)unchooseCountry:(WYMCountry *)country {
+    
+}
+
+- (NSDictionary *)transferToDic {
+    return nil;
 }
 
 @end

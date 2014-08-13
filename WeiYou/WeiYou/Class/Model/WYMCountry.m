@@ -10,18 +10,13 @@
 #import "consts.h"
 
 @implementation WYMCountry
-@synthesize countryID = _countryID;
-@synthesize parentID = _parentID;
-@synthesize level = _level;
-@synthesize countryName = _countryName;
 
 - (id)initWithCountryInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
 	if (self) {
-		_countryID = [infoDic objectForKey:WY_COUNTRY_ID];
-		_parentID = [infoDic objectForKey:WY_COUNTRY_PARENT_ID];
-		_level = [infoDic objectForKey:WY_SPOT_LEVEL];
-		_countryName = [infoDic objectForKey:WY_COUNTRY_NAME];
+        _ID = [infoDic objectForKey:WY_PLACE_ID];
+        _parentID = [infoDic objectForKey:WY_PLACE_PARENT_ID];
+        _name = [[infoDic objectForKey:WY_PLACE_NAME] objectForKey:WY_NAME_ZHCH];
 	}
 	return self;
 }

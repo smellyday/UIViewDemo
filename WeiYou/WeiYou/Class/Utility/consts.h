@@ -110,7 +110,14 @@
 #define WY_TRIPDAY_SPOTS               @"wy_tripday_spots"
 
 
-#define WY_SPOT_LEVEL   			   @"level"
+    //for wyplace
+#define WY_PLACE_ID                    @"id"
+#define WY_PLACE_PARENT_ID             @"parent_id"
+#define WY_PLACE_NAME                  @"name"
+#define WY_NAME_EN                     @"en"
+#define WY_NAME_ZHCH                  @"zh-CN"
+
+/*
 	//for continent
 #define WY_CONTINENT_ID                @"id"
 #define WY_CONTINENT_PARENT_ID		   @"parent_id"
@@ -133,6 +140,7 @@
 #define WY_CITY_ID					   @"id"
 #define WY_CITY_PARENT_ID			   @"parent_id"
 #define WY_CITY_NAME                   @"name"
+ */
 
 	//for spot
 #define WY_SPOT_ID					   @"wy_spot_id"

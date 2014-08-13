@@ -58,10 +58,10 @@
 - (void)updateTripInfoFromServer;
 
 	//edit
-- (void)addCity:(WYMCity *)city;
-- (void)delCity:(WYMCity *)city;
-- (void)addSpot:(WYMSpot *)spot;
-- (void)delSpot:(WYMSpot *)spot;
+//- (void)addCity:(WYMCity *)city;
+//- (void)delCity:(WYMCity *)city;
+//- (void)addSpot:(WYMSpot *)spot;
+//- (void)delSpot:(WYMSpot *)spot;
 
 - (NSDictionary *)transferToDic;
 

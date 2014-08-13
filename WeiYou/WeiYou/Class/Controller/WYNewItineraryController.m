@@ -9,6 +9,7 @@
 #import "WYNewItineraryController.h"
 #import "WYFunctionUtility.h"
 #import "consts.h"
+#import "WYCountriesController.h"
 
 @interface WYNewItineraryController ()
 
@@ -121,6 +122,17 @@
 	UIImageView *lineView3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:PIC_LINE]];
 	lineView3.frame = CGRectMake(SCREEN_WIDTH/2-linew/2, hgap1+fh*2+lineh*2+fh, linew, lineh);
 	[self.view addSubview:lineView3];
+    
+    // button:Add destination.
+    CGFloat dbw = 180.0;
+    CGFloat dbh = 38.0;
+    CGFloat gap2 = 40.0;
+    UIButton *addDesBtn = [[UIButton alloc] init];
+    addDesBtn.frame = CGRectMake(SCREEN_WIDTH/2-dbw/2, hgap1+fh*2+lineh*2+fh+lineh+gap2, dbw, dbh);
+    [addDesBtn setBackgroundImage:[UIImage imageNamed:PIC_BTN_ADD_DESTINATION_N] forState:UIControlStateNormal];
+    [addDesBtn setBackgroundImage:[UIImage imageNamed:PIC_BTN_ADD_DESTINATION_H] forState:UIControlStateHighlighted];
+    [addDesBtn addTarget:self action:@selector(addDestination:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:addDesBtn];
     
 		// picker view.
     CGFloat bh = 40.0;
@@ -250,6 +262,11 @@
     [_sDateField resignFirstResponder];
     [_daysCountField resignFirstResponder];
     [_tripNameField resignFirstResponder];
+}
+
+- (void)addDestination:(id)sender {
+    WYCountriesController *cc = [[WYCountriesController alloc] init];
+    [self.navigationController pushViewController:cc animated:YES];
 }
 
 #pragma mark - UIPicker Data Source & Delegate

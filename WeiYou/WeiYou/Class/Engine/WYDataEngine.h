@@ -16,10 +16,13 @@
 	NSMutableArray *_trips;
     
     NSOperationQueue *_biSyncQueue;
+    
+    NSMutableArray *_allContinents;
 }
 
 @property (nonatomic, strong) NSMutableArray *trips;
 @property (nonatomic, strong) NSOperationQueue *biSyncQueue;
+@property (nonatomic, readonly) NSMutableArray *allContinents;
 
 + (id)sharedDataEngine;
 
@@ -28,9 +31,5 @@
 - (void)loadTripsFromLocal;
 - (void)saveTripsToLocal;
 
-	//Spot data
-- (WYMCity *)getCityByID:(NSNumber *)city_id;
-- (WYMCountry *)getCountryByID:(NSNumber *)country_id;
-- (WYMContinent *)getContinentByID:(NSNumber *)continent_id;
 
 @end

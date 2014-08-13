@@ -132,6 +132,13 @@
 		69AA1EC31954112500BA0884 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69AA1EC01954112500BA0884 /* WeiboSDK.bundle */; };
 		69B68D2A1989FBBD00DF29AF /* WYFakeNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B68D291989FBBD00DF29AF /* WYFakeNavBar.m */; };
 		69CA3F0D1962B6520004910A /* olderTrips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69CA3F0C1962B6520004910A /* olderTrips.plist */; };
+		69E039A6199B25F3000B6C75 /* WYPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E039A5199B25F3000B6C75 /* WYPlace.m */; };
+		69E039A8199B4075000B6C75 /* continents.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69E039A7199B4075000B6C75 /* continents.plist */; };
+		69E039AD199B48A2000B6C75 /* btn_add_destination_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E039A9199B48A2000B6C75 /* btn_add_destination_h.png */; };
+		69E039AE199B48A2000B6C75 /* btn_add_destination_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E039AA199B48A2000B6C75 /* btn_add_destination_h@2x.png */; };
+		69E039AF199B48A2000B6C75 /* btn_add_destination_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E039AB199B48A2000B6C75 /* btn_add_destination_n.png */; };
+		69E039B0199B48A2000B6C75 /* btn_add_destination_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E039AC199B48A2000B6C75 /* btn_add_destination_n@2x.png */; };
+		69E039B3199B4B27000B6C75 /* WYCountriesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E039B2199B4B27000B6C75 /* WYCountriesController.m */; };
 		69E2159E1981E16E0022D432 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69E2159D1981E16E0022D432 /* TencentOpenAPI.framework */; };
 		69E215A01981E2040022D432 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69E2159F1981E2040022D432 /* Security.framework */; };
 		69E215A21981E2150022D432 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69E215A11981E2150022D432 /* libiconv.dylib */; };
@@ -346,6 +353,15 @@
 		69B68D281989FBBD00DF29AF /* WYFakeNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYFakeNavBar.h; sourceTree = "<group>"; };
 		69B68D291989FBBD00DF29AF /* WYFakeNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYFakeNavBar.m; sourceTree = "<group>"; };
 		69CA3F0C1962B6520004910A /* olderTrips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = olderTrips.plist; sourceTree = "<group>"; };
+		69E039A4199B25F3000B6C75 /* WYPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPlace.h; sourceTree = "<group>"; };
+		69E039A5199B25F3000B6C75 /* WYPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPlace.m; sourceTree = "<group>"; };
+		69E039A7199B4075000B6C75 /* continents.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = continents.plist; sourceTree = "<group>"; };
+		69E039A9199B48A2000B6C75 /* btn_add_destination_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_add_destination_h.png; path = "Resources/百度云同步盘/btn_add_destination_h.png"; sourceTree = SOURCE_ROOT; };
+		69E039AA199B48A2000B6C75 /* btn_add_destination_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_add_destination_h@2x.png"; path = "Resources/百度云同步盘/btn_add_destination_h@2x.png"; sourceTree = SOURCE_ROOT; };
+		69E039AB199B48A2000B6C75 /* btn_add_destination_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_add_destination_n.png; path = "Resources/百度云同步盘/btn_add_destination_n.png"; sourceTree = SOURCE_ROOT; };
+		69E039AC199B48A2000B6C75 /* btn_add_destination_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_add_destination_n@2x.png"; path = "Resources/百度云同步盘/btn_add_destination_n@2x.png"; sourceTree = SOURCE_ROOT; };
+		69E039B1199B4B27000B6C75 /* WYCountriesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCountriesController.h; sourceTree = "<group>"; };
+		69E039B2199B4B27000B6C75 /* WYCountriesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCountriesController.m; sourceTree = "<group>"; };
 		69E2159D1981E16E0022D432 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = WeiYou/Class/libQQSDK/TencentOpenAPI.framework; sourceTree = "<group>"; };
 		69E2159F1981E2040022D432 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		69E215A11981E2150022D432 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
@@ -412,6 +428,8 @@
 		5E4A8CA718604C630062934F /* Spot */ = {
 			isa = PBXGroup;
 			children = (
+				69E039A4199B25F3000B6C75 /* WYPlace.h */,
+				69E039A5199B25F3000B6C75 /* WYPlace.m */,
 				5EBCF746185EE7630057C1AE /* WYMContinent.h */,
 				5EBCF747185EE7630057C1AE /* WYMContinent.m */,
 				5EBCF758185EFF2A0057C1AE /* WYMCountry.h */,
@@ -484,6 +502,10 @@
 		5E5BC232183EE5D80003AC6D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				69E039A9199B48A2000B6C75 /* btn_add_destination_h.png */,
+				69E039AA199B48A2000B6C75 /* btn_add_destination_h@2x.png */,
+				69E039AB199B48A2000B6C75 /* btn_add_destination_n.png */,
+				69E039AC199B48A2000B6C75 /* btn_add_destination_n@2x.png */,
 				693497BE199A0B90006BAF8B /* add_new_trip_btn.png */,
 				693497BF199A0B90006BAF8B /* back_icon_n.png */,
 				693497C0199A0B90006BAF8B /* cancel_icon.png */,
@@ -544,7 +566,7 @@
 				5E7D1780198722CD003F4208 /* WYMyItineraryController.m */,
 				69D0B3421887B4E400E0AB7C /* Map */,
 				5EBCF72F185E94A70057C1AE /* Trip */,
-				5EFE0EDC184F04EE004F8859 /* CreateNew */,
+				5EFE0EDC184F04EE004F8859 /* CreateAndEdit */,
 				5E5BC2A6183EE8950003AC6D /* Settings */,
 			);
 			name = Controller;
@@ -629,6 +651,7 @@
 				5E5BC22F183EE5D80003AC6D /* en.lproj */,
 				69E215A71981E2E80022D432 /* TencentOpenApi_IOS_Bundle.bundle */,
 				5E5BC237183EE5D80003AC6D /* main.m */,
+				69E039A7199B4075000B6C75 /* continents.plist */,
 				6917719D1998DF700046D69D /* countries.plist */,
 				5E5BC238183EE5D80003AC6D /* WeiYou-Info.plist */,
 				5E5BC239183EE5D80003AC6D /* WeiYou-Prefix.pch */,
@@ -759,13 +782,15 @@
 			path = EGO;
 			sourceTree = "<group>";
 		};
-		5EFE0EDC184F04EE004F8859 /* CreateNew */ = {
+		5EFE0EDC184F04EE004F8859 /* CreateAndEdit */ = {
 			isa = PBXGroup;
 			children = (
 				69516B5E1993525F00D404E7 /* WYNewItineraryController.h */,
 				69516B5F1993525F00D404E7 /* WYNewItineraryController.m */,
+				69E039B1199B4B27000B6C75 /* WYCountriesController.h */,
+				69E039B2199B4B27000B6C75 /* WYCountriesController.m */,
 			);
-			name = CreateNew;
+			name = CreateAndEdit;
 			sourceTree = "<group>";
 		};
 		69343301197FB4F500C1D2A5 /* zh-Hans.lproj */ = {
@@ -939,6 +964,7 @@
 				69349807199A0B90006BAF8B /* setting_icon_n.png in Resources */,
 				6934980E199A0B90006BAF8B /* weibo_btn_bg_n.png in Resources */,
 				6934980A199A0B90006BAF8B /* verify_btn_bg_n.png in Resources */,
+				69E039AF199B48A2000B6C75 /* btn_add_destination_n.png in Resources */,
 				69349819199A0B90006BAF8B /* setting_icon_n@2x.png in Resources */,
 				69349800199A0B90006BAF8B /* qq_btn_bg_h@2x.png in Resources */,
 				69349810199A0B90006BAF8B /* trip_begin_date.png in Resources */,
@@ -946,10 +972,12 @@
 				693497EF199A0B90006BAF8B /* cancel_icon@2x.png in Resources */,
 				69349809199A0B90006BAF8B /* verify_btn_bg_h@2x.png in Resources */,
 				693497FB199A0B90006BAF8B /* login_btn_n@2x.png in Resources */,
+				69E039AD199B48A2000B6C75 /* btn_add_destination_h.png in Resources */,
 				6934330A197FB6AF00C1D2A5 /* Localizable.strings in Resources */,
 				5E5BC23A183EE5D80003AC6D /* InfoPlist.strings in Resources */,
 				69AA1EC31954112500BA0884 /* WeiboSDK.bundle in Resources */,
 				69349805199A0B90006BAF8B /* second_tab_item_n.png in Resources */,
+				69E039B0199B48A2000B6C75 /* btn_add_destination_n@2x.png in Resources */,
 				69343304197FB4F500C1D2A5 /* InfoPlist.strings in Resources */,
 				69349804199A0B90006BAF8B /* second_tab_item_h@2x.png in Resources */,
 				693497F5199A0B90006BAF8B /* line@2x.png in Resources */,
@@ -967,6 +995,7 @@
 				693497FE199A0B90006BAF8B /* ok_icon_n.png in Resources */,
 				693497F9199A0B90006BAF8B /* login_btn_h@2x.png in Resources */,
 				69CA3F0D1962B6520004910A /* olderTrips.plist in Resources */,
+				69E039AE199B48A2000B6C75 /* btn_add_destination_h@2x.png in Resources */,
 				6934980C199A0B90006BAF8B /* weibo_btn_bg_h.png in Resources */,
 				6934980D199A0B90006BAF8B /* weibo_btn_bg_h@2x.png in Resources */,
 				69349811199A0B90006BAF8B /* trip_begin_date@2x.png in Resources */,
@@ -984,6 +1013,7 @@
 				693497F4199A0B90006BAF8B /* line.png in Resources */,
 				693497F8199A0B90006BAF8B /* login_btn_h.png in Resources */,
 				693497FC199A0B90006BAF8B /* nav_bar_bg.png in Resources */,
+				69E039A8199B4075000B6C75 /* continents.plist in Resources */,
 				6953CB6B186D215100DE04E0 /* demo.plist in Resources */,
 				693497ED199A0B90006BAF8B /* back_icon_n.png in Resources */,
 				693497F1199A0B90006BAF8B /* first_tab_item_h@2x.png in Resources */,
@@ -1028,6 +1058,7 @@
 				5E489B421986BE5E00059066 /* WYResetPasswordController.m in Sources */,
 				694ED3BA195A762C00917FEB /* ASIInputStream.m in Sources */,
 				694ED3BB195A762C00917FEB /* ASINetworkQueue.m in Sources */,
+				69E039B3199B4B27000B6C75 /* WYCountriesController.m in Sources */,
 				69E215AC1981F2970022D432 /* WYTencentUserInfo.m in Sources */,
 				694ED3BC195A762C00917FEB /* Reachability.m in Sources */,
 				698013D91977CF7300AFD0B4 /* WYUploadTripOperation.m in Sources */,
@@ -1059,6 +1090,7 @@
 				6917719A1998C3B20046D69D /* WYFunctionUtility.m in Sources */,
 				5EBCF742185EAE550057C1AE /* WYMTripDay.m in Sources */,
 				69582DAB1952C3F40072ED3E /* WYLoginController.m in Sources */,
+				69E039A6199B25F3000B6C75 /* WYPlace.m in Sources */,
 				5E5D67681861766700ECA966 /* WYTripDayTrafficCell.m in Sources */,
 				5E5D67641861451600ECA966 /* WYTripDayCell.m in Sources */,
 				5E5BC2F6183F3DB80003AC6D /* WYDataEngine.m in Sources */,
