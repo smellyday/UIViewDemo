@@ -7,9 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WYMCity.h"
-#import "WYMCountry.h"
-#import "WYMContinent.h"
 
 @class WYMTrip;
 @interface WYDataEngine : NSObject {
@@ -18,16 +15,22 @@
     NSOperationQueue *_biSyncQueue;
     
     NSMutableArray *_allContinents;
+    WYMTrip *_creatingTrip;
 }
 
 @property (nonatomic, strong) NSMutableArray *trips;
 @property (nonatomic, strong) NSOperationQueue *biSyncQueue;
 @property (nonatomic, readonly) NSMutableArray *allContinents;
+@property (nonatomic, readonly) WYMTrip *creatingTrip;
 
 + (id)sharedDataEngine;
 
-- (void)bisynchronizeTrips;
+//create new trip
+- (void)createNewTrip;
+- (void)finishCreatingTrip;
 
+//sync
+- (void)bisynchronizeTrips;
 - (void)loadTripsFromLocal;
 - (void)saveTripsToLocal;
 

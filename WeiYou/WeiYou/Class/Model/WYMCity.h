@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WYPlace.h"
+#import "WYMPlace.h"
 
-@interface WYMCity : WYPlace {
+@interface WYMCity : WYMPlace {
 }
 
 

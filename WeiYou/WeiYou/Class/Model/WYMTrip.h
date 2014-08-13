@@ -21,9 +21,7 @@
 	NSDate *_tripEndDate;
 	NSDate *_tripCreateDate;
 	NSMutableArray *_tripDaysArray;
-	NSMutableArray *_tripContinentsArray;
-	NSMutableArray *_tripCountriesArray;
-	NSMutableArray *_tripCitiesArray;
+	NSMutableArray *_chosenContinentsArray;
 	
 	BOOL _isNewTrip;
 	BOOL _deletTrip;
@@ -41,9 +39,7 @@
 @property (nonatomic, strong) NSDate *tripEndDate;
 @property (nonatomic, strong) NSDate *tripCreateDate;
 @property (nonatomic, readonly) NSMutableArray *tripDaysArray;
-@property (nonatomic, readonly) NSMutableArray *tripContinentsArray;
-@property (nonatomic, readonly) NSMutableArray *tripCountriesArray;
-@property (nonatomic, readonly) NSMutableArray *tripCitiesArray;
+@property (nonatomic, readonly) NSMutableArray *chosenContinentsArray;
 
 @property (nonatomic) BOOL isNewTrip;
 @property (nonatomic) BOOL deletTrip;

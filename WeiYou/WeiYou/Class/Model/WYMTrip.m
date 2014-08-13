@@ -21,9 +21,7 @@
 @synthesize tripEndDate = _tripEndDate;
 @synthesize tripCreateDate = _tripCreateDate;
 @synthesize tripDaysArray = _tripDaysArray;
-@synthesize tripContinentsArray = _tripContinentsArray;
-@synthesize tripCountriesArray = _tripCountriesArray;
-@synthesize tripCitiesArray = _tripCitiesArray;
+@synthesize chosenContinentsArray = _chosenContinentsArray;
 
 @synthesize isNewTrip = _isNewTrip;
 @synthesize deletTrip = _deletTrip;
@@ -51,9 +49,7 @@
 			[_tripDaysArray addObject:tripDay];
 		}
 		
-		_tripContinentsArray = [NSMutableArray arrayWithCapacity:10];
-		_tripCountriesArray = [NSMutableArray arrayWithCapacity:10];
-		_tripCitiesArray = [NSMutableArray arrayWithCapacity:10];
+		_chosenContinentsArray = [NSMutableArray arrayWithCapacity:2];
 		
         // the 4 bool must be in the plist. Cz, plist is created by object.
 		self.isNewTrip = [[infoDic objectForKey:WY_TRIP_ISNEW] boolValue];
@@ -80,13 +76,20 @@
     
 }
 
-
-- (void)addCity:(WYMCity *)city {
-	[_tripCitiesArray addObject:city];
+- (NSMutableArray *)tripDaysArray {
+    if (!_tripDaysArray) {
+        _tripDaysArray = [NSMutableArray arrayWithCapacity:5];
+    }
+    
+    return _tripDaysArray;
 }
 
-- (void)delCity:(WYMCity *)city {
-	
+- (NSMutableArray *)chosenContinentsArray {
+    if (!_chosenContinentsArray) {
+        _chosenContinentsArray = [NSMutableArray arrayWithCapacity:2];
+    }
+    
+    return _chosenContinentsArray;
 }
 
 - (NSDictionary *)transferToDic {

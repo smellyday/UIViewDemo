@@ -29,6 +29,7 @@
 @synthesize trips = _trips;
 @synthesize biSyncQueue = _biSyncQueue;
 @synthesize allContinents = _allContinents;
+@synthesize creatingTrip = _creatingTrip;
 
 
 + (id)sharedDataEngine {
@@ -41,7 +42,16 @@
 	return sharedEngine;
 }
 
+//=========create new trip===========
+- (void)createNewTrip {
+    _creatingTrip = [[WYMTrip alloc] init];
+}
 
+- (void)finishCreatingTrip {
+    _creatingTrip = nil;
+}
+
+//==========   syn   ==========
 /*
  this function should be in secondary thread.
  */
@@ -199,8 +209,6 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_TRIPS_SYNC_FINISH object:nil userInfo:nil];
     
-    
-    
 //    self.trips = [NSMutableArray arrayWithCapacity:10];
 //    NSArray *allTripsInfo = [self getTripsInfoDicFromLocal];
 //    for (NSDictionary *infoDic in allTripsInfo) {
@@ -300,6 +308,7 @@
 
 //==========SPOT DATA=============
 - (NSMutableArray *)allContinents {
+    LOGFUNCTION;
     if (!_allContinents || [_allContinents count]==0) {
         [self initAllContinents];
     }
@@ -333,6 +342,7 @@
 
 //========private============
 - (void)initAllContinents {
+    LOGFUNCTION;
     WYMContinent *Asia;
     WYMContinent *Europe;
     WYMContinent *NorthAmerica;
@@ -382,27 +392,28 @@
     for (NSDictionary *infoDic in countryInfoArr) {
         WYMCountry *cty = [[WYMCountry alloc] initWithCountryInfoDic:infoDic];
         
-        switch ([cty.ID intValue]) {
+        switch ([cty.parentID intValue]) {
             case 1:
-                [Asia.allCountries addObject:cty];
+                [Asia addToAllCountry:cty];
+//                [Asia.allCountries addObject:cty];
                 break;
             case 2:
-                [Europe.allCountries addObject:cty];
+                [Europe addToAllCountry:cty];
                 break;
             case 3:
-                [NorthAmerica.allCountries addObject:cty];
+                [NorthAmerica addToAllCountry:cty];
                 break;
             case 4:
-                [SouthAmerica.allCountries addObject:cty];
+                [SouthAmerica addToAllCountry:cty];
                 break;
             case 5:
-                [Oceania.allCountries addObject:cty];
+                [Oceania addToAllCountry:cty];
                 break;
             case 6:
-                [Africa.allCountries addObject:cty];
+                [Africa addToAllCountry:cty];
                 break;
             case 7:
-                [Antarctica.allCountries addObject:cty];
+                [Antarctica addToAllCountry:cty];
                 break;
                 
             default:

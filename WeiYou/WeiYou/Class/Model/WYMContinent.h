@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WYPlace.h"
+#import "WYMPlace.h"
 
 @class WYMCountry;
-@interface WYMContinent : WYPlace {
+@interface WYMContinent : WYMPlace {
     NSMutableArray *_allCountries;
     NSMutableArray *_chosenCountries;
 }

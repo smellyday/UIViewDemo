@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WYPlace.h"
+#import "WYMPlace.h"
 
-@interface WYMCountry : WYPlace {
+@interface WYMCountry : WYMPlace {
 }
 
 - (id)initWithCountryInfoDic:(NSDictionary *)infoDic;

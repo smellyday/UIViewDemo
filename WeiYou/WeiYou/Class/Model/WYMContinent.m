@@ -24,11 +24,19 @@
 }
 
 - (void)addToAllCountry:(WYMCountry *)country {
+    if (!_allCountries) {
+        _allCountries = [NSMutableArray arrayWithCapacity:10];
+    }
     
+    [_allCountries addObject:country];
 }
 
 - (void)chooseCountry:(WYMCountry *)country {
+    if (!_chosenCountries) {
+        _chosenCountries = [NSMutableArray arrayWithCapacity:10];
+    }
     
+    [_chosenCountries addObject:country];
 }
 
 - (void)unchooseCountry:(WYMCountry *)country {

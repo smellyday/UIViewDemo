@@ -1,5 +1,5 @@
 //
-//  WYPlace.h
+//  WYMPlace.h
 //  WeiYou
 //
 //  Created by zhangpan on 14-8-13.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WYPlace : NSObject {
+@interface WYMPlace : NSObject {
     NSNumber *_ID;
     NSNumber *_parentID;
     NSString *_name;

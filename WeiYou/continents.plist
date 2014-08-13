@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>item1</key>
+<array>
 	<dict>
 		<key>id</key>
 		<integer>1</integer>
@@ -18,7 +17,6 @@
 			<string>Asia</string>
 		</dict>
 	</dict>
-	<key>item2</key>
 	<dict>
 		<key>id</key>
 		<integer>2</integer>
@@ -34,7 +32,6 @@
 			<string>Europe</string>
 		</dict>
 	</dict>
-	<key>item3</key>
 	<dict>
 		<key>id</key>
 		<integer>3</integer>
@@ -50,7 +47,6 @@
 			<string>North America</string>
 		</dict>
 	</dict>
-	<key>item4</key>
 	<dict>
 		<key>id</key>
 		<integer>4</integer>
@@ -66,7 +62,6 @@
 			<string>South America</string>
 		</dict>
 	</dict>
-	<key>item5</key>
 	<dict>
 		<key>id</key>
 		<integer>5</integer>
@@ -82,7 +77,6 @@
 			<string>Oceania</string>
 		</dict>
 	</dict>
-	<key>item6</key>
 	<dict>
 		<key>id</key>
 		<integer>6</integer>
@@ -98,7 +92,6 @@
 			<string>Africa</string>
 		</dict>
 	</dict>
-	<key>item7</key>
 	<dict>
 		<key>id</key>
 		<integer>7</integer>
@@ -114,5 +107,5 @@
 			<string>Antarctica</string>
 		</dict>
 	</dict>
-</dict>
+</array>
 </plist>
