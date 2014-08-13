@@ -23,7 +23,9 @@
 #define KEYCHAIN_ID                         @"WHATEVER"
 
 //========character color========
-#define CHAR_COLOR_ON_BTN                  [UIColor colorWithRed:0 green:136/256 blue:187/256 alpha:1.0]
+#define CHAR_COLOR_ON_BTN                  [UIColor colorWithRed:0 green:136.0/256.0 blue:187.0/256.0 alpha:1.0]
+#define COLOR_ON_PLACE_N                   [UIColor colorWithRed:29.0/256.0 green:157.0/256.0 blue:204.0/256.0 alpha:1.0]
+#define COLOR_ON_PLACE_H                   [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0]
 
 //========one day interval=======
 #define WY_DAY_INTERVAL 86400
@@ -110,7 +112,14 @@
 #define WY_TRIPDAY_SPOTS               @"wy_tripday_spots"
 
 
-#define WY_SPOT_LEVEL   			   @"level"
+    //for wyplace
+#define WY_PLACE_ID                    @"id"
+#define WY_PLACE_PARENT_ID             @"parent_id"
+#define WY_PLACE_NAME                  @"name"
+#define WY_NAME_EN                     @"en"
+#define WY_NAME_ZHCH                  @"zh-CN"
+
+/*
 	//for continent
 #define WY_CONTINENT_ID                @"id"
 #define WY_CONTINENT_PARENT_ID		   @"parent_id"
@@ -133,6 +142,7 @@
 #define WY_CITY_ID					   @"id"
 #define WY_CITY_PARENT_ID			   @"parent_id"
 #define WY_CITY_NAME                   @"name"
+ */
 
 	//for spot
 #define WY_SPOT_ID					   @"wy_spot_id"

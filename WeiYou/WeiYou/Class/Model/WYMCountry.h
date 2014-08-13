@@ -7,21 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYMPlace.h"
 
-@interface WYMCountry : NSObject {
-	NSNumber *_countryID;
-	NSNumber *_parentID;
-	NSNumber *_level;
-	NSString *_countryName;
+
+@interface WYMCountry : WYMPlace {
+    NSMutableArray *_allCities;
+    NSMutableArray *_chosenCities;
 }
 
-@property (nonatomic, readonly) NSNumber *countryID;
-@property (nonatomic, readonly) NSNumber *parentID;
-@property (nonatomic, readonly) NSNumber *level;
-@property (nonatomic, readonly) NSString *countryName;
+@property (nonatomic, readonly) NSMutableArray *allCities;
+@property (nonatomic, readonly) NSMutableArray *chosenCities;
 
-- (id)initWithCountryInfoDic:(NSDictionary *)infoDic;
 - (NSDictionary *)transferToDic;
-- (NSArray *)getAllCities;
 
 @end

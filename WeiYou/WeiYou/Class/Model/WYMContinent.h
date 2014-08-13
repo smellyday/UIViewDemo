@@ -7,35 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYMPlace.h"
 
-typedef enum {
-	WYAsia,
-	WYEurope,
-	WYNorthAmerica,
-	WYSouthAmeria,
-	WYAustralia,
-	WYAfrica,
-	WYAntarctica
-} WYContinent;
-
-@interface WYMContinent : NSObject {
-	WYContinent _continentType;
-	
-	NSNumber *_continentID;
-	NSNumber *_parentID;
-	NSNumber *_level;
-	NSString *_continentName;
+@class WYMCountry;
+@interface WYMContinent : WYMPlace {
+    NSMutableArray *_allCountries;
+    NSMutableArray *_chosenCountries;
 }
 
-@property (nonatomic) WYContinent continentType;
+@property (nonatomic, readonly) NSMutableArray *allCountries;
+@property (nonatomic, readonly) NSMutableArray *chosenCountries;
 
-@property (nonatomic, readonly) NSNumber *continentID;
-@property (nonatomic, readonly) NSNumber *parentID;
-@property (nonatomic, readonly) NSNumber *level;
-@property (nonatomic, readonly) NSString *continentName;
+- (void)addToAllCountry:(WYMCountry *)country;
+- (void)chooseCountry:(WYMCountry *)country;
+- (void)unchooseCountry:(WYMCountry *)country;
 
-- (id)initWithContinentInfoDic:(NSDictionary *)infoDic;
 - (NSDictionary *)transferToDic;
-- (NSArray *)getAllCountries;
 
 @end

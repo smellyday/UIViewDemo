@@ -10,6 +10,8 @@
 #import "WYMTrip.h"
 #import "WYBiSyncTripsOperation.h"
 #import "consts.h"
+#import "WYMContinent.h"
+#import "WYMCountry.h"
 
 @interface WYDataEngine (private)
 
@@ -26,6 +28,8 @@
 @implementation WYDataEngine
 @synthesize trips = _trips;
 @synthesize biSyncQueue = _biSyncQueue;
+@synthesize allContinents = _allContinents;
+@synthesize creatingTrip = _creatingTrip;
 
 
 + (id)sharedDataEngine {
@@ -38,7 +42,16 @@
 	return sharedEngine;
 }
 
+//=========create new trip===========
+- (void)createNewTrip {
+    _creatingTrip = [[WYMTrip alloc] init];
+}
 
+- (void)finishCreatingTrip {
+    _creatingTrip = nil;
+}
+
+//==========   syn   ==========
 /*
  this function should be in secondary thread.
  */
@@ -196,8 +209,6 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_TRIPS_SYNC_FINISH object:nil userInfo:nil];
     
-    
-    
 //    self.trips = [NSMutableArray arrayWithCapacity:10];
 //    NSArray *allTripsInfo = [self getTripsInfoDicFromLocal];
 //    for (NSDictionary *infoDic in allTripsInfo) {
@@ -295,18 +306,123 @@
 
 
 
-	//==========SPOT DATA=============
-
-- (WYMCity *)getCityByID:(NSNumber *)city_id {
-	return nil;
+//==========SPOT DATA=============
+- (NSMutableArray *)allContinents {
+    LOGFUNCTION;
+    if (!_allContinents || [_allContinents count]==0) {
+        [self initAllContinents];
+    }
+    
+    return _allContinents;
 }
 
-- (WYMCountry *)getCountryByID:(NSNumber *)country_id {
-	return nil;
+//- (WYMCity *)getCityByID:(NSNumber *)city_id {
+//	return nil;
+//}
+//
+//- (WYMCountry *)getCountryByID:(NSNumber *)country_id {
+//    for (WYMContinent *conti in self.allContinents) {
+//        if ([cty.ID isEqual:country_id]) {
+//            return cty;
+//        }
+//    }
+//    
+//	return nil;
+//}
+//
+//- (WYMContinent *)getContinentByID:(NSNumber *)continent_id {
+//    for (WYMContinent *cnt in self.allContinents) {
+//        if ([cnt.ID isEqual:continent_id]) {
+//            return cnt;
+//        }
+//    }
+//    
+//	return nil;
+//}
+
+//========private============
+- (void)initAllContinents {
+    LOGFUNCTION;
+    WYMContinent *Asia;
+    WYMContinent *Europe;
+    WYMContinent *NorthAmerica;
+    WYMContinent *SouthAmerica;
+    WYMContinent *Oceania;
+    WYMContinent *Africa;
+    WYMContinent *Antarctica;
+    
+    _allContinents = [NSMutableArray arrayWithCapacity:10];
+    NSString *continentsPlistPath = [[NSBundle mainBundle] pathForResource:@"continents" ofType:@"plist"];
+    NSArray *continentInfoArr = [NSArray arrayWithContentsOfFile:continentsPlistPath];
+    for (NSDictionary *infoDic in continentInfoArr) {
+        WYMContinent *conti = [[WYMContinent alloc] initWithInfoDic:infoDic];
+        [_allContinents addObject:conti];
+        
+        switch ([conti.ID intValue]) {
+            case 1:
+                Asia = conti;
+                break;
+            case 2:
+                Europe = conti;
+                break;
+            case 3:
+                NorthAmerica = conti;
+                break;
+            case 4:
+                SouthAmerica = conti;
+                break;
+            case 5:
+                Oceania = conti;
+                break;
+            case 6:
+                Africa = conti;
+                break;
+            case 7:
+                Antarctica = conti;
+                break;
+                
+            default:
+                break;
+        }
+        
+    }
+    
+    NSString *countriesPlistPath = [[NSBundle mainBundle] pathForResource:@"countries" ofType:@"plist"];
+    NSArray *countryInfoArr = [NSArray arrayWithContentsOfFile:countriesPlistPath];
+    for (NSDictionary *infoDic in countryInfoArr) {
+        WYMCountry *cty = [[WYMCountry alloc] initWithInfoDic:infoDic];
+        
+        switch ([cty.parentID intValue]) {
+            case 1:
+                [Asia addToAllCountry:cty];
+//                [Asia.allCountries addObject:cty];
+                break;
+            case 2:
+                [Europe addToAllCountry:cty];
+                break;
+            case 3:
+                [NorthAmerica addToAllCountry:cty];
+                break;
+            case 4:
+                [SouthAmerica addToAllCountry:cty];
+                break;
+            case 5:
+                [Oceania addToAllCountry:cty];
+                break;
+            case 6:
+                [Africa addToAllCountry:cty];
+                break;
+            case 7:
+                [Antarctica addToAllCountry:cty];
+                break;
+                
+            default:
+                break;
+        }
+        
+    }
+    
 }
 
-- (WYMContinent *)getContinentByID:(NSNumber *)continent_id {
-	return nil;
-}
 
 @end

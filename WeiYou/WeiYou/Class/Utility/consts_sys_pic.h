@@ -41,5 +41,10 @@
 #define PIC_ICON_DAYS_COUNT              @"trip_days_count_icon.png"
 #define PIC_ICON_BEGIN_DATE              @"trip_begin_date.png"
 #define PIC_LINE						 @"line.png"
+#define PIC_BTN_ADD_DESTINATION_N        @"btn_add_destination_n.png"
+#define PIC_BTN_ADD_DESTINATION_H        @"btn_add_destination_h.png"
+#define PIC_BTN_PLACE_N                  @"btn_place_n.png"
+#define PIC_BTN_PLACE_H                  @"btn_place_h.png"
+#define PIC_ICON_DESTI_LINE               @"icon_destination_line.png"
 
 #endif

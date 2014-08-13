@@ -7,20 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYMPlace.h"
 
-@interface WYMCity : NSObject {
-	NSNumber *_cityID;
-	NSNumber *_parentID;
-	NSNumber *_level;
-	NSString *_cityName;
+@interface WYMCity : WYMPlace {
+    
 }
 
-@property (nonatomic, readonly) NSNumber *cityID;
-@property (nonatomic, readonly) NSNumber *parentID;
-@property (nonatomic, readonly) NSNumber *level;
-@property (nonatomic, readonly) NSString *cityName;
-
-- (id)initWithCityInfoDic:(NSDictionary *)infoDic;
 
 - (NSArray *)getAllSpots;
 - (NSDictionary *)transferToDic;
