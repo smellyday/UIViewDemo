@@ -12,7 +12,8 @@
 #import "WYMCity.h"
 #import "WYMPlace.h"
 #import "WYDataEngine.h"
-#import "WYPlaceButton.h"
+#import "WYCityButton.h"
+#import "WYMTrip.h"
 
 @interface WYCitiesController ()
 
@@ -56,13 +57,12 @@
     
     UIScrollView *scrollContainer = [[UIScrollView alloc] init];
     scrollContainer.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-STATUS_BAR_H-NAV_BAR_BTN_H);
-    scrollContainer.backgroundColor = [UIColor whiteColor];
     scrollContainer.delaysContentTouches = YES;
     scrollContainer.scrollEnabled = YES;
     scrollContainer.contentSize = CGSizeMake(SCREEN_WIDTH, MAX(scrollSizeH, SCREEN_HEIGHT-STATUS_BAR_H-NAV_BAR_BTN_H));
     [self.view addSubview:scrollContainer];
     
-    UILabel *countryTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
+    UILabel *countryTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
     countryTitle.font = [UIFont systemFontOfSize:17];
     countryTitle.textAlignment = NSTextAlignmentCenter;
     [countryTitle setText:_country.name];
@@ -70,8 +70,8 @@
     [scrollContainer addSubview:countryTitle];
     
     for (int i = 0; i < [allCities count]; i++) {
-        WYPlaceButton *pb = [[WYPlaceButton alloc] initButtonWithPlace:[allCities objectAtIndex:i] atIndex:i];
-        [pb addTarget:self action:@selector(onClickCity:) forControlEvents:UIControlEventTouchUpInside];
+        WYCityButton *pb = [[WYCityButton alloc] initButtonWithCity:[allCities objectAtIndex:i] atIndex:i];
+        [pb registerChooseCityFunction];
         [scrollContainer addSubview:pb];
     }
     
@@ -84,22 +84,6 @@
 
 - (void)onClickOK:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
-- (void)onClickCity:(id)sender {
-    if ([sender isKindOfClass:[WYPlaceButton class]]) {
-        if ([(WYPlaceButton *)sender isSelected]) {
-            [(WYPlaceButton *)sender setSelected:NO];
-            
-//            WYMTrip *creatingNewTrip = [[WYDataEngine sharedDataEngine] creatingTrip];
-//            [creatingNewTrip add]
-            
-        } else {
-            
-            [(WYPlaceButton *)sender setSelected:YES];
-            
-        }
-    }
 }
 
 

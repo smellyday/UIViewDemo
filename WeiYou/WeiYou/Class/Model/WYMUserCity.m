@@ -13,6 +13,7 @@
 
 @implementation WYMUserCity
 @synthesize sysCity = _sysCity;
+@synthesize countryOfUser = _countryOfUser;
 @synthesize chosenSpots = _chosenSpots;
 
 - (id)initWithSystemCity:(WYMCity *)city {
@@ -24,11 +25,15 @@
 }
 
 - (void)addSpot:(WYMUserSpot *)spot {
+    if (!_chosenSpots) {
+        _chosenSpots = [NSMutableArray arrayWithCapacity:10];
+    }
     
+    [_chosenSpots addObject:spot];
 }
 
 - (void)delSpot:(WYMUserSpot *)spot {
-    
+    [_chosenSpots removeObject:spot];
 }
 
 - (NSDictionary *)transferToDic {

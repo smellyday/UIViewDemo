@@ -66,13 +66,14 @@
         [contiView addSubview:continentTitle];
         
         NSArray *cntyArr = continent.allCountries;
+
         int cntyCount = MIN([cntyArr count], 12);
         for (int ci = 0; ci < cntyCount; ci++) {
             if (ci == 11) {
-                WYCountryButton *cb = [[WYCountryButton alloc] initButtonWithPlace:nil atIndex:ci];
+                WYCountryButton *cb = [[WYCountryButton alloc] initButtonWithCoutry:nil atIndex:ci];
                 [contiView addSubview:cb];
             } else {
-                WYCountryButton *cb = [[WYCountryButton alloc] initButtonWithPlace:[cntyArr objectAtIndex:ci] atIndex:ci];
+                WYCountryButton *cb = [[WYCountryButton alloc] initButtonWithCoutry:[cntyArr objectAtIndex:ci] atIndex:ci];
                 [cb addTarget:self action:@selector(onClickCountryBtn:) forControlEvents:UIControlEventTouchUpInside];
                 [contiView addSubview:cb];
             }

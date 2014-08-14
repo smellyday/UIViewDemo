@@ -135,6 +135,7 @@
 		69BD616A199C6BE900E9F7DA /* WYMUserCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BD6169199C6BE900E9F7DA /* WYMUserCountry.m */; };
 		69BD616D199C6BF700E9F7DA /* WYMUserCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BD616C199C6BF700E9F7DA /* WYMUserCity.m */; };
 		69BD6170199C6C0900E9F7DA /* WYMUserSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BD616F199C6C0900E9F7DA /* WYMUserSpot.m */; };
+		69BD6173199C91D900E9F7DA /* WYCityButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BD6172199C91D900E9F7DA /* WYCityButton.m */; };
 		69CA3F0D1962B6520004910A /* olderTrips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69CA3F0C1962B6520004910A /* olderTrips.plist */; };
 		69E039A8199B4075000B6C75 /* continents.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69E039A7199B4075000B6C75 /* continents.plist */; };
 		69E039AD199B48A2000B6C75 /* btn_add_destination_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E039A9199B48A2000B6C75 /* btn_add_destination_h.png */; };
@@ -373,6 +374,8 @@
 		69BD616C199C6BF700E9F7DA /* WYMUserCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMUserCity.m; sourceTree = "<group>"; };
 		69BD616E199C6C0900E9F7DA /* WYMUserSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMUserSpot.h; sourceTree = "<group>"; };
 		69BD616F199C6C0900E9F7DA /* WYMUserSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMUserSpot.m; sourceTree = "<group>"; };
+		69BD6171199C91D900E9F7DA /* WYCityButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCityButton.h; sourceTree = "<group>"; };
+		69BD6172199C91D900E9F7DA /* WYCityButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCityButton.m; sourceTree = "<group>"; };
 		69CA3F0C1962B6520004910A /* olderTrips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = olderTrips.plist; sourceTree = "<group>"; };
 		69E039A7199B4075000B6C75 /* continents.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = continents.plist; sourceTree = "<group>"; };
 		69E039A9199B48A2000B6C75 /* btn_add_destination_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_add_destination_h.png; path = "Resources/百度云同步盘/btn_add_destination_h.png"; sourceTree = SOURCE_ROOT; };
@@ -917,6 +920,8 @@
 				69E039B9199B5F14000B6C75 /* WYPlaceButton.m */,
 				69E039C7199B7D70000B6C75 /* WYCountryButton.h */,
 				69E039C8199B7D70000B6C75 /* WYCountryButton.m */,
+				69BD6171199C91D900E9F7DA /* WYCityButton.h */,
+				69BD6172199C91D900E9F7DA /* WYCityButton.m */,
 			);
 			name = TripCreateAndEdit;
 			sourceTree = "<group>";
@@ -1153,6 +1158,7 @@
 				696CECB71974FD6600EE4544 /* WYTripController.m in Sources */,
 				5E5D676E186176B000ECA966 /* WYTripDayHotelCell.m in Sources */,
 				5E4D77351987BE03005720BD /* WYUserInfo.m in Sources */,
+				69BD6173199C91D900E9F7DA /* WYCityButton.m in Sources */,
 				699BE2F41988A7AD00FE6917 /* WYURLUtility.m in Sources */,
 				5E5BC263183EE6770003AC6D /* WYUserGuideViewController.m in Sources */,
 				5EBCF763185EFFD30057C1AE /* WYMSpot.m in Sources */,

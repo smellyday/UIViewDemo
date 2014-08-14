@@ -377,7 +377,6 @@
             case 1:
                 cty.mContinent = Asia;
                 [Asia addToAllCountry:cty];
-//                [Asia.allCountries addObject:cty];
                 break;
             case 2:
                 cty.mContinent = Europe;

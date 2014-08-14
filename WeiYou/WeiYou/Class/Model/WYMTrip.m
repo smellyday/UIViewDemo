@@ -13,6 +13,10 @@
 #import "WYMCountry.h"
 #import "WYMCity.h"
 #import "WYMSpot.h"
+#import "WYMUserContinent.h"
+#import "WYMUserCountry.h"
+#import "WYMUserCity.h"
+#import "WYMUserSpot.h"
 
 @implementation WYMTrip
 @synthesize tripVersion = _tripVersion;
@@ -65,30 +69,64 @@
 }
 
 - (void)chooseCity:(WYMUserCity *)city {
-    NSAssert(_chosenContinentsArray != nil, @"_chosenContinentsArray should not be nil!");
-/*
-    WYMContinent *chsCntnnt;
-    for (WYMContinent *continent in _chosenContinentsArray) {
-        if (continent.ID == city.mCountry.mContinent.ID) {
-            chsCntnnt = continent;
-            break;
+//    NSAssert(_chosenContinentsArray != nil, @"_chosenContinentsArray should not be nil!");
+
+    WYMUserContinent *chsCntnnt = [[WYMUserContinent alloc] initWithSystemContinent:city.sysCity.mCountry.mContinent];
+    if ([_chosenContinentsArray count] == 0) {
+        [_chosenContinentsArray addObject:chsCntnnt];
+    } else {
+        
+        int c = 0;
+        for (; c < [_chosenContinentsArray count]; c++) {
+            WYMUserContinent *continent = [_chosenContinentsArray objectAtIndex:c];
+            if (continent.ID == chsCntnnt.ID) {
+                chsCntnnt = continent;
+                break;
+            }
         }
-    }
-    if (!chsCntnnt) {
-        chsCntnnt = [[WYMContinent alloc] initWithOtherPlace:city.mCountry.mContinent];
-//        WYMCountry *chsCntry = [[WYMCountry alloc] initWithOtherPlace:city.mCountry];
-//        WYMCity *chsCty = [[WYMCity alloc] initWithOtherPlace:city];
-//        
-//        [chsCntry chooseCity:chsCty];
-//        [chsCntnnt chooseCountry:chsCntry];
-//        [_chosenContinentsArray addObject:chsCntnnt];
+        if (c >= [_chosenContinentsArray count]) {
+            [_chosenContinentsArray addObject:chsCntnnt];
+        }
+        
     }
     
-    WYMCountry *chsCntry
- */
+    WYMUserCountry *chsCntry = [[WYMUserCountry alloc] initWithSystemCountry:city.sysCity.mCountry];
+    chsCntry.continentOfUser = chsCntnnt;
+    if ([[chsCntnnt chosenCountries] count] == 0) {
+        [chsCntnnt addCountry:chsCntry];
+    } else {
+        
+        int c = 0;
+        for (; c < [[chsCntnnt chosenCountries] count]; c++) {
+            WYMUserCountry *country = [[chsCntnnt chosenCountries] objectAtIndex:c];
+            if (country.ID == chsCntry.ID) {
+                chsCntry = country;
+                break;
+            }
+        }
+        if (c >= [[chsCntnnt chosenCountries] count]) {
+            [chsCntnnt addCountry:chsCntry];
+        }
+        
+    }
+    
+    city.countryOfUser = chsCntry;
+    [chsCntry addCity:city];
+    
 }
 
 - (void)unchooseCity:(WYMUserCity *)city {
+    [city.countryOfUser delCity:city];
+    
+    if ([city.countryOfUser.chosenCities count] == 0) {
+        
+        [city.countryOfUser.continentOfUser delCountry:city.countryOfUser];
+        
+        if ([city.countryOfUser.continentOfUser.chosenCountries count] == 0) {
+            [_chosenContinentsArray removeObject:city.countryOfUser.continentOfUser];
+        }
+        
+    }
     
 }
 

@@ -13,6 +13,7 @@
 
 @implementation WYMUserCountry
 @synthesize chosenCities = _chosenCities;
+@synthesize continentOfUser = _continentOfUser;
 @synthesize sysCountry = _sysCountry;
 
 - (id)initWithSystemCountry:(WYMCountry *)country {
@@ -24,11 +25,15 @@
 }
 
 - (void)addCity:(WYMUserCity *)city {
+    if (!_chosenCities) {
+        _chosenCities = [NSMutableArray arrayWithCapacity:10];
+    }
     
+    [_chosenCities addObject:city];
 }
 
 - (void)delCity:(WYMUserCity *)city {
-    
+    [_chosenCities removeObject:city];
 }
 
 - (NSDictionary *)transferToDic {

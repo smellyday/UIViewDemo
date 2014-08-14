@@ -24,11 +24,15 @@
 }
 
 - (void)addCountry:(WYMUserCountry *)country {
+    if (!_chosenCountries) {
+        _chosenCountries = [NSMutableArray arrayWithCapacity:10];
+    }
     
+    [_chosenCountries addObject:country];
 }
 
 - (void)delCountry:(WYMUserCountry *)country {
-    
+    [_chosenCountries removeObject:country];
 }
 
 - (NSDictionary *)transferToDic {

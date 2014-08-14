@@ -235,6 +235,7 @@
 		return;
 	}
 	
+    [[WYDataEngine sharedDataEngine] cancelCreatingTrip];
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -337,6 +338,7 @@
 		if (buttonIndex == 0) {
 				// do nothing.
 		} else if (buttonIndex == 1) {
+            [[WYDataEngine sharedDataEngine] cancelCreatingTrip];
 			[self dismissViewControllerAnimated:YES completion:nil];
 		}
 	}

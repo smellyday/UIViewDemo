@@ -8,13 +8,15 @@
 
 #import "WYMPlace.h"
 
-@class WYMUserSpot, WYMCity;
+@class WYMUserSpot, WYMCity, WYMUserCountry;
 @interface WYMUserCity : WYMPlace {
     WYMCity *_sysCity;
+    WYMUserCountry *_countryOfUser;
     NSMutableArray *_chosenSpots;
 }
 
 @property (nonatomic, readonly) WYMCity *sysCity;
+@property (nonatomic, strong) WYMUserCountry *countryOfUser;
 @property (nonatomic, readonly) NSMutableArray *chosenSpots;
 
 - (id)initWithSystemCity:(WYMCity *)city;
