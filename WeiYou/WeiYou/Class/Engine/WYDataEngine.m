@@ -44,10 +44,15 @@
 
 //=========create new trip===========
 - (void)createNewTrip {
+    NSAssert(_creatingTrip==nil, @"_creatingTrip must be nil");
     _creatingTrip = [[WYMTrip alloc] init];
 }
 
 - (void)finishCreatingTrip {
+    _creatingTrip = nil;
+}
+
+- (void)cancelCreatingTrip {
     _creatingTrip = nil;
 }
 
@@ -316,30 +321,6 @@
     return _allContinents;
 }
 
-//- (WYMCity *)getCityByID:(NSNumber *)city_id {
-//	return nil;
-//}
-//
-//- (WYMCountry *)getCountryByID:(NSNumber *)country_id {
-//    for (WYMContinent *conti in self.allContinents) {
-//        if ([cty.ID isEqual:country_id]) {
-//            return cty;
-//        }
-//    }
-//    
-//	return nil;
-//}
-//
-//- (WYMContinent *)getContinentByID:(NSNumber *)continent_id {
-//    for (WYMContinent *cnt in self.allContinents) {
-//        if ([cnt.ID isEqual:continent_id]) {
-//            return cnt;
-//        }
-//    }
-//    
-//	return nil;
-//}
-
 //========private============
 - (void)initAllContinents {
     LOGFUNCTION;
@@ -394,25 +375,32 @@
         
         switch ([cty.parentID intValue]) {
             case 1:
+                cty.mContinent = Asia;
                 [Asia addToAllCountry:cty];
 //                [Asia.allCountries addObject:cty];
                 break;
             case 2:
+                cty.mContinent = Europe;
                 [Europe addToAllCountry:cty];
                 break;
             case 3:
+                cty.mContinent = NorthAmerica;
                 [NorthAmerica addToAllCountry:cty];
                 break;
             case 4:
+                cty.mContinent = SouthAmerica;
                 [SouthAmerica addToAllCountry:cty];
                 break;
             case 5:
+                cty.mContinent = Oceania;
                 [Oceania addToAllCountry:cty];
                 break;
             case 6:
+                cty.mContinent = Africa;
                 [Africa addToAllCountry:cty];
                 break;
             case 7:
+                cty.mContinent = Antarctica;
                 [Antarctica addToAllCountry:cty];
                 break;
                 

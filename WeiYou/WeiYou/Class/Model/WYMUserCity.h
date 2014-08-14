@@ -8,6 +8,18 @@
 
 #import "WYMPlace.h"
 
-@interface WYMUserCity : WYMPlace
+@class WYMUserSpot, WYMCity;
+@interface WYMUserCity : WYMPlace {
+    WYMCity *_sysCity;
+    NSMutableArray *_chosenSpots;
+}
+
+@property (nonatomic, readonly) WYMCity *sysCity;
+@property (nonatomic, readonly) NSMutableArray *chosenSpots;
+
+- (id)initWithSystemCity:(WYMCity *)city;
+- (void)addSpot:(WYMUserSpot *)spot;
+- (void)delSpot:(WYMUserSpot *)spot;
+- (NSDictionary *)transferToDic;
 
 @end

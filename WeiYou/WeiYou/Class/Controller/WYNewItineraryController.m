@@ -10,6 +10,7 @@
 #import "WYFunctionUtility.h"
 #import "consts.h"
 #import "WYCountriesController.h"
+#import "WYDataEngine.h"
 
 @interface WYNewItineraryController ()
 
@@ -37,6 +38,9 @@
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
 	self.title = NSLocalizedString(@"create new trip", @"create new trip");
+    
+    // init wymtrip in DataEngine.
+    [[WYDataEngine sharedDataEngine] createNewTrip];
     
     // prepare data for date picker.
     [self initPickerData];
@@ -134,7 +138,7 @@
     [addDesBtn addTarget:self action:@selector(addDestination:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addDesBtn];
     
-		// picker view.
+    // picker view.
     CGFloat bh = 40.0;
     CGFloat bw = 60.0;
     UIButton *okbtn = [[UIButton alloc] init];
@@ -154,7 +158,6 @@
     _datePickerView.dataSource = self;
     _datePickerView.delegate = self;
     _datePickerView.showsSelectionIndicator = YES;
-
     
     UIView *inputView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, KEYBOARD_HEIGHT_P+40)];
     [inputView addSubview:okbtn];

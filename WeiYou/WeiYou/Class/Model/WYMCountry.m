@@ -12,7 +12,7 @@
 
 @implementation WYMCountry
 @synthesize allCities = _allCities;
-@synthesize chosenCities = _chosenCities;
+@synthesize mContinent = _mContinent;
 
 
 - (NSMutableArray *)allCities {
@@ -22,6 +22,7 @@
         for (int i = 0; i < 100; i++) {
             NSDictionary *infoDic = @{@"id":@"1002", @"parent_id":@"208", @"name":@{@"en":@"Beijing", @"zh-CN":@"北京"}};
             WYMCity *mcity = [[WYMCity alloc] initWithInfoDic:infoDic];
+            mcity.mCountry = self;
             [_allCities addObject:mcity];
         }
         
@@ -30,8 +31,13 @@
     return _allCities;
 }
 
-- (NSDictionary *)transferToDic {
-    return nil;
+
+- (void)addToAllCity:(WYMCity *)city {
+    if (!_allCities) {
+        _allCities = [NSMutableArray arrayWithCapacity:10];
+    }
+    
+    [_allCities addObject:city];
 }
 
 

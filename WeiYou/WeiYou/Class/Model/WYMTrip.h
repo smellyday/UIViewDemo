@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class WYMCity, WYMSpot;
+@class WYMUserCity;
 @interface WYMTrip : NSObject {
 	
 	NSNumber *_tripID;
@@ -54,8 +54,8 @@
 - (void)updateTripInfoFromServer;
 
 	//edit
-//- (void)addCity:(WYMCity *)city;
-//- (void)delCity:(WYMCity *)city;
+- (void)chooseCity:(WYMUserCity *)city;
+- (void)unchooseCity:(WYMUserCity *)city;
 //- (void)addSpot:(WYMSpot *)spot;
 //- (void)delSpot:(WYMSpot *)spot;
 

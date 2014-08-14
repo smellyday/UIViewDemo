@@ -88,6 +88,17 @@
 
 - (void)onClickCity:(id)sender {
     if ([sender isKindOfClass:[WYPlaceButton class]]) {
+        if ([(WYPlaceButton *)sender isSelected]) {
+            [(WYPlaceButton *)sender setSelected:NO];
+            
+//            WYMTrip *creatingNewTrip = [[WYDataEngine sharedDataEngine] creatingTrip];
+//            [creatingNewTrip add]
+            
+        } else {
+            
+            [(WYPlaceButton *)sender setSelected:YES];
+            
+        }
     }
 }
 

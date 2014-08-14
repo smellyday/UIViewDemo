@@ -19,5 +19,7 @@
 @property (nonatomic, readonly) NSString *name;
 
 - (id)initWithInfoDic:(NSDictionary *)infoDic;
+- (id)initWithID:(NSNumber *)mid parentID:(NSNumber *)pid name:(NSString *)mname;
+- (id)initWithOtherPlace:(WYMPlace *)place;
 
 @end

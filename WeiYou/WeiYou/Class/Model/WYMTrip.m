@@ -9,6 +9,10 @@
 #import "WYMTrip.h"
 #import "WYMTripDay.h"
 #import "consts.h"
+#import "WYMContinent.h"
+#import "WYMCountry.h"
+#import "WYMCity.h"
+#import "WYMSpot.h"
 
 @implementation WYMTrip
 @synthesize tripVersion = _tripVersion;
@@ -60,6 +64,36 @@
 	return self;
 }
 
+- (void)chooseCity:(WYMUserCity *)city {
+    NSAssert(_chosenContinentsArray != nil, @"_chosenContinentsArray should not be nil!");
+/*
+    WYMContinent *chsCntnnt;
+    for (WYMContinent *continent in _chosenContinentsArray) {
+        if (continent.ID == city.mCountry.mContinent.ID) {
+            chsCntnnt = continent;
+            break;
+        }
+    }
+    if (!chsCntnnt) {
+        chsCntnnt = [[WYMContinent alloc] initWithOtherPlace:city.mCountry.mContinent];
+//        WYMCountry *chsCntry = [[WYMCountry alloc] initWithOtherPlace:city.mCountry];
+//        WYMCity *chsCty = [[WYMCity alloc] initWithOtherPlace:city];
+//        
+//        [chsCntry chooseCity:chsCty];
+//        [chsCntnnt chooseCountry:chsCntry];
+//        [_chosenContinentsArray addObject:chsCntnnt];
+    }
+    
+    WYMCountry *chsCntry
+ */
+}
+
+- (void)unchooseCity:(WYMUserCity *)city {
+    
+}
+
+
+// network connection.
 - (void)addNewTripToServer {
     
 }
@@ -93,21 +127,23 @@
 }
 
 - (NSDictionary *)transferToDic {
-    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
-    [infoDic setObject:_tripName forKey:WY_TRIP_NAME];
-    [infoDic setObject:_tripDescription forKey:WY_TRIP_DES];
-    [infoDic setObject:_tripMainImageURL forKey:WY_TRIP_MAIN_IMAGE_URL];
-    [infoDic setObject:_tripBeginDate forKey:WY_TRIP_BEGIN_DATE];
+//    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
+//    [infoDic setObject:_tripName forKey:WY_TRIP_NAME];
+//    [infoDic setObject:_tripDescription forKey:WY_TRIP_DES];
+//    [infoDic setObject:_tripMainImageURL forKey:WY_TRIP_MAIN_IMAGE_URL];
+//    [infoDic setObject:_tripBeginDate forKey:WY_TRIP_BEGIN_DATE];
+//    
+//    NSMutableArray *daysArr = [NSMutableArray arrayWithCapacity:10];
+//    for (WYMTripDay *tripDay in _tripDaysArray) {
+//        NSDictionary *dayInfoDic = [tripDay transferToDic];
+//        [daysArr addObject:dayInfoDic];
+//    }
+//    [infoDic setObject:daysArr forKey:WY_TRIP_DAYS];
+//
+//    
+//    return (NSDictionary *)infoDic;
     
-    NSMutableArray *daysArr = [NSMutableArray arrayWithCapacity:10];
-    for (WYMTripDay *tripDay in _tripDaysArray) {
-        NSDictionary *dayInfoDic = [tripDay transferToDic];
-        [daysArr addObject:dayInfoDic];
-    }
-    [infoDic setObject:daysArr forKey:WY_TRIP_DAYS];
-
-    
-    return (NSDictionary *)infoDic;
+    return nil;
 }
 
 @end

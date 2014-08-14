@@ -38,8 +38,10 @@
     
     [self setTitleColor:COLOR_ON_PLACE_N forState:UIControlStateNormal];
     [self setTitleColor:COLOR_ON_PLACE_H forState:UIControlStateHighlighted];
+    [self setTitleColor:COLOR_ON_PLACE_H forState:UIControlStateSelected];
     [self setBackgroundImage:[UIImage imageNamed:PIC_BTN_PLACE_N] forState:UIControlStateNormal];
     [self setBackgroundImage:[UIImage imageNamed:PIC_BTN_PLACE_H] forState:UIControlStateHighlighted];
+    [self setBackgroundImage:[UIImage imageNamed:PIC_BTN_PLACE_H] forState:UIControlStateSelected];
     self.titleLabel.font = [UIFont systemFontOfSize:13];
     self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     

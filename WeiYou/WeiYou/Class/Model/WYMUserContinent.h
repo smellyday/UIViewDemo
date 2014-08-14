@@ -8,6 +8,18 @@
 
 #import "WYMPlace.h"
 
-@interface WYMUserContinent : WYMPlace
+@class WYMUserCountry, WYMContinent;
+@interface WYMUserContinent : WYMPlace {
+    WYMContinent *_sysContinent;
+    NSMutableArray *_chosenCountries;
+}
+
+@property (nonatomic, readonly) WYMContinent *sysContinent;
+@property (nonatomic, readonly) NSMutableArray *chosenCountries;
+
+- (id)initWithSystemContinent:(WYMContinent *)continent;
+- (void)addCountry:(WYMUserCountry *)country;
+- (void)delCountry:(WYMUserCountry *)country;
+- (NSDictionary *)transferToDic;
 
 @end
