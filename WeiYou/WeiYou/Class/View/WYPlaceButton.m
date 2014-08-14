@@ -22,17 +22,15 @@
 }
 
 - (id)initButtonWithPlace:(WYMPlace *)place atIndex:(int)index {
-    CGFloat gapLeftW = 8.0;
-    CGFloat gapMidW = 23.0;
-    CGFloat gapTopH = 35.0;
-    CGFloat gapMidH = 13.0;
-    CGFloat w = 86.0;
-    CGFloat h = 22.0;
+    CGFloat gapLeftW = 1.0;
+    CGFloat gapTopH = 30.0;
+    CGFloat w = 106.0;
+    CGFloat h = 35.0;
     
     int wn = index % 3;
     int hn = index / 3;
     
-    self = [self initWithFrame:CGRectMake(gapLeftW+wn*w+wn*gapMidW, gapTopH+hn*h+hn*gapMidH, w, h)];
+    self = [self initWithFrame:CGRectMake(gapLeftW+wn*w, gapTopH+hn*h, w, h)];
     
     _thePlace = place;
     
@@ -50,6 +48,8 @@
     } else {
         [self setTitle:@"更多" forState:UIControlStateNormal];
     }
+    
+    self.titleEdgeInsets = UIEdgeInsetsMake(5, 15, 5, 15);
     
     return self;
 }

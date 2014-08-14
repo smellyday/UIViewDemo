@@ -58,7 +58,7 @@
         [scrollContainer addSubview:contiView];
         
         WYMContinent *continent = [allContinents objectAtIndex:i];
-        UILabel *continentTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
+        UILabel *continentTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
         continentTitle.font = [UIFont systemFontOfSize:17];
         continentTitle.textAlignment = NSTextAlignmentCenter;
         [continentTitle setText:continent.name];
@@ -79,7 +79,7 @@
         }
         
         UIImageView *gapLine = [[UIImageView alloc] initWithImage:[UIImage imageNamed:PIC_ICON_DESTI_LINE]];
-        gapLine.frame = CGRectMake(0, 175, SCREEN_WIDTH, 1);
+        gapLine.frame = CGRectMake(0, contiH-1, SCREEN_WIDTH, 1);
         [contiView addSubview:gapLine];
     }
     
