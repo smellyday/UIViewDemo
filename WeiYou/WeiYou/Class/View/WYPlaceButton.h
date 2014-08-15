@@ -10,11 +10,8 @@
 #import "WYMPlace.h"
 
 
-@interface WYPlaceButton : UIButton {
-    WYMPlace *_thePlace;
-}
+@interface WYPlaceButton : UIButton
 
-@property (nonatomic, readonly) WYMPlace *thePlace;
 
 - (id)initButtonWithPlace:(WYMPlace *)place atIndex:(int)index;
 

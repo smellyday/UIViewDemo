@@ -9,6 +9,7 @@
 #import "WYMUserCountry.h"
 #import "WYMCountry.h"
 #import "WYMUserCity.h"
+#import "WYMUserContinent.h"
 #import "consts.h"
 
 @implementation WYMUserCountry
@@ -33,7 +34,19 @@
 }
 
 - (void)delCity:(WYMUserCity *)city {
-    [_chosenCities removeObject:city];
+    for (WYMUserCity *userCity in _chosenCities) {
+        if (city.ID == userCity.ID) {
+            mlog(@"I got you!! The city I want to unchoose.");
+            [_chosenCities removeObject:userCity];
+            
+            if ([_chosenCities count] == 0) {
+                [userCity.countryOfUser.continentOfUser delCountry:userCity.countryOfUser];
+            }
+            
+            userCity.countryOfUser = nil;
+            break;
+        }
+    }
 }
 
 - (NSDictionary *)transferToDic {

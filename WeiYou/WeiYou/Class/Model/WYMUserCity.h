@@ -17,7 +17,7 @@
 
 @property (nonatomic, readonly) WYMCity *sysCity;
 @property (nonatomic, weak) WYMUserCountry *countryOfUser;
-@property (nonatomic, readonly) NSMutableArray *chosenSpots;
+@property (nonatomic, strong) NSMutableArray *chosenSpots;
 
 - (id)initWithSystemCity:(WYMCity *)city;
 - (void)addSpot:(WYMUserSpot *)spot;

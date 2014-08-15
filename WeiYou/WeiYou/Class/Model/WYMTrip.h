@@ -39,7 +39,7 @@
 @property (nonatomic, strong) NSDate *tripEndDate;
 @property (nonatomic, strong) NSDate *tripCreateDate;
 @property (nonatomic, readonly) NSMutableArray *tripDaysArray;
-@property (nonatomic, readonly) NSMutableArray *chosenContinentsArray;
+@property (nonatomic, strong) NSMutableArray *chosenContinentsArray;
 
 @property (nonatomic) BOOL isNewTrip;
 @property (nonatomic) BOOL deletTrip;
@@ -58,6 +58,9 @@
 - (void)unchooseCity:(WYMUserCity *)city;
 //- (void)addSpot:(WYMSpot *)spot;
 //- (void)delSpot:(WYMSpot *)spot;
+
+- (NSArray *)getAllChosenCountries;
+- (NSArray *)getAllChosenCities;
 
 - (NSDictionary *)transferToDic;
 

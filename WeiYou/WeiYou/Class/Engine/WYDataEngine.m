@@ -61,7 +61,6 @@
  this function should be in secondary thread.
  */
 - (void)bisynchronizeTrips {
-    LOGFUNCTION;
     
     [self.biSyncQueue cancelAllOperations];
     WYBiSyncTripsOperation *bisyncOp = [[WYBiSyncTripsOperation alloc] init];
@@ -257,7 +256,6 @@
 
 
 - (NSArray *)getTripsInfoDicFromLocal {
-    LOGFUNCTION;
     NSString *dataPath = [self getDataPath];
     
     BOOL fileExist = [[NSFileManager defaultManager] fileExistsAtPath:dataPath];

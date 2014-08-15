@@ -9,6 +9,8 @@
 #import "WYMUserContinent.h"
 #import "WYMContinent.h"
 #import "WYMUserCountry.h"
+#import "WYMTrip.h"
+#import "WYDataEngine.h"
 #import "consts.h"
 
 @implementation WYMUserContinent
@@ -32,7 +34,18 @@
 }
 
 - (void)delCountry:(WYMUserCountry *)country {
-    [_chosenCountries removeObject:country];
+    for (WYMUserCountry *userContry in _chosenCountries) {
+        if (userContry.ID == country.ID) {
+            [_chosenCountries removeObject:userContry];
+            
+            if ([_chosenCountries count] == 0) {
+                [[[[WYDataEngine sharedDataEngine] creatingTrip] chosenContinentsArray] removeObject:userContry.continentOfUser];
+            }
+            
+            userContry.continentOfUser = nil;
+            break;
+        }
+    }
 }
 
 - (NSDictionary *)transferToDic {

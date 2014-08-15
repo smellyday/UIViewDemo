@@ -8,15 +8,17 @@
 
 #import "WYPlaceButton.h"
 #import "WYMCity.h"
+#import "WYMUserCity.h"
 
 @interface WYCityButton : WYPlaceButton {
-    WYMCity *_theCity;
+    WYMCity *_sysCity;
+    WYMUserCity *_userCity;
 }
 
-@property (nonatomic, readonly) WYMCity *theCity;
+@property (nonatomic, readonly) WYMCity *sysCity;
+@property (nonatomic, strong) WYMUserCity *userCity;
 
 - (id)initButtonWithCity:(WYMCity *)city atIndex:(int)index;
-- (void)registerChooseCityFunction;
 
 
 @end

@@ -11,29 +11,17 @@
 #import "consts.h"
 
 @implementation WYCountryButton
-@synthesize theCountry = _theCountry;
+@synthesize sysCountry = _sysCountry;
+@synthesize userCountry = _userCountry;
 
 
 - (id)initButtonWithCoutry:(WYMCountry *)country atIndex:(int)index {
     self = [super initButtonWithPlace:country atIndex:index];
     if (self) {
-        _theCountry = country;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chosenCityChangeNoti:) name:@"chosenCityChanged" object:nil];
+        _sysCountry = country;
     }
     
     return self;
-}
-
-- (void)chosenCityChangeNoti:(NSNotification *)notification {
-    LOGFUNCTION;
-    if ([notification.object isKindOfClass:[WYMUserCity class]]) {
-        WYMUserCity *tc = (WYMUserCity *)notification.object;
-        if (tc.ID == _theCountry.ID) {
-            self.selected = YES;
-        } else {
-            self.selected = NO;
-        }
-    }
 }
 
 

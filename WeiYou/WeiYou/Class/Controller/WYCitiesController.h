@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class WYMCountry;
+@class WYCountryButton;
 @interface WYCitiesController : UIViewController {
-    WYMCountry *_country;
+    WYCountryButton *_countryBtn;
 }
 
-@property (nonatomic, strong) WYMCountry *country;
+@property (nonatomic, strong) WYCountryButton *countryBtn;
 
 @end

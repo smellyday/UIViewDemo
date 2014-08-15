@@ -99,7 +99,6 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    LOGFUNCTION;
     if ([[url description] hasPrefix:PREFIX_QQ]) {
         return [TencentOAuth HandleOpenURL:url];
     } else if ([[url description] hasPrefix:PREFIX_SINA]) {
@@ -119,7 +118,6 @@
 }
 
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response {
-	LOGFUNCTION;
     if ([response isKindOfClass:WBAuthorizeResponse.class]) {
         NSString *userid = [(WBAuthorizeResponse *)response userID];
         NSString *token = [(WBAuthorizeResponse *)response accessToken];

@@ -18,6 +18,7 @@
 #import "WYMUserCity.h"
 #import "WYMUserSpot.h"
 
+
 @implementation WYMTrip
 @synthesize tripVersion = _tripVersion;
 @synthesize tripOrder = _tripOrder;
@@ -35,6 +36,15 @@
 @synthesize deletTrip = _deletTrip;
 @synthesize shouldUpdate = _shouldUpdate;
 @synthesize changeWhenUploading = _changeWhenUploading;
+
+- (id)init {
+    self = [super init];
+    if (self) {
+		_tripDaysArray = [NSMutableArray arrayWithCapacity:10];
+        _chosenContinentsArray = [NSMutableArray arrayWithCapacity:2];
+    }
+    return self;
+}
 
 - (id)initWithTripInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
@@ -68,66 +78,79 @@
 	return self;
 }
 
-- (void)chooseCity:(WYMUserCity *)city {
+- (void)chooseCity:(WYMUserCity *)userCity {
 //    NSAssert(_chosenContinentsArray != nil, @"_chosenContinentsArray should not be nil!");
 
-    WYMUserContinent *chsCntnnt = [[WYMUserContinent alloc] initWithSystemContinent:city.sysCity.mCountry.mContinent];
-    if ([_chosenContinentsArray count] == 0) {
+    WYMUserContinent *chsCntnnt = [[WYMUserContinent alloc] initWithSystemContinent:userCity.sysCity.mCountry.mContinent];
+    int cConti = 0;
+    for (; cConti < [_chosenContinentsArray count]; cConti++) {
+        WYMUserContinent *continent = [_chosenContinentsArray objectAtIndex:cConti];
+        if (continent.ID == chsCntnnt.ID) {
+            chsCntnnt = continent;
+            break;
+        }
+    }
+    if (cConti >= [_chosenContinentsArray count]) {
+        mlog(@"you must be here");
+        
         [_chosenContinentsArray addObject:chsCntnnt];
-    } else {
         
-        int c = 0;
-        for (; c < [_chosenContinentsArray count]; c++) {
-            WYMUserContinent *continent = [_chosenContinentsArray objectAtIndex:c];
-            if (continent.ID == chsCntnnt.ID) {
-                chsCntnnt = continent;
-                break;
-            }
-        }
-        if (c >= [_chosenContinentsArray count]) {
-            [_chosenContinentsArray addObject:chsCntnnt];
-        }
+        WYMUserCountry *chsCountry = [[WYMUserCountry alloc] initWithSystemCountry:userCity.sysCity.mCountry];
+        chsCountry.continentOfUser = chsCntnnt;
+        [chsCntnnt addCountry:chsCountry];
         
+        userCity.countryOfUser = chsCountry;
+        [chsCountry addCity:userCity];
+        
+        return;
     }
     
-    WYMUserCountry *chsCntry = [[WYMUserCountry alloc] initWithSystemCountry:city.sysCity.mCountry];
+    WYMUserCountry *chsCntry = [[WYMUserCountry alloc] initWithSystemCountry:userCity.sysCity.mCountry];
     chsCntry.continentOfUser = chsCntnnt;
-    if ([[chsCntnnt chosenCountries] count] == 0) {
+    int cCountry = 0;
+    for (; cCountry < [[chsCntnnt chosenCountries] count]; cCountry++) {
+        WYMUserCountry *country = [[chsCntnnt chosenCountries] objectAtIndex:cCountry];
+        if (country.ID == chsCntry.ID) {
+            chsCntry = country;
+            break;
+        }
+    }
+    if (cCountry >= [[chsCntnnt chosenCountries] count]) {
         [chsCntnnt addCountry:chsCntry];
-    } else {
         
-        int c = 0;
-        for (; c < [[chsCntnnt chosenCountries] count]; c++) {
-            WYMUserCountry *country = [[chsCntnnt chosenCountries] objectAtIndex:c];
-            if (country.ID == chsCntry.ID) {
-                chsCntry = country;
-                break;
-            }
-        }
-        if (c >= [[chsCntnnt chosenCountries] count]) {
-            [chsCntnnt addCountry:chsCntry];
-        }
-        
+        userCity.countryOfUser = chsCntry;
+        [chsCntry addCity:userCity];
+        return;
     }
     
-    city.countryOfUser = chsCntry;
-    [chsCntry addCity:city];
+    userCity.countryOfUser = chsCntry;
+    [chsCntry addCity:userCity];
     
 }
 
 - (void)unchooseCity:(WYMUserCity *)city {
     [city.countryOfUser delCity:city];
+}
+
+- (NSArray *)getAllChosenCountries {
+    NSMutableArray *allChsCountries = [NSMutableArray arrayWithCapacity:10];
     
-    if ([city.countryOfUser.chosenCities count] == 0) {
-        
-        [city.countryOfUser.continentOfUser delCountry:city.countryOfUser];
-        
-        if ([city.countryOfUser.continentOfUser.chosenCountries count] == 0) {
-            [_chosenContinentsArray removeObject:city.countryOfUser.continentOfUser];
-        }
-        
+    for (WYMUserContinent *continent in _chosenContinentsArray) {
+        [allChsCountries addObjectsFromArray:continent.chosenCountries];
     }
     
+    return (NSArray *)allChsCountries;
+}
+
+- (NSArray *)getAllChosenCities {
+    NSArray *chsCountries = [self getAllChosenCountries];
+    NSMutableArray *allChosenCities = [NSMutableArray arrayWithCapacity:10];
+    
+    for (WYMUserCountry *country in chsCountries) {
+        [allChosenCities addObjectsFromArray:country.chosenCities];
+    }
+    
+    return (NSArray *)allChosenCities;
 }
 
 

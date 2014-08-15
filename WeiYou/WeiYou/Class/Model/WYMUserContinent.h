@@ -15,7 +15,7 @@
 }
 
 @property (nonatomic, readonly) WYMContinent *sysContinent;
-@property (nonatomic, readonly) NSMutableArray *chosenCountries;
+@property (nonatomic, strong) NSMutableArray *chosenCountries;
 
 - (id)initWithSystemContinent:(WYMContinent *)continent;
 - (void)addCountry:(WYMUserCountry *)country;
