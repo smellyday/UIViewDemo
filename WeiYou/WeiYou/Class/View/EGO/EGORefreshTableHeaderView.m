@@ -174,8 +174,7 @@
 #pragma mark -
 #pragma mark ScrollView Methods
 
-- (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView {	
-//	NSLog(@"egoRefreshScrollViewDidScroll scrollView.contentOffset.y= %f", scrollView.contentOffset.y);
+- (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView {
 	if (_state == EGOOPullRefreshLoading) {
 		
 		CGFloat offset = MAX(scrollView.contentOffset.y * -1, 0);
@@ -204,7 +203,6 @@
 }
 
 - (void)egoRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView {
-    //NSLog(@"egoRefreshScrollViewDidEndDragging scrollView.contentOffset.y= %f", scrollView.contentOffset.y);
 	BOOL _loading = NO;
 	if ([_delegate respondsToSelector:@selector(egoRefreshTableDataSourceIsLoading:)]) {
 		_loading = [_delegate egoRefreshTableDataSourceIsLoading:self];

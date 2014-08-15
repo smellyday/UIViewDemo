@@ -183,7 +183,7 @@
 }
 
 #pragma mark - NOTI
-- (void)doWhenSinaAuthSuccess:(id)sender {
+- (void)doWhenSinaAuthSuccess:(NSNotification *)notification {
     //fetch user info from sina.
     NSString *userInfoBaseStr = @"https://api.weibo.com/2/users/show.json";
     NSString *token = [[[WYGlobalState sharedGlobalState] sinaUserInfo] authToken];
@@ -199,7 +199,7 @@
 
 }
 
-- (void)doWhenLoginSuccess:(id)sender {
+- (void)doWhenLoginSuccess:(NSNotification *)notification {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -304,7 +304,6 @@
 //===
 #pragma mark - Tencent Session Delegate
 - (void)tencentDidLogin {
-    LOGFUNCTION;
 	if (_tcOAuth.accessToken != nil && 0 != [_tcOAuth.accessToken length]) {
 		[[[WYGlobalState sharedGlobalState] qqUserInfo] setAuthToken:_tcOAuth.accessToken];
 		[[[WYGlobalState sharedGlobalState] qqUserInfo] setOpenID:_tcOAuth.openId];
@@ -336,7 +335,7 @@
 }
 
 - (void)getUserInfoResponse:(APIResponse *)response {
-    LOGFUNCTION;mlog(@"QQ getUserInfo response : \n%@", [response.jsonResponse description]);
+    mlog(@"QQ getUserInfo response : \n%@", [response.jsonResponse description]);
 	
     if (response.retCode == 0) {
         int retCode = [[response.jsonResponse objectForKey:@"ret"] intValue];
@@ -372,21 +371,21 @@
 }
 
 - (void)tencentOAuth:(TencentOAuth *)tencentOAuth doCloseViewController:(UIViewController *)viewController {
-    LOGFUNCTION;
+    MLOGFUNCTION;
 }
 
 - (BOOL)tencentNeedPerformIncrAuth:(TencentOAuth *)tencentOAuth withPermissions:(NSArray *)permissions {
-	LOGFUNCTION;
+	MLOGFUNCTION;
 	return YES;
 }
 
 - (BOOL)tencentNeedPerformReAuth:(TencentOAuth *)tencentOAuth {
-	LOGFUNCTION;
+	MLOGFUNCTION;
 	return YES;
 }
 
 - (NSArray *)getAuthorizedPermissions:(NSArray *)permissions withExtraParams:(NSDictionary *)extraParams {
-	LOGFUNCTION;
+	MLOGFUNCTION;
 	return permissions;
 }
 
@@ -477,7 +476,7 @@
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-    LOGFUNCTION;
+    MLOGFUNCTION;
     mlog(@"== WY Login Failed Response : %@", [request.error description]);
     NSError *error = request.error;
     if (error.code == 1) {

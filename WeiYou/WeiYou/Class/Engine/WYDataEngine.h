@@ -11,7 +11,6 @@
 @class WYMTrip;
 @interface WYDataEngine : NSObject {
 	NSMutableArray *_trips;
-    
     NSOperationQueue *_biSyncQueue;
     
     NSMutableArray *_allContinents;
@@ -21,13 +20,14 @@
 @property (nonatomic, strong) NSMutableArray *trips;
 @property (nonatomic, strong) NSOperationQueue *biSyncQueue;
 @property (nonatomic, readonly) NSMutableArray *allContinents;
-@property (nonatomic, readonly) WYMTrip *creatingTrip;
+@property (nonatomic, strong) WYMTrip *creatingTrip;
 
 + (id)sharedDataEngine;
 
 //create new trip
 - (void)createNewTrip;
 - (void)finishCreatingTrip;
+- (void)cancelCreatingTrip;
 
 //sync
 - (void)bisynchronizeTrips;

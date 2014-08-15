@@ -7,17 +7,26 @@
 //
 
 #import "WYCountryButton.h"
+#import "WYMUserCity.h"
+#import "consts.h"
 
 @implementation WYCountryButton
-@synthesize theCountry = _theCountry;
+@synthesize sysCountry = _sysCountry;
+@synthesize userCountry = _userCountry;
 
 
-- (id)initButtonWithPlace:(WYMCountry *)place atIndex:(int)index {
-    self = [super initButtonWithPlace:place atIndex:index];
-    _theCountry = place;
+- (id)initButtonWithCoutry:(WYMCountry *)country atIndex:(int)index {
+    self = [super initButtonWithPlace:country atIndex:index];
+    if (self) {
+        _sysCountry = country;
+    }
     
     return self;
 }
+
+
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

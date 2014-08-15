@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class WYMCity, WYMSpot;
+@class WYMUserCity;
 @interface WYMTrip : NSObject {
 	
 	NSNumber *_tripID;
@@ -39,7 +39,7 @@
 @property (nonatomic, strong) NSDate *tripEndDate;
 @property (nonatomic, strong) NSDate *tripCreateDate;
 @property (nonatomic, readonly) NSMutableArray *tripDaysArray;
-@property (nonatomic, readonly) NSMutableArray *chosenContinentsArray;
+@property (nonatomic, strong) NSMutableArray *chosenContinentsArray;
 
 @property (nonatomic) BOOL isNewTrip;
 @property (nonatomic) BOOL deletTrip;
@@ -54,10 +54,13 @@
 - (void)updateTripInfoFromServer;
 
 	//edit
-//- (void)addCity:(WYMCity *)city;
-//- (void)delCity:(WYMCity *)city;
+- (void)chooseCity:(WYMUserCity *)city;
+- (void)unchooseCity:(WYMUserCity *)city;
 //- (void)addSpot:(WYMSpot *)spot;
 //- (void)delSpot:(WYMSpot *)spot;
+
+- (NSArray *)getAllChosenCountries;
+- (NSArray *)getAllChosenCities;
 
 - (NSDictionary *)transferToDic;
 

@@ -6,16 +6,18 @@
 //  Copyright (c) 2014年 xiyuan. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "WYPlaceButton.h"
 #import "WYMCountry.h"
+#import "WYMUserCountry.h"
 
 @interface WYCountryButton : WYPlaceButton {
-    WYMCountry *_theCountry;
+    WYMCountry *_sysCountry;
+    WYMUserCountry *_userCountry;
 }
 
-@property (nonatomic, readonly) WYMCountry *theCountry;
+@property (nonatomic, readonly) WYMCountry *sysCountry;
+@property (nonatomic, strong) WYMUserCountry *userCountry;
 
-- (id)initButtonWithPlace:(WYMCountry *)place atIndex:(int)index;
+- (id)initButtonWithCoutry:(WYMCountry *)country atIndex:(int)index;
 
 @end

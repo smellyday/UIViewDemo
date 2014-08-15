@@ -24,4 +24,25 @@
 	return self;
 }
 
+// create a clean place.
+- (id)initWithID:(NSNumber *)mid parentID:(NSNumber *)pid name:(NSString *)mname {
+    self = [super init];
+	if (self) {
+        _ID = mid;
+        _parentID = pid;
+        _name = mname;
+	}
+	return self;
+}
+
+- (id)initWithOtherPlace:(WYMPlace *)place {
+    self = [super init];
+	if (self) {
+        _ID = place.ID;
+        _parentID = place.parentID;
+        _name = place.name;
+	}
+	return self;
+}
+
 @end

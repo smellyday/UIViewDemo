@@ -11,7 +11,6 @@
 
 @implementation WYMContinent
 @synthesize allCountries = _allCountries;
-@synthesize chosenCountries = _chosenCountries;
 
 
 - (void)addToAllCountry:(WYMCountry *)country {
@@ -20,22 +19,6 @@
     }
     
     [_allCountries addObject:country];
-}
-
-- (void)chooseCountry:(WYMCountry *)country {
-    if (!_chosenCountries) {
-        _chosenCountries = [NSMutableArray arrayWithCapacity:10];
-    }
-    
-    [_chosenCountries addObject:country];
-}
-
-- (void)unchooseCountry:(WYMCountry *)country {
-    
-}
-
-- (NSDictionary *)transferToDic {
-    return nil;
 }
 
 @end

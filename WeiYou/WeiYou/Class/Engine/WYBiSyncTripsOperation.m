@@ -19,7 +19,7 @@
 
 - (void)main {
     @autoreleasepool {
-        NSLog(@"########################################################");
+        mlog(@"########################################################");
         NSURL *updateURL = [NSURL URLWithString:@"http://www.baidu.com"];
         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:updateURL];
         
@@ -33,13 +33,13 @@
         }
         NSError *error = [request error];
         if ([error description] != nil) {
-            NSLog(@"error info is %@", [error description]);
+            mlog(@"error info is %@", [error description]);
         } else {
             NSData *responseData = [request responseData];
-            NSLog(@"\n\nrequest success and data is \n%@", [responseData description]);
+            mlog(@"\n\nrequest success and data is \n%@", [responseData description]);
             
         }
-        NSLog(@"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        mlog(@"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 }
 

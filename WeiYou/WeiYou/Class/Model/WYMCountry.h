@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "WYMPlace.h"
 
-
+@class WYMContinent, WYMCity;
 @interface WYMCountry : WYMPlace {
+    __weak WYMContinent *_mContinent;
     NSMutableArray *_allCities;
-    NSMutableArray *_chosenCities;
 }
 
+@property (nonatomic, weak) WYMContinent *mContinent;
 @property (nonatomic, readonly) NSMutableArray *allCities;
-@property (nonatomic, readonly) NSMutableArray *chosenCities;
 
-- (NSDictionary *)transferToDic;
+- (void)addToAllCity:(WYMCity *)city;
 
 @end

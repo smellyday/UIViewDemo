@@ -9,6 +9,15 @@
 #import "WYMTrip.h"
 #import "WYMTripDay.h"
 #import "consts.h"
+#import "WYMContinent.h"
+#import "WYMCountry.h"
+#import "WYMCity.h"
+#import "WYMSpot.h"
+#import "WYMUserContinent.h"
+#import "WYMUserCountry.h"
+#import "WYMUserCity.h"
+#import "WYMUserSpot.h"
+
 
 @implementation WYMTrip
 @synthesize tripVersion = _tripVersion;
@@ -27,6 +36,15 @@
 @synthesize deletTrip = _deletTrip;
 @synthesize shouldUpdate = _shouldUpdate;
 @synthesize changeWhenUploading = _changeWhenUploading;
+
+- (id)init {
+    self = [super init];
+    if (self) {
+		_tripDaysArray = [NSMutableArray arrayWithCapacity:10];
+        _chosenContinentsArray = [NSMutableArray arrayWithCapacity:2];
+    }
+    return self;
+}
 
 - (id)initWithTripInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
@@ -60,6 +78,83 @@
 	return self;
 }
 
+- (void)chooseCity:(WYMUserCity *)userCity {
+    NSAssert(_chosenContinentsArray != nil, @"_chosenContinentsArray should not be nil!");
+
+    WYMUserContinent *chsCntnnt = [[WYMUserContinent alloc] initWithSystemContinent:userCity.sysCity.mCountry.mContinent];
+    int cConti = 0;
+    for (; cConti < [_chosenContinentsArray count]; cConti++) {
+        WYMUserContinent *continent = [_chosenContinentsArray objectAtIndex:cConti];
+        if (continent.ID == chsCntnnt.ID) {
+            chsCntnnt = continent;
+            break;
+        }
+    }
+    if (cConti >= [_chosenContinentsArray count]) {
+        mlog(@"you must be here");
+        
+        [_chosenContinentsArray addObject:chsCntnnt];
+        
+        WYMUserCountry *chsCountry = [[WYMUserCountry alloc] initWithSystemCountry:userCity.sysCity.mCountry];
+        chsCountry.continentOfUser = chsCntnnt;
+        [chsCntnnt addCountry:chsCountry];
+        
+        userCity.countryOfUser = chsCountry;
+        [chsCountry addCity:userCity];
+        
+        return;
+    }
+    
+    WYMUserCountry *chsCntry = [[WYMUserCountry alloc] initWithSystemCountry:userCity.sysCity.mCountry];
+    chsCntry.continentOfUser = chsCntnnt;
+    int cCountry = 0;
+    for (; cCountry < [[chsCntnnt chosenCountries] count]; cCountry++) {
+        WYMUserCountry *country = [[chsCntnnt chosenCountries] objectAtIndex:cCountry];
+        if (country.ID == chsCntry.ID) {
+            chsCntry = country;
+            break;
+        }
+    }
+    if (cCountry >= [[chsCntnnt chosenCountries] count]) {
+        [chsCntnnt addCountry:chsCntry];
+        
+        userCity.countryOfUser = chsCntry;
+        [chsCntry addCity:userCity];
+        return;
+    }
+    
+    userCity.countryOfUser = chsCntry;
+    [chsCntry addCity:userCity];
+    
+}
+
+- (void)unchooseCity:(WYMUserCity *)city {
+    [city.countryOfUser delCity:city];
+}
+
+- (NSArray *)getAllChosenCountries {
+    NSMutableArray *allChsCountries = [NSMutableArray arrayWithCapacity:10];
+    
+    for (WYMUserContinent *continent in _chosenContinentsArray) {
+        [allChsCountries addObjectsFromArray:continent.chosenCountries];
+    }
+    
+    return (NSArray *)allChsCountries;
+}
+
+- (NSArray *)getAllChosenCities {
+    NSArray *chsCountries = [self getAllChosenCountries];
+    NSMutableArray *allChosenCities = [NSMutableArray arrayWithCapacity:10];
+    
+    for (WYMUserCountry *country in chsCountries) {
+        [allChosenCities addObjectsFromArray:country.chosenCities];
+    }
+    
+    return (NSArray *)allChosenCities;
+}
+
+
+// network connection.
 - (void)addNewTripToServer {
     
 }
@@ -93,21 +188,23 @@
 }
 
 - (NSDictionary *)transferToDic {
-    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
-    [infoDic setObject:_tripName forKey:WY_TRIP_NAME];
-    [infoDic setObject:_tripDescription forKey:WY_TRIP_DES];
-    [infoDic setObject:_tripMainImageURL forKey:WY_TRIP_MAIN_IMAGE_URL];
-    [infoDic setObject:_tripBeginDate forKey:WY_TRIP_BEGIN_DATE];
+//    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
+//    [infoDic setObject:_tripName forKey:WY_TRIP_NAME];
+//    [infoDic setObject:_tripDescription forKey:WY_TRIP_DES];
+//    [infoDic setObject:_tripMainImageURL forKey:WY_TRIP_MAIN_IMAGE_URL];
+//    [infoDic setObject:_tripBeginDate forKey:WY_TRIP_BEGIN_DATE];
+//    
+//    NSMutableArray *daysArr = [NSMutableArray arrayWithCapacity:10];
+//    for (WYMTripDay *tripDay in _tripDaysArray) {
+//        NSDictionary *dayInfoDic = [tripDay transferToDic];
+//        [daysArr addObject:dayInfoDic];
+//    }
+//    [infoDic setObject:daysArr forKey:WY_TRIP_DAYS];
+//
+//    
+//    return (NSDictionary *)infoDic;
     
-    NSMutableArray *daysArr = [NSMutableArray arrayWithCapacity:10];
-    for (WYMTripDay *tripDay in _tripDaysArray) {
-        NSDictionary *dayInfoDic = [tripDay transferToDic];
-        [daysArr addObject:dayInfoDic];
-    }
-    [infoDic setObject:daysArr forKey:WY_TRIP_DAYS];
-
-    
-    return (NSDictionary *)infoDic;
+    return nil;
 }
 
 @end

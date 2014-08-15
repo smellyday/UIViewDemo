@@ -8,16 +8,11 @@
 
 #import "WYMCity.h"
 #import "consts.h"
+#import "WYMCountry.h"
 
 @implementation WYMCity
+@synthesize mCountry = _mCountry;
+@synthesize allSpots = _allSpots;
 
-
-- (NSDictionary *)transferToDic {
-    return nil;
-}
-
-- (NSArray *)getAllSpots {
-	return nil;
-}
 
 @end

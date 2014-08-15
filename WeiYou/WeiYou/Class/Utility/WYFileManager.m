@@ -97,7 +97,7 @@
 
 + (void)logAllSubviews:(UIView *)mview level:(int)i {
 	
-	NSLog(@"level : %d, view : %@", i, [[mview class] description]);
+	mlog(@"level : %d, view : %@", i, [[mview class] description]);
 	
 	NSArray *viewarr = [mview subviews];
 	i++;

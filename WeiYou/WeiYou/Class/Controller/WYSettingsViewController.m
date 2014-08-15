@@ -39,7 +39,7 @@
 
 - (void)viewDidLoad
 {
-	LOGFUNCTION;
+	MLOGFUNCTION;
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
 	self.navigationController.navigationBar.hidden = YES;
@@ -71,7 +71,6 @@
 }
 
 - (void)onClickCancelButton:(id)sender {
-	LOGFUNCTION;
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -269,7 +268,6 @@
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-	LOGFUNCTION;
     mlog(@"== WY Login Failed Response : %@", [request.error description]);
     NSError *error = request.error;
     if (error.code == 1) {
@@ -280,8 +278,7 @@
 
 
 #pragma mark - NOTI
-- (void)doWhenSinaLoginSuccess:(id)sender {
-	LOGFUNCTION;
+- (void)doWhenSinaLoginSuccess:(NSNotification *)notification {
     [self.mTableView reloadData];
     
     
@@ -297,8 +294,7 @@
 
 }
 
-- (void)doWhenQQLoginSuccess:(id)sender {
-	LOGFUNCTION;
+- (void)doWhenQQLoginSuccess:(NSNotification *)notification {
 	[self.mTableView reloadData];
     
 //    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -313,13 +309,11 @@
 //    self.callbackRequest = request;
 }
 
-- (void)doWhenWYLoginSuccess:(id)sender {
-	LOGFUNCTION;
+- (void)doWhenWYLoginSuccess:(NSNotification *)notification {
 	[self.mTableView reloadData];
 }
 
-- (void)doWhenWYRegisterSuccess:(id)sender {
-    LOGFUNCTION;
+- (void)doWhenWYRegisterSuccess:(NSNotification *)notification {
     [self.mTableView reloadData];
 }
 

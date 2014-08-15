@@ -44,10 +44,15 @@
 
 //=========create new trip===========
 - (void)createNewTrip {
+    NSAssert(_creatingTrip==nil, @"_creatingTrip must be nil");
     _creatingTrip = [[WYMTrip alloc] init];
 }
 
 - (void)finishCreatingTrip {
+    _creatingTrip = nil;
+}
+
+- (void)cancelCreatingTrip {
     _creatingTrip = nil;
 }
 
@@ -56,7 +61,6 @@
  this function should be in secondary thread.
  */
 - (void)bisynchronizeTrips {
-    LOGFUNCTION;
     
     [self.biSyncQueue cancelAllOperations];
     WYBiSyncTripsOperation *bisyncOp = [[WYBiSyncTripsOperation alloc] init];
@@ -222,17 +226,17 @@
  save the local version after modifying the trip.
  */
 - (void)saveTripsToLocal {
-    NSLog(@"save begin at %@", [[NSDate date] description]);
+    mlog(@"save begin at %@", [[NSDate date] description]);
     NSArray *dataArr = [self objectsToArray];
     if (dataArr != nil) {
         BOOL saveOK = [[self objectsToArray] writeToFile:[self getDataPath] atomically:YES];
         if (saveOK) {
-            NSLog(@"save success.");
+            mlog(@"save success.");
         } else {
-            NSLog(@"save fail.");
+            mlog(@"save fail.");
         }
     }
-    NSLog(@"save end at %@", [[NSDate date] description]);
+    mlog(@"save end at %@", [[NSDate date] description]);
 }
 
 
@@ -252,7 +256,6 @@
 
 
 - (NSArray *)getTripsInfoDicFromLocal {
-    LOGFUNCTION;
     NSString *dataPath = [self getDataPath];
     
     BOOL fileExist = [[NSFileManager defaultManager] fileExistsAtPath:dataPath];
@@ -308,7 +311,6 @@
 
 //==========SPOT DATA=============
 - (NSMutableArray *)allContinents {
-    LOGFUNCTION;
     if (!_allContinents || [_allContinents count]==0) {
         [self initAllContinents];
     }
@@ -316,33 +318,8 @@
     return _allContinents;
 }
 
-//- (WYMCity *)getCityByID:(NSNumber *)city_id {
-//	return nil;
-//}
-//
-//- (WYMCountry *)getCountryByID:(NSNumber *)country_id {
-//    for (WYMContinent *conti in self.allContinents) {
-//        if ([cty.ID isEqual:country_id]) {
-//            return cty;
-//        }
-//    }
-//    
-//	return nil;
-//}
-//
-//- (WYMContinent *)getContinentByID:(NSNumber *)continent_id {
-//    for (WYMContinent *cnt in self.allContinents) {
-//        if ([cnt.ID isEqual:continent_id]) {
-//            return cnt;
-//        }
-//    }
-//    
-//	return nil;
-//}
-
 //========private============
 - (void)initAllContinents {
-    LOGFUNCTION;
     WYMContinent *Asia;
     WYMContinent *Europe;
     WYMContinent *NorthAmerica;
@@ -394,25 +371,31 @@
         
         switch ([cty.parentID intValue]) {
             case 1:
+                cty.mContinent = Asia;
                 [Asia addToAllCountry:cty];
-//                [Asia.allCountries addObject:cty];
                 break;
             case 2:
+                cty.mContinent = Europe;
                 [Europe addToAllCountry:cty];
                 break;
             case 3:
+                cty.mContinent = NorthAmerica;
                 [NorthAmerica addToAllCountry:cty];
                 break;
             case 4:
+                cty.mContinent = SouthAmerica;
                 [SouthAmerica addToAllCountry:cty];
                 break;
             case 5:
+                cty.mContinent = Oceania;
                 [Oceania addToAllCountry:cty];
                 break;
             case 6:
+                cty.mContinent = Africa;
                 [Africa addToAllCountry:cty];
                 break;
             case 7:
+                cty.mContinent = Antarctica;
                 [Antarctica addToAllCountry:cty];
                 break;
                 

@@ -139,7 +139,6 @@
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-    LOGFUNCTION;
     mlog(@"== WY Login Failed Response : %@", [request.error description]);
     NSError *error = request.error;
     if (error.code == 1) {
