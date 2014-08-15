@@ -79,7 +79,7 @@
 }
 
 - (void)chooseCity:(WYMUserCity *)userCity {
-//    NSAssert(_chosenContinentsArray != nil, @"_chosenContinentsArray should not be nil!");
+    NSAssert(_chosenContinentsArray != nil, @"_chosenContinentsArray should not be nil!");
 
     WYMUserContinent *chsCntnnt = [[WYMUserContinent alloc] initWithSystemContinent:userCity.sysCity.mCountry.mContinent];
     int cConti = 0;
