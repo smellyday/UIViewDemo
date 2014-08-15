@@ -226,17 +226,17 @@
  save the local version after modifying the trip.
  */
 - (void)saveTripsToLocal {
-    NSLog(@"save begin at %@", [[NSDate date] description]);
+    mlog(@"save begin at %@", [[NSDate date] description]);
     NSArray *dataArr = [self objectsToArray];
     if (dataArr != nil) {
         BOOL saveOK = [[self objectsToArray] writeToFile:[self getDataPath] atomically:YES];
         if (saveOK) {
-            NSLog(@"save success.");
+            mlog(@"save success.");
         } else {
-            NSLog(@"save fail.");
+            mlog(@"save fail.");
         }
     }
-    NSLog(@"save end at %@", [[NSDate date] description]);
+    mlog(@"save end at %@", [[NSDate date] description]);
 }
 
 

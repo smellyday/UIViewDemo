@@ -43,10 +43,10 @@
     NSError *error = [request error];
     if (!error) {
         NSString *reponse = [error description];
-        NSLog(@"error info is %@", reponse);
+        mlog(@"error info is %@", reponse);
     }
     NSData *responseData = [request responseData];
-    NSLog(@"\n\nrequest success and data is \n%@", [responseData description]);
+    mlog(@"\n\nrequest success and data is \n%@", [responseData description]);
 }
 
 @end
