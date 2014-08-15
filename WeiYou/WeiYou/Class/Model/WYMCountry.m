@@ -16,7 +16,6 @@
 
 
 - (NSMutableArray *)allCities {
-    LOGFUNCTION;
     if (!_allCities) {
         _allCities = [NSMutableArray arrayWithCapacity:10];
         

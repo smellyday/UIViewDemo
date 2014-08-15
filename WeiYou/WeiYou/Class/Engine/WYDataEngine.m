@@ -313,7 +313,6 @@
 
 //==========SPOT DATA=============
 - (NSMutableArray *)allContinents {
-    LOGFUNCTION;
     if (!_allContinents || [_allContinents count]==0) {
         [self initAllContinents];
     }
@@ -323,7 +322,6 @@
 
 //========private============
 - (void)initAllContinents {
-    LOGFUNCTION;
     WYMContinent *Asia;
     WYMContinent *Europe;
     WYMContinent *NorthAmerica;
