@@ -11,12 +11,12 @@
 @class WYMUserCity, WYMCountry, WYMUserContinent;
 @interface WYMUserCountry : WYMPlace {
     WYMCountry *_sysCountry;
-    WYMUserContinent *_continentOfUser;
+    __weak WYMUserContinent *_continentOfUser;
     NSMutableArray *_chosenCities;
 }
 
 @property (nonatomic, readonly) WYMCountry *sysCountry;
-@property (nonatomic, strong) WYMUserContinent *continentOfUser;
+@property (nonatomic, weak) WYMUserContinent *continentOfUser;
 @property (nonatomic, readonly) NSMutableArray *chosenCities;
 
 - (id)initWithSystemCountry:(WYMCountry *)country;

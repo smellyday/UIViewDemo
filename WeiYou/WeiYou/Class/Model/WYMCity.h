@@ -11,11 +11,11 @@
 
 @class WYMCountry, WYMSpot;
 @interface WYMCity : WYMPlace {
-    WYMCountry *_mCountry;
+    __weak WYMCountry *_mCountry;
     NSMutableArray *_allSpots;
 }
 
-@property (nonatomic, strong) WYMCountry *mCountry;
+@property (nonatomic, weak) WYMCountry *mCountry;
 @property (nonatomic, readonly) NSMutableArray *allSpots;
 
 @end
