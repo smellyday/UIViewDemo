@@ -183,7 +183,7 @@
 }
 
 #pragma mark - NOTI
-- (void)doWhenSinaAuthSuccess:(id)sender {
+- (void)doWhenSinaAuthSuccess:(NSNotification *)notification {
     //fetch user info from sina.
     NSString *userInfoBaseStr = @"https://api.weibo.com/2/users/show.json";
     NSString *token = [[[WYGlobalState sharedGlobalState] sinaUserInfo] authToken];
@@ -199,7 +199,7 @@
 
 }
 
-- (void)doWhenLoginSuccess:(id)sender {
+- (void)doWhenLoginSuccess:(NSNotification *)notification {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 

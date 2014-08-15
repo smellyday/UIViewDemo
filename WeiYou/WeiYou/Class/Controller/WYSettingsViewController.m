@@ -280,7 +280,7 @@
 
 
 #pragma mark - NOTI
-- (void)doWhenSinaLoginSuccess:(id)sender {
+- (void)doWhenSinaLoginSuccess:(NSNotification *)notification {
 	LOGFUNCTION;
     [self.mTableView reloadData];
     
@@ -297,7 +297,7 @@
 
 }
 
-- (void)doWhenQQLoginSuccess:(id)sender {
+- (void)doWhenQQLoginSuccess:(NSNotification *)notification {
 	LOGFUNCTION;
 	[self.mTableView reloadData];
     
@@ -313,12 +313,12 @@
 //    self.callbackRequest = request;
 }
 
-- (void)doWhenWYLoginSuccess:(id)sender {
+- (void)doWhenWYLoginSuccess:(NSNotification *)notification {
 	LOGFUNCTION;
 	[self.mTableView reloadData];
 }
 
-- (void)doWhenWYRegisterSuccess:(id)sender {
+- (void)doWhenWYRegisterSuccess:(NSNotification *)notification {
     LOGFUNCTION;
     [self.mTableView reloadData];
 }
