@@ -30,6 +30,7 @@
 @synthesize biSyncQueue = _biSyncQueue;
 @synthesize allContinents = _allContinents;
 @synthesize creatingTrip = _creatingTrip;
+@synthesize sysDestinationAgent = _sysDestinationAgent;
 
 
 + (id)sharedDataEngine {
@@ -308,8 +309,15 @@
 }
 
 
-
 //==========SPOT DATA=============
+- (WYSysDestinations *)sysDestinationAgent {
+	if (!_sysDestinationAgent) {
+		_sysDestinationAgent = [[WYSysDestinations alloc] initSysDestinations];
+	}
+	
+	return _sysDestinationAgent;
+}
+
 - (NSMutableArray *)allContinents {
     if (!_allContinents || [_allContinents count]==0) {
         [self initAllContinents];

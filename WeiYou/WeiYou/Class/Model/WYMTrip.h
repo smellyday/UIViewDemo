@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYUserDestinations.h"
 
 @class WYMUserCity;
 @interface WYMTrip : NSObject {
@@ -22,6 +23,7 @@
 	NSDate *_tripCreateDate;
 	NSMutableArray *_tripDaysArray;
 	NSMutableArray *_chosenContinentsArray;
+	WYUserDestinations *_userDestinationAgent;
 	
 	BOOL _isNewTrip;
 	BOOL _deletTrip;
@@ -40,6 +42,7 @@
 @property (nonatomic, strong) NSDate *tripCreateDate;
 @property (nonatomic, readonly) NSMutableArray *tripDaysArray;
 @property (nonatomic, strong) NSMutableArray *chosenContinentsArray;
+@property (nonatomic, strong) WYUserDestinations *userDestinationAgent;
 
 @property (nonatomic) BOOL isNewTrip;
 @property (nonatomic) BOOL deletTrip;

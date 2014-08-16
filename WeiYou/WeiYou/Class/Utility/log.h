@@ -65,17 +65,6 @@
 #define LogVIEW
 #endif
 
-//user chosen continents, countries, cities info.
-#define MLOG_USER_CHOSEN_PLACE_INFO  \
-for (WYMUserContinent *continent in creatingTrip.chosenContinentsArray) { \
-mlog(@"Continent: ID : %@, P_ID : %@", [[continent ID] description], [[continent parentID] description]); \
-for (WYMUserCountry *country in continent.chosenCountries) { \
-mlog(@"== Country: ID : %@, P_ID : %@", [[country ID] description], [[country parentID] description]); \
-for (WYMUserCity *city in country.chosenCities) { \
-mlog(@"== == City: ID : %@, P_ID : %@", [[city ID] description], [[city parentID] description]); \
-} \
-} \
-} mlog(@"=====================================");
 
 
 #endif

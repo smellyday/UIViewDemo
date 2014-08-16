@@ -17,6 +17,7 @@
 #import "WYMUserCountry.h"
 #import "WYMUserCity.h"
 #import "WYMUserSpot.h"
+#import "WYDataEngine.h"
 
 
 @implementation WYMTrip
@@ -31,6 +32,7 @@
 @synthesize tripCreateDate = _tripCreateDate;
 @synthesize tripDaysArray = _tripDaysArray;
 @synthesize chosenContinentsArray = _chosenContinentsArray;
+@synthesize userDestinationAgent = _userDestinationAgent;
 
 @synthesize isNewTrip = _isNewTrip;
 @synthesize deletTrip = _deletTrip;
@@ -44,6 +46,15 @@
         _chosenContinentsArray = [NSMutableArray arrayWithCapacity:2];
     }
     return self;
+}
+
+- (WYUserDestinations *)userDestinationAgent {
+	if (!_userDestinationAgent) {
+		WYSysEarth *sysEarth = [[[WYDataEngine sharedDataEngine] sysDestinationAgent] sysEarth];
+		_userDestinationAgent = [[WYUserDestinations alloc] initUserDestinationsWithSysEarth:sysEarth];
+	}
+	
+	return _userDestinationAgent;
 }
 
 - (id)initWithTripInfoDic:(NSDictionary *)infoDic {

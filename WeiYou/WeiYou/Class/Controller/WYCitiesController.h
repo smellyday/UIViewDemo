@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WYNationButton.h"
 
-@class WYCountryButton;
 @interface WYCitiesController : UIViewController {
-    WYCountryButton *_countryBtn;
+    WYNationButton *_nationButton;
 }
 
-@property (nonatomic, strong) WYCountryButton *countryBtn;
+@property (nonatomic, strong) WYNationButton *nationButton;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYSysDestinations.h"
 
 @class WYMTrip;
 @interface WYDataEngine : NSObject {
@@ -14,12 +15,15 @@
     NSOperationQueue *_biSyncQueue;
     
     NSMutableArray *_allContinents;
+	WYSysDestinations *_sysDestinationAgent;
+	
     WYMTrip *_creatingTrip;
 }
 
 @property (nonatomic, strong) NSMutableArray *trips;
 @property (nonatomic, strong) NSOperationQueue *biSyncQueue;
 @property (nonatomic, readonly) NSMutableArray *allContinents;
+@property (nonatomic, readonly) WYSysDestinations *sysDestinationAgent;
 @property (nonatomic, strong) WYMTrip *creatingTrip;
 
 + (id)sharedDataEngine;

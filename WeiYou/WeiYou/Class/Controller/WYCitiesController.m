@@ -12,20 +12,16 @@
 #import "WYMCity.h"
 #import "WYMPlace.h"
 #import "WYDataEngine.h"
-#import "WYCityButton.h"
 #import "WYCountryButton.h"
 #import "WYMTrip.h"
-#import "WYMUserContinent.h"
-#import "WYMUserCountry.h"
-#import "WYMUserCity.h"
-#import "WYMTrip.h"
+#import "WYShiButton.h"
 
 @interface WYCitiesController ()
 
 @end
 
 @implementation WYCitiesController
-@synthesize countryBtn = _countryBtn;
+@synthesize nationButton = _nationButton;
 
 
 - (void)viewDidLoad
@@ -50,14 +46,16 @@
 	self.navigationItem.rightBarButtonItem = mOKBtn;
     
     // data
-    NSArray *allCities = [_countryBtn.sysCountry allCities];
-    NSArray *allUserChsCities = [[[WYDataEngine sharedDataEngine] creatingTrip] getAllChosenCities];
+	WYSysDestinations *sysDestinationAgent = [[WYDataEngine sharedDataEngine] sysDestinationAgent];
+	NSArray *allSysCities = [sysDestinationAgent getSysCitiesInNation:_nationButton.sysNation];
+	WYMTrip *creatingTrip = [[WYDataEngine sharedDataEngine] creatingTrip];
+	NSArray *allUserCities = [creatingTrip.userDestinationAgent getUserAllCities];
     
     // main content
     CGFloat gapTopH = 35.0;
     CGFloat gapMidH = 13.0+22.0;
-    int rowCount = (int)[allCities count]/3+1;
-    if ([allCities count]%3 != 0) {
+    int rowCount = (int)[allSysCities count]/3+1;
+    if ([allSysCities count]%3 != 0) {
         rowCount++;
     }
     CGFloat scrollSizeH = gapTopH + gapMidH*rowCount;
@@ -72,21 +70,22 @@
     UILabel *countryTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
     countryTitle.font = [UIFont systemFontOfSize:17];
     countryTitle.textAlignment = NSTextAlignmentCenter;
-    [countryTitle setText:_countryBtn.sysCountry.name];
+    [countryTitle setText:_nationButton.sysNation.nodeName];
     [countryTitle setTextColor:COLOR_ON_PLACE_N];
     [scrollContainer addSubview:countryTitle];
     
-    for (int i = 0; i < [allCities count]; i++) {
-        WYMCity *sysCity = [allCities objectAtIndex:i];
-        WYCityButton *pb = [[WYCityButton alloc] initButtonWithCity:sysCity atIndex:i];
+    for (int i = 0; i < [allSysCities count]; i++) {
+        WYSysCity *sysCity = [allSysCities objectAtIndex:i];
+        WYShiButton *pb = [[WYShiButton alloc] initButtonWithCity:sysCity atIndex:i];
         pb.selected = NO;
+		pb.userCity = nil;
         [pb addTarget:self action:@selector(onClickCityButton:) forControlEvents:UIControlEventTouchUpInside];
         [scrollContainer addSubview:pb];
         
-        for (WYMUserCity *chscity in allUserChsCities) {
-            if (sysCity.ID == chscity.ID) {
+        for (WYUserCity *chscity in allUserCities) {
+            if (sysCity.mID == chscity.corSysCity.mID) {
                 pb.selected = YES;
-                pb.userCity = chscity;
+				pb.userCity = chscity;
             }
         }
     }
@@ -103,25 +102,49 @@
 }
 
 - (void)onClickCityButton:(id)sender {
-    if ([sender isKindOfClass:[WYCityButton class]]) {
-        WYCityButton *cityBtn = (WYCityButton *)sender;
+    if ([sender isKindOfClass:[WYShiButton class]]) {
+        WYShiButton *cityBtn = (WYShiButton *)sender;
         WYMTrip *creatingTrip = [[WYDataEngine sharedDataEngine] creatingTrip];
+		WYUserNation *uNation = cityBtn.userCity.pUserNode;
         
         if (cityBtn.selected == YES) {
+			
             cityBtn.selected = NO;
-            if ([cityBtn.userCity.countryOfUser.chosenCities count] == 1) {
-                _countryBtn.selected = NO;
-            }
-            [creatingTrip unchooseCity:cityBtn.userCity];
+			
+			WYUserCity *userNode = cityBtn.userCity;
+            [creatingTrip.userDestinationAgent delUserNode:&userNode];
             cityBtn.userCity = nil;
+			
+			NSArray *allUserNations = [creatingTrip.userDestinationAgent getUserAllNations];
+			if ([allUserNations containsObject:uNation]) {
+				_nationButton.selected = YES;
+			} else {
+				_nationButton.selected = NO;
+			}
+			
         } else {
+			
             cityBtn.selected = YES;
-            _countryBtn.selected = YES;
-            cityBtn.userCity = [[WYMUserCity alloc] initWithSystemCity:cityBtn.sysCity];
-            [creatingTrip chooseCity:cityBtn.userCity];
+            _nationButton.selected = YES;
+			
+			WYUserCity *uCity = [[WYUserCity alloc] initWithSysCity:cityBtn.sysCity];
+            [creatingTrip.userDestinationAgent addCity:&uCity];
+			cityBtn.userCity = uCity;
         }
         
-        MLOG_USER_CHOSEN_PLACE_INFO;
+		for (WYUserContinent *continent in [creatingTrip.userDestinationAgent getUserAllContinents]) {
+			mlog(@"Continent : %@ and info : %@", continent.corSysContinent.nodeName, [continent description]);
+			
+			for (WYUserNation *nation in [creatingTrip.userDestinationAgent getUserNationsInContinent:continent]) {
+				mlog(@"== Nation : %@ and info : %@", nation.corSysNation.nodeName, [nation description]);
+				
+				for (WYUserCity *city in [creatingTrip.userDestinationAgent getUserCitiesInNation:nation]) {
+					mlog(@"== == City : %@ and info : %@", city.corSysCity.nodeName, [city description]);
+				}
+			}
+		}
+		mlog(@"=================================================");
+		
     }
 }
 

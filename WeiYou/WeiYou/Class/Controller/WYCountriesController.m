@@ -9,12 +9,10 @@
 #import "WYCountriesController.h"
 #import "consts.h"
 #import "WYDataEngine.h"
-#import "WYCountryButton.h"
-#import "WYMContinent.h"
 #import "WYCitiesController.h"
 #import "WYMTrip.h"
-#import "WYMUserCountry.h"
-#import "WYMUserContinent.h"
+#import "WYSysDestinations.h"
+#import "WYNationButton.h"
 
 @interface WYCountriesController ()
 
@@ -44,8 +42,10 @@
 	self.navigationItem.rightBarButtonItem = mOKBtn;
     
     // data
-    NSArray *allContinents = [[WYDataEngine sharedDataEngine] allContinents];
-    NSArray *allUserChsCountries = [[[WYDataEngine sharedDataEngine] creatingTrip] getAllChosenCountries];
+	WYSysDestinations *destinationAgent = [[WYDataEngine sharedDataEngine] sysDestinationAgent];
+    NSArray *allSysContinents = [destinationAgent getSysAllContinents];
+	WYMTrip *creatingTrip = [[WYDataEngine sharedDataEngine] creatingTrip];
+    NSArray *allUserNations = [creatingTrip.userDestinationAgent getUserAllNations];
     
     // main content.
     CGFloat contiH = 176.0;
@@ -58,35 +58,35 @@
     scrollContainer.contentSize = CGSizeMake(SCREEN_WIDTH, contiH*7);
     [self.view addSubview:scrollContainer];
     
-    for (int i = 0; i < [allContinents count]; i++) {
+    for (int i = 0; i < [allSysContinents count]; i++) {
         UIView *contiView = [[UIView alloc] initWithFrame:CGRectMake(0, contiH*i, SCREEN_WIDTH, contiH)];
         [scrollContainer addSubview:contiView];
         
-        WYMContinent *continent = [allContinents objectAtIndex:i];
+        WYSysContinent *continent = [allSysContinents objectAtIndex:i];
         UILabel *continentTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
         continentTitle.font = [UIFont systemFontOfSize:17];
         continentTitle.textAlignment = NSTextAlignmentCenter;
-        [continentTitle setText:continent.name];
+        [continentTitle setText:continent.nodeName];
         [continentTitle setTextColor:COLOR_ON_PLACE_N];
         [contiView addSubview:continentTitle];
         
-        NSArray *cntyArr = continent.allCountries;
-        int cntyCount = MIN([cntyArr count], 12);
+        NSArray *nationArr = continent.childArray;
+        NSInteger cntyCount = MIN([nationArr count], 12);
         for (int ci = 0; ci < cntyCount; ci++) {
             if (ci == 11) {
-                WYCountryButton *cb = [[WYCountryButton alloc] initButtonWithCoutry:nil atIndex:ci];
-                [contiView addSubview:cb];
+                WYNationButton *nb = [[WYNationButton alloc] initButtonWithNation:nil atIndex:ci];
+                [contiView addSubview:nb];
             } else {
-                WYMCountry *sysCountry = [cntyArr objectAtIndex:ci];
-                WYCountryButton *cb = [[WYCountryButton alloc] initButtonWithCoutry:sysCountry atIndex:ci];
-                [cb addTarget:self action:@selector(onClickCountryBtn:) forControlEvents:UIControlEventTouchUpInside];
-                [contiView addSubview:cb];
+                WYSysNation *sysNation = [nationArr objectAtIndex:ci];
+                WYNationButton *nb = [[WYNationButton alloc] initButtonWithNation:sysNation atIndex:ci];
+                [nb addTarget:self action:@selector(onClickCountryBtn:) forControlEvents:UIControlEventTouchUpInside];
+                [contiView addSubview:nb];
                 
-                for (WYMUserCountry *muc in allUserChsCountries) {
-                    if (muc.ID == sysCountry.ID) {
-                        cb.selected = YES;
+                for (WYUserNation *userNation in allUserNations) {
+                    if (userNation.corSysNation.mID == sysNation.mID) {
+                        nb.selected = YES;
                     } else {
-                        cb.selected = NO;
+                        nb.selected = NO;
                     }
                 }
             }
@@ -109,9 +109,9 @@
 }
 
 - (void)onClickCountryBtn:(id)sender {
-    if ([sender isKindOfClass:[WYCountryButton class]]) {
+    if ([sender isKindOfClass:[WYNationButton class]]) {
         WYCitiesController *citiesc = [[WYCitiesController alloc] init];
-        citiesc.countryBtn = (WYCountryButton *)sender;
+        citiesc.nationButton = (WYNationButton *)sender;
         [self.navigationController pushViewController:citiesc animated:YES];
     }
 }
