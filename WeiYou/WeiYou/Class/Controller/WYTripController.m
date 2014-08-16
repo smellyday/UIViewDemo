@@ -8,7 +8,7 @@
 
 #import "WYTripController.h"
 #import "WYTripDayController.h"
-#import "WYMTripDay.h"
+//#import "WYMTripDay.h"
 #import "WYDataEngine.h"
 #import "consts.h"
 
@@ -32,8 +32,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	self.view.backgroundColor = [UIColor blueColor];
 	// Do any additional setup after loading the view.
 	
+	/*
     self.tripDays = [_trip tripDaysArray];
     self.title = self.trip.tripName;
 	
@@ -57,48 +59,6 @@
     self.mTableView.alpha = 1;
 	[self.mTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
 	[self.view addSubview:_mTableView];
-	
-    /*
-    //header view
-	UIView *buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 45)];
-	self.mTableView.tableHeaderView = buttonContainer;
-	
-	UIButton *stuffListButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[stuffListButton setTitle:@"行前清单" forState:UIControlStateNormal];
-	[stuffListButton setBackgroundColor:[UIColor greenColor]];
-	[stuffListButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-	[stuffListButton addTarget:self action:@selector(clickStuffList:) forControlEvents:UIControlEventTouchUpInside];
-	stuffListButton.frame = CGRectMake(0, 0, 80, 45);
-	stuffListButton.titleLabel.font = [UIFont systemFontOfSize:20];
-	[buttonContainer addSubview:stuffListButton];
-	
-	UIButton *mapButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[mapButton setTitle:@"地图" forState:UIControlStateNormal];
-	[mapButton setBackgroundColor:[UIColor redColor]];
-	[mapButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-	[mapButton addTarget:self action:@selector(clickMap:) forControlEvents:UIControlEventTouchUpInside];
-	mapButton.frame = CGRectMake(80, 0, 80, 45);
-	mapButton.titleLabel.font = [UIFont systemFontOfSize:20];
-	[buttonContainer addSubview:mapButton];
-	
-	UIButton *trafficButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[trafficButton setTitle:@"交通" forState:UIControlStateNormal];
-	[trafficButton setBackgroundColor:[UIColor blueColor]];
-	[trafficButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-	[trafficButton addTarget:self action:@selector(clickTraffic:) forControlEvents:UIControlEventTouchUpInside];
-	trafficButton.frame = CGRectMake(160, 0, 80, 45);
-	trafficButton.titleLabel.font = [UIFont systemFontOfSize:20];
-	[buttonContainer addSubview:trafficButton];
-	
-	UIButton *hotelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[hotelButton setTitle:@"住宿" forState:UIControlStateNormal];
-	[hotelButton setBackgroundColor:[UIColor yellowColor]];
-	[hotelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-	[hotelButton addTarget:self action:@selector(clickHotel:) forControlEvents:UIControlEventTouchUpInside];
-	hotelButton.frame = CGRectMake(240, 0, 80, 45);
-	hotelButton.titleLabel.font = [UIFont systemFontOfSize:20];
-	[buttonContainer addSubview:hotelButton];
-     */
     
     //footer view
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
@@ -112,9 +72,11 @@
     [footerView addSubview:addOneDayButton];
     
     self.mTableView.tableFooterView = footerView;
-
+	*/
+	
 }
 
+/*
 - (void)goBack:(id)sender {
 	[self.navigationController popViewControllerAnimated:YES];
 }
@@ -128,17 +90,8 @@
         [[WYDataEngine sharedDataEngine] saveTripsToLocal];
     }
 	
-	/*
-    NSArray *userDomainArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *filePath = [NSString stringWithFormat:@"%@/%@", [userDomainArray objectAtIndex:0], @"hello.plist"];
-	NSFileManager *mFileManager = [[NSFileManager alloc] init];
-	if (![mFileManager fileExistsAtPath:filePath]) {
-        [mFileManager createFileAtPath:filePath contents:nil attributes:nil];
-	}
-    
-    NSDictionary *dayInfoDic = [NSDictionary dictionaryWithContentsOfFile:filePath];
-	*/
 }
+
 
 - (void)addOneDay:(id)sender {
     
@@ -150,6 +103,7 @@
     [_mTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:[_tripDays count]-1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     
 }
+*/
 
 - (void)clickStuffList:(id)sender {
 }
@@ -187,6 +141,7 @@
      */
 }
 
+/*
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -293,5 +248,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+*/
 
 @end

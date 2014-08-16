@@ -8,11 +8,7 @@
 
 #import "WYCitiesController.h"
 #import "consts.h"
-#import "WYMCountry.h"
-#import "WYMCity.h"
-#import "WYMPlace.h"
 #import "WYDataEngine.h"
-#import "WYCountryButton.h"
 #import "WYMTrip.h"
 #import "WYShiButton.h"
 

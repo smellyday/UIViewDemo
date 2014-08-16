@@ -10,8 +10,6 @@
 #import "WYMTrip.h"
 #import "WYBiSyncTripsOperation.h"
 #import "consts.h"
-#import "WYMContinent.h"
-#import "WYMCountry.h"
 
 @interface WYDataEngine (private)
 
@@ -28,7 +26,6 @@
 @implementation WYDataEngine
 @synthesize trips = _trips;
 @synthesize biSyncQueue = _biSyncQueue;
-@synthesize allContinents = _allContinents;
 @synthesize creatingTrip = _creatingTrip;
 @synthesize sysDestinationAgent = _sysDestinationAgent;
 
@@ -309,110 +306,13 @@
 }
 
 
-//==========SPOT DATA=============
+//==========Destination DATA=============
 - (WYSysDestinations *)sysDestinationAgent {
 	if (!_sysDestinationAgent) {
 		_sysDestinationAgent = [[WYSysDestinations alloc] initSysDestinations];
 	}
 	
 	return _sysDestinationAgent;
-}
-
-- (NSMutableArray *)allContinents {
-    if (!_allContinents || [_allContinents count]==0) {
-        [self initAllContinents];
-    }
-    
-    return _allContinents;
-}
-
-//========private============
-- (void)initAllContinents {
-    WYMContinent *Asia;
-    WYMContinent *Europe;
-    WYMContinent *NorthAmerica;
-    WYMContinent *SouthAmerica;
-    WYMContinent *Oceania;
-    WYMContinent *Africa;
-    WYMContinent *Antarctica;
-    
-    _allContinents = [NSMutableArray arrayWithCapacity:10];
-    NSString *continentsPlistPath = [[NSBundle mainBundle] pathForResource:@"continents" ofType:@"plist"];
-    NSArray *continentInfoArr = [NSArray arrayWithContentsOfFile:continentsPlistPath];
-    for (NSDictionary *infoDic in continentInfoArr) {
-        WYMContinent *conti = [[WYMContinent alloc] initWithInfoDic:infoDic];
-        [_allContinents addObject:conti];
-        
-        switch ([conti.ID intValue]) {
-            case 1:
-                Asia = conti;
-                break;
-            case 2:
-                Europe = conti;
-                break;
-            case 3:
-                NorthAmerica = conti;
-                break;
-            case 4:
-                SouthAmerica = conti;
-                break;
-            case 5:
-                Oceania = conti;
-                break;
-            case 6:
-                Africa = conti;
-                break;
-            case 7:
-                Antarctica = conti;
-                break;
-                
-            default:
-                break;
-        }
-        
-    }
-    
-    NSString *countriesPlistPath = [[NSBundle mainBundle] pathForResource:@"countries" ofType:@"plist"];
-    NSArray *countryInfoArr = [NSArray arrayWithContentsOfFile:countriesPlistPath];
-    for (NSDictionary *infoDic in countryInfoArr) {
-        WYMCountry *cty = [[WYMCountry alloc] initWithInfoDic:infoDic];
-        
-        switch ([cty.parentID intValue]) {
-            case 1:
-                cty.mContinent = Asia;
-                [Asia addToAllCountry:cty];
-                break;
-            case 2:
-                cty.mContinent = Europe;
-                [Europe addToAllCountry:cty];
-                break;
-            case 3:
-                cty.mContinent = NorthAmerica;
-                [NorthAmerica addToAllCountry:cty];
-                break;
-            case 4:
-                cty.mContinent = SouthAmerica;
-                [SouthAmerica addToAllCountry:cty];
-                break;
-            case 5:
-                cty.mContinent = Oceania;
-                [Oceania addToAllCountry:cty];
-                break;
-            case 6:
-                cty.mContinent = Africa;
-                [Africa addToAllCountry:cty];
-                break;
-            case 7:
-                cty.mContinent = Antarctica;
-                [Antarctica addToAllCountry:cty];
-                break;
-                
-            default:
-                break;
-        }
-        
-    }
-    
 }
 
 
