@@ -9,12 +9,11 @@
 #import "WYSysNation.h"
 
 @implementation WYSysNation
-@synthesize pSysContinent = _pSysContinent;
 
 - (id)initNationWithInfo:(NSDictionary *)infoDic {
 	self = [super initNodeWithInfo:infoDic];
 	if (self) {
-		self.pSysContinent = nil;
+		
 	}
 	
 	return self;

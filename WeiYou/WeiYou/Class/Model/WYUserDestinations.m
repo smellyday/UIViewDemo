@@ -67,6 +67,11 @@
 	NSArray *allUserNations = [self getUserAllNations];
 	for (WYUserNation *userNation in allUserNations) {
 		if (userNation.corSysNation.mID == nationID) {
+			
+			for (WYUserCity *city in userNation.childArray) {
+				mlog(@"~~~~~ city : %@", city.corSysCity.nodeName);
+			}
+			
 			return (NSArray *)userNation.childArray;
 		}
 	}
@@ -123,21 +128,38 @@
 }
 
 - (void)addNation:(WYUserNation **)nNation {
-	WYUserContinent *parentContinent = [[WYUserContinent alloc] initWithSysContinent:(*nNation).corSysNation.pSysContinent];
+	
+	NSArray *allUserNations = [self getUserAllNations];
+	for (WYUserNation *nation in allUserNations) {
+		if (nation.corSysNation.mID == (*nNation).corSysNation.mID) {
+			(*nNation) = nation;
+			return;
+		}
+	}
+	
+	WYUserContinent *parentContinent = [[WYUserContinent alloc] initWithSysContinent:(*nNation).corSysNation.pSysNode];
 	[self addContinent:&parentContinent];
 	(*nNation).pUserNode = parentContinent;
 	[parentContinent.childArray addObject:(*nNation)];
 }
 
 - (void)addCity:(WYUserCity **)nCity {
-	WYUserNation *parentNation = [[WYUserNation alloc] initWithSysNation:(*nCity).corSysCity.pSysNation];
+	
+	NSArray *allUserCities = [self getUserAllCities];
+	for (WYUserCity *city in allUserCities) {
+		if (city.corSysCity.mID == (*nCity).corSysCity.mID) {
+			(*nCity) = city;
+			return;
+		}
+	}
+	
+	WYUserNation *parentNation = [[WYUserNation alloc] initWithSysNation:(*nCity).corSysCity.pSysNode];
 	[self addNation:&parentNation];
 	(*nCity).pUserNode = parentNation;
 	[parentNation.childArray addObject:(*nCity)];
 }
 
 - (void)delUserNode:(WYUserNode **)userNode {
-	mlog(@"User Node is going to be removed. Node : %@", [(*userNode) description]);
 	WYUserNode *parentNode = (*userNode).pUserNode;
 	
 	if (!parentNode) {

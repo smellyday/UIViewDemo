@@ -9,12 +9,11 @@
 #import "WYSysContinent.h"
 
 @implementation WYSysContinent
-@synthesize pSysEarth = _pSysEarth;
 
 - (id)initContinentWithInfo:(NSDictionary *)infoDic {
 	self = [super initNodeWithInfo:infoDic];
 	if (self) {
-		self.pSysEarth = nil;
+		
 	}
 	
 	return self;

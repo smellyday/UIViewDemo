@@ -85,7 +85,7 @@
 	[mutDic setObject:@"208" forKey:@"parent_id"];
 	[mutDic setObject:@{@"en":@"Beijing", @"zh-CN":@"北京"} forKey:@"name"];
 	WYSysCity *mcity = [[WYSysCity alloc] initCityWithInfo:mutDic];
-	mcity.pSysNation = nation;
+	mcity.pSysNode = nation;
 	[allCities addObject:mcity];
 	
 	NSMutableDictionary *mutDic2 = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -93,7 +93,7 @@
 	[mutDic2 setObject:@"208" forKey:@"parent_id"];
 	[mutDic2 setObject:@{@"en":@"ShangHai", @"zh-CN":@"上海"} forKey:@"name"];
 	WYSysCity *mcity2 = [[WYSysCity alloc] initCityWithInfo:mutDic2];
-	mcity2.pSysNation = nation;
+	mcity2.pSysNode = nation;
 	[allCities addObject:mcity2];
 	
 	
@@ -153,31 +153,31 @@
         
         switch (nation.pID) {
             case 1:
-                nation.pSysContinent = Asia;
+                nation.pSysNode = Asia;
                 [Asia.childArray addObject:nation];
                 break;
             case 2:
-                nation.pSysContinent = Europe;
+                nation.pSysNode = Europe;
                 [Europe.childArray addObject:nation];
                 break;
             case 3:
-                nation.pSysContinent = NorthAmerica;
+                nation.pSysNode = NorthAmerica;
                 [NorthAmerica.childArray addObject:nation];
                 break;
             case 4:
-                nation.pSysContinent = SouthAmerica;
+                nation.pSysNode = SouthAmerica;
                 [SouthAmerica.childArray addObject:nation];
                 break;
             case 5:
-                nation.pSysContinent = Oceania;
+                nation.pSysNode = Oceania;
                 [Oceania.childArray addObject:nation];
                 break;
             case 6:
-                nation.pSysContinent = Africa;
+                nation.pSysNode = Africa;
                 [Africa.childArray addObject:nation];
                 break;
             case 7:
-                nation.pSysContinent = Antarctica;
+                nation.pSysNode = Antarctica;
                 [Antarctica.childArray addObject:nation];
                 break;
                 

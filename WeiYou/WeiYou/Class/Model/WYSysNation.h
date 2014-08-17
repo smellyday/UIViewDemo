@@ -9,11 +9,9 @@
 #import "WYSysNode.h"
 #import "WYSysContinent.h"
 
-@interface WYSysNation : WYSysNode {
-	WYSysContinent * __weak _pSysContinent;
-}
+@interface WYSysNation : WYSysNode
 
-@property (nonatomic, weak) WYSysContinent *pSysContinent;
+@property (nonatomic, weak) WYSysContinent *pSysNode;
 
 - (id)initNationWithInfo:(NSDictionary *)infoDic;
 

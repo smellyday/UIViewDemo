@@ -9,12 +9,11 @@
 #import "WYSysCity.h"
 
 @implementation WYSysCity
-@synthesize pSysNation = _pSysNation;
 
 - (id)initCityWithInfo:(NSDictionary *)infoDic {
 	self = [super initNodeWithInfo:infoDic];
 	if (self) {
-		self.pSysNation = nil;
+		
 	}
 	
 	return self;

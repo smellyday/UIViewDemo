@@ -102,6 +102,8 @@
         WYShiButton *cityBtn = (WYShiButton *)sender;
         WYMTrip *creatingTrip = [[WYDataEngine sharedDataEngine] creatingTrip];
 		WYUserNation *uNation = cityBtn.userCity.pUserNode;
+		
+		mlog(@"CityButton INFO : %@", cityBtn.sysCity.nodeName);
         
         if (cityBtn.selected == YES) {
 			
@@ -128,13 +130,18 @@
 			cityBtn.userCity = uCity;
         }
         
-		for (WYUserContinent *continent in [creatingTrip.userDestinationAgent getUserAllContinents]) {
+		NSArray *contiArr = [creatingTrip.userDestinationAgent getUserAllContinents];
+		for (WYUserContinent *continent in contiArr) {
 			mlog(@"Continent : %@ and info : %@", continent.corSysContinent.nodeName, [continent description]);
 			
-			for (WYUserNation *nation in [creatingTrip.userDestinationAgent getUserNationsInContinent:continent]) {
+			NSArray *nationArr = [creatingTrip.userDestinationAgent getUserNationsInContinent:continent];
+			mlog(@"nation count : %d", [nationArr count]);
+			for (WYUserNation *nation in nationArr) {
 				mlog(@"== Nation : %@ and info : %@", nation.corSysNation.nodeName, [nation description]);
 				
-				for (WYUserCity *city in [creatingTrip.userDestinationAgent getUserCitiesInNation:nation]) {
+				NSArray *cityArr = [creatingTrip.userDestinationAgent getUserCitiesInNation:nation];
+				mlog(@"city count : %d", [cityArr count]);
+				for (WYUserCity *city in cityArr) {
 					mlog(@"== == City : %@ and info : %@", city.corSysCity.nodeName, [city description]);
 				}
 			}
