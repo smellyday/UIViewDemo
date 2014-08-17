@@ -30,7 +30,7 @@
 		5E52D36C199F8E9A00BFB916 /* testCountry.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E52D36A199F8E9A00BFB916 /* testCountry.plist */; };
 		5E52D375199FA89800BFB916 /* WYNodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E52D374199FA89800BFB916 /* WYNodeButton.m */; };
 		5E52D378199FA91A00BFB916 /* WYNationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E52D377199FA91A00BFB916 /* WYNationButton.m */; };
-		5E52D37E199FB03700BFB916 /* WYShiButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E52D37D199FB03700BFB916 /* WYShiButton.m */; };
+		5E52D38719A04FF700BFB916 /* WYCityButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E52D38619A04FF700BFB916 /* WYCityButton.m */; };
 		5E5BC23A183EE5D80003AC6D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BC230183EE5D80003AC6D /* InfoPlist.strings */; };
 		5E5BC23E183EE5D80003AC6D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E5BC236183EE5D80003AC6D /* Images.xcassets */; };
 		5E5BC23F183EE5D80003AC6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BC237183EE5D80003AC6D /* main.m */; };
@@ -222,8 +222,8 @@
 		5E52D374199FA89800BFB916 /* WYNodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYNodeButton.m; sourceTree = "<group>"; };
 		5E52D376199FA91A00BFB916 /* WYNationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYNationButton.h; sourceTree = "<group>"; };
 		5E52D377199FA91A00BFB916 /* WYNationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYNationButton.m; sourceTree = "<group>"; };
-		5E52D37C199FB03700BFB916 /* WYShiButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYShiButton.h; sourceTree = "<group>"; };
-		5E52D37D199FB03700BFB916 /* WYShiButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYShiButton.m; sourceTree = "<group>"; };
+		5E52D38519A04FF700BFB916 /* WYCityButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCityButton.h; sourceTree = "<group>"; };
+		5E52D38619A04FF700BFB916 /* WYCityButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCityButton.m; sourceTree = "<group>"; };
 		5E5BC231183EE5D80003AC6D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		5E5BC236183EE5D80003AC6D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = WeiYou/Images.xcassets; sourceTree = "<group>"; };
 		5E5BC237183EE5D80003AC6D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = WeiYou/main.m; sourceTree = "<group>"; };
@@ -942,8 +942,8 @@
 				5E52D374199FA89800BFB916 /* WYNodeButton.m */,
 				5E52D376199FA91A00BFB916 /* WYNationButton.h */,
 				5E52D377199FA91A00BFB916 /* WYNationButton.m */,
-				5E52D37C199FB03700BFB916 /* WYShiButton.h */,
-				5E52D37D199FB03700BFB916 /* WYShiButton.m */,
+				5E52D38519A04FF700BFB916 /* WYCityButton.h */,
+				5E52D38619A04FF700BFB916 /* WYCityButton.m */,
 			);
 			name = TripCreateAndEdit;
 			sourceTree = "<group>";
@@ -1193,7 +1193,7 @@
 				5E4D772A19878012005720BD /* GTMBase64.m in Sources */,
 				6917719A1998C3B20046D69D /* WYFunctionUtility.m in Sources */,
 				5E52D357199EB89E00BFB916 /* WYSysNation.m in Sources */,
-				5E52D37E199FB03700BFB916 /* WYShiButton.m in Sources */,
+				5E52D38719A04FF700BFB916 /* WYCityButton.m in Sources */,
 				5E52D354199EB85E00BFB916 /* WYSysContinent.m in Sources */,
 				69582DAB1952C3F40072ED3E /* WYLoginController.m in Sources */,
 				5E5D67681861766700ECA966 /* WYTripDayTrafficCell.m in Sources */,

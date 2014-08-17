@@ -1,14 +1,14 @@
 //
-//  WYShiButton.m
+//  WYCityButton.m
 //  WeiYou
 //
-//  Created by owen on 8/16/14.
+//  Created by owen on 8/17/14.
 //  Copyright (c) 2014 xiyuan. All rights reserved.
 //
 
-#import "WYShiButton.h"
+#import "WYCityButton.h"
 
-@implementation WYShiButton
+@implementation WYCityButton
 @synthesize sysCity = _sysCity;
 @synthesize userCity = _userCity;
 

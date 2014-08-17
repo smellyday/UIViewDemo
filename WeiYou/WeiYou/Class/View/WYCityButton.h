@@ -1,8 +1,8 @@
 //
-//  WYShiButton.h
+//  WYCityButton.h
 //  WeiYou
 //
-//  Created by owen on 8/16/14.
+//  Created by owen on 8/17/14.
 //  Copyright (c) 2014 xiyuan. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import "WYSysCity.h"
 #import "WYUserCity.h"
 
-@interface WYShiButton : WYNodeButton {
+@interface WYCityButton : WYNodeButton {
 	WYSysCity *_sysCity;
 	WYUserCity *_userCity;
 }

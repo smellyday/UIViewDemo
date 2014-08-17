@@ -10,7 +10,7 @@
 #import "consts.h"
 #import "WYDataEngine.h"
 #import "WYMTrip.h"
-#import "WYShiButton.h"
+#import "WYCityButton.h"
 
 @interface WYCitiesController ()
 
@@ -72,7 +72,7 @@
     
     for (int i = 0; i < [allSysCities count]; i++) {
         WYSysCity *sysCity = [allSysCities objectAtIndex:i];
-        WYShiButton *pb = [[WYShiButton alloc] initButtonWithCity:sysCity atIndex:i];
+        WYCityButton *pb = [[WYCityButton alloc] initButtonWithCity:sysCity atIndex:i];
         pb.selected = NO;
 		pb.userCity = nil;
         [pb addTarget:self action:@selector(onClickCityButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -98,8 +98,8 @@
 }
 
 - (void)onClickCityButton:(id)sender {
-    if ([sender isKindOfClass:[WYShiButton class]]) {
-        WYShiButton *cityBtn = (WYShiButton *)sender;
+    if ([sender isKindOfClass:[WYCityButton class]]) {
+        WYCityButton *cityBtn = (WYCityButton *)sender;
         WYMTrip *creatingTrip = [[WYDataEngine sharedDataEngine] creatingTrip];
 		WYUserNation *uNation = cityBtn.userCity.pUserNode;
         
