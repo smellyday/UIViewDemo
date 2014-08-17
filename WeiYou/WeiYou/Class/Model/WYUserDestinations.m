@@ -67,11 +67,6 @@
 	NSArray *allUserNations = [self getUserAllNations];
 	for (WYUserNation *userNation in allUserNations) {
 		if (userNation.corSysNation.mID == nationID) {
-			
-			for (WYUserCity *city in userNation.childArray) {
-				mlog(@"~~~~~ city : %@", city.corSysCity.nodeName);
-			}
-			
 			return (NSArray *)userNation.childArray;
 		}
 	}
@@ -166,7 +161,6 @@
 		return;
 	}
 	
-	mlog(@"got here?");
 	[parentNode.childArray removeObject:(*userNode)];
 	if ([parentNode.childArray count] == 0) {
 		[self delUserNode:&parentNode];
