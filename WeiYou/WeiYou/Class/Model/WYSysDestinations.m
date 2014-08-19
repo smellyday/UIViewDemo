@@ -103,91 +103,14 @@
 
 #pragma mark - private method.
 - (void)loadAllNations {
-    WYSysContinent *Asia;
-    WYSysContinent *Europe;
-    WYSysContinent *NorthAmerica;
-    WYSysContinent *SouthAmerica;
-    WYSysContinent *Oceania;
-    WYSysContinent *Africa;
-    WYSysContinent *Antarctica;
-    
-    NSString *continentsPlistPath = [[NSBundle mainBundle] pathForResource:@"continents" ofType:@"plist"];
-    NSArray *continentInfoArr = [NSArray arrayWithContentsOfFile:continentsPlistPath];
-    for (NSDictionary *infoDic in continentInfoArr) {
+    NSString *nationsPlistPath = [[NSBundle mainBundle] pathForResource:@"countries" ofType:@"plist"];
+    NSArray *fileArr = [NSArray arrayWithContentsOfFile:nationsPlistPath];
+    for (NSDictionary *infoDic in fileArr) {
         WYSysContinent *continent = [[WYSysContinent alloc] initContinentWithInfo:infoDic];
         [_sysEarth.childArray addObject:continent];
-        
-        switch (continent.mID) {
-            case 1:
-                Asia = continent;
-                break;
-            case 2:
-                Europe = continent;
-                break;
-            case 3:
-                NorthAmerica = continent;
-                break;
-            case 4:
-                SouthAmerica = continent;
-                break;
-            case 5:
-                Oceania = continent;
-                break;
-            case 6:
-                Africa = continent;
-                break;
-            case 7:
-                Antarctica = continent;
-                break;
-                
-            default:
-                break;
-        }
-        
     }
-    
-    NSString *countriesPlistPath = [[NSBundle mainBundle] pathForResource:@"countries" ofType:@"plist"];
-    NSArray *countryInfoArr = [NSArray arrayWithContentsOfFile:countriesPlistPath];
-    for (NSDictionary *infoDic in countryInfoArr) {
-        WYSysNation *nation = [[WYSysNation alloc] initNationWithInfo:infoDic];
-        
-        switch (nation.pID) {
-            case 1:
-                nation.pSysNode = Asia;
-                [Asia.childArray addObject:nation];
-                break;
-            case 2:
-                nation.pSysNode = Europe;
-                [Europe.childArray addObject:nation];
-                break;
-            case 3:
-                nation.pSysNode = NorthAmerica;
-                [NorthAmerica.childArray addObject:nation];
-                break;
-            case 4:
-                nation.pSysNode = SouthAmerica;
-                [SouthAmerica.childArray addObject:nation];
-                break;
-            case 5:
-                nation.pSysNode = Oceania;
-                [Oceania.childArray addObject:nation];
-                break;
-            case 6:
-                nation.pSysNode = Africa;
-                [Africa.childArray addObject:nation];
-                break;
-            case 7:
-                nation.pSysNode = Antarctica;
-                [Antarctica.childArray addObject:nation];
-                break;
-                
-            default:
-                break;
-        }
-        
-    }
-    
 }
+
 
 
 
