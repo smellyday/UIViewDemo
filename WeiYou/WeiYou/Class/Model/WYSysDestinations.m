@@ -9,6 +9,8 @@
 #import "WYSysDestinations.h"
 #import "WYSysContinent.h"
 #import "WYSysNation.h"
+#import "WYSysCity.h"
+#import "consts.h"
 
 
 @interface WYSysDestinations (private)
@@ -19,6 +21,7 @@
 
 @implementation WYSysDestinations
 @synthesize sysEarth = _sysEarth;
+@synthesize allCitiesInTheWorldArr = _allCitiesInTheWorldArr;
 
 
 - (id)initSysDestinations {
@@ -71,34 +74,32 @@
 
 - (NSArray *)getSysCitiesInNationWithID:(NSInteger)nationID {
 	
-	
+    NSAssert(NO, @"Do not user this function by now");
 	
 	return nil;
 }
 
 - (NSArray *)getSysCitiesInNation:(WYSysNation *)nation {
+    
+    if (!_allCitiesInTheWorldArr) {
+        _allCitiesInTheWorldArr = [NSMutableArray arrayWithCapacity:100];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"testCity" ofType:@"plist"];
+        NSArray *infoArr = [NSArray arrayWithContentsOfFile:path];
+        for (NSDictionary *infoDic in infoArr) {
+            WYSysCity *mcity = [[WYSysCity alloc] initCityWithInfo:infoDic];
+            mcity.pSysNode = nation;
+            [_allCitiesInTheWorldArr addObject:mcity];
+        }
+    }
+    
+    NSMutableArray *cityArr = [NSMutableArray arrayWithCapacity:10];
+    for (WYSysCity *city in _allCitiesInTheWorldArr) {
+        if (city.pSysNode.mID == nation.mID) {
+            [cityArr addObject:city];
+        }
+    }
 	
-	NSMutableArray *allCities = [NSMutableArray arrayWithCapacity:10];
-	
-	NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithCapacity:10];
-	[mutDic setObject:@"10002" forKey:@"id"];
-	[mutDic setObject:@"208" forKey:@"parent_id"];
-	[mutDic setObject:@{@"en":@"Beijing", @"zh-CN":@"北京"} forKey:@"name"];
-	WYSysCity *mcity = [[WYSysCity alloc] initCityWithInfo:mutDic];
-	mcity.pSysNode = nation;
-	[allCities addObject:mcity];
-	
-	NSMutableDictionary *mutDic2 = [NSMutableDictionary dictionaryWithCapacity:10];
-	[mutDic2 setObject:@"10003" forKey:@"id"];
-	[mutDic2 setObject:@"208" forKey:@"parent_id"];
-	[mutDic2 setObject:@{@"en":@"ShangHai", @"zh-CN":@"上海"} forKey:@"name"];
-	WYSysCity *mcity2 = [[WYSysCity alloc] initCityWithInfo:mutDic2];
-	mcity2.pSysNode = nation;
-	[allCities addObject:mcity2];
-	
-	
-	return allCities;
-//	return [self getSysCitiesInNationWithID:nation.mID];
+	return (NSArray *)cityArr;
 }
 
 #pragma mark - private method.

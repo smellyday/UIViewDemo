@@ -14,9 +14,13 @@
 
 @interface WYSysDestinations : NSObject {
 	WYSysEarth *_sysEarth;
+    
+    //tmp
+    NSMutableArray *_allCitiesInTheWorldArr;
 }
 
 @property (nonatomic, readonly) WYSysEarth *sysEarth;
+@property (nonatomic, readonly) NSMutableArray *allCitiesInTheWorldArr;
 
 - (id)initSysDestinations;
 - (void)addNode:(WYSysNode *)cNode to:(WYSysNode *)pNode;

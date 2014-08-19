@@ -159,6 +159,7 @@
 		69E215AC1981F2970022D432 /* WYTencentUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E215AB1981F2970022D432 /* WYTencentUserInfo.m */; };
 		69E215AF1981F2B00022D432 /* WYSinaWeiboUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E215AE1981F2B00022D432 /* WYSinaWeiboUserInfo.m */; };
 		69EBB49619A3300800133A80 /* countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69EBB49519A3300800133A80 /* countries.plist */; };
+		69EBB49819A3341800133A80 /* testCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69EBB49719A3341800133A80 /* testCity.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -406,6 +407,7 @@
 		69E215AE1981F2B00022D432 /* WYSinaWeiboUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSinaWeiboUserInfo.m; sourceTree = "<group>"; };
 		69E215B7198262240022D432 /* log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
 		69EBB49519A3300800133A80 /* countries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = countries.plist; sourceTree = "<group>"; };
+		69EBB49719A3341800133A80 /* testCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = testCity.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -668,6 +670,7 @@
 		5E5BC2A5183EE8020003AC6D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				69EBB49719A3341800133A80 /* testCity.plist */,
 				5E5BC232183EE5D80003AC6D /* Images */,
 				69343301197FB4F500C1D2A5 /* zh-Hans.lproj */,
 				5E5BC22F183EE5D80003AC6D /* en.lproj */,
@@ -1037,6 +1040,7 @@
 				6934980A199A0B90006BAF8B /* verify_btn_bg_n.png in Resources */,
 				69E039AF199B48A2000B6C75 /* btn_add_destination_n.png in Resources */,
 				69349819199A0B90006BAF8B /* setting_icon_n@2x.png in Resources */,
+				69EBB49819A3341800133A80 /* testCity.plist in Resources */,
 				69349800199A0B90006BAF8B /* qq_btn_bg_h@2x.png in Resources */,
 				69349810199A0B90006BAF8B /* trip_begin_date.png in Resources */,
 				69E215A81981E2E80022D432 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
