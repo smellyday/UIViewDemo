@@ -21,7 +21,7 @@
 @synthesize tripBeginDate = _tripBeginDate;
 @synthesize tripEndDate = _tripEndDate;
 @synthesize tripCreateDate = _tripCreateDate;
-@synthesize tripDaysArray = _tripDaysArray;
+//@synthesize tripDaysArray = _tripDaysArray;
 @synthesize userDestinationAgent = _userDestinationAgent;
 
 @synthesize isNewTrip = _isNewTrip;
@@ -32,7 +32,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-		_tripDaysArray = [NSMutableArray arrayWithCapacity:10];
+//		_tripDaysArray = [NSMutableArray arrayWithCapacity:10];
     }
     return self;
 }
@@ -95,13 +95,13 @@
     
 }
 
-- (NSMutableArray *)tripDaysArray {
-    if (!_tripDaysArray) {
-        _tripDaysArray = [NSMutableArray arrayWithCapacity:5];
-    }
-    
-    return _tripDaysArray;
-}
+//- (NSMutableArray *)tripDaysArray {
+//    if (!_tripDaysArray) {
+//        _tripDaysArray = [NSMutableArray arrayWithCapacity:5];
+//    }
+//    
+//    return _tripDaysArray;
+//}
 
 - (NSDictionary *)transferToDic {
 //    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithCapacity:10];

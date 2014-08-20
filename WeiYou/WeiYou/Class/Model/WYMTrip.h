@@ -20,13 +20,14 @@
 	NSDate *_tripBeginDate;
 	NSDate *_tripEndDate;
 	NSDate *_tripCreateDate;
-	NSMutableArray *_tripDaysArray;
+//	NSMutableArray *_tripDaysArray;
 	WYUserDestinations *_userDestinationAgent;
 	
 	BOOL _isNewTrip;
 	BOOL _deletTrip;
 	BOOL _shouldUpdate;
 	BOOL _changeWhenUploading;
+    
 }
 
 @property (nonatomic, strong) NSNumber *tripID;
@@ -38,7 +39,7 @@
 @property (nonatomic, strong) NSDate *tripBeginDate;
 @property (nonatomic, strong) NSDate *tripEndDate;
 @property (nonatomic, strong) NSDate *tripCreateDate;
-@property (nonatomic, readonly) NSMutableArray *tripDaysArray;
+//@property (nonatomic, readonly) NSMutableArray *tripDaysArray;
 @property (nonatomic, strong) WYUserDestinations *userDestinationAgent;
 
 @property (nonatomic) BOOL isNewTrip;

@@ -24,7 +24,7 @@
 @end
 
 @implementation WYDataEngine
-@synthesize trips = _trips;
+@synthesize userTripsArr = _userTripsArr;
 @synthesize biSyncQueue = _biSyncQueue;
 @synthesize creatingTrip = _creatingTrip;
 @synthesize sysDestinationAgent = _sysDestinationAgent;
@@ -42,11 +42,12 @@
 
 //=========create new trip===========
 - (void)createNewTrip {
-    NSAssert(_creatingTrip==nil, @"_creatingTrip must be nil");
+    NSAssert(_creatingTrip == nil, @"_creatingTrip must be nil");
     _creatingTrip = [[WYMTrip alloc] init];
 }
 
 - (void)finishCreatingTrip {
+    [_userTripsArr addObject:_creatingTrip];
     _creatingTrip = nil;
 }
 
@@ -202,11 +203,11 @@
 
 - (void)loadTripsFromLocal {
     
-    self.trips = [NSMutableArray arrayWithCapacity:10];
+    self.userTripsArr = [NSMutableArray arrayWithCapacity:10];
     NSArray *allTripsInfo = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
     for (NSDictionary *infoDic in allTripsInfo) {
         WYMTrip *mt = [[WYMTrip alloc] initWithTripInfoDic:infoDic];
-        [self.trips addObject:mt];
+        [self.userTripsArr addObject:mt];
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_TRIPS_SYNC_FINISH object:nil userInfo:nil];
@@ -291,10 +292,10 @@
  objects change to array, then can save to file.
  */
 - (NSArray *)objectsToArray {
-    if (_trips) {
+    if (_userTripsArr) {
         
         NSMutableArray *dataArr = [NSMutableArray arrayWithCapacity:10];
-        for (WYMTrip *trip in _trips) {
+        for (WYMTrip *trip in _userTripsArr) {
             NSDictionary *infoDic = [trip transferToDic];
             [dataArr addObject:infoDic];
         }

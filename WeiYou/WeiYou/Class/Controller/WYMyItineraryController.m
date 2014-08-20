@@ -36,7 +36,7 @@
 {
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
-    self.trips = [[WYDataEngine sharedDataEngine] trips];
+    self.trips = [[WYDataEngine sharedDataEngine] userTripsArr];
 	
 	UIBarButtonItem *mLeftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:PIC_SETTING_N] style:UIBarButtonItemStyleBordered target:self action:@selector(onClickSetting:)];
 	mLeftButton.tintColor = [UIColor whiteColor];
