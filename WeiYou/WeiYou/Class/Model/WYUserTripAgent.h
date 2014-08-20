@@ -18,12 +18,14 @@
 - (NSInteger)countOfUserTrips;
 - (WYMTrip *)objectInUserTripsAtIndex:(NSUInteger)index;
 - (NSArray *)userTripsAtIndexes:(NSIndexSet *)indexes;
+
 - (void)addUserTripsObject:(WYMTrip *)mTrip;
 - (void)insertObject:(WYMTrip *)mTrip inUserTripsAtIndex:(NSUInteger)index;
 - (void)insertUserTrips:(NSArray *)array atIndexes:(NSIndexSet *)indexes;
 - (void)removeObjectFromUserTripsAtIndex:(NSUInteger)index;
 - (void)removeUserTripsAtIndexes:(NSIndexSet *)indexes;
 - (void)removeUserTripsObject:(WYMTrip *)mTrip;
-
+- (void)replaceObjectInUserTripsAtIndex:(NSUInteger)index withObject:(WYMTrip *)object;
+- (void)replaceUserTripsAtIndexes:(NSIndexSet *)indexes withUserTrips:(NSArray *)array;
 
 @end

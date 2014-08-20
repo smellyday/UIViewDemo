@@ -57,5 +57,13 @@
     
 }
 
+- (void)replaceObjectInUserTripsAtIndex:(NSUInteger)index withObject:(WYMTrip *)object {
+	[_userTrips replaceObjectAtIndex:index withObject:object];
+}
+
+- (void)replaceUserTripsAtIndexes:(NSIndexSet *)indexes withUserTrips:(NSArray *)array {
+	[_userTrips replaceObjectsAtIndexes:indexes withObjects:array];
+}
+
 
 @end
