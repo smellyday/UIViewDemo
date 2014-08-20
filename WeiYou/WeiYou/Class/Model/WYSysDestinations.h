@@ -12,15 +12,22 @@
 #import "WYSysNation.h"
 #import "WYSysCity.h"
 
+
+@protocol DestinationsDataDelegate
+
+@optional
+- (void)destigationsAgnetGotCitiesArrayInNation:(WYSysNation *)nation;
+
+@end
+
+
+
 @interface WYSysDestinations : NSObject {
 	WYSysEarth *_sysEarth;
-    
-    //tmp
-    NSMutableArray *_allCitiesInTheWorldArr;
 }
 
 @property (nonatomic, readonly) WYSysEarth *sysEarth;
-@property (nonatomic, readonly) NSMutableArray *allCitiesInTheWorldArr;
+@property (nonatomic) id<DestinationsDataDelegate> delegate;
 
 - (id)initSysDestinations;
 - (void)addNode:(WYSysNode *)cNode to:(WYSysNode *)pNode;
@@ -29,7 +36,9 @@
 - (NSArray *)getSysAllContinents;
 - (NSArray *)getSysNationsInContinentWithID:(NSInteger)continentID;
 - (NSArray *)getSysNationsInContinent:(WYSysContinent *)continent;
-- (NSArray *)getSysCitiesInNationWithID:(NSInteger)nationID;
-- (NSArray *)getSysCitiesInNation:(WYSysNation *)nation;
+
+- (void)getSysCitiesInNationWithID:(NSInteger)nationID;
+- (void)getSysCitiesInNation:(NSTimer *)timer;
+- (void)requestSysCitiesInNation:(WYSysNation *)nation;
 
 @end

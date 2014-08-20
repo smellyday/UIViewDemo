@@ -21,7 +21,7 @@
 
 @implementation WYSysDestinations
 @synthesize sysEarth = _sysEarth;
-@synthesize allCitiesInTheWorldArr = _allCitiesInTheWorldArr;
+@synthesize delegate;
 
 
 - (id)initSysDestinations {
@@ -72,35 +72,34 @@
 	return [self getSysNationsInContinentWithID:continent.mID];
 }
 
-- (NSArray *)getSysCitiesInNationWithID:(NSInteger)nationID {
+- (void)getSysCitiesInNationWithID:(NSInteger)nationID {
 	
     NSAssert(NO, @"Do not user this function by now");
 	
-	return nil;
 }
 
-- (NSArray *)getSysCitiesInNation:(WYSysNation *)nation {
+- (void)getSysCitiesInNation:(NSTimer *)timer {
+    NSAssert([timer.userInfo isKindOfClass:[WYSysNation class]], @"timer.userInfo must be WYSysNation Class");
     
-    if (!_allCitiesInTheWorldArr) {
-        _allCitiesInTheWorldArr = [NSMutableArray arrayWithCapacity:100];
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"testCity" ofType:@"plist"];
-        NSArray *infoArr = [NSArray arrayWithContentsOfFile:path];
-        for (NSDictionary *infoDic in infoArr) {
-            WYSysCity *mcity = [[WYSysCity alloc] initCityWithInfo:infoDic];
-            mcity.pSysNode = nation;
-            [_allCitiesInTheWorldArr addObject:mcity];
-        }
-    }
+    WYSysNation *nation = (WYSysNation *)timer.userInfo;
+    NSAssert(nation.pSysNode != nil, @"nation's pSysNode should not be nil");
     
-    NSMutableArray *cityArr = [NSMutableArray arrayWithCapacity:10];
-    for (WYSysCity *city in _allCitiesInTheWorldArr) {
-        if (city.pSysNode.mID == nation.mID) {
-            [cityArr addObject:city];
-        }
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"testCity" ofType:@"plist"];
+    NSArray *infoArr = [NSArray arrayWithContentsOfFile:path];
+    for (NSDictionary *infoDic in infoArr) {
+        WYSysCity *mcity = [[WYSysCity alloc] initCityWithInfo:infoDic];
+        mcity.pSysNode = nation;
+        [nation.childArray addObject:mcity];
     }
 	
-	return (NSArray *)cityArr;
+    [delegate destigationsAgnetGotCitiesArrayInNation:(WYSysNation *)timer.userInfo];
 }
+
+- (void)requestSysCitiesInNation:(WYSysNation *)nation {
+    NSTimer *timer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(getSysCitiesInNation:) userInfo:nation repeats:NO];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+}
+
 
 #pragma mark - private method.
 - (void)loadAllNations {

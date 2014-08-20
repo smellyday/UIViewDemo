@@ -18,6 +18,8 @@
 
 @implementation WYCitiesController
 @synthesize nationButton = _nationButton;
+@synthesize sysCities = _sysCities;
+@synthesize indicatorView = _indicatorView;
 
 
 - (void)viewDidLoad
@@ -41,17 +43,38 @@
 	mOKBtn.tintColor = [UIColor whiteColor];
 	self.navigationItem.rightBarButtonItem = mOKBtn;
     
+    self.indicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    _indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    
     // data
-	WYSysDestinations *sysDestinationAgent = [[WYDataEngine sharedDataEngine] sysDestinationAgent];
-	NSArray *allSysCities = [sysDestinationAgent getSysCitiesInNation:_nationButton.sysNation];
+    if (_nationButton.sysNation.childArray && [_nationButton.sysNation.childArray count]>0) {
+        _sysCities = _nationButton.sysNation.childArray;
+        [self loadCities];
+    } else {
+        WYSysDestinations *sysDestinationAgent = [[WYDataEngine sharedDataEngine] sysDestinationAgent];
+        sysDestinationAgent.delegate = self;
+        [sysDestinationAgent requestSysCitiesInNation:_nationButton.sysNation];
+        [self.view addSubview:_indicatorView];
+        [_indicatorView startAnimating];
+    }
+    
+    
+}
+
+- (void)loadCities {
+    [_indicatorView stopAnimating];
+    [_indicatorView removeFromSuperview];
+    
+    NSAssert(_sysCities != nil, @"sysCities should not be nil");
+    
 	WYMTrip *creatingTrip = [[WYDataEngine sharedDataEngine] creatingTrip];
 	NSArray *allUserCities = [creatingTrip.userDestinationAgent getUserAllCities];
     
     // main content
     CGFloat gapTopH = 35.0;
     CGFloat gapMidH = 13.0+22.0;
-    int rowCount = (int)[allSysCities count]/3+1;
-    if ([allSysCities count]%3 != 0) {
+    int rowCount = (int)[_sysCities count]/3+1;
+    if ([_sysCities count]%3 != 0) {
         rowCount++;
     }
     CGFloat scrollSizeH = gapTopH + gapMidH*rowCount;
@@ -70,8 +93,8 @@
     [countryTitle setTextColor:COLOR_ON_PLACE_N];
     [scrollContainer addSubview:countryTitle];
     
-    for (int i = 0; i < [allSysCities count]; i++) {
-        WYSysCity *sysCity = [allSysCities objectAtIndex:i];
+    for (int i = 0; i < [_sysCities count]; i++) {
+        WYSysCity *sysCity = [_sysCities objectAtIndex:i];
         WYCityButton *pb = [[WYCityButton alloc] initButtonWithCity:sysCity atIndex:i];
         pb.selected = NO;
 		pb.userCity = nil;
@@ -85,7 +108,6 @@
             }
         }
     }
-    
 }
 
 #pragma mark - Click Event
@@ -127,25 +149,20 @@
             [creatingTrip.userDestinationAgent addCity:&uCity];
 			cityBtn.userCity = uCity;
         }
-        
-		NSArray *contiArr = [creatingTrip.userDestinationAgent getUserAllContinents];
-		for (WYUserContinent *continent in contiArr) {
-			mlog(@"== 大洲 : %@ and info : %@", continent.corSysContinent.nodeName, [continent description]);
-			
-			NSArray *nationArr = [creatingTrip.userDestinationAgent getUserNationsInContinent:continent];
-			for (WYUserNation *nation in nationArr) {
-				mlog(@"== == 国家 : %@ and info : %@", nation.corSysNation.nodeName, [nation description]);
-				
-				NSArray *cityArr = [creatingTrip.userDestinationAgent getUserCitiesInNation:nation];
-				for (WYUserCity *city in cityArr) {
-					mlog(@"== == == 城市 : %@ and info : %@", city.corSysCity.nodeName, [city description]);
-				}
-			}
-		}
-		mlog(@"=================================================");
 		
     }
 }
+
+
+#pragma mark - DestinationsDataDelegate
+- (void)destigationsAgnetGotCitiesArrayInNation:(WYSysNation *)nation {
+    if (nation.mID == _nationButton.sysNation.mID) {
+        _sysCities = nation.childArray;
+        [self performSelectorOnMainThread:@selector(loadCities) withObject:nil waitUntilDone:YES];
+    }
+}
+
+
 
 
 
