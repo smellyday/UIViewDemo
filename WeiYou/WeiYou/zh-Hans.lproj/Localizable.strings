@@ -33,7 +33,7 @@
 
 	//create new trip
 "create new trip" = "创建行程";
-"trip name" = "行程名称";
+"trip name" = "行程名称(必填）";
 "trip begin date" = "出发日期";
 "trip days count" = "出行天数";
 
