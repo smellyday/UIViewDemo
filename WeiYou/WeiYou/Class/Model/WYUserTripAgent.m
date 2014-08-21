@@ -7,15 +7,27 @@
 //
 
 #import "WYUserTripAgent.h"
+#import "consts.h"
 
 @implementation WYUserTripAgent
 @synthesize userTrips = _userTrips;
 
+- (id)initUserTripAgent {
+    self = [super init];
+    if (self) {
+        _userTrips = [NSMutableArray arrayWithCapacity:10];
+        NSArray *tripInfoDics = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
+        for (NSDictionary *infoDic in tripInfoDics) {
+            WYMTrip *mt = [[WYMTrip alloc] initWithTripInfoDic:infoDic];
+            [_userTrips addObject:mt];
+        }
+    }
+    
+    return self;
+}
 
 - (NSMutableArray *)userTrips {
-    if (!_userTrips) {
-        _userTrips = [NSMutableArray arrayWithCapacity:10];
-    }
+    NSAssert(_userTrips != nil, @"_userTrips should not be nil, Now");
     
     return _userTrips;
 }
@@ -31,10 +43,6 @@
 
 - (NSArray *)userTripsAtIndexes:(NSIndexSet *)indexes {
     return [self.userTrips objectsAtIndexes:indexes];
-}
-
-- (void)addUserTripsObject:(WYMTrip *)mTrip {
-    
 }
 
 - (void)insertObject:(WYMTrip *)mTrip inUserTripsAtIndex:(NSUInteger)index {

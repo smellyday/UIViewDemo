@@ -36,7 +36,8 @@
 {
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
-    self.trips = [[WYDataEngine sharedDataEngine] userTripsArr];
+    self.trips = [[[WYDataEngine sharedDataEngine] userTripAgent] userTrips];
+    [[[WYDataEngine sharedDataEngine] userTripAgent] addObserver:self forKeyPath:@"userTrips" options:NSKeyValueObservingOptionNew context:nil];
 	
 	UIBarButtonItem *mLeftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:PIC_SETTING_N] style:UIBarButtonItemStyleBordered target:self action:@selector(onClickSetting:)];
 	mLeftButton.tintColor = [UIColor whiteColor];
@@ -144,7 +145,7 @@
 	return 0;
 }
 
-#pragma system
+#pragma mark - system
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -153,18 +154,12 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[[WYDataEngine sharedDataEngine] userTripAgent] removeObserver:self forKeyPath:@"userTrips"];
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    mlog(@"%s", __func__);
 }
-*/
 
 @end

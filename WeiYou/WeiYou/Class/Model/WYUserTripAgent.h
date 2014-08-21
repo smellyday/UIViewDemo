@@ -11,15 +11,16 @@
 
 @interface WYUserTripAgent : NSObject {
     NSMutableArray *_userTrips;
+
 }
 
 @property (nonatomic, readonly) NSMutableArray *userTrips;
 
+- (id)initUserTripAgent;
+
 - (NSInteger)countOfUserTrips;
 - (WYMTrip *)objectInUserTripsAtIndex:(NSUInteger)index;
 - (NSArray *)userTripsAtIndexes:(NSIndexSet *)indexes;
-
-- (void)addUserTripsObject:(WYMTrip *)mTrip;
 - (void)insertObject:(WYMTrip *)mTrip inUserTripsAtIndex:(NSUInteger)index;
 - (void)insertUserTrips:(NSArray *)array atIndexes:(NSIndexSet *)indexes;
 - (void)removeObjectFromUserTripsAtIndex:(NSUInteger)index;
@@ -28,4 +29,5 @@
 - (void)replaceObjectInUserTripsAtIndex:(NSUInteger)index withObject:(WYMTrip *)object;
 - (void)replaceUserTripsAtIndexes:(NSIndexSet *)indexes withUserTrips:(NSArray *)array;
 
+//- (void)addUserTrips:(NSSet *)objects; // There is a bug in Apple.
 @end

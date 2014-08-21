@@ -26,6 +26,7 @@
 @implementation WYDataEngine
 @synthesize userTripsArr = _userTripsArr;
 @synthesize biSyncQueue = _biSyncQueue;
+@synthesize userTripAgent = _userTripAgent;
 @synthesize creatingTrip = _creatingTrip;
 @synthesize sysDestinationAgent = _sysDestinationAgent;
 
@@ -39,6 +40,25 @@
 	
 	return sharedEngine;
 }
+
+//==========Lazy init property=============
+- (WYSysDestinations *)sysDestinationAgent {
+	if (!_sysDestinationAgent) {
+		_sysDestinationAgent = [[WYSysDestinations alloc] initSysDestinations];
+	}
+	
+	return _sysDestinationAgent;
+}
+
+- (WYUserTripAgent *)userTripAgent {
+    if (!_userTripAgent) {
+        _userTripAgent = [[WYUserTripAgent alloc] initUserTripAgent];
+    }
+    
+    return _userTripAgent;
+}
+
+
 
 //=========create new trip===========
 - (void)createNewTrip {
@@ -307,14 +327,7 @@
 }
 
 
-//==========Destination DATA=============
-- (WYSysDestinations *)sysDestinationAgent {
-	if (!_sysDestinationAgent) {
-		_sysDestinationAgent = [[WYSysDestinations alloc] initSysDestinations];
-	}
-	
-	return _sysDestinationAgent;
-}
+
 
 
 @end

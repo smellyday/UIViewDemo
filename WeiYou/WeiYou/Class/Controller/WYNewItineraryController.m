@@ -235,6 +235,9 @@
 		return;
 	}
 	
+    WYUserTripAgent *UsrTripAgent = [[WYDataEngine sharedDataEngine] userTripAgent];
+    WYMTrip *creatingTrip = [[WYDataEngine sharedDataEngine] creatingTrip];
+    [UsrTripAgent insertObject:creatingTrip inUserTripsAtIndex:0];
     [[WYDataEngine sharedDataEngine] cancelCreatingTrip];
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
