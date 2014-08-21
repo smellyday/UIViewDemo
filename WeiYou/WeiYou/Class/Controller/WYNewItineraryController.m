@@ -235,6 +235,7 @@
 		return;
 	}
     
+    [[[WYDataEngine sharedDataEngine] creatingTrip] setTripName:_tripNameField.text];
     [[WYDataEngine sharedDataEngine] finishCreatingTrip];
 	[self dismissViewControllerAnimated:YES completion:nil];
 }

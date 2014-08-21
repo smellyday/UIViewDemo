@@ -619,10 +619,11 @@
 		5E5BC249183EE5E90003AC6D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				69A8D9C519A5D70E00595AB5 /* Trip */,
+				5E5D67651861455A00ECA966 /* TripDay */,
 				69E039B7199B5E2F000B6C75 /* TripCreateAndEdit */,
 				5EF9352A198B1AED0035E486 /* EGO */,
 				69B68D2B1989FBC500DF29AF /* UtilityView */,
-				5E5D67651861455A00ECA966 /* TripDay */,
 			);
 			name = View;
 			path = WeiYou/Class/View;
@@ -904,6 +905,13 @@
 				5EBCF73E185EAE290057C1AE /* WYMTrip.m */,
 			);
 			name = UserTrip;
+			sourceTree = "<group>";
+		};
+		69A8D9C519A5D70E00595AB5 /* Trip */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Trip;
 			sourceTree = "<group>";
 		};
 		69AA1EBE1954112500BA0884 /* libWeiboSDK */ = {

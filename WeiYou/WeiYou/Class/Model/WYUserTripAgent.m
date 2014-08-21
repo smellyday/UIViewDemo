@@ -46,23 +46,23 @@
 }
 
 - (void)insertObject:(WYMTrip *)mTrip inUserTripsAtIndex:(NSUInteger)index {
-    
+    [_userTrips insertObject:mTrip atIndex:index];
 }
 
 - (void)insertUserTrips:(NSArray *)array atIndexes:(NSIndexSet *)indexes {
-    
+    [_userTrips insertObjects:array atIndexes:indexes];
 }
 
 - (void)removeObjectFromUserTripsAtIndex:(NSUInteger)index {
-    
+    [_userTrips removeObjectAtIndex:index];
 }
 
 - (void)removeUserTripsAtIndexes:(NSIndexSet *)indexes {
-    
+    [_userTrips removeObjectsAtIndexes:indexes];
 }
 
 - (void)removeUserTripsObject:(WYMTrip *)mTrip {
-    
+    [_userTrips removeObject:mTrip];
 }
 
 - (void)replaceObjectInUserTripsAtIndex:(NSUInteger)index withObject:(WYMTrip *)object {

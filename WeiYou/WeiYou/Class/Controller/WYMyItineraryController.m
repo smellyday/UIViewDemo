@@ -10,7 +10,6 @@
 #import "WYSettingsViewController.h"
 #import "WYCreateNewViewController.h"
 #import "WYTripController.h"
-#import "WYDataEngine.h"
 #import "WYMTrip.h"
 #import "consts.h"
 #import "WYNewItineraryController.h"
@@ -21,7 +20,7 @@
 
 @implementation WYMyItineraryController
 @synthesize mTableView = _mTableView;
-@synthesize trips = _trips;
+@synthesize userTripAgent = _userTripAgent;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,7 +35,7 @@
 {
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
-    self.trips = [[[WYDataEngine sharedDataEngine] userTripAgent] userTrips];
+    self.userTripAgent = [[WYDataEngine sharedDataEngine] userTripAgent];
     [[[WYDataEngine sharedDataEngine] userTripAgent] addObserver:self forKeyPath:@"userTrips" options:NSKeyValueObservingOptionNew context:nil];
 	
 	UIBarButtonItem *mLeftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:PIC_SETTING_N] style:UIBarButtonItemStyleBordered target:self action:@selector(onClickSetting:)];
@@ -80,7 +79,6 @@
 }
 
 - (void)doWhenBiSynFinish:(NSNotification *)notification {
-    self.trips = [[WYDataEngine sharedDataEngine] trips];
     [self.mTableView reloadData];
     
     [[WYDataEngine sharedDataEngine] saveTripsToLocal];
@@ -97,8 +95,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [_trips count];
-	
+    return [_userTripAgent countOfUserTrips];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,7 +107,8 @@
 	if (cell == nil) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NORMALCELL];
 	}
-    WYMTrip *mTrip = (WYMTrip *)[_trips objectAtIndex:row];
+    
+    WYMTrip *mTrip = [_userTripAgent objectInUserTripsAtIndex:row];
     cell.textLabel.text = mTrip.tripName;
 	
 	return cell;
@@ -121,20 +119,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	WYTripController *theTripController = [[WYTripController alloc] init];
-    theTripController.trip = [_trips objectAtIndex:[indexPath row]];
-    
-		//    NSOperationQueue *mq = [[NSOperationQueue alloc] init];
-		//    [mq setMaxConcurrentOperationCount:2];
-		//    WYUploadTripOperation *op = [[WYUploadTripOperation alloc] init];
-		//    op.sym = 1;
-		//    [mq addOperation:op];
-		//
-		//    WYUploadTripOperation *op2 = [[WYUploadTripOperation alloc] init];
-		//    op2.sym = 2;
-		//    [mq addOperation:op2];
-	
-	[self.navigationController pushViewController:theTripController animated:YES];
+//	WYTripController *theTripController = [[WYTripController alloc] init];
+//    theTripController.trip = [_trips objectAtIndex:[indexPath row]];
+//	
+//	[self.navigationController pushViewController:theTripController animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -160,6 +148,7 @@
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     mlog(@"%s", __func__);
+    [_mTableView reloadData];
 }
 
 @end

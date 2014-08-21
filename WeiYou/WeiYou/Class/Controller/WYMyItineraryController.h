@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WYDataEngine.h"
 
 @interface WYMyItineraryController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
 	UITableView *_mTableView;
-	NSMutableArray *_trips;
+	WYUserTripAgent *_userTripAgent;
 }
 
 @property (nonatomic, strong) UITableView *mTableView;
-@property (nonatomic, strong) NSArray *trips;
+@property (nonatomic, strong) WYUserTripAgent *userTripAgent;
 
 @end
