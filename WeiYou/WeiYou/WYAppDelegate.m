@@ -31,7 +31,6 @@
 	}
     
     // synchronization of trips.
-    [[WYDataEngine sharedDataEngine] loadTripsFromLocal];
 //    [[WYDataEngine sharedDataEngine] performSelector:@selector(bisynchronizeTrips) withObject:nil afterDelay:0];
     
     // sina weibo

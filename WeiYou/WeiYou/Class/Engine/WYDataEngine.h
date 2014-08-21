@@ -12,7 +12,6 @@
 
 @class WYMTrip;
 @interface WYDataEngine : NSObject {
-	NSMutableArray *_userTripsArr;
     NSOperationQueue *_biSyncQueue;
     
     WYUserTripAgent *_userTripAgent;
@@ -20,7 +19,6 @@
     WYMTrip *_creatingTrip;
 }
 
-@property (nonatomic, strong) NSMutableArray *userTripsArr;
 @property (nonatomic, strong) NSOperationQueue *biSyncQueue;
 
 @property (nonatomic, readonly) WYUserTripAgent *userTripAgent;
@@ -36,7 +34,6 @@
 
 //sync
 - (void)bisynchronizeTrips;
-- (void)loadTripsFromLocal;
 - (void)saveTripsToLocal;
 
 
