@@ -13,6 +13,8 @@
 #import "WYMTrip.h"
 #import "consts.h"
 #import "WYNewItineraryController.h"
+#import "TPGestureTableViewCell.h"
+#import "WYTripCell.h"
 
 @interface WYMyItineraryController ()
 
@@ -51,7 +53,7 @@
 	self.mTableView.delegate = self;
 	self.mTableView.dataSource = self;
 	self.mTableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-	self.mTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+	self.mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.mTableView.backgroundColor = [UIColor whiteColor];
 	self.mTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 	[self.view addSubview:_mTableView];
@@ -101,15 +103,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	static NSString *NORMALCELL = @"NCell";
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NORMALCELL];
+    /*
+	WYTripCell *cell = [tableView dequeueReusableCellWithIdentifier:NORMALCELL];
 	
 	NSInteger row = [indexPath row];
 	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NORMALCELL];
+		cell = [[WYTripCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NORMALCELL];
 	}
+    */
     
-    WYMTrip *mTrip = [_userTripAgent objectInUserTripsAtIndex:row];
-    cell.textLabel.text = mTrip.tripName;
+    WYTripCell *cell = [[WYTripCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NORMALCELL];
+    cell.citiesNameLabel.text = @"hello";
+//    WYMTrip *mTrip = [_userTripAgent objectInUserTripsAtIndex:row];
 	
 	return cell;
 }
@@ -118,7 +123,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	
+	mlog(@"%s", __func__);
+    
 //	WYTripController *theTripController = [[WYTripController alloc] init];
 //    theTripController.trip = [_trips objectAtIndex:[indexPath row]];
 //	

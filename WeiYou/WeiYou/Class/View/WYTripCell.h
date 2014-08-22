@@ -8,17 +8,32 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WYTripCell : UITableViewCell {
+typedef enum {
+    tripCellStatusNormal = 0,
+    tripCellStatusExpanding,
+    tripCellStatusExpanded,
+} TripCellStatus;
+
+@interface WYTripCell : UITableViewCell <UIGestureRecognizerDelegate> {
 	UILabel *_daythLabel;
 	UILabel *_dateLabel;
 	UILabel *_weekLabel;
 	
 	UILabel *_citiesNameLabel;
+    
+    UIView *_realContentView;
+    TripCellStatus _cellSt;
 }
 
 @property (nonatomic, strong) UILabel *daythLabel;
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UILabel *weekLabel;
 @property (nonatomic, strong) UILabel *citiesNameLabel;
+
+
+@property (nonatomic, readonly) UIView *realContentView;
+@property (nonatomic) TripCellStatus cellSt;
+
+- (void)recover;
 
 @end
