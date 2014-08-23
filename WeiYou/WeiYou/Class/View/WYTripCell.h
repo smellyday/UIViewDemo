@@ -10,19 +10,29 @@
 
 typedef enum {
     tripCellStatusNormal = 0,
-    tripCellStatusExpanding,
     tripCellStatusExpanded,
 } TripCellStatus;
+
+
+@class WYTripCell;
+
+@protocol TripCellDelegate
+
+- (void)cellStateChanged:(WYTripCell *)cell;
+
+@end
+
+
 
 @interface WYTripCell : UITableViewCell <UIGestureRecognizerDelegate> {
 	UILabel *_daythLabel;
 	UILabel *_dateLabel;
 	UILabel *_weekLabel;
-	
 	UILabel *_citiesNameLabel;
     
     UIView *_realContentView;
     TripCellStatus _cellSt;
+	id<TripCellDelegate> _delegate;
 }
 
 @property (nonatomic, strong) UILabel *daythLabel;
@@ -30,10 +40,13 @@ typedef enum {
 @property (nonatomic, strong) UILabel *weekLabel;
 @property (nonatomic, strong) UILabel *citiesNameLabel;
 
-
 @property (nonatomic, readonly) UIView *realContentView;
 @property (nonatomic) TripCellStatus cellSt;
-
-- (void)recover;
+@property (nonatomic) id<TripCellDelegate> delegate;
 
 @end
+
+
+
+
+

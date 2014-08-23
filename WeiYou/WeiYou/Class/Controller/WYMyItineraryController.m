@@ -14,9 +14,9 @@
 #import "consts.h"
 #import "WYNewItineraryController.h"
 #import "TPGestureTableViewCell.h"
-#import "WYTripCell.h"
 
 @interface WYMyItineraryController ()
+
 
 @end
 
@@ -49,7 +49,7 @@
 	self.navigationItem.rightBarButtonItem = mRightButton;
 	
 	//add table view
-	self.mTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+	self.mTableView = [[WYTripTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
 	self.mTableView.delegate = self;
 	self.mTableView.dataSource = self;
 	self.mTableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
@@ -60,6 +60,7 @@
 	
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenBiSynFinish:) name:NOTI_TRIPS_SYNC_FINISH object:nil];
 }
+
 
 #pragma mark - Event Click
 - (void)onClickSetting:(id)sender {
@@ -112,14 +113,20 @@
 	}
     */
     
+    WYMTrip *mTrip = [_userTripAgent objectInUserTripsAtIndex:[indexPath row]];
     WYTripCell *cell = [[WYTripCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NORMALCELL];
-    cell.citiesNameLabel.text = @"hello";
-//    WYMTrip *mTrip = [_userTripAgent objectInUserTripsAtIndex:row];
+	cell.delegate = self;
+    cell.citiesNameLabel.text = mTrip.tripName;
+	cell.highlighted = NO;
 	
 	return cell;
 }
 
 #pragma mark - UITableViewDelegate
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	return indexPath;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -156,5 +163,15 @@
     mlog(@"%s", __func__);
     [_mTableView reloadData];
 }
+
+#pragma mark - TripCellDelegate
+- (void)cellStateChanged:(WYTripCell *)cell {
+	mlog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+	[self.mTableView registerTripCell:cell];
+}
+
+
+
+
 
 @end

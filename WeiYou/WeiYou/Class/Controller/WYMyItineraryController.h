@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "WYDataEngine.h"
+#import "WYTripTableView.h"
+#import "WYTripCell.h"
 
-@interface WYMyItineraryController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
-	UITableView *_mTableView;
+@interface WYMyItineraryController : UIViewController <UITableViewDataSource, UITableViewDelegate, TripCellDelegate> {
+	WYTripTableView *_mTableView;
 	WYUserTripAgent *_userTripAgent;
 }
 
-@property (nonatomic, strong) UITableView *mTableView;
+@property (nonatomic, strong) WYTripTableView *mTableView;
 @property (nonatomic, strong) WYUserTripAgent *userTripAgent;
 
 @end
