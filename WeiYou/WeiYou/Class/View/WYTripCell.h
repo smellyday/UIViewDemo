@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 typedef enum {
-    tripCellStatusNormal = 0,
-    tripCellStatusExpanded,
+    tripCellStateNormal = 0,
+	tripCellStateExpanding,
+    tripCellStateExpanded,
 } TripCellStatus;
 
 
@@ -19,6 +20,8 @@ typedef enum {
 @protocol TripCellDelegate
 
 - (void)cellStateChanged:(WYTripCell *)cell;
+- (TripCellStatus)getTableViewState;
+- (void)recoverTableViewToNormal;
 
 @end
 
@@ -43,6 +46,8 @@ typedef enum {
 @property (nonatomic, readonly) UIView *realContentView;
 @property (nonatomic) TripCellStatus cellSt;
 @property (nonatomic) id<TripCellDelegate> delegate;
+
+- (void)backToNormalState;
 
 @end
 

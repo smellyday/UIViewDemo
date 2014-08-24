@@ -23,6 +23,7 @@
 @implementation WYMyItineraryController
 @synthesize mTableView = _mTableView;
 @synthesize userTripAgent = _userTripAgent;
+@synthesize registerCellSet = _registerCellSet;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,7 +50,7 @@
 	self.navigationItem.rightBarButtonItem = mRightButton;
 	
 	//add table view
-	self.mTableView = [[WYTripTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+	self.mTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
 	self.mTableView.delegate = self;
 	self.mTableView.dataSource = self;
 	self.mTableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
@@ -59,6 +60,8 @@
 	[self.view addSubview:_mTableView];
 	
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doWhenBiSynFinish:) name:NOTI_TRIPS_SYNC_FINISH object:nil];
+	
+	_registerCellSet = [NSMutableSet setWithCapacity:2];
 }
 
 
@@ -125,6 +128,10 @@
 #pragma mark - UITableViewDelegate
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
+	if (_registerCellSet && [_registerCellSet count]>0) {
+		return nil;
+	}
+	
 	return indexPath;
 }
 
@@ -166,10 +173,47 @@
 
 #pragma mark - TripCellDelegate
 - (void)cellStateChanged:(WYTripCell *)cell {
-	mlog(@"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-	[self.mTableView registerTripCell:cell];
+	
+	if (cell.cellSt != tripCellStateNormal) {
+		[_registerCellSet addObject:cell];
+	}
+	
+	if (cell.cellSt == tripCellStateNormal) {
+		[self recoverTableViewToNormal];
+	}
+	
+	if (_registerCellSet && [_registerCellSet count]>0) {
+		_mTableView.scrollEnabled = NO;
+	} else {
+		_mTableView.scrollEnabled = YES;
+	}
 }
 
+- (TripCellStatus)getTableViewState {
+	
+	if (_registerCellSet && [_registerCellSet count] > 0) {
+//		return [(WYTripCell *)[_registerCellSet anyObject] cellSt];
+		return tripCellStateExpanded;
+	}
+	
+	return tripCellStateNormal;
+	
+}
+
+- (void)recoverTableViewToNormal {
+	
+	if (_registerCellSet && [_registerCellSet count]>0) {
+		for (WYTripCell *cell in _registerCellSet.allObjects) {
+			[cell backToNormalState];
+		}
+		
+		[_registerCellSet removeAllObjects];
+	}
+	
+	if (![_registerCellSet count]>0) {
+		_mTableView.scrollEnabled = YES;
+	}
+}
 
 
 

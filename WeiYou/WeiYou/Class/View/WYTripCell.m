@@ -15,7 +15,10 @@
 @interface WYTripCell () {
     CGPoint RealContentViewInitalCenterPos;
 	CGPoint RealContentViewExpandedCenterPos;
+	CGPoint _referenceCenterPos;
     CGPoint _gestureBeginPos;
+	
+	UIPanGestureRecognizer *_panGR;
 }
 
 @end
@@ -34,13 +37,14 @@
 @synthesize cellSt = _cellSt;
 @synthesize delegate = _delegate;
 
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
         _realContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        _realContentView.autoresizingMask = UIViewAutoresizingFlexibleWidth + UIViewAutoresizingFlexibleHeight;
+        _realContentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _realContentView.backgroundColor = [UIColor yellowColor];
         
 		self.daythLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 80)];
@@ -81,11 +85,11 @@
 		[self insertSubview:helBtn atIndex:0];
 		
         
-        UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
-        panGestureRecognizer.delegate = self;
-        [_realContentView addGestureRecognizer:panGestureRecognizer];
+        _panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+        _panGR.delegate = self;
+        [_realContentView addGestureRecognizer:_panGR];
         
-        _cellSt = tripCellStatusNormal;
+        _cellSt = tripCellStateNormal;
         
     }
     return self;
@@ -105,13 +109,14 @@
 	CGFloat x = RealContentViewInitalCenterPos.x - MENU_BTN_W*2;
 	CGFloat y = RealContentViewInitalCenterPos.y;
 	RealContentViewExpandedCenterPos = CGPointMake(x, y);
+	_referenceCenterPos = RealContentViewInitalCenterPos;
 	
 }
 
 - (void)setCellSt:(TripCellStatus)st {
 	
 	switch (st) {
-		case tripCellStatusNormal: {
+		case tripCellStateNormal: {
 			
 			NSTimeInterval dur = (RealContentViewInitalCenterPos.x-_realContentView.center.x)/500;
 			dur = MIN(dur, 0.15);
@@ -120,10 +125,14 @@
 				_realContentView.center = RealContentViewInitalCenterPos;
 			}];
 			_gestureBeginPos = CGPointZero;
+			_referenceCenterPos = RealContentViewInitalCenterPos;
 		}
 			break;
 			
-		case tripCellStatusExpanded: {
+		case tripCellStateExpanding:
+			break;
+			
+		case tripCellStateExpanded: {
 			
 			NSTimeInterval dur = (_realContentView.center.x-RealContentViewExpandedCenterPos.x)/500;
 			dur = MIN(dur, 0.15);
@@ -132,6 +141,7 @@
 				_realContentView.center = RealContentViewExpandedCenterPos;
 			}];
 			_gestureBeginPos = CGPointZero;
+			_referenceCenterPos = RealContentViewExpandedCenterPos;
 		}
 			
 			break;
@@ -147,28 +157,48 @@
 	
 }
 
+
+- (void)backToNormalState {
+	_cellSt = tripCellStateNormal;
+	
+	NSTimeInterval dur = (RealContentViewInitalCenterPos.x-_realContentView.center.x)/500;
+	dur = MIN(dur, 0.15);
+	
+	[UIView animateWithDuration:dur animations:^{
+		_realContentView.center = RealContentViewInitalCenterPos;
+	}];
+	
+}
+
 - (void)handlePanGesture:(UIPanGestureRecognizer *)panGesture {
-    if (![panGesture isKindOfClass:[UIPanGestureRecognizer class]]) {
+    if (![panGesture isKindOfClass:[UIPanGestureRecognizer class]] || panGesture != _panGR) {
         return;
     }
     
     if (panGesture.state == UIGestureRecognizerStateBegan) {
         _gestureBeginPos = [panGesture locationInView:self];
-        mlog(@"== PanGesture == state : Begin, PosX : %f, PosY : %f", _gestureBeginPos.x, _gestureBeginPos.y);
+//        mlog(@"== PanGesture == state : Begin, PosX : %f, PosY : %f", _gestureBeginPos.x, _gestureBeginPos.y);
+		
+		if (_referenceCenterPos.x == 0) {
+			if (_cellSt == tripCellStateNormal) {
+				_referenceCenterPos = RealContentViewInitalCenterPos;
+			} else if (_cellSt == tripCellStateExpanded) {
+				_referenceCenterPos = RealContentViewExpandedCenterPos;
+			} else {
+				_cellSt = tripCellStateNormal;
+				_referenceCenterPos = RealContentViewInitalCenterPos;
+			}
+		}
+		
+		self.cellSt = tripCellStateExpanding;
         
     } else if (panGesture.state == UIGestureRecognizerStateChanged) {
-        mlog(@"== PanGesture == state : Chang, PosX : %f, PosY : %f", [panGesture locationInView:self].x, [panGesture locationInView:self].y);
+//        mlog(@"== PanGesture == state : Chang, PosX : %f, PosY : %f", [panGesture locationInView:self].x, [panGesture locationInView:self].y);
 		
         CGPoint movePos = [panGesture locationInView:self];
         CGFloat deltaX = movePos.x - _gestureBeginPos.x;
-		CGFloat ncx = 0;
-		if (_cellSt == tripCellStatusNormal) {
-			ncx = RealContentViewInitalCenterPos.x + deltaX;
-		} else if (_cellSt == tripCellStatusExpanded) {
-			ncx = RealContentViewExpandedCenterPos.x + deltaX;
-		} else {
-			NSAssert(0, @"NO other TripCellStatus, so never come here");
-		}
+		CGFloat ncx = _referenceCenterPos.x + deltaX;
+		
 		ncx = MAX(ncx, RealContentViewExpandedCenterPos.x);
 		ncx = MIN(ncx, RealContentViewInitalCenterPos.x);
 		
@@ -176,46 +206,61 @@
 		
         
     } else if (panGesture.state == UIGestureRecognizerStateEnded) {
-        mlog(@"== PanGesture == state : Ended");
+//        mlog(@"== PanGesture == state : Ended");
 		
 		CGPoint endPos = [panGesture locationInView:self];
 		CGFloat delta = 0;
-		if (_cellSt == tripCellStatusNormal) {
+		if (_referenceCenterPos.x == RealContentViewInitalCenterPos.x) {
 			
 			delta = _gestureBeginPos.x - endPos.x;
 			if (delta >= DIS) {
-				self.cellSt = tripCellStatusExpanded;
+				self.cellSt = tripCellStateExpanded;
 			} else {
-				self.cellSt = tripCellStatusNormal;
+				self.cellSt = tripCellStateNormal;
 			}
 			
-		} else if (_cellSt == tripCellStatusExpanded) {
+		} else if (_referenceCenterPos.x == RealContentViewExpandedCenterPos.x) {
 			
 			delta = endPos.x - _gestureBeginPos.x;
 			if (delta >= DIS) {
-				self.cellSt = tripCellStatusNormal;
+				self.cellSt = tripCellStateNormal;
 			} else {
-				self.cellSt = tripCellStatusExpanded;
+				self.cellSt = tripCellStateExpanded;
 			}
 
 		} else {
 			NSAssert(0, @"NO other TripCellStatus, so never come here");
 		}
 		
+    } else if (panGesture.state == UIGestureRecognizerStateCancelled) {
 		
-    }
+		self.cellSt = tripCellStateNormal;
+		
+	} else if (panGesture.state == UIGestureRecognizerStateFailed) {
+		
+		self.cellSt = tripCellStateNormal;
+		
+	}
 }
 
 
 #pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+	if ([_delegate getTableViewState] == tripCellStateNormal) {
+		return YES;
+	}
+	
+	return NO;
+}
+
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     mlog(@"%s", __func__);
-    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+	
+    if (gestureRecognizer == _panGR) {
         CGPoint velocityPoint = [(UIPanGestureRecognizer *)gestureRecognizer velocityInView:self.contentView];
         CGFloat ratio = fabs(velocityPoint.y) / fabs(velocityPoint.x);
 
 		return ratio > 1 ? NO : YES;
-        
     }
     
     return NO;
@@ -223,7 +268,22 @@
 
 
 
-
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	if ([_delegate getTableViewState] == tripCellStateNormal) {
+		[super touchesBegan:touches withEvent:event];
+		return;
+	}
+	
+	if (_cellSt == tripCellStateExpanded) {
+		CGPoint p = [[touches anyObject] locationInView:self];
+		if (p.x > (SCREEN_WIDTH-MENU_BTN_W*2)) {
+			[super touchesBegan:touches withEvent:event];
+			return;
+		}
+	}
+	
+	[_delegate recoverTableViewToNormal];
+}
 
 
 

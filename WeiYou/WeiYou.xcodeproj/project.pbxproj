@@ -53,7 +53,6 @@
 		5E6D03A31839F68C006A0E93 /* WeiYouTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D03A21839F68C006A0E93 /* WeiYouTests.m */; };
 		5E7D177E198722A9003F4208 /* WYRecommendItineraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7D177D198722A9003F4208 /* WYRecommendItineraryController.m */; };
 		5E7D1781198722CD003F4208 /* WYMyItineraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7D1780198722CD003F4208 /* WYMyItineraryController.m */; };
-		5E946D8E19A8FE1000388BC7 /* WYTripTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E946D8D19A8FE1000388BC7 /* WYTripTableView.m */; };
 		5EBCF73F185EAE290057C1AE /* WYMTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF73E185EAE290057C1AE /* WYMTrip.m */; };
 		5EBCF765185F016B0057C1AE /* trips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EBCF764185F016B0057C1AE /* trips.plist */; };
 		5EF07C48199E5708004A617C /* WYSysDestinations.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF07C47199E5708004A617C /* WYSysDestinations.m */; };
@@ -260,8 +259,6 @@
 		5E7D177D198722A9003F4208 /* WYRecommendItineraryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRecommendItineraryController.m; sourceTree = "<group>"; };
 		5E7D177F198722CD003F4208 /* WYMyItineraryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMyItineraryController.h; sourceTree = "<group>"; };
 		5E7D1780198722CD003F4208 /* WYMyItineraryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMyItineraryController.m; sourceTree = "<group>"; };
-		5E946D8C19A8FE1000388BC7 /* WYTripTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTripTableView.h; sourceTree = "<group>"; };
-		5E946D8D19A8FE1000388BC7 /* WYTripTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTripTableView.m; sourceTree = "<group>"; };
 		5EB6B92E19800FDB00E9E695 /* consts_sys_pic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = consts_sys_pic.h; sourceTree = "<group>"; };
 		5EB6B92F19800FE600E9E695 /* consts_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = consts_view.h; sourceTree = "<group>"; };
 		5EB6B93019801F8C00E9E695 /* consts_utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = consts_utility.h; sourceTree = "<group>"; };
@@ -923,8 +920,6 @@
 				696FB81819A7471E00A86E2B /* TPGestureTableViewCell.m */,
 				696FB81419A6F29700A86E2B /* WYTripCell.h */,
 				696FB81519A6F29700A86E2B /* WYTripCell.m */,
-				5E946D8C19A8FE1000388BC7 /* WYTripTableView.h */,
-				5E946D8D19A8FE1000388BC7 /* WYTripTableView.m */,
 			);
 			name = Trip;
 			sourceTree = "<group>";
@@ -1158,7 +1153,6 @@
 				694ED3B4195A762C00917FEB /* ASIAuthenticationDialog.m in Sources */,
 				694ED3B5195A762C00917FEB /* ASIDataCompressor.m in Sources */,
 				694ED3B6195A762C00917FEB /* ASIDataDecompressor.m in Sources */,
-				5E946D8E19A8FE1000388BC7 /* WYTripTableView.m in Sources */,
 				5E52D351199EB85100BFB916 /* WYSysEarth.m in Sources */,
 				69B68D2A1989FBBD00DF29AF /* WYFakeNavBar.m in Sources */,
 				69E215AF1981F2B00022D432 /* WYSinaWeiboUserInfo.m in Sources */,
