@@ -24,6 +24,7 @@
 @synthesize mTableView = _mTableView;
 @synthesize userTripAgent = _userTripAgent;
 @synthesize registerCellSet = _registerCellSet;
+@synthesize manipulatingCell = _manipulatingCell;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -118,6 +119,7 @@
     
     WYMTrip *mTrip = [_userTripAgent objectInUserTripsAtIndex:[indexPath row]];
     WYTripCell *cell = [[WYTripCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NORMALCELL];
+	cell.indexPath = indexPath;
 	cell.delegate = self;
     cell.citiesNameLabel.text = mTrip.tripName;
 	cell.highlighted = NO;
@@ -195,7 +197,6 @@
 - (TripCellStatus)getTableViewState {
 	
 	if (_registerCellSet && [_registerCellSet count] > 0) {
-//		return [(WYTripCell *)[_registerCellSet anyObject] cellSt];
 		return tripCellStateExpanded;
 	}
 	
@@ -228,6 +229,48 @@
 		_mTableView.scrollEnabled = YES;
 	}
 }
+
+
+- (void)deleteCell:(WYTripCell *)cell {
+	self.manipulatingCell = cell;
+	
+	UIAlertView *delAlert = [[UIAlertView alloc] initWithTitle:nil
+													   message:@"确认删除此行程？"
+													  delegate:self
+											 cancelButtonTitle:@"Cancel"
+											 otherButtonTitles:@"OK", nil];
+	delAlert.tag = 1;
+	[delAlert show];
+
+}
+
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (alertView.tag == 1) {
+			/* Delete Trip Cell Alert */
+		if (buttonIndex == 0/*cancel*/) {
+				//do nothing.
+		} else if (buttonIndex == 1) {
+				//delete the trip cell.
+			[[[WYDataEngine sharedDataEngine] userTripAgent] removeObjectFromUserTripsAtIndex:_manipulatingCell.indexPath.row];
+			[self recoverTableViewToNormal];
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

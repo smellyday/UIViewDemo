@@ -23,6 +23,8 @@ typedef enum {
 - (TripCellStatus)getTableViewState;
 - (void)recoverTableViewToNormal;
 
+- (void)deleteCell:(WYTripCell *)cell;
+
 @end
 
 
@@ -32,6 +34,8 @@ typedef enum {
 	UILabel *_dateLabel;
 	UILabel *_weekLabel;
 	UILabel *_citiesNameLabel;
+	
+	NSIndexPath *_indexPath;
     
     UIView *_realContentView;
     TripCellStatus _cellSt;
@@ -42,6 +46,8 @@ typedef enum {
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UILabel *weekLabel;
 @property (nonatomic, strong) UILabel *citiesNameLabel;
+
+@property (nonatomic, strong) NSIndexPath *indexPath;
 
 @property (nonatomic, readonly) UIView *realContentView;
 @property (nonatomic) TripCellStatus cellSt;

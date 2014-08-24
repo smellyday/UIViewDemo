@@ -10,15 +10,18 @@
 #import "WYDataEngine.h"
 #import "WYTripCell.h"
 
-@interface WYMyItineraryController : UIViewController <UITableViewDataSource, UITableViewDelegate, TripCellDelegate> {
+@interface WYMyItineraryController : UIViewController <UITableViewDataSource, UITableViewDelegate, TripCellDelegate, UIAlertViewDelegate> {
+	
 	UITableView *_mTableView;
 	WYUserTripAgent *_userTripAgent;
 	
-	NSMutableSet *_registerCellSet;
+	NSMutableSet *_registerCellSet;//the cells who show menu.
+	WYTripCell *_manipulatingCell;//editing or going to delete
 }
 
 @property (nonatomic, strong) UITableView *mTableView;
 @property (nonatomic, strong) WYUserTripAgent *userTripAgent;
 @property (nonatomic, readonly) NSMutableSet *registerCellSet;
+@property (nonatomic, strong) WYTripCell *manipulatingCell;
 
 @end

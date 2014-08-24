@@ -9,6 +9,7 @@
 	// cell height is 80
 
 #import "WYTripCell.h"
+#import "WYDataEngine.h"
 #import "consts.h"
 
 
@@ -33,6 +34,7 @@
 @synthesize weekLabel = _weekLabel;
 @synthesize citiesNameLabel = _citiesNameLabel;
 
+@synthesize indexPath = _indexPath;
 @synthesize realContentView = _realContentView;
 @synthesize cellSt = _cellSt;
 @synthesize delegate = _delegate;
@@ -67,10 +69,6 @@
 		
 		/*BUG: if selectionStyle is not "None", clicking cell could show selectedBackgroundView which could result in bug.*/
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-//        UIView *blueView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-MENU_BTN_W*2, 0, MENU_BTN_W*2, 100)];
-//        blueView.backgroundColor = [UIColor redColor];
-//        [self insertSubview:blueView atIndex:0];
 		
 		UIButton *delBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 		delBtn.frame = CGRectMake(SCREEN_WIDTH-MENU_BTN_W, 0, MENU_BTN_W, 100);
@@ -81,11 +79,13 @@
 		UIButton *helBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 		helBtn.frame = CGRectMake(SCREEN_WIDTH-MENU_BTN_W*2, 0, MENU_BTN_W, 100);
 		helBtn.backgroundColor = [UIColor brownColor];
-		[helBtn addTarget:self action:@selector(onClickHelButton:) forControlEvents:UIControlEventTouchUpInside];
+		[helBtn addTarget:self action:@selector(onClickEditButton:) forControlEvents:UIControlEventTouchUpInside];
 		[self insertSubview:helBtn atIndex:0];
 		
         
         _panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+		_panGR.maximumNumberOfTouches = 1;
+		_panGR.minimumNumberOfTouches = 1;
         _panGR.delegate = self;
         [_realContentView addGestureRecognizer:_panGR];
         
@@ -96,11 +96,17 @@
 }
 
 - (void)onClickDelButton:(id)sender {
-	mlog(@"^^^Click DDDel Button");
+	mlog(@"^^^Click Del Button");
+	if (_cellSt == tripCellStateExpanded) {
+		[_delegate deleteCell:self];
+	}
 }
 
-- (void)onClickHelButton:(id)sender {
-	mlog(@"^^^Click HHHel Button");
+- (void)onClickEditButton:(id)sender {
+	mlog(@"^^^Click Edit Button");
+	if (_cellSt == tripCellStateExpanded) {
+		self.cellSt = tripCellStateNormal;
+	}
 }
 
 - (void)layoutSubviews {
@@ -176,8 +182,10 @@
     }
     
     if (panGesture.state == UIGestureRecognizerStateBegan) {
+        mlog(@"== PanGesture == state : Begin");
+		
+		
         _gestureBeginPos = [panGesture locationInView:self];
-//        mlog(@"== PanGesture == state : Begin, PosX : %f, PosY : %f", _gestureBeginPos.x, _gestureBeginPos.y);
 		
 		if (_referenceCenterPos.x == 0) {
 			if (_cellSt == tripCellStateNormal) {
@@ -193,7 +201,7 @@
 		self.cellSt = tripCellStateExpanding;
         
     } else if (panGesture.state == UIGestureRecognizerStateChanged) {
-//        mlog(@"== PanGesture == state : Chang, PosX : %f, PosY : %f", [panGesture locationInView:self].x, [panGesture locationInView:self].y);
+        mlog(@"== PanGesture == state : Chang");
 		
         CGPoint movePos = [panGesture locationInView:self];
         CGFloat deltaX = movePos.x - _gestureBeginPos.x;
@@ -206,7 +214,7 @@
 		
         
     } else if (panGesture.state == UIGestureRecognizerStateEnded) {
-//        mlog(@"== PanGesture == state : Ended");
+        mlog(@"== PanGesture == state : Ended");
 		
 		CGPoint endPos = [panGesture locationInView:self];
 		CGFloat delta = 0;
@@ -233,10 +241,12 @@
 		}
 		
     } else if (panGesture.state == UIGestureRecognizerStateCancelled) {
+        mlog(@"== PanGesture == state : Cancelled");
 		
 		self.cellSt = tripCellStateNormal;
 		
 	} else if (panGesture.state == UIGestureRecognizerStateFailed) {
+        mlog(@"== PanGesture == state : Failed");
 		
 		self.cellSt = tripCellStateNormal;
 		
