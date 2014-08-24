@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WYMTrip.h"
 
 typedef enum {
     tripCellStateNormal = 0,
@@ -16,14 +17,14 @@ typedef enum {
 
 
 @class WYTripCell;
-
 @protocol TripCellDelegate
 
 - (void)cellStateChanged:(WYTripCell *)cell;
 - (TripCellStatus)getTableViewState;
 - (void)recoverTableViewToNormal;
 
-- (void)deleteCell:(WYTripCell *)cell;
+- (void)deleteTripCell:(WYTripCell *)cell;
+- (void)editTripCell:(WYTripCell *)cell;
 
 @end
 

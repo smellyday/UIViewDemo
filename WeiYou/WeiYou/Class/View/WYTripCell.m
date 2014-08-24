@@ -47,7 +47,8 @@
         // Initialization code
         _realContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         _realContentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _realContentView.backgroundColor = [UIColor yellowColor];
+        _realContentView.backgroundColor = [UIColor whiteColor];
+		_realContentView.alpha = 1.0;
         
 		self.daythLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 80)];
 		self.daythLabel.font = [UIFont systemFontOfSize:18];
@@ -73,12 +74,16 @@
 		UIButton *delBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 		delBtn.frame = CGRectMake(SCREEN_WIDTH-MENU_BTN_W, 0, MENU_BTN_W, 100);
 		delBtn.backgroundColor = [UIColor redColor];
+		[delBtn setTitle:@"Delete" forState:UIControlStateNormal];
+		[delBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 		[delBtn addTarget:self action:@selector(onClickDelButton:) forControlEvents:UIControlEventTouchUpInside];
 		[self insertSubview:delBtn atIndex:0];
 		
 		UIButton *helBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 		helBtn.frame = CGRectMake(SCREEN_WIDTH-MENU_BTN_W*2, 0, MENU_BTN_W, 100);
-		helBtn.backgroundColor = [UIColor brownColor];
+		helBtn.backgroundColor = [UIColor lightGrayColor];
+		[helBtn setTitle:@"Edit" forState:UIControlStateNormal];
+		[helBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 		[helBtn addTarget:self action:@selector(onClickEditButton:) forControlEvents:UIControlEventTouchUpInside];
 		[self insertSubview:helBtn atIndex:0];
 		
@@ -96,16 +101,16 @@
 }
 
 - (void)onClickDelButton:(id)sender {
-	mlog(@"^^^Click Del Button");
+	MLOGFUNCTION;
 	if (_cellSt == tripCellStateExpanded) {
-		[_delegate deleteCell:self];
+		[_delegate deleteTripCell:self];
 	}
 }
 
 - (void)onClickEditButton:(id)sender {
-	mlog(@"^^^Click Edit Button");
+	MLOGFUNCTION;
 	if (_cellSt == tripCellStateExpanded) {
-		self.cellSt = tripCellStateNormal;
+		[_delegate editTripCell:self];
 	}
 }
 

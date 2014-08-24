@@ -207,18 +207,6 @@
 - (void)recoverTableViewToNormal {
 	
 	if (_registerCellSet && [_registerCellSet count]>0) {
-//		NSMutableSet *expandedCellSet = [NSMutableSet setWithCapacity:1];
-//		
-//		for (WYTripCell *cell in _registerCellSet.allObjects) {
-//			if (cell.cellSt == tripCellStateExpanded) {
-//				[expandedCellSet addObject:cell];
-//			}
-//		}
-//		[expandedCellSet makeObjectsPerformSelector:@selector(backToNormalState)];
-//		
-//		for (id cell in expandedCellSet.allObjects) {
-//			[_registerCellSet removeObject:cell];
-//		}
 		
 		[_registerCellSet makeObjectsPerformSelector:@selector(backToNormalState)];
 		[_registerCellSet removeAllObjects];
@@ -231,7 +219,7 @@
 }
 
 
-- (void)deleteCell:(WYTripCell *)cell {
+- (void)deleteTripCell:(WYTripCell *)cell {
 	self.manipulatingCell = cell;
 	
 	UIAlertView *delAlert = [[UIAlertView alloc] initWithTitle:nil
@@ -242,6 +230,17 @@
 	delAlert.tag = 1;
 	[delAlert show];
 
+}
+
+
+- (void)editTripCell:(WYTripCell *)cell {
+	self.manipulatingCell = cell;
+	[self recoverTableViewToNormal];
+	
+	WYNewItineraryController *newitn = [[WYNewItineraryController alloc] init];
+	UINavigationController *ricnav = [[UINavigationController alloc] initWithRootViewController:newitn];
+	[ricnav.navigationBar setBackgroundImage:[UIImage imageNamed:PIC_NAV_BAR_BG] forBarMetrics:UIBarMetricsDefault];
+	[self.tabBarController.navigationController presentViewController:ricnav animated:YES completion:nil];
 }
 
 
