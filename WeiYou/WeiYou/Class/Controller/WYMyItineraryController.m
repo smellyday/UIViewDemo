@@ -13,7 +13,6 @@
 #import "WYMTrip.h"
 #import "consts.h"
 #import "WYNewItineraryController.h"
-#import "TPGestureTableViewCell.h"
 
 @interface WYMyItineraryController ()
 
@@ -121,7 +120,7 @@
     WYTripCell *cell = [[WYTripCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NORMALCELL];
 	cell.indexPath = indexPath;
 	cell.delegate = self;
-    cell.citiesNameLabel.text = mTrip.tripName;
+    cell.mainTitleLabel.text = mTrip.tripName;
 	cell.highlighted = NO;
 	
 	return cell;
@@ -148,7 +147,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return 100;
+	return 87;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

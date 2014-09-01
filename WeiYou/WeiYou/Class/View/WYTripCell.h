@@ -31,25 +31,25 @@ typedef enum {
 
 
 @interface WYTripCell : UITableViewCell <UIGestureRecognizerDelegate> {
-	UILabel *_daythLabel;
-	UILabel *_dateLabel;
-	UILabel *_weekLabel;
-	UILabel *_citiesNameLabel;
-	
-	NSIndexPath *_indexPath;
+    UIImageView *_mainImageView;
+    UILabel *_mainTitleLabel;
+    UILabel *_citiesDesLabel;
+    UILabel *_departureDateLabel;
+    UILabel *_daysNumberLabel;
     
+	NSIndexPath *_indexPath;
     UIView *_realContentView;
     TripCellStatus _cellSt;
 	id<TripCellDelegate> _delegate;
 }
 
-@property (nonatomic, strong) UILabel *daythLabel;
-@property (nonatomic, strong) UILabel *dateLabel;
-@property (nonatomic, strong) UILabel *weekLabel;
-@property (nonatomic, strong) UILabel *citiesNameLabel;
+@property (nonatomic, strong) UIImageView *mainImageView;
+@property (nonatomic, strong) UILabel *mainTitleLabel;
+@property (nonatomic, strong) UILabel *citiesDesLabel;
+@property (nonatomic, strong) UILabel *departureDateLabel;
+@property (nonatomic, strong) UILabel *daysNumberLabel;
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
-
 @property (nonatomic, readonly) UIView *realContentView;
 @property (nonatomic) TripCellStatus cellSt;
 @property (nonatomic) id<TripCellDelegate> delegate;

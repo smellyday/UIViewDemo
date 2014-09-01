@@ -12,15 +12,49 @@
 #import "WYDataEngine.h"
 #import "consts.h"
 
+@interface SeperateLine : UIView
+
+@end
+
+@implementation SeperateLine
+
+-(void)drawRect:(CGRect)rect{
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    
+    CGContextSetLineWidth(context, 1);
+    
+    CGContextSetStrokeColorWithColor(context,[UIColor whiteColor].CGColor);
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context,0, 1);
+    CGContextAddLineToPoint(context, self.bounds.size.width, 0);
+    CGContextStrokePath(context);
+    
+    CGContextSetStrokeColorWithColor(context,[UIColor lightGrayColor].CGColor);
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context,0, 0);
+    CGContextAddLineToPoint(context, self.bounds.size.width, 0);
+    CGContextStrokePath(context);
+    
+    
+}
+
+@end
+
 
 @interface WYTripCell () {
     CGPoint RealContentViewInitalCenterPos;
 	CGPoint RealContentViewExpandedCenterPos;
 	CGPoint _referenceCenterPos;
     CGPoint _gestureBeginPos;
+    
+    SeperateLine *_sepLine;
 	
 	UIPanGestureRecognizer *_panGR;
 }
+
+@property (nonatomic, strong) SeperateLine *sepLine;
 
 @end
 
@@ -29,10 +63,13 @@
 
 
 @implementation WYTripCell
-@synthesize daythLabel = _daythLabel;
-@synthesize dateLabel = _dateLabel;
-@synthesize weekLabel = _weekLabel;
-@synthesize citiesNameLabel = _citiesNameLabel;
+
+@synthesize mainImageView = _mainImageView;
+@synthesize mainTitleLabel = _mainTitleLabel;
+@synthesize citiesDesLabel = _citiesDesLabel;
+@synthesize departureDateLabel = _departureDateLabel;
+@synthesize daysNumberLabel = _daysNumberLabel;
+@synthesize sepLine = _sepLine;
 
 @synthesize indexPath = _indexPath;
 @synthesize realContentView = _realContentView;
@@ -50,21 +87,43 @@
         _realContentView.backgroundColor = [UIColor whiteColor];
 		_realContentView.alpha = 1.0;
         
-		self.daythLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 80)];
-		self.daythLabel.font = [UIFont systemFontOfSize:18];
-        self.daythLabel.textAlignment = NSTextAlignmentCenter;
-        [_realContentView addSubview:_daythLabel];
-		self.dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(80+80, 60, 100, 20)];
-		self.dateLabel.font = [UIFont systemFontOfSize:10];
-        [_realContentView addSubview:_dateLabel];
-		self.weekLabel = [[UILabel alloc] initWithFrame:CGRectMake(180+80, 60, 100, 20)];
-		self.weekLabel.font = [UIFont systemFontOfSize:10];
-		[_realContentView addSubview:_weekLabel];
-		
-		self.citiesNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 20, 200, 40)];
-		self.citiesNameLabel.font = [UIFont boldSystemFontOfSize:20];
-        self.citiesNameLabel.textAlignment = NSTextAlignmentLeft;
-		[_realContentView addSubview:_citiesNameLabel];
+        // ======
+        self.mainImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 7, 105, 73)];
+        self.mainImageView.image = [UIImage imageNamed:@"tmp.png"];
+        [_realContentView addSubview:_mainImageView];
+        
+        self.mainTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(121, 8, 190, 28)];
+		self.mainTitleLabel.font = [UIFont systemFontOfSize:16];
+        self.mainTitleLabel.textAlignment = NSTextAlignmentLeft;
+//        self.mainTitleLabel.text = @"欧洲之旅";
+        [_realContentView addSubview:_mainTitleLabel];
+        
+        self.citiesDesLabel = [[UILabel alloc] initWithFrame:CGRectMake(121, 36, 190, 26)];
+		self.citiesDesLabel.font = [UIFont systemFontOfSize:11];
+        self.citiesDesLabel.textAlignment = NSTextAlignmentLeft;
+        self.citiesDesLabel.text = @"伦敦、巴黎、柏林、罗马";
+        [_realContentView addSubview:_citiesDesLabel];
+        
+        self.departureDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(121, 62, 60, 20)];
+        self.departureDateLabel.font = [UIFont systemFontOfSize:9];
+        self.departureDateLabel.textAlignment = NSTextAlignmentLeft;
+        self.departureDateLabel.text = @"2014.08.20";
+        [_realContentView addSubview:_departureDateLabel];
+        
+        self.daysNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(181, 62, 30, 20)];
+        self.daysNumberLabel.font = [UIFont systemFontOfSize:9];
+        self.daysNumberLabel.textAlignment = NSTextAlignmentLeft;
+        self.daysNumberLabel.text = @"15天";
+        [_realContentView addSubview:_daysNumberLabel];
+
+        self.sepLine = [[SeperateLine alloc] initWithFrame:CGRectMake(10, 86, SCREEN_WIDTH-20, 1)];
+        _sepLine.backgroundColor = [UIColor clearColor];
+        [_realContentView addSubview:_sepLine];
+        
+        
+        
+        
+        
         
         [self addSubview:_realContentView];
 		
@@ -72,7 +131,7 @@
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		UIButton *delBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-		delBtn.frame = CGRectMake(SCREEN_WIDTH-MENU_BTN_W, 0, MENU_BTN_W, 100);
+		delBtn.frame = CGRectMake(SCREEN_WIDTH-MENU_BTN_W, 0, MENU_BTN_W, 87);
 		delBtn.backgroundColor = [UIColor redColor];
 		[delBtn setTitle:@"Delete" forState:UIControlStateNormal];
 		[delBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -80,13 +139,12 @@
 		[self insertSubview:delBtn atIndex:0];
 		
 		UIButton *helBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-		helBtn.frame = CGRectMake(SCREEN_WIDTH-MENU_BTN_W*2, 0, MENU_BTN_W, 100);
+		helBtn.frame = CGRectMake(SCREEN_WIDTH-MENU_BTN_W*2, 0, MENU_BTN_W, 87);
 		helBtn.backgroundColor = [UIColor lightGrayColor];
 		[helBtn setTitle:@"Edit" forState:UIControlStateNormal];
 		[helBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 		[helBtn addTarget:self action:@selector(onClickEditButton:) forControlEvents:UIControlEventTouchUpInside];
 		[self insertSubview:helBtn atIndex:0];
-		
         
         _panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
 		_panGR.maximumNumberOfTouches = 1;

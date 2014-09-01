@@ -126,12 +126,12 @@
 		694ED3BB195A762C00917FEB /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 694ED3B0195A762C00917FEB /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		694ED3BC195A762C00917FEB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 694ED3B3195A762C00917FEB /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		69516B601993525F00D404E7 /* WYNewItineraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69516B5F1993525F00D404E7 /* WYNewItineraryController.m */; };
+		6952AAE619B45F03009C1EDB /* tmp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6952AAE519B45F03009C1EDB /* tmp@2x.png */; };
 		69582DA81952BACF0072ED3E /* WYGlobalState.m in Sources */ = {isa = PBXBuildFile; fileRef = 69582DA71952BACF0072ED3E /* WYGlobalState.m */; };
 		69582DAB1952C3F40072ED3E /* WYLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69582DAA1952C3F40072ED3E /* WYLoginController.m */; };
 		695E1FB819A4803C0090B100 /* WYUserTripAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 695E1FB719A4803C0090B100 /* WYUserTripAgent.m */; };
 		696CECB71974FD6600EE4544 /* WYTripController.m in Sources */ = {isa = PBXBuildFile; fileRef = 696CECB61974FD6600EE4544 /* WYTripController.m */; };
 		696FB81619A6F29700A86E2B /* WYTripCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 696FB81519A6F29700A86E2B /* WYTripCell.m */; };
-		696FB81919A7471E00A86E2B /* TPGestureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 696FB81819A7471E00A86E2B /* TPGestureTableViewCell.m */; };
 		6979F7FD198119F400011428 /* WYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6979F7FC198119F400011428 /* WYNavigationController.m */; };
 		698013D91977CF7300AFD0B4 /* WYUploadTripOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 698013D81977CF7300AFD0B4 /* WYUploadTripOperation.m */; };
 		698013DC1977CF8D00AFD0B4 /* WYDownloadTripsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 698013DB1977CF8D00AFD0B4 /* WYDownloadTripsOperation.m */; };
@@ -360,6 +360,7 @@
 		694ED3B3195A762C00917FEB /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		69516B5E1993525F00D404E7 /* WYNewItineraryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYNewItineraryController.h; sourceTree = "<group>"; };
 		69516B5F1993525F00D404E7 /* WYNewItineraryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYNewItineraryController.m; sourceTree = "<group>"; };
+		6952AAE519B45F03009C1EDB /* tmp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tmp@2x.png"; path = "Resources/百度云同步盘/tmp@2x.png"; sourceTree = SOURCE_ROOT; };
 		69582DA61952BACF0072ED3E /* WYGlobalState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGlobalState.h; sourceTree = "<group>"; };
 		69582DA71952BACF0072ED3E /* WYGlobalState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGlobalState.m; sourceTree = "<group>"; };
 		69582DA91952C3F40072ED3E /* WYLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLoginController.h; sourceTree = "<group>"; };
@@ -370,8 +371,6 @@
 		696CECB61974FD6600EE4544 /* WYTripController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTripController.m; sourceTree = "<group>"; };
 		696FB81419A6F29700A86E2B /* WYTripCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTripCell.h; sourceTree = "<group>"; };
 		696FB81519A6F29700A86E2B /* WYTripCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTripCell.m; sourceTree = "<group>"; };
-		696FB81719A7471E00A86E2B /* TPGestureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPGestureTableViewCell.h; sourceTree = "<group>"; };
-		696FB81819A7471E00A86E2B /* TPGestureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPGestureTableViewCell.m; sourceTree = "<group>"; };
 		6979F7FB198119F400011428 /* WYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYNavigationController.h; sourceTree = "<group>"; };
 		6979F7FC198119F400011428 /* WYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYNavigationController.m; sourceTree = "<group>"; };
 		698013D71977CF7300AFD0B4 /* WYUploadTripOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUploadTripOperation.h; sourceTree = "<group>"; };
@@ -529,6 +528,7 @@
 		5E5BC232183EE5D80003AC6D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6952AAE519B45F03009C1EDB /* tmp@2x.png */,
 				69E039C3199B6D31000B6C75 /* icon_destination_line.png */,
 				69E039C4199B6D31000B6C75 /* icon_destination_line@2x.png */,
 				69E039BB199B68F1000B6C75 /* btn_place_h.png */,
@@ -916,8 +916,6 @@
 		69A8D9C519A5D70E00595AB5 /* Trip */ = {
 			isa = PBXGroup;
 			children = (
-				696FB81719A7471E00A86E2B /* TPGestureTableViewCell.h */,
-				696FB81819A7471E00A86E2B /* TPGestureTableViewCell.m */,
 				696FB81419A6F29700A86E2B /* WYTripCell.h */,
 				696FB81519A6F29700A86E2B /* WYTripCell.m */,
 			);
@@ -1109,6 +1107,7 @@
 				6934980D199A0B90006BAF8B /* weibo_btn_bg_h@2x.png in Resources */,
 				69349811199A0B90006BAF8B /* trip_begin_date@2x.png in Resources */,
 				693497F2199A0B90006BAF8B /* first_tab_item_n.png in Resources */,
+				6952AAE619B45F03009C1EDB /* tmp@2x.png in Resources */,
 				69349813199A0B90006BAF8B /* trip_days_count_icon@2x.png in Resources */,
 				693497F7199A0B90006BAF8B /* login_bg@2x.png in Resources */,
 				69349806199A0B90006BAF8B /* second_tab_item_n@2x.png in Resources */,
@@ -1165,7 +1164,6 @@
 				694ED3B8195A762C00917FEB /* ASIFormDataRequest.m in Sources */,
 				5E489B481986C7CA00059066 /* WYRegisterController2.m in Sources */,
 				5EF07C48199E5708004A617C /* WYSysDestinations.m in Sources */,
-				696FB81919A7471E00A86E2B /* TPGestureTableViewCell.m in Sources */,
 				694ED3B9195A762C00917FEB /* ASIHTTPRequest.m in Sources */,
 				5E7D1781198722CD003F4208 /* WYMyItineraryController.m in Sources */,
 				5E52D363199EB92F00BFB916 /* WYUserNation.m in Sources */,
