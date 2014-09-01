@@ -132,7 +132,9 @@
         editBtn.titleEdgeInsets = UIEdgeInsetsMake(57, 0, 13, 0);
         [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
         editBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+        editBtn.titleLabel.backgroundColor = [UIColor redColor];
         editBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        editBtn.titleLabel.frame = CGRectMake(0, 57, 68, 16);
 		[editBtn addTarget:self action:@selector(onClickEditButton:) forControlEvents:UIControlEventTouchUpInside];
 		[self insertSubview:editBtn atIndex:0];
 		
