@@ -93,7 +93,7 @@
 //========data model keys========
 	//for trip
 #define WY_TRIP_VERSION				   @"wy_trip_version"
-#define WY_TRIP_ORDER                  @"wy_trip_order"
+#define WY_TRIP_Dayth                  @"wy_trip_dayth"
 #define WY_TRIP_ID					   @"wy_trip_id"
 #define WY_TRIP_NAME                   @"wy_trip_name"
 #define WY_TRIP_DES                    @"wy_trip_description"

@@ -13,7 +13,7 @@
 
 @implementation WYMTrip
 @synthesize tripVersion = _tripVersion;
-@synthesize tripOrder = _tripOrder;
+@synthesize tripDayth = _tripDayth;
 @synthesize tripID = _tripID;
 @synthesize tripName = _tripName;
 @synthesize tripDescription = _tripDescription;
@@ -41,7 +41,7 @@
 	self = [super init];
 	if (self) {
 		self.tripVersion = [infoDic objectForKey:WY_TRIP_VERSION];
-		self.tripOrder = [infoDic objectForKey:WY_TRIP_ORDER];
+		self.tripDayth = [infoDic objectForKey:WY_TRIP_Dayth];
 		self.tripID = [infoDic objectForKey:WY_TRIP_ID];
 		self.tripName = [infoDic objectForKey:WY_TRIP_NAME];
 		self.tripDescription = [infoDic objectForKey:WY_TRIP_DES];

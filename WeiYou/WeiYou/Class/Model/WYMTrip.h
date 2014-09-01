@@ -13,7 +13,7 @@
 	
 	NSNumber *_tripID;
 	NSNumber *_tripVersion;
-	NSNumber *_tripOrder;
+	NSNumber *_tripDayth;
 	NSString *_tripName;
 	NSString *_tripDescription;
 	NSString *_tripMainImageURL;
@@ -32,7 +32,7 @@
 
 @property (nonatomic, strong) NSNumber *tripID;
 @property (nonatomic, strong) NSNumber *tripVersion;
-@property (nonatomic, strong) NSNumber *tripOrder;
+@property (nonatomic, strong) NSNumber *tripDayth;
 @property (nonatomic, strong) NSString *tripName;
 @property (nonatomic, strong) NSString *tripDescription;
 @property (nonatomic, strong) NSString *tripMainImageURL;
