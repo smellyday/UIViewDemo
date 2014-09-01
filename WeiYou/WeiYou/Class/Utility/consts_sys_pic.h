@@ -45,6 +45,10 @@
 #define PIC_BTN_ADD_DESTINATION_H        @"btn_add_destination_h.png"
 #define PIC_BTN_PLACE_N                  @"btn_place_n.png"
 #define PIC_BTN_PLACE_H                  @"btn_place_h.png"
-#define PIC_ICON_DESTI_LINE               @"icon_destination_line.png"
+#define PIC_ICON_DESTI_LINE              @"icon_destination_line.png"
+
+// all trip page.
+#define PIC_ICON_CELL_DELETE             @"icon_cell_del.png"
+#define PIC_ICON_CELL_EDIT               @"icon_cell_edit.png"
 
 #endif

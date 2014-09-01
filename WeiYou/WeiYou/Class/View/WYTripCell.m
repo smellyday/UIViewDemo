@@ -58,7 +58,7 @@
 
 @end
 
-#define MENU_BTN_W 80
+#define MENU_BTN_W 68
 #define DIS 15
 
 
@@ -95,7 +95,6 @@
         self.mainTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(121, 8, 190, 28)];
 		self.mainTitleLabel.font = [UIFont systemFontOfSize:16];
         self.mainTitleLabel.textAlignment = NSTextAlignmentLeft;
-//        self.mainTitleLabel.text = @"欧洲之旅";
         [_realContentView addSubview:_mainTitleLabel];
         
         self.citiesDesLabel = [[UILabel alloc] initWithFrame:CGRectMake(121, 36, 190, 26)];
@@ -120,31 +119,32 @@
         _sepLine.backgroundColor = [UIColor clearColor];
         [_realContentView addSubview:_sepLine];
         
-        
-        
-        
-        
-        
         [self addSubview:_realContentView];
 		
 		/*BUG: if selectionStyle is not "None", clicking cell could show selectedBackgroundView which could result in bug.*/
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		
-		UIButton *delBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-		delBtn.frame = CGRectMake(SCREEN_WIDTH-MENU_BTN_W, 0, MENU_BTN_W, 87);
-		delBtn.backgroundColor = [UIColor redColor];
-		[delBtn setTitle:@"Delete" forState:UIControlStateNormal];
-		[delBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+		UIButton *editBtn = [[UIButton alloc] init];
+		editBtn.frame = CGRectMake(SCREEN_WIDTH-MENU_BTN_W, 0, MENU_BTN_W, 86);
+		editBtn.backgroundColor = RGBCOLOR(126, 165, 179);
+        editBtn.imageEdgeInsets = UIEdgeInsetsMake(13, 12, 29, 12);
+        [editBtn setImage:IMG(PIC_ICON_CELL_EDIT) forState:UIControlStateNormal];
+        editBtn.titleEdgeInsets = UIEdgeInsetsMake(57, 0, 13, 0);
+        [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
+        editBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+        editBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+		[editBtn addTarget:self action:@selector(onClickEditButton:) forControlEvents:UIControlEventTouchUpInside];
+		[self insertSubview:editBtn atIndex:0];
+		
+		UIButton *delBtn = [[UIButton alloc] init];
+		delBtn.frame = CGRectMake(SCREEN_WIDTH-MENU_BTN_W*2, 0, MENU_BTN_W, 86);
+		delBtn.backgroundColor = RGBCOLOR(232, 98, 92);
+        delBtn.imageEdgeInsets = UIEdgeInsetsMake(13, 12, 29, 12);
+        [delBtn setImage:IMG(PIC_ICON_CELL_DELETE) forState:UIControlStateNormal];
+        delBtn.titleEdgeInsets = UIEdgeInsetsMake(57, 0, 13, 0);
+        [delBtn setTitle:@"删除" forState:UIControlStateNormal];
 		[delBtn addTarget:self action:@selector(onClickDelButton:) forControlEvents:UIControlEventTouchUpInside];
 		[self insertSubview:delBtn atIndex:0];
-		
-		UIButton *helBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-		helBtn.frame = CGRectMake(SCREEN_WIDTH-MENU_BTN_W*2, 0, MENU_BTN_W, 87);
-		helBtn.backgroundColor = [UIColor lightGrayColor];
-		[helBtn setTitle:@"Edit" forState:UIControlStateNormal];
-		[helBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-		[helBtn addTarget:self action:@selector(onClickEditButton:) forControlEvents:UIControlEventTouchUpInside];
-		[self insertSubview:helBtn atIndex:0];
         
         _panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
 		_panGR.maximumNumberOfTouches = 1;
@@ -236,6 +236,9 @@
 	[UIView animateWithDuration:dur animations:^{
 		_realContentView.center = RealContentViewInitalCenterPos;
 	}];
+    
+    _gestureBeginPos = CGPointZero;
+    _referenceCenterPos = RealContentViewInitalCenterPos;
 	
 }
 

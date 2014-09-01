@@ -127,6 +127,10 @@
 		694ED3BC195A762C00917FEB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 694ED3B3195A762C00917FEB /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		69516B601993525F00D404E7 /* WYNewItineraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69516B5F1993525F00D404E7 /* WYNewItineraryController.m */; };
 		6952AAE619B45F03009C1EDB /* tmp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6952AAE519B45F03009C1EDB /* tmp@2x.png */; };
+		6952AAEB19B47A00009C1EDB /* icon_cell_del.png in Resources */ = {isa = PBXBuildFile; fileRef = 6952AAE719B47A00009C1EDB /* icon_cell_del.png */; };
+		6952AAEC19B47A00009C1EDB /* icon_cell_del@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6952AAE819B47A00009C1EDB /* icon_cell_del@2x.png */; };
+		6952AAED19B47A00009C1EDB /* icon_cell_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 6952AAE919B47A00009C1EDB /* icon_cell_edit.png */; };
+		6952AAEE19B47A00009C1EDB /* icon_cell_edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6952AAEA19B47A00009C1EDB /* icon_cell_edit@2x.png */; };
 		69582DA81952BACF0072ED3E /* WYGlobalState.m in Sources */ = {isa = PBXBuildFile; fileRef = 69582DA71952BACF0072ED3E /* WYGlobalState.m */; };
 		69582DAB1952C3F40072ED3E /* WYLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69582DAA1952C3F40072ED3E /* WYLoginController.m */; };
 		695E1FB819A4803C0090B100 /* WYUserTripAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 695E1FB719A4803C0090B100 /* WYUserTripAgent.m */; };
@@ -361,6 +365,10 @@
 		69516B5E1993525F00D404E7 /* WYNewItineraryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYNewItineraryController.h; sourceTree = "<group>"; };
 		69516B5F1993525F00D404E7 /* WYNewItineraryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYNewItineraryController.m; sourceTree = "<group>"; };
 		6952AAE519B45F03009C1EDB /* tmp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tmp@2x.png"; path = "Resources/百度云同步盘/tmp@2x.png"; sourceTree = SOURCE_ROOT; };
+		6952AAE719B47A00009C1EDB /* icon_cell_del.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_cell_del.png; path = "Resources/百度云同步盘/icon_cell_del.png"; sourceTree = SOURCE_ROOT; };
+		6952AAE819B47A00009C1EDB /* icon_cell_del@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_cell_del@2x.png"; path = "Resources/百度云同步盘/icon_cell_del@2x.png"; sourceTree = SOURCE_ROOT; };
+		6952AAE919B47A00009C1EDB /* icon_cell_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_cell_edit.png; path = "Resources/百度云同步盘/icon_cell_edit.png"; sourceTree = SOURCE_ROOT; };
+		6952AAEA19B47A00009C1EDB /* icon_cell_edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_cell_edit@2x.png"; path = "Resources/百度云同步盘/icon_cell_edit@2x.png"; sourceTree = SOURCE_ROOT; };
 		69582DA61952BACF0072ED3E /* WYGlobalState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGlobalState.h; sourceTree = "<group>"; };
 		69582DA71952BACF0072ED3E /* WYGlobalState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGlobalState.m; sourceTree = "<group>"; };
 		69582DA91952C3F40072ED3E /* WYLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLoginController.h; sourceTree = "<group>"; };
@@ -528,6 +536,10 @@
 		5E5BC232183EE5D80003AC6D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6952AAE719B47A00009C1EDB /* icon_cell_del.png */,
+				6952AAE819B47A00009C1EDB /* icon_cell_del@2x.png */,
+				6952AAE919B47A00009C1EDB /* icon_cell_edit.png */,
+				6952AAEA19B47A00009C1EDB /* icon_cell_edit@2x.png */,
 				6952AAE519B45F03009C1EDB /* tmp@2x.png */,
 				69E039C3199B6D31000B6C75 /* icon_destination_line.png */,
 				69E039C4199B6D31000B6C75 /* icon_destination_line@2x.png */,
@@ -1066,6 +1078,7 @@
 				69349807199A0B90006BAF8B /* setting_icon_n.png in Resources */,
 				69E039C0199B68F1000B6C75 /* btn_place_h@2x.png in Resources */,
 				6934980E199A0B90006BAF8B /* weibo_btn_bg_n.png in Resources */,
+				6952AAEB19B47A00009C1EDB /* icon_cell_del.png in Resources */,
 				6934980A199A0B90006BAF8B /* verify_btn_bg_n.png in Resources */,
 				69E039AF199B48A2000B6C75 /* btn_add_destination_n.png in Resources */,
 				69349819199A0B90006BAF8B /* setting_icon_n@2x.png in Resources */,
@@ -1079,6 +1092,7 @@
 				5E52D368199F712800BFB916 /* ClassTableForUserNode.plist in Resources */,
 				69E039AD199B48A2000B6C75 /* btn_add_destination_h.png in Resources */,
 				69E039C1199B68F1000B6C75 /* btn_place_n.png in Resources */,
+				6952AAEE19B47A00009C1EDB /* icon_cell_edit@2x.png in Resources */,
 				6934330A197FB6AF00C1D2A5 /* Localizable.strings in Resources */,
 				5E5BC23A183EE5D80003AC6D /* InfoPlist.strings in Resources */,
 				69AA1EC31954112500BA0884 /* WeiboSDK.bundle in Resources */,
@@ -1093,6 +1107,7 @@
 				69E039BF199B68F1000B6C75 /* btn_place_h.png in Resources */,
 				5E5BC23E183EE5D80003AC6D /* Images.xcassets in Resources */,
 				6934980F199A0B90006BAF8B /* weibo_btn_bg_n@2x.png in Resources */,
+				6952AAED19B47A00009C1EDB /* icon_cell_edit.png in Resources */,
 				69349803199A0B90006BAF8B /* second_tab_item_h.png in Resources */,
 				693497FD199A0B90006BAF8B /* nav_bar_bg@2x.png in Resources */,
 				69349801199A0B90006BAF8B /* qq_btn_bg_n.png in Resources */,
@@ -1124,6 +1139,7 @@
 				693497FC199A0B90006BAF8B /* nav_bar_bg.png in Resources */,
 				693497ED199A0B90006BAF8B /* back_icon_n.png in Resources */,
 				693497F1199A0B90006BAF8B /* first_tab_item_h@2x.png in Resources */,
+				6952AAEC19B47A00009C1EDB /* icon_cell_del@2x.png in Resources */,
 				6934980B199A0B90006BAF8B /* verify_btn_bg_n@2x.png in Resources */,
 				5E21AE5C186829E600316EA6 /* location.plist in Resources */,
 				693497FA199A0B90006BAF8B /* login_btn_n.png in Resources */,
