@@ -129,12 +129,9 @@
 		editBtn.backgroundColor = RGBCOLOR(126, 165, 179);
         editBtn.imageEdgeInsets = UIEdgeInsetsMake(13, 12, 29, 12);
         [editBtn setImage:IMG(PIC_ICON_CELL_EDIT) forState:UIControlStateNormal];
-        editBtn.titleEdgeInsets = UIEdgeInsetsMake(57, 0, 13, 0);
-        [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
-        editBtn.titleLabel.font = [UIFont systemFontOfSize:10];
-        editBtn.titleLabel.backgroundColor = [UIColor redColor];
-        editBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        editBtn.titleLabel.frame = CGRectMake(0, 57, 68, 16);
+//        editBtn.titleEdgeInsets = UIEdgeInsetsMake(57, 0, 13, 0);
+//        editBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+//        [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
 		[editBtn addTarget:self action:@selector(onClickEditButton:) forControlEvents:UIControlEventTouchUpInside];
 		[self insertSubview:editBtn atIndex:0];
 		
@@ -143,8 +140,8 @@
 		delBtn.backgroundColor = RGBCOLOR(232, 98, 92);
         delBtn.imageEdgeInsets = UIEdgeInsetsMake(13, 12, 29, 12);
         [delBtn setImage:IMG(PIC_ICON_CELL_DELETE) forState:UIControlStateNormal];
-        delBtn.titleEdgeInsets = UIEdgeInsetsMake(57, 0, 13, 0);
-        [delBtn setTitle:@"删除" forState:UIControlStateNormal];
+//        delBtn.titleEdgeInsets = UIEdgeInsetsMake(57, 0, 13, 0);
+//        [delBtn setTitle:@"删除" forState:UIControlStateNormal];
 		[delBtn addTarget:self action:@selector(onClickDelButton:) forControlEvents:UIControlEventTouchUpInside];
 		[self insertSubview:delBtn atIndex:0];
         
