@@ -21,7 +21,7 @@
 
 - (id)initUserDestinationsWithSysEarth:(WYSysEarth *)sysEarth;
 
-- (void)addUserNode:(WYUserNode **)userNode;
+//- (void)addUserNode:(WYUserNode **)userNode;
 - (void)addContinent:(WYUserContinent **)nContinent;
 - (void)addNation:(WYUserNation **)nNation;
 - (void)addCity:(WYUserCity **)nCity;

@@ -24,4 +24,38 @@
 	return self;
 }
 
+
+
+- (NSUInteger)countOfChildArray {
+    return [_childArray count];
+}
+
+- (WYUserNode *)objectInChildArrayAtIndex:(NSUInteger)index {
+    return [_childArray objectAtIndex:index];
+}
+
+- (NSArray *)childArrayAtIndexes:(NSIndexSet *)indexes {
+    return [_childArray objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(WYUserNode *)object inChildArrayAtIndex:(NSUInteger)index {
+    [_childArray insertObject:object atIndex:index];
+}
+
+- (void)insertChildArray:(NSArray *)array atIndexes:(NSIndexSet *)indexes {
+    [_childArray insertObjects:array atIndexes:indexes];
+}
+
+- (void)removeObjectFromChildArrayAtIndex:(NSUInteger)index {
+    [_childArray removeObjectAtIndex:index];
+}
+
+- (void)removeChildArrayAtIndexes:(NSIndexSet *)indexes {
+    [_childArray removeObjectsAtIndexes:indexes];
+}
+
+- (void)removeChildArrayObject:(WYUserNode *)object {
+    [_childArray removeObject:object];
+}
+
 @end

@@ -167,6 +167,7 @@
 		69E215AF1981F2B00022D432 /* WYSinaWeiboUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E215AE1981F2B00022D432 /* WYSinaWeiboUserInfo.m */; };
 		69EBB49619A3300800133A80 /* countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69EBB49519A3300800133A80 /* countries.plist */; };
 		69EBB49819A3341800133A80 /* testCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69EBB49719A3341800133A80 /* testCity.plist */; };
+		69F2C17D19B99A68005B76C7 /* WYDestHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F2C17C19B99A68005B76C7 /* WYDestHolder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -424,6 +425,8 @@
 		69E215B7198262240022D432 /* log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
 		69EBB49519A3300800133A80 /* countries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = countries.plist; sourceTree = "<group>"; };
 		69EBB49719A3341800133A80 /* testCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = testCity.plist; sourceTree = "<group>"; };
+		69F2C17B19B99A68005B76C7 /* WYDestHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDestHolder.h; sourceTree = "<group>"; };
+		69F2C17C19B99A68005B76C7 /* WYDestHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDestHolder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -970,6 +973,8 @@
 				5E52D377199FA91A00BFB916 /* WYNationButton.m */,
 				5E52D38519A04FF700BFB916 /* WYCityButton.h */,
 				5E52D38619A04FF700BFB916 /* WYCityButton.m */,
+				69F2C17B19B99A68005B76C7 /* WYDestHolder.h */,
+				69F2C17C19B99A68005B76C7 /* WYDestHolder.m */,
 			);
 			name = TripCreateAndEdit;
 			sourceTree = "<group>";
@@ -1194,6 +1199,7 @@
 				698013D91977CF7300AFD0B4 /* WYUploadTripOperation.m in Sources */,
 				5E5D676B186176A100ECA966 /* WYTripDaySpotCell.m in Sources */,
 				5E7D177E198722A9003F4208 /* WYRecommendItineraryController.m in Sources */,
+				69F2C17D19B99A68005B76C7 /* WYDestHolder.m in Sources */,
 				695E1FB819A4803C0090B100 /* WYUserTripAgent.m in Sources */,
 				5E52D378199FA91A00BFB916 /* WYNationButton.m in Sources */,
 				69AA1EBA1953D9D400BA0884 /* WYRegisterController.m in Sources */,

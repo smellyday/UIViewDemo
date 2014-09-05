@@ -91,6 +91,7 @@
 		if (count >= [_userEarth.childArray count]) {
 			(*userNode).pUserNode = _userEarth;
 			[_userEarth.childArray addObject:(*userNode)];
+//            [_userEarth insertObject:(*userNode) inChildArrayAtIndex:[_userEarth countOfChildArray]];
 		}
 		
 		return;
@@ -118,7 +119,8 @@
 	}
 	if (count >= [_userEarth.childArray count]) {
 		(*nContinent).pUserNode = _userEarth;
-		[_userEarth.childArray addObject:(*nContinent)];
+//		[_userEarth.childArray addObject:(*nContinent)];
+        [_userEarth insertObject:(*nContinent) inChildArrayAtIndex:[_userEarth countOfChildArray]];
 	}
 }
 
@@ -135,7 +137,8 @@
 	WYUserContinent *parentContinent = [[WYUserContinent alloc] initWithSysContinent:(*nNation).corSysNation.pSysNode];
 	[self addContinent:&parentContinent];
 	(*nNation).pUserNode = parentContinent;
-	[parentContinent.childArray addObject:(*nNation)];
+//	[parentContinent.childArray addObject:(*nNation)];
+    [parentContinent insertObject:(*nNation) inChildArrayAtIndex:[parentContinent countOfChildArray]];
 }
 
 - (void)addCity:(WYUserCity **)nCity {
@@ -151,7 +154,8 @@
 	WYUserNation *parentNation = [[WYUserNation alloc] initWithSysNation:(*nCity).corSysCity.pSysNode];
 	[self addNation:&parentNation];
 	(*nCity).pUserNode = parentNation;
-	[parentNation.childArray addObject:(*nCity)];
+//	[parentNation.childArray addObject:(*nCity)];
+    [parentNation insertObject:(*nCity) inChildArrayAtIndex:[parentNation countOfChildArray]];
 }
 
 - (void)delUserNode:(WYUserNode **)userNode {
@@ -161,7 +165,8 @@
 		return;
 	}
 	
-	[parentNode.childArray removeObject:(*userNode)];
+//	[parentNode.childArray removeObject:(*userNode)];
+    [parentNode removeChildArrayObject:(*userNode)];
 	if ([parentNode.childArray count] == 0) {
 		[self delUserNode:&parentNode];
 	}

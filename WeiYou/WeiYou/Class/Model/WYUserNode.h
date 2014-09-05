@@ -21,4 +21,13 @@
 
 - (id)initWithSysUserNode:(WYSysNode *)sysNode;
 
+- (NSUInteger)countOfChildArray;
+- (WYUserNode *)objectInChildArrayAtIndex:(NSUInteger)index;
+- (NSArray *)childArrayAtIndexes:(NSIndexSet *)indexes;
+- (void)insertObject:(WYUserNode *)object inChildArrayAtIndex:(NSUInteger)index;
+- (void)insertChildArray:(NSArray *)array atIndexes:(NSIndexSet *)indexes;
+- (void)removeObjectFromChildArrayAtIndex:(NSUInteger)index;
+- (void)removeChildArrayAtIndexes:(NSIndexSet *)indexes;
+- (void)removeChildArrayObject:(WYUserNode *)object;
+
 @end
