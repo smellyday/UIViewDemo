@@ -7,32 +7,29 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYMTrip.h"
 
 @interface WYMTripDay : NSObject {
 	//dic info
 	NSNumber *_dayTH;
-	NSMutableArray *_spots;
+//	NSMutableArray *_spots;
 	
 	//date
-    NSDate *_tripBeginDate;
-	NSDate *_date;
-	NSString *_dateStr;
-	NSString *_weekDayStr;
-	NSString *_dayTHStr;
+//	NSDate *_date;
+//	NSString *_dateStr;
+//	NSString *_weekDayStr;
+//	NSString *_dayTHStr;
 }
 
 @property (nonatomic, strong) NSNumber *dayTH;
-@property (nonatomic, strong) NSMutableArray *spots;
+//@property (nonatomic, strong) NSMutableArray *spots;
 
-@property (nonatomic, strong) NSDate *tripBeginDate;
-@property (nonatomic, strong) NSDate *date;
-@property (nonatomic, strong) NSString *dateStr;
-@property (nonatomic, strong) NSString *weekDayStr;
-@property (nonatomic, strong) NSString *dayTHStr;
+//@property (nonatomic, strong) NSDate *date;
+//@property (nonatomic, strong) NSString *dateStr;
+//@property (nonatomic, strong) NSString *weekDayStr;
+//@property (nonatomic, strong) NSString *dayTHStr;
 
-- (id)initTripDayInfoDic:(NSDictionary *)infoDic;
-- (void)updateDateInfoWithBeginDate:(NSDate *)mBeginDate;
-- (void)updateDateInfoWithDayth:(NSNumber *)daythNum;
-- (NSDictionary *)transferToDic;
+- (id)initWithTripDayInfoDic:(NSDictionary *)infoDic;
+
 
 @end

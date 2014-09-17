@@ -140,10 +140,10 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	mlog(@"%s", __func__);
     
-//	WYTripController *theTripController = [[WYTripController alloc] init];
-//    theTripController.trip = [_trips objectAtIndex:[indexPath row]];
-//	
-//	[self.navigationController pushViewController:theTripController animated:YES];
+	WYTripController *tripController = [[WYTripController alloc] init];
+    tripController.trip = [_userTripAgent objectInUserTripsAtIndex:[indexPath row]];
+	
+	[self.tabBarController.navigationController pushViewController:tripController animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

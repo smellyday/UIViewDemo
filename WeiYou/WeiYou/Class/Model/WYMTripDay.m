@@ -11,14 +11,24 @@
 #import "consts.h"
 
 @implementation WYMTripDay
-@synthesize tripBeginDate = _tripBeginDate;
-@synthesize date = _date;
-@synthesize spots = _spots;
-@synthesize dateStr = _dateStr;
-@synthesize weekDayStr = _weekDayStr;
+//@synthesize date = _date;
+//@synthesize spots = _spots;
+//@synthesize dateStr = _dateStr;
+//@synthesize weekDayStr = _weekDayStr;
 @synthesize dayTH = _dayTH;
-@synthesize dayTHStr = _dayTHStr;
 
+
+- (id)initWithTripDayInfoDic:(NSDictionary *)infoDic {
+    self = [self init];
+    if (self) {
+        self.dayTH = [infoDic objectForKey:WY_TRIPDAY_DAYTH];
+        NSAssert(_dayTH != nil, @"dayTH can not be nil.");
+    }
+    
+    return self;
+}
+
+/*
 - (id)initTripDayInfoDic:(NSDictionary *)infoDic {
 	self = [super init];
 	if (self) {
@@ -42,7 +52,6 @@
 //		NSDateComponents *component = [calendar components:NSCalendarUnitWeekday fromDate:self.date];
 //		self.weekDayStr = [NSString stringWithFormat:@"%li", (long)[component weekday]];
 
-        /*
 			//continent
 		NSMutableArray *continentsArr = [NSMutableArray arrayWithCapacity:10];
 		for (NSDictionary *ctnDic in [infoDic objectForKey:WY_TRIP_CONTINENTS]) {
@@ -64,13 +73,13 @@
 			WYMBookedHotel *bookedHotel = [[WYMBookedHotel alloc] initWithBookedHoteInfoDic:hotelDic];
 			[self.hotelsArray addObject:bookedHotel];
 		}
-         */
 		
 	}
 	return self;
 }
+ */
 
-
+/*
 - (void)updateDateInfoWithBeginDate:(NSDate *)mBeginDate {
     self.tripBeginDate = mBeginDate;
     
@@ -85,7 +94,9 @@
         self.weekDayStr = [formatter stringFromDate:self.date];
     }
 }
+ */
 
+/*
 - (void)updateDateInfoWithDayth:(NSNumber *)daythNum {
     self.dayTH = daythNum;
     if (_dayTH != nil) {
@@ -104,6 +115,7 @@
         
     }
 }
+ */
 
 - (NSDictionary *)transferToDic {
 	

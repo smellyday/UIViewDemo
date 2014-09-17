@@ -9,8 +9,10 @@
 #import "WYFakeNavBar.h"
 #import "consts.h"
 
+
 @implementation WYFakeNavBar
-@synthesize bgImgView = _bgImgView;
+@synthesize title = _title;
+@synthesize titleLabel = _titleLabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -25,10 +27,16 @@
     self = [super init];
     if (self) {
         self.frame = NAV_BAR_CONTAINER_FRAME;
-        self.bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUS_BAR_H+NAV_BAR_H)];
-        [_bgImgView setImage:[UIImage imageNamed:PIC_NAV_BAR_BG]];
-        [self addSubview:_bgImgView];
+        UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUS_BAR_H+NAV_BAR_H)];
+        [bgImgView setImage:[UIImage imageNamed:PIC_NAV_BAR_BG]];
+        [self addSubview:bgImgView];
+        
+        CGFloat width = 200.0;
+        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH-width)/2, STATUS_BAR_H, width, NAV_BAR_BTN_H)];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:_titleLabel];
     }
+    
     return self;
 }
 

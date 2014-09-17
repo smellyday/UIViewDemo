@@ -131,6 +131,7 @@
 		6952AAEC19B47A00009C1EDB /* icon_cell_del@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6952AAE819B47A00009C1EDB /* icon_cell_del@2x.png */; };
 		6952AAED19B47A00009C1EDB /* icon_cell_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 6952AAE919B47A00009C1EDB /* icon_cell_edit.png */; };
 		6952AAEE19B47A00009C1EDB /* icon_cell_edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6952AAEA19B47A00009C1EDB /* icon_cell_edit@2x.png */; };
+		6954B05319C9320F0050B98B /* WYMTripDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954B05219C9320F0050B98B /* WYMTripDay.m */; };
 		69582DA81952BACF0072ED3E /* WYGlobalState.m in Sources */ = {isa = PBXBuildFile; fileRef = 69582DA71952BACF0072ED3E /* WYGlobalState.m */; };
 		69582DAB1952C3F40072ED3E /* WYLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69582DAA1952C3F40072ED3E /* WYLoginController.m */; };
 		695E1FB819A4803C0090B100 /* WYUserTripAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 695E1FB719A4803C0090B100 /* WYUserTripAgent.m */; };
@@ -370,6 +371,8 @@
 		6952AAE819B47A00009C1EDB /* icon_cell_del@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_cell_del@2x.png"; path = "Resources/百度云同步盘/icon_cell_del@2x.png"; sourceTree = SOURCE_ROOT; };
 		6952AAE919B47A00009C1EDB /* icon_cell_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_cell_edit.png; path = "Resources/百度云同步盘/icon_cell_edit.png"; sourceTree = SOURCE_ROOT; };
 		6952AAEA19B47A00009C1EDB /* icon_cell_edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_cell_edit@2x.png"; path = "Resources/百度云同步盘/icon_cell_edit@2x.png"; sourceTree = SOURCE_ROOT; };
+		6954B05119C9320F0050B98B /* WYMTripDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMTripDay.h; sourceTree = "<group>"; };
+		6954B05219C9320F0050B98B /* WYMTripDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMTripDay.m; sourceTree = "<group>"; };
 		69582DA61952BACF0072ED3E /* WYGlobalState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGlobalState.h; sourceTree = "<group>"; };
 		69582DA71952BACF0072ED3E /* WYGlobalState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGlobalState.m; sourceTree = "<group>"; };
 		69582DA91952C3F40072ED3E /* WYLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLoginController.h; sourceTree = "<group>"; };
@@ -924,6 +927,8 @@
 				695E1FB719A4803C0090B100 /* WYUserTripAgent.m */,
 				5EBCF73D185EAE290057C1AE /* WYMTrip.h */,
 				5EBCF73E185EAE290057C1AE /* WYMTrip.m */,
+				6954B05119C9320F0050B98B /* WYMTripDay.h */,
+				6954B05219C9320F0050B98B /* WYMTripDay.m */,
 			);
 			name = UserTrip;
 			sourceTree = "<group>";
@@ -1214,6 +1219,7 @@
 				5EF07C4B199E5719004A617C /* WYUserDestinations.m in Sources */,
 				5E5BC23F183EE5D80003AC6D /* main.m in Sources */,
 				696CECB71974FD6600EE4544 /* WYTripController.m in Sources */,
+				6954B05319C9320F0050B98B /* WYMTripDay.m in Sources */,
 				5E52D366199EB93B00BFB916 /* WYUserCity.m in Sources */,
 				5E5D676E186176B000ECA966 /* WYTripDayHotelCell.m in Sources */,
 				5EF07C4E199E5741004A617C /* WYSysNode.m in Sources */,

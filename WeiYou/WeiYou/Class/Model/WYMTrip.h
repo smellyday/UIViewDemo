@@ -13,14 +13,13 @@
 	
 	NSNumber *_tripID;
 	NSNumber *_tripVersion;
-	NSNumber *_tripDayth;
 	NSString *_tripName;
 	NSString *_tripDescription;
 	NSString *_tripMainImageURL;
 	NSDate *_tripBeginDate;
 	NSDate *_tripEndDate;
 	NSDate *_tripCreateDate;
-//	NSMutableArray *_tripDaysArray;
+	NSMutableArray *_tripDaysArray;
 	WYUserDestinations *_userDestinationAgent;
 	
 	BOOL _isNewTrip;
@@ -32,14 +31,13 @@
 
 @property (nonatomic, strong) NSNumber *tripID;
 @property (nonatomic, strong) NSNumber *tripVersion;
-@property (nonatomic, strong) NSNumber *tripDayth;
 @property (nonatomic, strong) NSString *tripName;
 @property (nonatomic, strong) NSString *tripDescription;
 @property (nonatomic, strong) NSString *tripMainImageURL;
 @property (nonatomic, strong) NSDate *tripBeginDate;
 @property (nonatomic, strong) NSDate *tripEndDate;
 @property (nonatomic, strong) NSDate *tripCreateDate;
-//@property (nonatomic, readonly) NSMutableArray *tripDaysArray;
+@property (nonatomic, strong) NSMutableArray *tripDaysArray;
 @property (nonatomic, strong) WYUserDestinations *userDestinationAgent;
 
 @property (nonatomic) BOOL isNewTrip;

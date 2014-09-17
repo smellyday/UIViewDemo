@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface WYFakeNavBar : UIView {
-    UIImageView *_bgImgView;
+    NSString *_title;
+    UILabel *_titleLabel;
 }
 
-@property (nonatomic, strong) UIImageView *bgImgView;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @end

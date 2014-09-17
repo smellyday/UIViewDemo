@@ -12,12 +12,10 @@
 @interface WYTripController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
 	UITableView *_mTableView;
 	
-	NSMutableArray *_tripDays;
 	WYMTrip *_trip;
 }
 
 @property (nonatomic, strong) UITableView *mTableView;
-@property (nonatomic, strong) NSMutableArray *tripDays;
 @property (nonatomic, strong) WYMTrip *trip;
 
 @end

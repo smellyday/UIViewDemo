@@ -15,7 +15,7 @@
 	UITableView *_mTableView;
 	WYUserTripAgent *_userTripAgent;
 	
-	NSMutableSet *_registerCellSet;//the cells who show "delete" & "edit".
+	NSMutableSet *_registerCellSet;//the cells who are showing "delete" & "edit".
 	WYTripCell *_manipulatingCell;//editing or going to delete
 }
 

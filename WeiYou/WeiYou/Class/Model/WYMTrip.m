@@ -7,13 +7,13 @@
 //
 
 #import "WYMTrip.h"
+#import "WYMTripDay.h"
 #import "WYDataEngine.h"
 #import "consts.h"
 
 
 @implementation WYMTrip
 @synthesize tripVersion = _tripVersion;
-@synthesize tripDayth = _tripDayth;
 @synthesize tripID = _tripID;
 @synthesize tripName = _tripName;
 @synthesize tripDescription = _tripDescription;
@@ -41,7 +41,6 @@
 	self = [super init];
 	if (self) {
 		self.tripVersion = [infoDic objectForKey:WY_TRIP_VERSION];
-		self.tripDayth = [infoDic objectForKey:WY_TRIP_Dayth];
 		self.tripID = [infoDic objectForKey:WY_TRIP_ID];
 		self.tripName = [infoDic objectForKey:WY_TRIP_NAME];
 		self.tripDescription = [infoDic objectForKey:WY_TRIP_DES];
@@ -49,16 +48,13 @@
 		self.tripBeginDate = [infoDic objectForKey:WY_TRIP_BEGIN_DATE];
 		self.tripEndDate = [infoDic objectForKey:WY_TRIP_END_DATE];
 		self.tripCreateDate = [infoDic objectForKey:WY_TRIP_CREATE_DATE];
-		
-		/*
+        
 		_tripDaysArray = [NSMutableArray arrayWithCapacity:10];
         NSArray *daysInfoArr = [infoDic objectForKey:WY_TRIP_DAYS];
 		for (NSDictionary *dayInfoDic in daysInfoArr) {
-			WYMTripDay *tripDay = [[WYMTripDay alloc] initTripDayInfoDic:dayInfoDic];
-            [tripDay updateDateInfoWithBeginDate:_tripBeginDate];
+			WYMTripDay *tripDay = [[WYMTripDay alloc] initWithTripDayInfoDic:dayInfoDic];
 			[_tripDaysArray addObject:tripDay];
 		}
-		 */
 		
         // the 4 bool must be in the plist. Cz, plist is created by object.
 		self.isNewTrip = [[infoDic objectForKey:WY_TRIP_ISNEW] boolValue];
