@@ -133,7 +133,7 @@
 //        editBtn.titleLabel.font = [UIFont systemFontOfSize:10];
 //        [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
 		[editBtn addTarget:self action:@selector(onClickEditButton:) forControlEvents:UIControlEventTouchUpInside];
-		[self insertSubview:editBtn atIndex:0];
+		[self insertSubview:editBtn belowSubview:_realContentView];
 		
 		UIButton *delBtn = [[UIButton alloc] init];
 		delBtn.frame = CGRectMake(SCREEN_WIDTH-MENU_BTN_W*2, 0, MENU_BTN_W, 86);
@@ -143,7 +143,7 @@
 //        delBtn.titleEdgeInsets = UIEdgeInsetsMake(57, 0, 13, 0);
 //        [delBtn setTitle:@"删除" forState:UIControlStateNormal];
 		[delBtn addTarget:self action:@selector(onClickDelButton:) forControlEvents:UIControlEventTouchUpInside];
-		[self insertSubview:delBtn atIndex:0];
+		[self insertSubview:delBtn belowSubview:_realContentView];
         
         _panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
 		_panGR.maximumNumberOfTouches = 1;
@@ -344,14 +344,14 @@
 
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	if ([_delegate getTableViewState] == tripCellStateNormal) {
+    if ([_delegate getTableViewState] == tripCellStateNormal) {
 		[super touchesBegan:touches withEvent:event];
 		return;
 	}
 	
-	if (_cellSt == tripCellStateExpanded) {
+    if (_cellSt == tripCellStateExpanded) {
 		CGPoint p = [[touches anyObject] locationInView:self];
-		if (p.x > (SCREEN_WIDTH-MENU_BTN_W*2)) {
+        if (p.x > (SCREEN_WIDTH-MENU_BTN_W*2)) {
 			[super touchesBegan:touches withEvent:event];
 			return;
 		}
