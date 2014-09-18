@@ -92,7 +92,7 @@
         [nation.childArray addObject:mcity];
     }
 	
-    [delegate destigationsAgnetGotCitiesArrayInNation:(WYSysNation *)timer.userInfo];
+    [delegate destinationsAgnetGotCitiesArrayInNation:(WYSysNation *)timer.userInfo];
 }
 
 - (void)requestSysCitiesInNation:(WYSysNation *)nation {

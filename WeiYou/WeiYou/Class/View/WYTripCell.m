@@ -100,19 +100,19 @@
         self.citiesDesLabel = [[UILabel alloc] initWithFrame:CGRectMake(121, 36, 190, 26)];
 		self.citiesDesLabel.font = [UIFont systemFontOfSize:11];
         self.citiesDesLabel.textAlignment = NSTextAlignmentLeft;
-        self.citiesDesLabel.text = @"伦敦、巴黎、柏林、罗马";
+//        self.citiesDesLabel.text = @"伦敦、巴黎、柏林、罗马";
         [_realContentView addSubview:_citiesDesLabel];
         
         self.departureDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(121, 62, 60, 20)];
         self.departureDateLabel.font = [UIFont systemFontOfSize:9];
         self.departureDateLabel.textAlignment = NSTextAlignmentLeft;
-        self.departureDateLabel.text = @"2014.08.20";
+//        self.departureDateLabel.text = @"2014.08.20";
         [_realContentView addSubview:_departureDateLabel];
         
         self.daysNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(181, 62, 30, 20)];
         self.daysNumberLabel.font = [UIFont systemFontOfSize:9];
         self.daysNumberLabel.textAlignment = NSTextAlignmentLeft;
-        self.daysNumberLabel.text = @"15天";
+//        self.daysNumberLabel.text = @"15天";
         [_realContentView addSubview:_daysNumberLabel];
 
         self.sepLine = [[SeperateLine alloc] initWithFrame:CGRectMake(10, 86, SCREEN_WIDTH-20, 1)];

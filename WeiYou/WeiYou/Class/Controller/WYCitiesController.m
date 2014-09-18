@@ -155,7 +155,7 @@
 
 
 #pragma mark - DestinationsDataDelegate
-- (void)destigationsAgnetGotCitiesArrayInNation:(WYSysNation *)nation {
+- (void)destinationsAgnetGotCitiesArrayInNation:(WYSysNation *)nation {
     if (nation.mID == _nationButton.sysNation.mID) {
         _sysCities = nation.childArray;
         [self performSelectorOnMainThread:@selector(loadCities) withObject:nil waitUntilDone:YES];

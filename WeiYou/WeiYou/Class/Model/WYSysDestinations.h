@@ -16,7 +16,7 @@
 @protocol DestinationsDataDelegate
 
 @optional
-- (void)destigationsAgnetGotCitiesArrayInNation:(WYSysNation *)nation;
+- (void)destinationsAgnetGotCitiesArrayInNation:(WYSysNation *)nation;
 
 @end
 

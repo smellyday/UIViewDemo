@@ -7,11 +7,9 @@
 //
 
 #import "WYSysNode.h"
-#import "WYSysNation.h"
+#import "WYSysArea.h"
 
-@interface WYSysCity : WYSysNode
-
-@property (nonatomic, weak) WYSysNation *pSysNode;
+@interface WYSysCity : WYSysArea
 
 - (id)initCityWithInfo:(NSDictionary *)infoDic;
 

@@ -47,6 +47,10 @@
 
 - (id)initWithTripInfoDic:(NSDictionary *)infoDic;
 
+
+- (NSString *)getCitiesDescription;
+
+
 - (void)addNewTripToServer;
 - (void)deleteTripFromServer;
 - (void)updateTripInfoToServer;

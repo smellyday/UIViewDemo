@@ -106,22 +106,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	static NSString *NORMALCELL = @"NCell";
-    /*
-	WYTripCell *cell = [tableView dequeueReusableCellWithIdentifier:NORMALCELL];
+	static NSString *TRIPCELL = @"NTRIPCELL";
+
+	WYTripCell *cell = [tableView dequeueReusableCellWithIdentifier:TRIPCELL];
 	
 	NSInteger row = [indexPath row];
 	if (cell == nil) {
-		cell = [[WYTripCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NORMALCELL];
+		cell = [[WYTripCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TRIPCELL];
 	}
-    */
     
-    WYMTrip *mTrip = [_userTripAgent objectInUserTripsAtIndex:[indexPath row]];
-    WYTripCell *cell = [[WYTripCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NORMALCELL];
+    WYMTrip *mTrip = [_userTripAgent objectInUserTripsAtIndex:row];
 	cell.indexPath = indexPath;
 	cell.delegate = self;
+    
     cell.mainTitleLabel.text = mTrip.tripName;
 	cell.highlighted = NO;
+    
+    NSString *citiesDes = 
+    cell.citiesDesLabel.text = @"";
 	
 	return cell;
 }

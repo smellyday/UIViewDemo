@@ -74,6 +74,11 @@
 	return _userDestinationAgent;
 }
 
+
+- (NSString *)getCitiesDescription {
+    
+}
+
 // network connection.
 - (void)addNewTripToServer {
     

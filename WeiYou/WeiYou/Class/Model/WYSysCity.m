@@ -11,7 +11,7 @@
 @implementation WYSysCity
 
 - (id)initCityWithInfo:(NSDictionary *)infoDic {
-	self = [super initNodeWithInfo:infoDic];
+	self = [super initAreaWithInfo:infoDic];
 	if (self) {
 		
 	}
