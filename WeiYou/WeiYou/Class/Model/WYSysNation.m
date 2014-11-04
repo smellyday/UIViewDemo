@@ -9,14 +9,27 @@
 #import "WYSysNation.h"
 
 @implementation WYSysNation
+@synthesize sysParentContinent = _sysParentContinent;
 
 - (id)initNationWithInfo:(NSDictionary *)infoDic {
 	self = [super initNodeWithInfo:infoDic];
 	if (self) {
-		
+        
 	}
 	
 	return self;
+}
+
+- (NSString *)fetchNationBriefDescription {
+    return nil;
+}
+
+- (NSArray *)fetchNationImages {
+    return nil;
+}
+
+- (NSArray *)loadSysAllCitiesInTheNation {
+    return nil;
 }
 
 @end

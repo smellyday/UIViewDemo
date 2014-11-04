@@ -11,12 +11,20 @@
 @implementation WYSysCity
 
 - (id)initCityWithInfo:(NSDictionary *)infoDic {
-	self = [super initAreaWithInfo:infoDic];
+	self = [super initNodeWithInfo:infoDic];
 	if (self) {
 		
 	}
 	
 	return self;
+}
+
+- (NSString *)fetchCityBriefDescription {
+    return nil;
+}
+
+- (NSArray *)fetchCityImages {
+    return nil;
 }
 
 @end

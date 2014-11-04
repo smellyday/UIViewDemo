@@ -7,31 +7,44 @@
 //
 
 #import "WYSysNode.h"
-#import "consts.h"
 
 @implementation WYSysNode
-@synthesize mID = _mID;
-@synthesize pID = _pID;
-@synthesize nodeType = _nodeType;
-@synthesize pSysNode = _pSysNode;
-@synthesize childArray = _childArray;
+@synthesize sysMID = _sysMID;
+@synthesize sysParentID = _sysParentID;
+@synthesize sysNodeName = _sysNodeName;
+@synthesize sysNodeType = _sysNodeType;
+@synthesize sysChildArray = _sysChildArray;
 
 - (id)initNodeWithInfo:(NSDictionary *)infoDic {
 	self = [super init];
 	if (self) {
 		if (infoDic) {
-			_mID = [[infoDic objectForKey:WY_NODE_ID] intValue];
-			_pID = [[infoDic objectForKey:WY_NODE_PARENT_ID] intValue];
-			_nodeType = [infoDic objectForKey:WY_NODE_REGION_LEVEL];
-			_nodeName = [[infoDic objectForKey:WY_NODE_NAME] objectForKey:WY_NODE_NAME_ZHCH];
+            
+			_sysMID = [[infoDic objectForKey:WY_NODE_ID] intValue];
+            _sysParentID = [[infoDic objectForKey:WY_NODE_PARENT_ID] intValue];
+            _sysNodeName = [[infoDic objectForKey:WY_NODE_NAME] objectForKey:WY_NODE_NAME_ZHCH];
+            NSString *typeName = [infoDic objectForKey:WY_NODE_TYPE];
+            if ([typeName isEqual:REGION_EARTH]) {
+                _sysNodeType = 0;
+            } else if ([typeName isEqual:REGION_CONTINENT]) {
+                _sysNodeType = 10;
+            } else if ([typeName isEqual:REGION_NATION]) {
+                _sysNodeType = 20;
+            } else if ([typeName isEqual:REGION_CITY]) {
+                _sysNodeType = 30;
+            } else if ([typeName isEqual:REGION_SPOT]) {
+                _sysNodeType = 40;
+            }
+
 		} else {
-			_mID = 0;
-			_pID = -1;
-			_nodeType = REGION_EARTH;
-		}
+            
+			_sysMID = 0;
+			_sysParentID = -1;
+			_sysNodeType = 0;
+
+        }
 		
-		self.pSysNode = nil;
-		self.childArray = [NSMutableArray arrayWithCapacity:10];
+		self.sysChildArray = [NSMutableArray arrayWithCapacity:10];
 	}
 	
 	return self;

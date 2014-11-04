@@ -77,6 +77,7 @@
 
 - (NSString *)getCitiesDescription {
     
+    return nil;
 }
 
 // network connection.

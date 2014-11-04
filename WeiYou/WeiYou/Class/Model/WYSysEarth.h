@@ -8,7 +8,11 @@
 
 #import "WYSysNode.h"
 
-@interface WYSysEarth : WYSysNode
+@interface WYSysEarth : WYSysNode {
+    WYSysNode * __weak _sysParentNode;
+}
+
+@property (nonatomic, weak) WYSysNode *sysParentNode;
 
 - (id)initEarth;
 

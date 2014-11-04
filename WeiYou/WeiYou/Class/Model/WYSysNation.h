@@ -9,10 +9,15 @@
 #import "WYSysNode.h"
 #import "WYSysContinent.h"
 
-@interface WYSysNation : WYSysNode
+@interface WYSysNation : WYSysNode {
+    WYSysContinent * __weak _sysParentContinent;
+}
 
-@property (nonatomic, weak) WYSysContinent *pSysNode;
+@property (nonatomic, weak) WYSysContinent *sysParentContinent;
 
 - (id)initNationWithInfo:(NSDictionary *)infoDic;
+- (NSString *)fetchNationBriefDescription;
+- (NSArray *)fetchNationImages;
+- (NSArray *)loadSysAllCitiesInTheNation;
 
 @end

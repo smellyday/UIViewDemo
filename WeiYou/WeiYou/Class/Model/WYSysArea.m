@@ -19,4 +19,9 @@
     return self;
 }
 
+
+- (void)loadSysAllSpotsInTheArea {
+    
+}
+
 @end

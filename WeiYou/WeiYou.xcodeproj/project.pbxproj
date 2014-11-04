@@ -148,6 +148,7 @@
 		69AA1EC21954112500BA0884 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AA1EBF1954112500BA0884 /* libWeiboSDK.a */; };
 		69AA1EC31954112500BA0884 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69AA1EC01954112500BA0884 /* WeiboSDK.bundle */; };
 		69B68D2A1989FBBD00DF29AF /* WYFakeNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B68D291989FBBD00DF29AF /* WYFakeNavBar.m */; };
+		69D907D11A08BA9000CC2EE5 /* WYSysNodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D907D01A08BA9000CC2EE5 /* WYSysNodeManager.m */; };
 		69E039AD199B48A2000B6C75 /* btn_add_destination_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E039A9199B48A2000B6C75 /* btn_add_destination_h.png */; };
 		69E039AE199B48A2000B6C75 /* btn_add_destination_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E039AA199B48A2000B6C75 /* btn_add_destination_h@2x.png */; };
 		69E039AF199B48A2000B6C75 /* btn_add_destination_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E039AB199B48A2000B6C75 /* btn_add_destination_n.png */; };
@@ -407,6 +408,8 @@
 		69AA1EC11954112500BA0884 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		69B68D281989FBBD00DF29AF /* WYFakeNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYFakeNavBar.h; sourceTree = "<group>"; };
 		69B68D291989FBBD00DF29AF /* WYFakeNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYFakeNavBar.m; sourceTree = "<group>"; };
+		69D907CF1A08BA9000CC2EE5 /* WYSysNodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSysNodeManager.h; sourceTree = "<group>"; };
+		69D907D01A08BA9000CC2EE5 /* WYSysNodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSysNodeManager.m; sourceTree = "<group>"; };
 		69E039A9199B48A2000B6C75 /* btn_add_destination_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_add_destination_h.png; path = "Resources/百度云同步盘/btn_add_destination_h.png"; sourceTree = SOURCE_ROOT; };
 		69E039AA199B48A2000B6C75 /* btn_add_destination_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_add_destination_h@2x.png"; path = "Resources/百度云同步盘/btn_add_destination_h@2x.png"; sourceTree = SOURCE_ROOT; };
 		69E039AB199B48A2000B6C75 /* btn_add_destination_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_add_destination_n.png; path = "Resources/百度云同步盘/btn_add_destination_n.png"; sourceTree = SOURCE_ROOT; };
@@ -681,8 +684,8 @@
 				5EB6B92F19800FE600E9E695 /* consts_view.h */,
 				5EB6B92E19800FDB00E9E695 /* consts_sys_pic.h */,
 				5EF07C45199AE5FD004A617C /* consts_language.h */,
-				69E215B7198262240022D432 /* log.h */,
 				5E5BC251183EE5E90003AC6D /* consts.h */,
+				69E215B7198262240022D432 /* log.h */,
 				5E5BC2EF183EF5430003AC6D /* WYFileManager.h */,
 				5E5BC2F0183EF5430003AC6D /* WYFileManager.m */,
 				69582DA61952BACF0072ED3E /* WYGlobalState.h */,
@@ -828,6 +831,8 @@
 			children = (
 				5EF07C46199E5708004A617C /* WYSysDestinations.h */,
 				5EF07C47199E5708004A617C /* WYSysDestinations.m */,
+				69D907CF1A08BA9000CC2EE5 /* WYSysNodeManager.h */,
+				69D907D01A08BA9000CC2EE5 /* WYSysNodeManager.m */,
 				5EF07C4C199E5741004A617C /* WYSysNode.h */,
 				5EF07C4D199E5741004A617C /* WYSysNode.m */,
 				5E52D34F199EB85100BFB916 /* WYSysEarth.h */,
@@ -1212,6 +1217,7 @@
 				69E215AC1981F2970022D432 /* WYTencentUserInfo.m in Sources */,
 				694ED3BC195A762C00917FEB /* Reachability.m in Sources */,
 				698013D91977CF7300AFD0B4 /* WYUploadTripOperation.m in Sources */,
+				69D907D11A08BA9000CC2EE5 /* WYSysNodeManager.m in Sources */,
 				5E5D676B186176A100ECA966 /* WYTripDaySpotCell.m in Sources */,
 				5E7D177E198722A9003F4208 /* WYRecommendItineraryController.m in Sources */,
 				69F2C17D19B99A68005B76C7 /* WYDestHolder.m in Sources */,

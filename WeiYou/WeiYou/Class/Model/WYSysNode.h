@@ -7,23 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "consts.h"
 
 @interface WYSysNode : NSObject {
-    NSInteger _mID;
-	NSInteger _pID;
-	NSString *_nodeType;
-	NSString *_nodeName;
-	
-    WYSysNode * __weak _pSysNode;
-	NSMutableArray *_childArray;
+    NSInteger _sysMID;
+    NSInteger _sysParentID;
+    NSString *_sysNodeName;
+    
+	WYNodeType _sysNodeType;
+	NSMutableArray *_sysChildArray;
 }
 
-@property (nonatomic, readonly) NSInteger mID;
-@property (nonatomic, readonly) NSInteger pID;
-@property (nonatomic, readonly) NSString *nodeType;
-@property (nonatomic, readonly)	NSString *nodeName;
-@property (nonatomic, weak) WYSysNode *pSysNode;
-@property (nonatomic, strong) NSMutableArray *childArray;
+@property (nonatomic, readonly) NSInteger sysMID;
+@property (nonatomic, readonly) NSInteger sysParentID;
+@property (nonatomic, readonly)	NSString *sysNodeName;
+@property (nonatomic, readonly) WYNodeType sysNodeType;
+@property (nonatomic, strong) NSMutableArray *sysChildArray;
 
 - (id)initNodeWithInfo:(NSDictionary *)infoDic;
 

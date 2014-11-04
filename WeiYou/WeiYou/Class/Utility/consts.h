@@ -116,20 +116,31 @@
 #define WY_PLACE_PARENT_ID             @"parent_id"
 #define WY_PLACE_NAME                  @"name"
 #define WY_NAME_EN                     @"en"
-#define WY_NAME_ZHCH                  @"zh-CN"
+#define WY_NAME_ZHCH                   @"zh-CN"
 
     //for WYSysNode
 #define WY_NODE_ID                    @"id"
 #define WY_NODE_PARENT_ID             @"parent_id"
-#define WY_NODE_REGION_LEVEL		  @"region_level"
+#define WY_NODE_TYPE                  @"region_level"
 #define WY_NODE_NAME                  @"name"
 #define WY_NODE_NAME_EN               @"en"
 #define WY_NODE_NAME_ZHCH             @"zh-CN"
+#define WY_NODE_COUNTRIES             @"countries"
 
-#define REGION_EARTH				  @"earth"
-#define REGION_CONTINENT			  @"continent"
+#define REGION_EARTH                  @"earth"
+#define REGION_CONTINENT			      @"continent"
 #define REGION_NATION				  @"country"
 #define REGION_CITY					  @"city"
+#define REGION_SPOT					  @"spot"
+
+
+typedef enum _WYNodeType {
+    NodeTypeEarth = 0,
+    NodeTypeContinent = 10,
+    NodeTypeNation = 20,
+    NodeTypeCity = 30,
+    NodeTypeSpot = 40
+} WYNodeType;
 
 /*
 	//for continent

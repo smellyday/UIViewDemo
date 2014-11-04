@@ -10,29 +10,29 @@
 	<string>WeiYou</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>D550CC6E-56C6-430A-81F9-4AF0C6ADD6F3</key>
+		<key>95D32764697F49B7D0DAAB561AD24D818D8506B9</key>
 		<string>https://github.com/smellyday/UIViewDemo.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>WeiYou/WeiYou.xcodeproj/project.xcworkspace</string>
+	<string>WeiYou/WeiYou.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>D550CC6E-56C6-430A-81F9-4AF0C6ADD6F3</key>
+		<key>95D32764697F49B7D0DAAB561AD24D818D8506B9</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/smellyday/UIViewDemo.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>D550CC6E-56C6-430A-81F9-4AF0C6ADD6F3</string>
+	<string>95D32764697F49B7D0DAAB561AD24D818D8506B9</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>D550CC6E-56C6-430A-81F9-4AF0C6ADD6F3</string>
+			<string>95D32764697F49B7D0DAAB561AD24D818D8506B9</string>
 			<key>IDESourceControlWCCName</key>
 			<string>project</string>
 		</dict>

@@ -12,6 +12,7 @@
 @interface WYSysCity : WYSysArea
 
 - (id)initCityWithInfo:(NSDictionary *)infoDic;
-
+- (NSString *)fetchCityBriefDescription;
+- (NSArray *)fetchCityImages;
 
 @end
