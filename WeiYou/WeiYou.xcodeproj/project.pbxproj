@@ -55,7 +55,6 @@
 		5E7D1781198722CD003F4208 /* WYMyItineraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7D1780198722CD003F4208 /* WYMyItineraryController.m */; };
 		5EBCF73F185EAE290057C1AE /* WYMTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCF73E185EAE290057C1AE /* WYMTrip.m */; };
 		5EBCF765185F016B0057C1AE /* trips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EBCF764185F016B0057C1AE /* trips.plist */; };
-		5EF07C48199E5708004A617C /* WYSysDestinations.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF07C47199E5708004A617C /* WYSysDestinations.m */; };
 		5EF07C4B199E5719004A617C /* WYUserDestinations.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF07C4A199E5719004A617C /* WYUserDestinations.m */; };
 		5EF07C4E199E5741004A617C /* WYSysNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF07C4D199E5741004A617C /* WYSysNode.m */; };
 		5EF07C51199E574C004A617C /* WYUserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF07C50199E574C004A617C /* WYUserNode.m */; };
@@ -149,6 +148,10 @@
 		69AA1EC31954112500BA0884 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69AA1EC01954112500BA0884 /* WeiboSDK.bundle */; };
 		69B68D2A1989FBBD00DF29AF /* WYFakeNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B68D291989FBBD00DF29AF /* WYFakeNavBar.m */; };
 		69D907D11A08BA9000CC2EE5 /* WYSysNodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D907D01A08BA9000CC2EE5 /* WYSysNodeManager.m */; };
+		69D907DA1A0905B500CC2EE5 /* WYUserDayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D907D91A0905B500CC2EE5 /* WYUserDayManager.m */; };
+		69D907DD1A0905D700CC2EE5 /* WYUserNodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D907DC1A0905D700CC2EE5 /* WYUserNodeManager.m */; };
+		69D907E01A0906CB00CC2EE5 /* WYTripDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D907DF1A0906CB00CC2EE5 /* WYTripDay.m */; };
+		69D907E31A090AD900CC2EE5 /* WYUserTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D907E21A090AD900CC2EE5 /* WYUserTrip.m */; };
 		69E039AD199B48A2000B6C75 /* btn_add_destination_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E039A9199B48A2000B6C75 /* btn_add_destination_h.png */; };
 		69E039AE199B48A2000B6C75 /* btn_add_destination_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E039AA199B48A2000B6C75 /* btn_add_destination_h@2x.png */; };
 		69E039AF199B48A2000B6C75 /* btn_add_destination_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E039AB199B48A2000B6C75 /* btn_add_destination_n.png */; };
@@ -275,8 +278,6 @@
 		5EBCF73E185EAE290057C1AE /* WYMTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMTrip.m; sourceTree = "<group>"; };
 		5EBCF764185F016B0057C1AE /* trips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = trips.plist; sourceTree = "<group>"; };
 		5EF07C45199AE5FD004A617C /* consts_language.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = consts_language.h; sourceTree = "<group>"; };
-		5EF07C46199E5708004A617C /* WYSysDestinations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSysDestinations.h; sourceTree = "<group>"; };
-		5EF07C47199E5708004A617C /* WYSysDestinations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSysDestinations.m; sourceTree = "<group>"; };
 		5EF07C49199E5719004A617C /* WYUserDestinations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUserDestinations.h; sourceTree = "<group>"; };
 		5EF07C4A199E5719004A617C /* WYUserDestinations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYUserDestinations.m; sourceTree = "<group>"; };
 		5EF07C4C199E5741004A617C /* WYSysNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSysNode.h; sourceTree = "<group>"; };
@@ -410,6 +411,14 @@
 		69B68D291989FBBD00DF29AF /* WYFakeNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYFakeNavBar.m; sourceTree = "<group>"; };
 		69D907CF1A08BA9000CC2EE5 /* WYSysNodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSysNodeManager.h; sourceTree = "<group>"; };
 		69D907D01A08BA9000CC2EE5 /* WYSysNodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSysNodeManager.m; sourceTree = "<group>"; };
+		69D907D81A0905B500CC2EE5 /* WYUserDayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUserDayManager.h; sourceTree = "<group>"; };
+		69D907D91A0905B500CC2EE5 /* WYUserDayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYUserDayManager.m; sourceTree = "<group>"; };
+		69D907DB1A0905D700CC2EE5 /* WYUserNodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUserNodeManager.h; sourceTree = "<group>"; };
+		69D907DC1A0905D700CC2EE5 /* WYUserNodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYUserNodeManager.m; sourceTree = "<group>"; };
+		69D907DE1A0906CB00CC2EE5 /* WYTripDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTripDay.h; sourceTree = "<group>"; };
+		69D907DF1A0906CB00CC2EE5 /* WYTripDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTripDay.m; sourceTree = "<group>"; };
+		69D907E11A090AD900CC2EE5 /* WYUserTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUserTrip.h; sourceTree = "<group>"; };
+		69D907E21A090AD900CC2EE5 /* WYUserTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYUserTrip.m; sourceTree = "<group>"; };
 		69E039A9199B48A2000B6C75 /* btn_add_destination_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_add_destination_h.png; path = "Resources/百度云同步盘/btn_add_destination_h.png"; sourceTree = SOURCE_ROOT; };
 		69E039AA199B48A2000B6C75 /* btn_add_destination_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_add_destination_h@2x.png"; path = "Resources/百度云同步盘/btn_add_destination_h@2x.png"; sourceTree = SOURCE_ROOT; };
 		69E039AB199B48A2000B6C75 /* btn_add_destination_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_add_destination_n.png; path = "Resources/百度云同步盘/btn_add_destination_n.png"; sourceTree = SOURCE_ROOT; };
@@ -667,7 +676,7 @@
 			children = (
 				695E1FB919A480430090B100 /* UserTrip */,
 				5EF07C52199E575F004A617C /* SystemNode */,
-				5EF07C53199E5777004A617C /* UserNode */,
+				5EF07C53199E5777004A617C /* UserTrip */,
 				5E4A8CA618604C530062934F /* Traffic */,
 				5E4A8CA518604C4B0062934F /* Hotel */,
 				69E215A91981F2440022D432 /* Login */,
@@ -829,8 +838,6 @@
 		5EF07C52199E575F004A617C /* SystemNode */ = {
 			isa = PBXGroup;
 			children = (
-				5EF07C46199E5708004A617C /* WYSysDestinations.h */,
-				5EF07C47199E5708004A617C /* WYSysDestinations.m */,
 				69D907CF1A08BA9000CC2EE5 /* WYSysNodeManager.h */,
 				69D907D01A08BA9000CC2EE5 /* WYSysNodeManager.m */,
 				5EF07C4C199E5741004A617C /* WYSysNode.h */,
@@ -851,11 +858,17 @@
 			name = SystemNode;
 			sourceTree = "<group>";
 		};
-		5EF07C53199E5777004A617C /* UserNode */ = {
+		5EF07C53199E5777004A617C /* UserTrip */ = {
 			isa = PBXGroup;
 			children = (
-				5EF07C49199E5719004A617C /* WYUserDestinations.h */,
-				5EF07C4A199E5719004A617C /* WYUserDestinations.m */,
+				69D907E11A090AD900CC2EE5 /* WYUserTrip.h */,
+				69D907E21A090AD900CC2EE5 /* WYUserTrip.m */,
+				69D907D81A0905B500CC2EE5 /* WYUserDayManager.h */,
+				69D907D91A0905B500CC2EE5 /* WYUserDayManager.m */,
+				69D907DE1A0906CB00CC2EE5 /* WYTripDay.h */,
+				69D907DF1A0906CB00CC2EE5 /* WYTripDay.m */,
+				69D907DB1A0905D700CC2EE5 /* WYUserNodeManager.h */,
+				69D907DC1A0905D700CC2EE5 /* WYUserNodeManager.m */,
 				5EF07C4F199E574C004A617C /* WYUserNode.h */,
 				5EF07C50199E574C004A617C /* WYUserNode.m */,
 				5E52D35B199EB91400BFB916 /* WYUserEarth.h */,
@@ -866,8 +879,10 @@
 				5E52D362199EB92F00BFB916 /* WYUserNation.m */,
 				5E52D364199EB93B00BFB916 /* WYUserCity.h */,
 				5E52D365199EB93B00BFB916 /* WYUserCity.m */,
+				5EF07C49199E5719004A617C /* WYUserDestinations.h */,
+				5EF07C4A199E5719004A617C /* WYUserDestinations.m */,
 			);
-			name = UserNode;
+			name = UserTrip;
 			sourceTree = "<group>";
 		};
 		5EF9352A198B1AED0035E486 /* EGO */ = {
@@ -1195,6 +1210,7 @@
 				694ED3B6195A762C00917FEB /* ASIDataDecompressor.m in Sources */,
 				5E52D351199EB85100BFB916 /* WYSysEarth.m in Sources */,
 				69B68D2A1989FBBD00DF29AF /* WYFakeNavBar.m in Sources */,
+				69D907DD1A0905D700CC2EE5 /* WYUserNodeManager.m in Sources */,
 				69E215AF1981F2B00022D432 /* WYSinaWeiboUserInfo.m in Sources */,
 				5E52D360199EB92000BFB916 /* WYUserContinent.m in Sources */,
 				5E4D772B19878012005720BD /* NSData+AES.m in Sources */,
@@ -1204,12 +1220,13 @@
 				5E4D7731198786F7005720BD /* NSObject+JSON.m in Sources */,
 				694ED3B8195A762C00917FEB /* ASIFormDataRequest.m in Sources */,
 				5E489B481986C7CA00059066 /* WYRegisterController2.m in Sources */,
-				5EF07C48199E5708004A617C /* WYSysDestinations.m in Sources */,
 				694ED3B9195A762C00917FEB /* ASIHTTPRequest.m in Sources */,
 				5E7D1781198722CD003F4208 /* WYMyItineraryController.m in Sources */,
 				5E52D363199EB92F00BFB916 /* WYUserNation.m in Sources */,
 				5E489B421986BE5E00059066 /* WYResetPasswordController.m in Sources */,
+				69D907DA1A0905B500CC2EE5 /* WYUserDayManager.m in Sources */,
 				694ED3BA195A762C00917FEB /* ASIInputStream.m in Sources */,
+				69D907E01A0906CB00CC2EE5 /* WYTripDay.m in Sources */,
 				5EF07C51199E574C004A617C /* WYUserNode.m in Sources */,
 				694ED3BB195A762C00917FEB /* ASINetworkQueue.m in Sources */,
 				69E039B3199B4B27000B6C75 /* WYCountriesController.m in Sources */,
@@ -1219,6 +1236,7 @@
 				698013D91977CF7300AFD0B4 /* WYUploadTripOperation.m in Sources */,
 				69D907D11A08BA9000CC2EE5 /* WYSysNodeManager.m in Sources */,
 				5E5D676B186176A100ECA966 /* WYTripDaySpotCell.m in Sources */,
+				69D907E31A090AD900CC2EE5 /* WYUserTrip.m in Sources */,
 				5E7D177E198722A9003F4208 /* WYRecommendItineraryController.m in Sources */,
 				69F2C17D19B99A68005B76C7 /* WYDestHolder.m in Sources */,
 				695E1FB819A4803C0090B100 /* WYUserTripAgent.m in Sources */,

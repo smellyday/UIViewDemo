@@ -11,8 +11,8 @@
 
 @interface WYUserNode : NSObject {
 	WYSysNode *_corSysNode;
-	WYUserNode * __weak _pUserNode;
-	NSMutableArray *_childArray;
+    WYUserNode * __weak _pUserNode;
+    NSMutableArray *_childArray;
 }
 
 @property (nonatomic, readonly) WYSysNode *corSysNode;
