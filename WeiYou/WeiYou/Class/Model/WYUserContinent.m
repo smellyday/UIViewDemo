@@ -10,12 +10,15 @@
 
 @implementation WYUserContinent
 @synthesize corSysContinent = _corSysContinent;
+@synthesize userParentEarth = _userParentEarth;
+@synthesize nationsArray = _nationsArray;
 
 - (id)initWithSysContinent:(WYSysContinent *)sysContinent {
-	self = [super initWithSysUserNode:sysContinent];
+	self = [super init];
 	if (self) {
-		_corSysContinent = sysContinent;
-		self.pUserNode = nil;
+		self.corSysContinent = sysContinent;
+        self.userParentEarth = nil;
+        self.nationsArray = [NSMutableArray arrayWithCapacity:10];
 	}
 	
 	return self;

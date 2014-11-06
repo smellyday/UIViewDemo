@@ -12,9 +12,10 @@
 @synthesize corSysEarth = _corSysEarth;
 
 - (id)initWithSysEarth:(WYSysEarth *)sysEarth {
-	self = [super initWithSysUserNode:sysEarth];
+	self = [super init];
 	if (self) {
-		_corSysEarth = sysEarth;
+		self.corSysEarth = sysEarth;
+        self.continentsArray = [NSMutableArray arrayWithCapacity:10];
 	}
 	
 	return self;

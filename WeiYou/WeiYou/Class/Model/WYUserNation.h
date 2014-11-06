@@ -11,9 +11,16 @@
 #import "WYSysNation.h"
 
 @interface WYUserNation : WYUserNode {
-	WYSysNation *_corSysNation;
+    WYSysNation *_corSysNation;
+    WYSysContinent * __weak
+    
+    NSDate *_beginDate;
+    NSDate *_endDate;
+    
 }
 
+@property (nonatomic, strong) NSDate *beginDate;
+@property (nonatomic, strong) NSDate *endDate;
 @property (nonatomic, readonly) WYSysNation *corSysNation;
 @property (nonatomic, weak) WYUserContinent *pUserNode;
 

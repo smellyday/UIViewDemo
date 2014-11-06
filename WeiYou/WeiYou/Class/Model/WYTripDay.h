@@ -7,7 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYUserSpot.h"
 
-@interface WYTripDay : NSObject
+@interface WYTripDay : NSObject {
+    NSDate *_todayDate;
+    NSUInteger _dayth;
+    NSMutableArray *_spotsArray;
+}
+
+@property (nonatomic, strong) NSDate *todayDate;
+@property (nonatomic) NSUInteger dayth;
+@property (nonatomic, strong) NSMutableArray *spotsArray;
+
+- (id)initTripDayWithDayth:(NSUInteger)dayth;
+
+- (void)addSpot:(WYUserSpot *)spot;
+- (void)delSpot:(WYUserSpot *)spot;
 
 @end

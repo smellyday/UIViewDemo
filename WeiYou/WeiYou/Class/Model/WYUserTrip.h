@@ -7,6 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYUserNation.h"
+#import "WYUserCity.h"
+#import "WYUserSpot.h"
+#import "WYTripDay.h"
+#import "WYUserDayManager.h"
+#import "WYUserNodeManager.h"
 
 @interface WYUserTrip : NSObject {
     
@@ -18,9 +24,34 @@
     NSDate *_tripEndDate;
     NSDate *_tripCreateDate;
     
-    // UserDayManager
-    // UserNodeManager
+    WYUserDayManager *_daysManager;
+    WYUserNodeManager *_nodesManager;
 
 }
+
+@property (nonatomic, strong) NSNumber *tripID;
+@property (nonatomic, strong) NSNumber *tripVersion;
+@property (nonatomic, strong) NSString *tripName;
+@property (nonatomic, strong) NSString *tripMainImageURL;
+@property (nonatomic, strong) NSDate *tripBeginDate;
+@property (nonatomic, strong) NSDate *tripEndDate;
+@property (nonatomic, strong) NSDate *tripCreateDate;
+
+@property (nonatomic, strong) WYUserDayManager *daysManager;
+@property (nonatomic, strong) WYUserNodeManager *nodesManager;
+
+- (id)initUserTripWithName:(NSString *)name;
+- (id)initUserTripWithInfo:(NSDictionary *)tripInfoDic;
+
+- (void)addNation:(WYUserNation *)nation;
+- (void)addCity:(WYUserCity *)city;
+- (void)addSpot:(WYUserSpot *)spot toDayth:(NSUInteger)dayth;
+
+- (void)delNation:(WYUserNation *)nation;
+- (void)delCity:(WYUserCity *)city;
+- (void)delSpotFromNodeTree:(WYUserSpot *)spot;
+
+- (void)addNewTripDay;
+- (void)delOneTripDay:(WYTripDay *)oneTripDay;
 
 @end

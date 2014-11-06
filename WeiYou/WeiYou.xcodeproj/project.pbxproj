@@ -147,6 +147,8 @@
 		69AA1EC21954112500BA0884 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AA1EBF1954112500BA0884 /* libWeiboSDK.a */; };
 		69AA1EC31954112500BA0884 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69AA1EC01954112500BA0884 /* WeiboSDK.bundle */; };
 		69B68D2A1989FBBD00DF29AF /* WYFakeNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B68D291989FBBD00DF29AF /* WYFakeNavBar.m */; };
+		69D19ACC1A09F83500810E2F /* WYUserSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D19ACB1A09F83500810E2F /* WYUserSpot.m */; };
+		69D19AD21A0A27ED00810E2F /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D19AD11A0A27ED00810E2F /* NSDate+Utilities.m */; };
 		69D907D11A08BA9000CC2EE5 /* WYSysNodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D907D01A08BA9000CC2EE5 /* WYSysNodeManager.m */; };
 		69D907DA1A0905B500CC2EE5 /* WYUserDayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D907D91A0905B500CC2EE5 /* WYUserDayManager.m */; };
 		69D907DD1A0905D700CC2EE5 /* WYUserNodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D907DC1A0905D700CC2EE5 /* WYUserNodeManager.m */; };
@@ -409,6 +411,10 @@
 		69AA1EC11954112500BA0884 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		69B68D281989FBBD00DF29AF /* WYFakeNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYFakeNavBar.h; sourceTree = "<group>"; };
 		69B68D291989FBBD00DF29AF /* WYFakeNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYFakeNavBar.m; sourceTree = "<group>"; };
+		69D19ACA1A09F83500810E2F /* WYUserSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUserSpot.h; sourceTree = "<group>"; };
+		69D19ACB1A09F83500810E2F /* WYUserSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYUserSpot.m; sourceTree = "<group>"; };
+		69D19AD01A0A27ED00810E2F /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		69D19AD11A0A27ED00810E2F /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		69D907CF1A08BA9000CC2EE5 /* WYSysNodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSysNodeManager.h; sourceTree = "<group>"; };
 		69D907D01A08BA9000CC2EE5 /* WYSysNodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSysNodeManager.m; sourceTree = "<group>"; };
 		69D907D81A0905B500CC2EE5 /* WYUserDayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUserDayManager.h; sourceTree = "<group>"; };
@@ -688,6 +694,8 @@
 		5E5BC250183EE5E90003AC6D /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				69D19AD01A0A27ED00810E2F /* NSDate+Utilities.h */,
+				69D19AD11A0A27ED00810E2F /* NSDate+Utilities.m */,
 				5E4D773219879447005720BD /* consts_network.h */,
 				5EB6B93019801F8C00E9E695 /* consts_utility.h */,
 				5EB6B92F19800FE600E9E695 /* consts_view.h */,
@@ -879,6 +887,8 @@
 				5E52D362199EB92F00BFB916 /* WYUserNation.m */,
 				5E52D364199EB93B00BFB916 /* WYUserCity.h */,
 				5E52D365199EB93B00BFB916 /* WYUserCity.m */,
+				69D19ACA1A09F83500810E2F /* WYUserSpot.h */,
+				69D19ACB1A09F83500810E2F /* WYUserSpot.m */,
 				5EF07C49199E5719004A617C /* WYUserDestinations.h */,
 				5EF07C4A199E5719004A617C /* WYUserDestinations.m */,
 			);
@@ -1203,6 +1213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D19ACC1A09F83500810E2F /* WYUserSpot.m in Sources */,
 				69516B601993525F00D404E7 /* WYNewItineraryController.m in Sources */,
 				698013DC1977CF8D00AFD0B4 /* WYDownloadTripsOperation.m in Sources */,
 				694ED3B4195A762C00917FEB /* ASIAuthenticationDialog.m in Sources */,
@@ -1250,6 +1261,7 @@
 				5E52D35D199EB91400BFB916 /* WYUserEarth.m in Sources */,
 				699BE2F71988AF1500FE6917 /* KeychainItemWrapper.m in Sources */,
 				5E4D772D19878012005720BD /* SecurityUtil.m in Sources */,
+				69D19AD21A0A27ED00810E2F /* NSDate+Utilities.m in Sources */,
 				5EF07C4B199E5719004A617C /* WYUserDestinations.m in Sources */,
 				5E5BC23F183EE5D80003AC6D /* main.m in Sources */,
 				6945D75B19CB01DA00B140AC /* WYSysSpot.m in Sources */,

@@ -11,7 +11,11 @@
 #import "WYSysCity.h"
 
 @interface WYUserCity : WYUserNode {
-	WYSysCity *_corSysCity;
+    WYSysCity *_corSysCity;
+    
+    NSDate *_beginDate;
+    NSDate *_endDate;
+    
 }
 
 @property (nonatomic, readonly) WYSysCity *corSysCity;

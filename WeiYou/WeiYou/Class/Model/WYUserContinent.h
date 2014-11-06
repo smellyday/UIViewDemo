@@ -11,11 +11,15 @@
 #import "WYSysContinent.h"
 
 @interface WYUserContinent : WYUserNode {
-	WYSysContinent *_corSysContinent;
+    WYSysContinent *_corSysContinent;
+    WYUserEarth * __weak _userParentEarth;
+    
+    NSMutableArray *_nationsArray;
 }
 
-@property (nonatomic, readonly) WYSysContinent *corSysContinent;
-@property (nonatomic, weak) WYUserEarth *pUserNode;
+@property (nonatomic, strong) WYSysContinent *corSysContinent;
+@property (nonatomic, weak) WYUserEarth *userParentEarth;
+@property (nonatomic, strong) NSMutableArray *nationsArray;
 
 - (id)initWithSysContinent:(WYSysContinent *)sysContinent;
 
