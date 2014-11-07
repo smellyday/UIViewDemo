@@ -31,6 +31,14 @@
 - (void)delSpot:(WYUserSpot *)spot;
 - (void)delSpotsInArray:(NSArray *)spotsArr;
 
-- (WYUserSpot *)getSpotWithCorSysSpot:(WYSysSpot *)spot;
+
+#pragma -- fetch info. For use in case.
+- (NSArray *)getAllUserNations;
+- (NSArray *)getAllUserCities;
+- (NSArray *)getAllUserSpots;
+
+- (WYUserNation *)getUserNationWithSameNationID:(NSUInteger)nationID;
+- (WYUserCity *)getUserCityWithSameCityID:(NSUInteger)cityID;
+- (WYUserSpot *)getUserSpotWithSameSpotID:(NSUInteger)spotID;
 
 @end

@@ -22,7 +22,7 @@
     NSString *_ownInfo; // This should be nil, when the spot obj is in the NodeTree.
 }
 
-@property (nonatomic, strong) WYSysSpot *corSysSpot;
+@property (nonatomic, readonly) WYSysSpot *corSysSpot;
 @property (nonatomic, weak) WYUserCity *userParentCity;
 @property (nonatomic) BOOL isSpotInUserNodeTree;
 @property (nonatomic, readonly) NSUInteger countInTheTrip;
@@ -30,9 +30,11 @@
 @property (nonatomic, strong) NSString *commonInfoInTheTrip;
 @property (nonatomic, strong) NSString *ownInfo;
 
+#pragma -- init
 - (id)initUserSpotInNodeTreeWithSysSpot:(WYSysSpot *)sysSpot;
 - (id)initUserSpotInTripDayArrayWithSysSpot:(WYSysSpot *)sysSpot;
 
+#pragma -- operate
 - (void)increaseCountInTheTrip;
 - (void)decreaseCountInTheTrip;
 

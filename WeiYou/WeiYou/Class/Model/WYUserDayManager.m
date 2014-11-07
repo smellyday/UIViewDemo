@@ -18,14 +18,21 @@
 
 #pragma -- init
 - (id)initNewUserDayManager {
-    
     self = [super init];
     if (self) {
-        self.daysArray = [NSMutableArray arrayWithCapacity:10];
+        _daysArray = [NSMutableArray arrayWithCapacity:10];
     }
     
     return self;
+}
+
+- (id)initUserDayManagerWithInfo:(NSDictionary *)infoDic {
+    self = [super init];
+    if (self) {
+        
+    }
     
+    return self;
 }
 
 
@@ -40,16 +47,26 @@
     
 }
 
-- (void)delSpot:(WYUserSpot *)spot {
-    
-    NSAssert(spot.todayDayth == 0, @"The dayth of the spot can not be 0");
-    
-    WYTripDay *theTripDay = [_daysArray objectAtIndex:spot.todayDayth-1];
-    [theTripDay delSpot:spot];
-
+- (void)delAllSpotsWithSameID:(NSUInteger)spotID {
+    for (WYTripDay *tripDay in _daysArray) {
+        for (WYUserSpot *userSpot in tripDay.spotsArray) {
+            if (userSpot.corSysSpot.sysMID == spotID) {
+                [tripDay delSpot:userSpot];
+            }
+        }
+    }
 }
 
-- (void)delSpotInCity:(WYUserCity *)city {
+- (void)delSpot:(WYUserSpot *)spot fromDayth:(NSUInteger)dayth {
+    NSAssert(dayth == 0, @"dayth can not be 0");
+    
+    WYTripDay *theTripDay = [_daysArray objectAtIndex:dayth-1];
+    if (theTripDay) {
+        [theTripDay delSpot:spot];
+    }
+}
+
+- (void)delAllSpotsInCity:(WYUserCity *)city {
     
     for (WYTripDay *theTripDay in _daysArray) {
         for (WYUserSpot *spot in theTripDay.spotsArray) {
@@ -61,7 +78,11 @@
 
 }
 
-- (void)delSpotInNation:(WYUserNation *)nation {
+- (void)delAllSpotsInNation:(WYUserNation *)nation {
+    
+    for (WYUserCity *userCity in nation.userCitiesArray) {
+        [self delAllSpotsInCity:userCity];
+    }
     
 }
 

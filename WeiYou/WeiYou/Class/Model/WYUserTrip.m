@@ -77,7 +77,7 @@
         
         NSAssert(dayth == 0, @"dayth cannot be 0 here. Spot must add from someday, not from city.");
         
-        WYUserSpot *spotInTree = [self.nodesManager getSpotWithCorSysSpot:spot.corSysSpot];
+        WYUserSpot *spotInTree = [self.nodesManager getUserSpotWithSameSpotID:spot.corSysSpot.sysMID];
         if (spotInTree) {
             spot.commonInfoInTheTrip = spotInTree.commonInfoInTheTrip;
             /*[spotInTree addObserver:spot forKeyPath:@"whenCommonInfoInTheTripChanged" options: context:];*/
@@ -95,19 +95,41 @@
 }
 
 // -- del -->
+/*
+ Must delete from NodeTree.
+ */
 - (void)delNation:(WYUserNation *)nation {
     [self.nodesManager delNation:nation];
-    [self.daysManager delSpotInNation:nation];
+    [self.daysManager delAllSpotsInNation:nation];
 }
 
+/*
+ Must delete from NodeTree.
+ */
 - (void)delCity:(WYUserCity *)city {
     [self.nodesManager delCity:city];
-    [self.daysManager delSpotInCity:city];
+    [self.daysManager delAllSpotsInCity:city];
 }
 
-- (void)delSpot:(WYUserSpot *)spot {
+- (void)delSpotFromNodeTree:(WYUserSpot *)spot {
     [self.nodesManager delSpot:spot];
-    [self.daysManager delSpot:spot];
+    [self.daysManager delAllSpotsWithSameID:spot.corSysSpot.sysMID];
+}
+
+- (void)delSpot:(WYUserSpot *)spot fromSomeDay:(WYTripDay *)oneTripDay {
+    
+    [oneTripDay delSpot:spot];
+    
+    WYUserSpot *spotInTree = [self.nodesManager getUserSpotWithSameSpotID:spot.corSysSpot.sysMID];
+    NSAssert(!spotInTree, @"There must have a corresponding spot in the NodeTree");
+    if (spotInTree) {
+        [spotInTree decreaseCountInTheTrip];
+    }
+    
+}
+
+- (void)delSpot:(WYUserSpot *)spot fromDayth:(NSUInteger)dayth {
+    [self.daysManager delSpot:spot fromDayth:dayth];
 }
 
 

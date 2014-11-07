@@ -19,8 +19,10 @@
 
 @property (nonatomic, strong, readonly) WYSysEarth *sysEarthNode;
 
-- (id)initSysNodeTree;
+#pragma -- init
++ (id)sharedSysNodeManager;
 
+#pragma -- operate
 - (NSArray *)getSysAllContinents;
 - (NSArray *)getSysAllNationsInContinentWithID:(NSInteger)continentID;
 - (NSArray *)getSysAllNationsInContinent:(WYSysContinent *)continent;

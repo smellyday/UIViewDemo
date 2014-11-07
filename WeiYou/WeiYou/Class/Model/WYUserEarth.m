@@ -10,15 +10,23 @@
 
 @implementation WYUserEarth
 @synthesize corSysEarth = _corSysEarth;
+@synthesize userContinentsArray = _userContinentsArray;
 
+// -------
+
+
+
+#pragma -- init
 - (id)initWithSysEarth:(WYSysEarth *)sysEarth {
 	self = [super init];
 	if (self) {
-		self.corSysEarth = sysEarth;
-        self.continentsArray = [NSMutableArray arrayWithCapacity:10];
+		_corSysEarth = sysEarth;
+        self.userContinentsArray = [NSMutableArray arrayWithCapacity:10];
 	}
 	
 	return self;
 }
+
+
 
 @end

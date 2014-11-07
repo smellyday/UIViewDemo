@@ -10,12 +10,20 @@
 
 @implementation WYUserNation
 @synthesize corSysNation = _corSysNation;
+@synthesize userParentContinent = _userParentContinent;
+@synthesize userCitiesArray = _userCitiesArray;
 
+// -----------------------
+
+
+
+#pragma -- init
 - (id)initWithSysNation:(WYSysNation *)sysNation {
-	self = [super initWithSysUserNode:sysNation];
+	self = [super init];
 	if (self) {
 		_corSysNation = sysNation;
-		self.pUserNode = nil;
+		self.userParentContinent = nil;
+        self.userCitiesArray = [NSMutableArray arrayWithCapacity:10];
 	}
 	
 	return self;

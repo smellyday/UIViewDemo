@@ -11,6 +11,11 @@
 @implementation WYSysNodeManager
 @synthesize sysEarthNode = _sysEarthNode;
 
+// --------------------
+
+
+
+#pragma -- init
 - (id)initSysNodeTree {
     self = [super init];
     if (self) {
@@ -20,6 +25,19 @@
     return self;
 }
 
++ (id)sharedSysNodeManager {
+    static WYSysNodeManager *sharedSysNodeManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedSysNodeManager = [[self alloc] initSysNodeTree];
+    });
+    
+    return sharedSysNodeManager;
+}
+
+
+
+#pragma -- operate
 - (NSArray *)getSysAllContinents {
     return nil;
 }
@@ -31,5 +49,52 @@
 - (NSArray *)getSysAllNationsInContinent:(WYSysContinent *)continent {
     return nil;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end

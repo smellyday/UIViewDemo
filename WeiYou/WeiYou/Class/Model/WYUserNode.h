@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WYUserNode : NSObject {
-    NSString *_userNote;
-}
-
-@property (nonatomic, strong) NSString *userNote;
+@interface WYUserNode : NSObject
 
 @end

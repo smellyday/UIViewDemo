@@ -11,13 +11,13 @@
 
 @interface WYUserEarth : WYUserNode {
 	WYSysEarth *_corSysEarth;
-
-    NSMutableArray *_continentsArray;
+    NSMutableArray *_userContinentsArray;
 }
 
-@property (nonatomic, strong) WYSysEarth *corSysEarth;
-@property (nonatomic, strong) NSMutableArray *continentsArray;
+@property (nonatomic, readonly) WYSysEarth *corSysEarth;
+@property (nonatomic, strong) NSMutableArray *userContinentsArray;
 
+#pragma -- init
 - (id)initWithSysEarth:(WYSysEarth *)sysEarth;
 
 @end

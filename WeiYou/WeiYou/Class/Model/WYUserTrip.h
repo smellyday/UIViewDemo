@@ -40,9 +40,12 @@
 @property (nonatomic, strong) WYUserDayManager *daysManager;
 @property (nonatomic, strong) WYUserNodeManager *nodesManager;
 
+
+#pragma -- init
 - (id)initUserTripWithName:(NSString *)name;
 - (id)initUserTripWithInfo:(NSDictionary *)tripInfoDic;
 
+#pragma -- operate
 - (void)addNation:(WYUserNation *)nation;
 - (void)addCity:(WYUserCity *)city;
 - (void)addSpot:(WYUserSpot *)spot toDayth:(NSUInteger)dayth;
@@ -50,6 +53,8 @@
 - (void)delNation:(WYUserNation *)nation;
 - (void)delCity:(WYUserCity *)city;
 - (void)delSpotFromNodeTree:(WYUserSpot *)spot;
+- (void)delSpot:(WYUserSpot *)spot fromSomeDay:(WYTripDay *)oneTripDay;
+- (void)delSpot:(WYUserSpot *)spot fromDayth:(NSUInteger)dayth;
 
 - (void)addNewTripDay;
 - (void)delOneTripDay:(WYTripDay *)oneTripDay;

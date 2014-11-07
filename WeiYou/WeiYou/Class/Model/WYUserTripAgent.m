@@ -12,20 +12,38 @@
 @implementation WYUserTripAgent
 @synthesize userTrips = _userTrips;
 
+//-------------------
+
+
+
+#pragma -- init
 - (id)initUserTripAgent {
     self = [super init];
     if (self) {
-        _userTrips = [NSMutableArray arrayWithCapacity:10];
-        NSArray *tripInfoDics = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
-        for (NSDictionary *infoDic in tripInfoDics) {
-            WYMTrip *mt = [[WYMTrip alloc] initWithTripInfoDic:infoDic];
-            [_userTrips addObject:mt];
-        }
+//        _userTrips = [NSMutableArray arrayWithCapacity:10];
+//        NSArray *tripInfoDics = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
+//        for (NSDictionary *infoDic in tripInfoDics) {
+//            WYMTrip *mt = [[WYMTrip alloc] initWithTripInfoDic:infoDic];
+//            [_userTrips addObject:mt];
+//        }
     }
     
     return self;
 }
 
++ (id)sharedUserTripAgent {
+    static WYUserTripAgent *sharedUserTripAgent = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedUserTripAgent = [[self alloc] initUserTripAgent];
+    });
+    
+    return sharedUserTripAgent;
+}
+
+
+
+#pragma -- KVC
 - (NSMutableArray *)userTrips {
     NSAssert(_userTrips != nil, @"_userTrips should not be nil, Now");
     
@@ -37,7 +55,7 @@
 }
 
 
-- (WYMTrip *)objectInUserTripsAtIndex:(NSUInteger)index {
+- (WYUserTrip *)objectInUserTripsAtIndex:(NSUInteger)index {
     return [self.userTrips objectAtIndex:index];
 }
 
@@ -45,7 +63,7 @@
     return [self.userTrips objectsAtIndexes:indexes];
 }
 
-- (void)insertObject:(WYMTrip *)mTrip inUserTripsAtIndex:(NSUInteger)index {
+- (void)insertObject:(WYUserTrip *)mTrip inUserTripsAtIndex:(NSUInteger)index {
     [_userTrips insertObject:mTrip atIndex:index];
 }
 
@@ -61,17 +79,71 @@
     [_userTrips removeObjectsAtIndexes:indexes];
 }
 
-- (void)removeUserTripsObject:(WYMTrip *)mTrip {
+- (void)removeUserTripsObject:(WYUserTrip *)mTrip {
     [_userTrips removeObject:mTrip];
 }
 
-- (void)replaceObjectInUserTripsAtIndex:(NSUInteger)index withObject:(WYMTrip *)object {
+- (void)replaceObjectInUserTripsAtIndex:(NSUInteger)index withObject:(WYUserTrip *)object {
 	[_userTrips replaceObjectAtIndex:index withObject:object];
 }
 
 - (void)replaceUserTripsAtIndexes:(NSIndexSet *)indexes withUserTrips:(NSArray *)array {
 	[_userTrips replaceObjectsAtIndexes:indexes withObjects:array];
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @end

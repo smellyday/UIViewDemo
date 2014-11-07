@@ -12,18 +12,16 @@
 
 @interface WYUserNation : WYUserNode {
     WYSysNation *_corSysNation;
-    WYSysContinent * __weak
-    
-    NSDate *_beginDate;
-    NSDate *_endDate;
-    
+    WYUserContinent * __weak _userParentContinent;
+    NSMutableArray *_userCitiesArray;
 }
 
-@property (nonatomic, strong) NSDate *beginDate;
-@property (nonatomic, strong) NSDate *endDate;
 @property (nonatomic, readonly) WYSysNation *corSysNation;
-@property (nonatomic, weak) WYUserContinent *pUserNode;
+@property (nonatomic, weak) WYUserContinent *userParentContinent;
+@property (nonatomic, strong) NSMutableArray *userCitiesArray;
 
+
+#pragma -- init
 - (id)initWithSysNation:(WYSysNation *)sysNation;
 
 @end

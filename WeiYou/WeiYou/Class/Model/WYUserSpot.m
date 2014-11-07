@@ -17,12 +17,15 @@
 @synthesize commonInfoInTheTrip = _commonInfoInTheTrip;
 @synthesize ownInfo = _ownInfo;
 
+// ----------------
 
 
+
+#pragma -- init
 - (id)initUserSpotInNodeTreeWithSysSpot:(WYSysSpot *)sysSpot {
     self = [super init];
     if (self) {
-        self.corSysSpot = sysSpot;
+        _corSysSpot = sysSpot;
         self.isSpotInUserNodeTree = YES;
         _countInTheTrip = 1;
         self.ownInfo = nil;
@@ -34,8 +37,8 @@
 - (id)initUserSpotInTripDayArrayWithSysSpot:(WYSysSpot *)sysSpot {
     self = [super init];
     if (self) {
-        self.corSysSpot = sysSpot;
-        self.isSpotInUserNodeTree = YES;
+        _corSysSpot = sysSpot;
+        self.isSpotInUserNodeTree = NO;
         _countInTheTrip = 0;
     }
     
@@ -44,6 +47,7 @@
 
 
 
+#pragma -- operate
 - (void)increaseCountInTheTrip {
     if (_countInTheTrip > 0) {
         _countInTheTrip ++;
@@ -55,5 +59,39 @@
         _countInTheTrip --;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end

@@ -10,17 +10,15 @@
 #import "WYUserSpot.h"
 
 @interface WYTripDay : NSObject {
-    NSDate *_todayDate;
-    NSUInteger _dayth;
     NSMutableArray *_spotsArray;
 }
 
-@property (nonatomic, strong) NSDate *todayDate;
-@property (nonatomic) NSUInteger dayth;
 @property (nonatomic, strong) NSMutableArray *spotsArray;
 
-- (id)initTripDayWithDayth:(NSUInteger)dayth;
+#pragma -- init
+- (id)initTripDay;
 
+#pragma -- operate
 - (void)addSpot:(WYUserSpot *)spot;
 - (void)delSpot:(WYUserSpot *)spot;
 

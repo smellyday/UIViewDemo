@@ -13,14 +13,14 @@
 @interface WYUserContinent : WYUserNode {
     WYSysContinent *_corSysContinent;
     WYUserEarth * __weak _userParentEarth;
-    
-    NSMutableArray *_nationsArray;
+    NSMutableArray *_userNationsArray;
 }
 
-@property (nonatomic, strong) WYSysContinent *corSysContinent;
+@property (nonatomic, readonly) WYSysContinent *corSysContinent;
 @property (nonatomic, weak) WYUserEarth *userParentEarth;
-@property (nonatomic, strong) NSMutableArray *nationsArray;
+@property (nonatomic, strong) NSMutableArray *userNationsArray;
 
+#pragma -- init
 - (id)initWithSysContinent:(WYSysContinent *)sysContinent;
 
 @end

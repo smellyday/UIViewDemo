@@ -10,12 +10,20 @@
 
 @implementation WYUserCity
 @synthesize corSysCity = _corSysCity;
+@synthesize userParentNation = _userParentNation;
+@synthesize spotsArray = _spotsArray;
 
+// ---------------
+
+
+
+#pragma -- init
 - (id)initWithSysCity:(WYSysCity *)sysCity {
-	self = [super initWithSysUserNode:sysCity];
+	self = [super init];
 	if (self) {
 		_corSysCity = sysCity;
-		self.pUserNode = nil;
+		self.userParentNation = nil;
+        self.spotsArray = [NSMutableArray arrayWithCapacity:10];
 	}
 	
 	return self;

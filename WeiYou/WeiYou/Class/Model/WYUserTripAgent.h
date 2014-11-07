@@ -7,26 +7,31 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WYMTrip.h"
+#import "WYUserTrip.h"
 
 @interface WYUserTripAgent : NSObject {
     NSMutableArray *_userTrips;
-
+    WYUserTrip *_focusingTrip;
+    
 }
 
 @property (nonatomic, readonly) NSMutableArray *userTrips;
+@property (nonatomic, strong) WYUserTrip *focusingTrip;
 
-- (id)initUserTripAgent;
 
+#pragma -- init
++ (id)sharedUserTripAgent;
+
+#pragma -- KVC
 - (NSInteger)countOfUserTrips;
-- (WYMTrip *)objectInUserTripsAtIndex:(NSUInteger)index;
+- (WYUserTrip *)objectInUserTripsAtIndex:(NSUInteger)index;
 - (NSArray *)userTripsAtIndexes:(NSIndexSet *)indexes;
-- (void)insertObject:(WYMTrip *)mTrip inUserTripsAtIndex:(NSUInteger)index;
+- (void)insertObject:(WYUserTrip *)mTrip inUserTripsAtIndex:(NSUInteger)index;
 - (void)insertUserTrips:(NSArray *)array atIndexes:(NSIndexSet *)indexes;
 - (void)removeObjectFromUserTripsAtIndex:(NSUInteger)index;
 - (void)removeUserTripsAtIndexes:(NSIndexSet *)indexes;
-- (void)removeUserTripsObject:(WYMTrip *)mTrip;
-- (void)replaceObjectInUserTripsAtIndex:(NSUInteger)index withObject:(WYMTrip *)object;
+- (void)removeUserTripsObject:(WYUserTrip *)mTrip;
+- (void)replaceObjectInUserTripsAtIndex:(NSUInteger)index withObject:(WYUserTrip *)object;
 - (void)replaceUserTripsAtIndexes:(NSIndexSet *)indexes withUserTrips:(NSArray *)array;
 
 //- (void)addUserTrips:(NSSet *)objects; // There is a bug in Apple.

@@ -16,7 +16,7 @@
     NSMutableArray *_daysArray; // _daysArray is an ordered list.
 }
 
-@property (nonatomic, strong) NSMutableArray *daysArray;
+@property (nonatomic, readonly) NSMutableArray *daysArray;
 
 #pragma -- KVC
 - (NSUInteger)countOfDaysArray;
@@ -36,9 +36,11 @@
 
 #pragma -- operate
 - (void)addSpot:(WYUserSpot *)spot toDayth:(NSUInteger)dayth;
-- (void)delSpot:(WYUserSpot *)spot;
-- (void)delSpotInCity:(WYUserCity *)city;
-- (void)delSpotInNation:(WYUserNation *)nation;
+
+- (void)delAllSpotsWithSameID:(NSUInteger)spotID;
+- (void)delSpot:(WYUserSpot *)spot fromDayth:(NSUInteger)dayth;
+- (void)delAllSpotsInCity:(WYUserCity *)city;
+- (void)delAllSpotsInNation:(WYUserNation *)nation;
 
 - (void)addOneTripDay:(WYTripDay *)tripDay;
 - (void)delOneTripDay:(WYTripDay *)tripDay;
