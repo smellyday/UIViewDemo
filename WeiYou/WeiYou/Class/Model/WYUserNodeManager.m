@@ -48,7 +48,16 @@
 }
 
 - (void)addSpot:(WYUserSpot *)spot {
+    NSArray *userCitiesArray = [self getAllUserCities];
+    for (WYUserCity *userCity in userCitiesArray) {
+        if (userCity.corSysCity.sysMID == spot.corSysSpot.sysParentID) {
+            [userCity.spotsArray addObject:spot];
+            spot.userParentCity = userCity;
+            return;
+        }
+    }
     
+    /*add city to the tree.*/
 }
 
 

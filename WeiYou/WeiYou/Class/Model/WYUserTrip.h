@@ -46,17 +46,123 @@
 - (id)initUserTripWithInfo:(NSDictionary *)tripInfoDic;
 
 #pragma -- operate
-- (void)addNation:(WYUserNation *)nation;
-- (void)addCity:(WYUserCity *)city;
+- (void)collectNation:(WYUserNation *)nation;
+- (void)collectCity:(WYUserCity *)city;
+- (void)collectSpot:(WYUserSpot *)spot;
 - (void)addSpot:(WYUserSpot *)spot toDayth:(NSUInteger)dayth;
 
-- (void)delNation:(WYUserNation *)nation;
-- (void)delCity:(WYUserCity *)city;
+- (void)uncollectNation:(WYUserNation *)nation;
+- (void)uncollectCity:(WYUserCity *)city;
+- (void)uncollectSpot:(WYUserSpot *)spot;
 - (void)delSpotFromNodeTree:(WYUserSpot *)spot;
 - (void)delSpot:(WYUserSpot *)spot fromSomeDay:(WYTripDay *)oneTripDay;
 - (void)delSpot:(WYUserSpot *)spot fromDayth:(NSUInteger)dayth;
 
 - (void)addNewTripDay;
 - (void)delOneTripDay:(WYTripDay *)oneTripDay;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end

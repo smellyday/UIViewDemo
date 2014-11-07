@@ -16,7 +16,7 @@
 }
 
 @property (nonatomic, readonly) NSMutableArray *userTrips;
-@property (nonatomic, strong) WYUserTrip *focusingTrip;
+@property (nonatomic, readonly) WYUserTrip *focusingTrip;
 
 
 #pragma -- init

@@ -22,6 +22,7 @@
     self = [super init];
     if (self) {
         _userTrips = [NSMutableArray arrayWithCapacity:10];
+        _focusingTrip = nil;
 //        NSArray *tripInfoDics = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
 //        for (NSDictionary *infoDic in tripInfoDics) {
 //            WYMTrip *mt = [[WYMTrip alloc] initWithTripInfoDic:infoDic];

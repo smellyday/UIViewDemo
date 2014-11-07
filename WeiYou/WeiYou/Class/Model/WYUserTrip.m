@@ -28,8 +28,8 @@
     self = [super init];
     if (self) {
         self.tripName = name;
-        self.daysManager = [[WYUserDayManager alloc] initNewUserDayManager];
-        self.nodesManager = [[WYUserNodeManager alloc] initNewUserNodeManager];
+        _daysManager = [[WYUserDayManager alloc] initNewUserDayManager];
+        _nodesManager = [[WYUserNodeManager alloc] initNewUserNodeManager];
     }
     
     return self;
@@ -46,14 +46,23 @@
 
 
 
-#pragma -- operate spot
-// -- add -->
-- (void)addNation:(WYUserNation *)nation {
-    [self.nodesManager addNation:nation];
+#pragma -- operate --> add spot
+- (void)collectNation:(WYUserNation *)nation {
+    [_nodesManager addNation:nation];
 }
 
-- (void)addCity:(WYUserCity *)city {
-    [self.nodesManager addCity:city];
+- (void)collectCity:(WYUserCity *)city {
+    [_nodesManager addCity:city];
+}
+
+- (void)collectSpot:(WYUserSpot *)spot {
+    WYUserSpot *spotInTheTree = [_nodesManager getUserSpotWithSameSpotID:spot.corSysSpot.sysMID];
+    if (spotInTheTree) {
+        [spotInTheTree collectMe];
+    } else {
+        spotInTheTree = [[WYUserSpot alloc] initUserSpotInNodeTreeWithSysSpot:spot.corSysSpot];
+        [_nodesManager addSpot:spotInTheTree];
+    }
 }
 
 /*
@@ -63,73 +72,100 @@
  */
 - (void)addSpot:(WYUserSpot *)spot toDayth:(NSUInteger)dayth {
     
-    if (spot.isSpotInUserNodeTree) {
+    if (spot.isSpotInUserNodeTree) { // spot node must be not in the tree.
         
-        [self.nodesManager addSpot:spot];
+        [spot collectMe];
+        [_nodesManager addSpot:spot];
         if (dayth > 0) {
+            
             WYUserSpot *daySpot = [[WYUserSpot alloc] initUserSpotInTripDayArrayWithSysSpot:spot.corSysSpot];
-            daySpot.commonInfoInTheTrip = spot.commonInfoInTheTrip;
             /*[spot addObserver:daySpot forKeyPath:@"whenCommonInfoInTheTripChanged" options: context:];*/
-            [self.daysManager addSpot:daySpot toDayth:dayth];
+            
+            // the next two must be show at the same time.
+            [_daysManager addSpot:daySpot toDayth:dayth];
+            [spot increaseCountInTheTrip];
+            
         }
         
     } else {
         
         NSAssert(dayth == 0, @"dayth cannot be 0 here. Spot must add from someday, not from city.");
         
-        WYUserSpot *spotInTree = [self.nodesManager getUserSpotWithSameSpotID:spot.corSysSpot.sysMID];
+        WYUserSpot *spotInTree = [_nodesManager getUserSpotWithSameSpotID:spot.corSysSpot.sysMID];
         if (spotInTree) {
+            
             spot.commonInfoInTheTrip = spotInTree.commonInfoInTheTrip;
             /*[spotInTree addObserver:spot forKeyPath:@"whenCommonInfoInTheTripChanged" options: context:];*/
-            [self.daysManager addSpot:spot toDayth:dayth];
+            
+            [_daysManager addSpot:spot toDayth:dayth];
             [spotInTree increaseCountInTheTrip];
+            
         } else {
+            
             spotInTree = [[WYUserSpot alloc] initUserSpotInNodeTreeWithSysSpot:spot.corSysSpot];
             /*[spotInTree addObserver:spot forKeyPath:@"whenCommonInfoInTheTripChanged" options: context:];*/
-            [self.nodesManager addSpot:spotInTree];
-            [self.daysManager addSpot:spot toDayth:dayth];
+            
+            [_nodesManager addSpot:spotInTree];
+            [_daysManager addSpot:spot toDayth:dayth];
+            [spotInTree increaseCountInTheTrip];
+            
         }
         
     }
     
 }
 
-// -- del -->
+#pragma -- operate --> del spot
 /*
  Must delete from NodeTree.
  */
-- (void)delNation:(WYUserNation *)nation {
-    [self.nodesManager delNation:nation];
-    [self.daysManager delAllSpotsInNation:nation];
+- (void)uncollectNation:(WYUserNation *)nation {
+    [_nodesManager delNation:nation];
+    [_daysManager delAllSpotsInNation:nation];
 }
 
 /*
  Must delete from NodeTree.
  */
-- (void)delCity:(WYUserCity *)city {
-    [self.nodesManager delCity:city];
-    [self.daysManager delAllSpotsInCity:city];
+- (void)uncollectCity:(WYUserCity *)city {
+    [_nodesManager delCity:city];
+    [_daysManager delAllSpotsInCity:city];
+}
+
+- (void)uncollectSpot:(WYUserSpot *)spot {
+    WYUserSpot *spotInTheTree = [_nodesManager getUserSpotWithSameSpotID:spot.corSysSpot.sysMID];
+    NSAssert(!spotInTheTree, @"Why, why, why this spot cannot be found in the NodeTree?");
+    if (spotInTheTree) {
+        [spotInTheTree uncollectMe];
+        if (spotInTheTree.countInTheTrip == 0 && !spotInTheTree.isCollectedSpot) {
+            [self delSpotFromNodeTree:spotInTheTree];
+        }
+    }
 }
 
 - (void)delSpotFromNodeTree:(WYUserSpot *)spot {
-    [self.nodesManager delSpot:spot];
-    [self.daysManager delAllSpotsWithSameID:spot.corSysSpot.sysMID];
+    [_nodesManager delSpot:spot];
+    if (spot.countInTheTrip > 0) {
+        [_daysManager delAllSpotsWithSameID:spot.corSysSpot.sysMID];
+    }
 }
 
 - (void)delSpot:(WYUserSpot *)spot fromSomeDay:(WYTripDay *)oneTripDay {
-    
     [oneTripDay delSpot:spot];
     
-    WYUserSpot *spotInTree = [self.nodesManager getUserSpotWithSameSpotID:spot.corSysSpot.sysMID];
+    WYUserSpot *spotInTree = [_nodesManager getUserSpotWithSameSpotID:spot.corSysSpot.sysMID];
     NSAssert(!spotInTree, @"There must have a corresponding spot in the NodeTree");
     if (spotInTree) {
         [spotInTree decreaseCountInTheTrip];
+        if (spotInTree.countInTheTrip == 0 && !spotInTree.isCollectedSpot) {
+            [self delSpotFromNodeTree:spotInTree];
+        }
     }
-    
 }
 
 - (void)delSpot:(WYUserSpot *)spot fromDayth:(NSUInteger)dayth {
-    [self.daysManager delSpot:spot fromDayth:dayth];
+    [_daysManager delSpot:spot fromDayth:dayth];
+    /**/
 }
 
 
@@ -137,12 +173,67 @@
 #pragma -- operate tripday
 - (void)addNewTripDay {
     WYTripDay *oneTripDay = [[WYTripDay alloc] init];
-    [self.daysManager addOneTripDay:oneTripDay];
+    [_daysManager addOneTripDay:oneTripDay];
 }
 
 - (void)delOneTripDay:(WYTripDay *)oneTripDay {
-    [self.daysManager delOneTripDay:oneTripDay];
-    [self.nodesManager delSpotsInArray:oneTripDay.spotsArray];
+    [_daysManager delOneTripDay:oneTripDay];
+    [_nodesManager delSpotsInArray:oneTripDay.spotsArray];
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end

@@ -10,6 +10,7 @@
 #import "WYUserNation.h"
 #import "WYSysCity.h"
 
+@class WYUserSpot;
 @interface WYUserCity : WYUserNode {
     WYSysCity *_corSysCity;
     WYUserNation * __weak _userParentNation;

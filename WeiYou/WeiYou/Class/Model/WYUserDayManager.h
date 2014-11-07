@@ -18,18 +18,6 @@
 
 @property (nonatomic, readonly) NSMutableArray *daysArray;
 
-#pragma -- KVC
-- (NSUInteger)countOfDaysArray;
-- (WYTripDay *)objectInDaysArrayAtIndex:(NSUInteger)index;
-- (NSArray *)daysArrayAtIndexes:(NSIndexSet *)indexes;
-- (void)insertObject:(WYTripDay *)tripDayObj inDaysArrayAtIndex:(NSUInteger)index;
-- (void)insertDaysArray:(NSArray *)array atIndexes:(NSIndexSet *)indexes;
-- (void)removeObjectFromDaysArrayAtIndex:(NSUInteger)index;
-- (void)removeDaysArrayAtIndexes:(NSIndexSet *)indexes;
-- (void)removeDaysArrayObject:(WYTripDay *)object;
-- (void)replaceDaysArrayAtIndexes:(NSIndexSet *)indexes withDaysArray:(NSArray *)array;
-- (void)replaceObjectInDaysArrayAtIndex:(NSUInteger)index withObject:(WYTripDay *)object;
-
 #pragma -- init
 - (id)initNewUserDayManager;
 - (id)initUserDayManagerWithInfo:(NSDictionary *)infoDic;
@@ -46,5 +34,18 @@
 - (void)delOneTripDay:(WYTripDay *)tripDay;
 
 - (void)moveOneTripDayFromDate1:(NSDate *)date1 toDate2:(NSDate *)date2;
+
+#pragma -- KVC
+- (NSUInteger)countOfDaysArray;
+- (WYTripDay *)objectInDaysArrayAtIndex:(NSUInteger)index;
+- (NSArray *)daysArrayAtIndexes:(NSIndexSet *)indexes;
+- (void)insertObject:(WYTripDay *)tripDayObj inDaysArrayAtIndex:(NSUInteger)index;
+- (void)insertDaysArray:(NSArray *)array atIndexes:(NSIndexSet *)indexes;
+- (void)removeObjectFromDaysArrayAtIndex:(NSUInteger)index;
+- (void)removeDaysArrayAtIndexes:(NSIndexSet *)indexes;
+- (void)removeDaysArrayObject:(WYTripDay *)object;
+- (void)replaceDaysArrayAtIndexes:(NSIndexSet *)indexes withDaysArray:(NSArray *)array;
+- (void)replaceObjectInDaysArrayAtIndex:(NSUInteger)index withObject:(WYTripDay *)object;
+
 
 @end
