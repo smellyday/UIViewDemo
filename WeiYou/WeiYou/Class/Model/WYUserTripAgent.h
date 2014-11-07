@@ -22,6 +22,9 @@
 #pragma -- init
 + (id)sharedUserTripAgent;
 
+#pragma -- operate
+- (void)focusOnUserTrip:(WYUserTrip *)userTrip;
+
 #pragma -- KVC
 - (NSInteger)countOfUserTrips;
 - (WYUserTrip *)objectInUserTripsAtIndex:(NSUInteger)index;
@@ -33,6 +36,7 @@
 - (void)removeUserTripsObject:(WYUserTrip *)mTrip;
 - (void)replaceObjectInUserTripsAtIndex:(NSUInteger)index withObject:(WYUserTrip *)object;
 - (void)replaceUserTripsAtIndexes:(NSIndexSet *)indexes withUserTrips:(NSArray *)array;
-
 //- (void)addUserTrips:(NSSet *)objects; // There is a bug in Apple.
+
+
 @end

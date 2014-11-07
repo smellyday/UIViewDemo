@@ -11,6 +11,7 @@
 
 @implementation WYUserTripAgent
 @synthesize userTrips = _userTrips;
+@synthesize focusingTrip = _focusingTrip;
 
 //-------------------
 
@@ -20,7 +21,7 @@
 - (id)initUserTripAgent {
     self = [super init];
     if (self) {
-//        _userTrips = [NSMutableArray arrayWithCapacity:10];
+        _userTrips = [NSMutableArray arrayWithCapacity:10];
 //        NSArray *tripInfoDics = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"trips.plist" ofType:nil]];
 //        for (NSDictionary *infoDic in tripInfoDics) {
 //            WYMTrip *mt = [[WYMTrip alloc] initWithTripInfoDic:infoDic];
@@ -39,6 +40,13 @@
     });
     
     return sharedUserTripAgent;
+}
+
+
+
+#pragma -- operate
+- (void)focusOnUserTrip:(WYUserTrip *)userTrip {
+    _focusingTrip = userTrip;
 }
 
 
