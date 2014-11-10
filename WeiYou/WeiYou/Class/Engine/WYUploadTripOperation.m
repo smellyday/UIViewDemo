@@ -14,7 +14,7 @@
 @synthesize sym = _sym;
 @synthesize trip = _trip;
 
-- (id)initWithTrip:(WYMTrip *)mtrip {
+- (id)initWithTrip:(WYUserTrip *)mtrip {
     self = [super init];
     if (self) {
         self.trip = mtrip;

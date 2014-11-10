@@ -7,15 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WYMTrip.h"
+#import "WYUserTrip.h"
 
 @interface WYUploadTripOperation : NSOperation {
-    WYMTrip *_trip;
+    WYUserTrip *_trip;
 }
 
 @property (nonatomic) int sym;
-@property (nonatomic, strong) WYMTrip *trip;
+@property (nonatomic, strong) WYUserTrip *trip;
 
-- (id)initWithTrip:(WYMTrip *)mtrip;
+- (id)initWithTrip:(WYUserTrip *)mtrip;
 
 @end

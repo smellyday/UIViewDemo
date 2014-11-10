@@ -7,7 +7,7 @@
 //
 
 #import "WYDataEngine.h"
-#import "WYMTrip.h"
+#import "WYUserTrip.h"
 #import "WYBiSyncTripsOperation.h"
 #import "consts.h"
 
@@ -27,7 +27,7 @@
 @synthesize biSyncQueue = _biSyncQueue;
 @synthesize userTripAgent = _userTripAgent;
 @synthesize creatingTrip = _creatingTrip;
-@synthesize sysDestinationAgent = _sysDestinationAgent;
+@synthesize sysNodeManager = _sysNodeManager;
 
 
 + (id)sharedDataEngine {
@@ -40,6 +40,14 @@
 	return sharedEngine;
 }
 
+
+
+/*
+ 
+ 
+ 
+ 
+ 
 //==========Lazy init property=============
 - (WYSysDestinations *)sysDestinationAgent {
 	if (!_sysDestinationAgent) {
@@ -74,11 +82,22 @@
 - (void)cancelCreatingTrip {
     _creatingTrip = nil;
 }
+ 
+ 
+ 
+ 
+ 
+*/
+
+
+
+/*
+
+
+
 
 //==========   syn   ==========
-/*
- this function should be in secondary thread.
- */
+
 - (void)bisynchronizeTrips {
     
     [self.biSyncQueue cancelAllOperations];
@@ -106,11 +125,19 @@
 
 - (void)updateToServerWithTrip:(WYMTrip *)trip {
     //    NSDictionary *tripDic = [trip transferToDic];
-    /*
-     upload tripDic to server using api.
-     */
+
+     // upload tripDic to server using api.
     
 }
+
+
+
+
+*/
+
+
+
+
 
 /*
 - (void)loadTripsFromLocal {
@@ -127,9 +154,10 @@
  */
 
 
+
 /*
- save the local version after modifying the trip.
- */
+
+// save the local version after modifying the trip.
 - (void)saveTripsToLocal {
     mlog(@"save begin at %@", [[NSDate date] description]);
     NSArray *dataArr = [self objectsToArray];
@@ -192,15 +220,20 @@
     NSString *filePath = [NSString stringWithFormat:@"%@/%@.plist", docPath, @"tripData"];
     return filePath;
 }
+ 
+ 
+ 
+ 
+ */
 
 
 /*
  objects change to array, then can save to file.
  */
-- (NSArray *)objectsToArray {
-    
-    return nil;
-}
+//- (NSArray *)objectsToArray {
+//    
+//    return nil;
+//}
 
 
 
