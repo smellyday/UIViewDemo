@@ -10,10 +10,10 @@
 #import "WYGlobalState.h"
 #import "WYDataEngine.h"
 #import "consts.h"
-#import <TencentOpenAPI/TencentOAuth.h>
-#import "WYRecommendItineraryController.h"
-#import "WYMyItineraryController.h"
-#import "WYLoginController.h"
+//#import <TencentOpenAPI/TencentOAuth.h>
+//#import "WYRecommendItineraryController.h"
+//#import "WYMyItineraryController.h"
+//#import "WYLoginController.h"
 
 @implementation WYAppDelegate
 
@@ -34,9 +34,10 @@
 //    [[WYDataEngine sharedDataEngine] performSelector:@selector(bisynchronizeTrips) withObject:nil afterDelay:0];
     
     // sina weibo
-    [WeiboSDK enableDebugMode:YES];
-    [WeiboSDK registerApp:SinaWeiboAppKey];
+//    [WeiboSDK enableDebugMode:YES];
+//    [WeiboSDK registerApp:SinaWeiboAppKey];
 
+    /*
     //init rootviewcontroller
 	UITabBarController *rootController = [[UITabBarController alloc] init];
 	[rootController.tabBar setBackgroundColor:[UIColor whiteColor]];
@@ -58,6 +59,11 @@
 	
 	rootController.viewControllers = [NSArray arrayWithObjects:ricnav, micnav, nil];
 	rootController.selectedIndex = 0;
+    
+     */
+    
+    UIViewController *rootController = [[UIViewController alloc] init];
+    rootController.view.backgroundColor = [UIColor blueColor];
 	
 	UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:rootController];
 	rootNav.navigationBar.hidden = YES;
@@ -98,17 +104,18 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    if ([[url description] hasPrefix:PREFIX_QQ]) {
-        return [TencentOAuth HandleOpenURL:url];
-    } else if ([[url description] hasPrefix:PREFIX_SINA]) {
-        return [WeiboSDK handleOpenURL:url delegate:self];
-    }
+//    if ([[url description] hasPrefix:PREFIX_QQ]) {
+//        return [TencentOAuth HandleOpenURL:url];
+//    } else if ([[url description] hasPrefix:PREFIX_SINA]) {
+//        return [WeiboSDK handleOpenURL:url delegate:self];
+//    }
     
     return NO;
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [TencentOAuth HandleOpenURL:url];
+//    return [TencentOAuth HandleOpenURL:url];
+    return NO;
 }
 
 #pragma mark - sina weibo delegate.
@@ -117,15 +124,15 @@
 }
 
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response {
-    if ([response isKindOfClass:WBAuthorizeResponse.class]) {
-        NSString *userid = [(WBAuthorizeResponse *)response userID];
-        NSString *token = [(WBAuthorizeResponse *)response accessToken];
-        if (token != nil && userid != nil) {
-            [[[WYGlobalState sharedGlobalState] sinaUserInfo] setAuthToken:token];
-            [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserID:userid];
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_SINA_AUTH_OK object:nil userInfo:nil];
-        }
-    }
+//    if ([response isKindOfClass:WBAuthorizeResponse.class]) {
+//        NSString *userid = [(WBAuthorizeResponse *)response userID];
+//        NSString *token = [(WBAuthorizeResponse *)response accessToken];
+//        if (token != nil && userid != nil) {
+//            [[[WYGlobalState sharedGlobalState] sinaUserInfo] setAuthToken:token];
+//            [[[WYGlobalState sharedGlobalState] sinaUserInfo] setUserID:userid];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_SINA_AUTH_OK object:nil userInfo:nil];
+//        }
+//    }
 }
 
 #pragma mark - tabbar delegate
