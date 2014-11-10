@@ -87,8 +87,7 @@
 }
 
 - (void)addOneTripDay:(WYTripDay *)tripDay {
-    WYTripDay *oneTripDay = [[WYTripDay alloc] initTripDay];
-    [_daysArray addObject:tripDay];
+
 }
 
 - (void)delOneTripDay:(WYTripDay *)tripDay {

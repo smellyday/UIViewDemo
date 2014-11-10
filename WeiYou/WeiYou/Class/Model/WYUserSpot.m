@@ -27,7 +27,6 @@
     if (self) {
         _corSysSpot = sysSpot;
         _isSpotInUserNodeTree = YES;
-        _isCollectedSpot = YES;
         _countInTheTrip = 0;
         self.ownInfo = nil;
     }
@@ -40,7 +39,6 @@
     if (self) {
         _corSysSpot = sysSpot;
         _isSpotInUserNodeTree = NO;
-        _isCollectedSpot = NO;
         _countInTheTrip = -1;
     }
     
@@ -62,16 +60,6 @@
     }
     
     NSAssert(_countInTheTrip < 0, @"CountInTheTrip can not be negetive in the NodeTree");
-}
-
-- (void)collectMe {
-    NSAssert(!_isSpotInUserNodeTree, @"Collect Flag can not be set on the spot which is not in the NodeTree.");
-    _isCollectedSpot = YES;
-}
-
-- (void)uncollectMe {
-    NSAssert(!_isSpotInUserNodeTree, @"Collect Flag can not be set on the spot which is not in the NodeTree.");
-    _isCollectedSpot = NO;
 }
 
 

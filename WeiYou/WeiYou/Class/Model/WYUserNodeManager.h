@@ -22,23 +22,25 @@
 - (id)initUserNodeManagerWithInfo:(NSDictionary *)infoDic;
 
 #pragma -- operate
-- (void)addNation:(WYUserNation *)nation;
-- (void)addCity:(WYUserCity *)city;
-- (void)addSpot:(WYUserSpot *)spot;
+- (void)addContinentToNodeTree:(WYUserContinent *)continent;
+- (void)addNationToNodeTree:(WYUserNation *)nation;
+- (void)addCityToNodeTree:(WYUserCity *)city;
+- (void)addSpotToNodeTree:(WYUserSpot *)spot;
 
-- (void)delNation:(WYUserNation *)nation;
-- (void)delCity:(WYUserCity *)city;
-- (void)delSpot:(WYUserSpot *)spot;
-- (void)delSpotsInArray:(NSArray *)spotsArr;
-
+- (void)delNationFromNodeTree:(WYUserNation *)nation;
+- (void)delCityFromNodeTree:(WYUserCity *)city;
+- (void)delSpotFromNodeTree:(WYUserSpot *)spot;
+- (void)delSpotsInArrayFromNodeTree:(NSArray *)spotsArr;
 
 #pragma -- fetch info. For use in case.
-- (NSArray *)getAllUserNations;
-- (NSArray *)getAllUserCities;
-- (NSArray *)getAllUserSpots;
+- (NSArray *)getAllUserContinentsInNodeTree;
+- (NSArray *)getAllUserNationsInNodeTree;
+- (NSArray *)getAllUserCitiesInNodeTree;
+- (NSArray *)getAllUserSpotsInNodeTree;
 
-- (WYUserNation *)getUserNationWithSameNationID:(NSUInteger)nationID;
-- (WYUserCity *)getUserCityWithSameCityID:(NSUInteger)cityID;
-- (WYUserSpot *)getUserSpotWithSameSpotID:(NSUInteger)spotID;
+- (WYUserNation *)getUserNationInNodeTreeWithSameNationID:(NSUInteger)nationID;
+- (WYUserCity *)getUserCityInNodeTreeWithSameCityID:(NSUInteger)cityID;
+- (WYUserSpot *)getUserSpotInNodeTreeWithSameSpotID:(NSUInteger)spotID;
+
 
 @end

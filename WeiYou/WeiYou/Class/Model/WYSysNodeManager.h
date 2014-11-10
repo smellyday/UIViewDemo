@@ -10,7 +10,6 @@
 #import "WYSysEarth.h"
 #import "WYSysContinent.h"
 #import "WYSysNation.h"
-#import "WYSysArea.h"
 #import "WYSysSpot.h"
 
 @interface WYSysNodeManager : NSObject {

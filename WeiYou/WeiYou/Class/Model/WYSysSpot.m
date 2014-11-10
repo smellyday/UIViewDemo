@@ -9,6 +9,7 @@
 #import "WYSysSpot.h"
 
 @implementation WYSysSpot
+@synthesize sysParentCity = _sysParentCity;
 
 - (id)initSpotWithInfo:(NSDictionary *)infoDic {
     

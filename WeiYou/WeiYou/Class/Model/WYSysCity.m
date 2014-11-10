@@ -9,6 +9,7 @@
 #import "WYSysCity.h"
 
 @implementation WYSysCity
+@synthesize sysParentNation = _sysParentNation;
 
 - (id)initCityWithInfo:(NSDictionary *)infoDic {
 	self = [super initNodeWithInfo:infoDic];
@@ -25,6 +26,10 @@
 
 - (NSArray *)fetchCityImages {
     return nil;
+}
+
+- (void)loadSysAllSpotsInTheCity {
+    
 }
 
 @end

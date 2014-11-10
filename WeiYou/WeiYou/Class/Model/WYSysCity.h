@@ -7,12 +7,18 @@
 //
 
 #import "WYSysNode.h"
-#import "WYSysArea.h"
+#import "WYSysNation.h"
 
-@interface WYSysCity : WYSysArea
+@interface WYSysCity : WYSysNode {
+    WYSysNation * __weak _sysParentNation;
+}
+
+@property (nonatomic, weak) WYSysNation *sysParentNation;
 
 - (id)initCityWithInfo:(NSDictionary *)infoDic;
+
 - (NSString *)fetchCityBriefDescription;
 - (NSArray *)fetchCityImages;
+- (void)loadSysAllSpotsInTheCity;
 
 @end

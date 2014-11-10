@@ -14,7 +14,6 @@
     WYSysSpot *_corSysSpot;
     WYUserCity * __weak _userParentCity;
     
-    BOOL _isCollectedSpot;
     BOOL _isSpotInUserNodeTree;
     NSInteger _countInTheTrip; // This should be -1, when the spot obj is in the TripDay's spot Array.
     
@@ -25,7 +24,6 @@
 
 @property (nonatomic, readonly) WYSysSpot *corSysSpot;
 @property (nonatomic, weak) WYUserCity *userParentCity;
-@property (nonatomic, readonly) BOOL isCollectedSpot;
 @property (nonatomic, readonly) BOOL isSpotInUserNodeTree;
 @property (nonatomic, readonly) NSInteger countInTheTrip;
 @property (nonatomic, strong) NSString *commonInfoInAllTrip;
@@ -39,7 +37,5 @@
 #pragma -- operate
 - (void)increaseCountInTheTrip;
 - (void)decreaseCountInTheTrip;
-- (void)collectMe;
-- (void)uncollectMe;
 
 @end

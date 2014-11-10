@@ -7,11 +7,13 @@
 //
 
 #import "WYSysNode.h"
-#import "WYSysArea.h"
+#import "WYSysCity.h"
 
-@interface WYSysSpot : WYSysNode
+@interface WYSysSpot : WYSysNode {
+    WYSysCity * __weak _sysParentCity;
+}
 
-@property (nonatomic, weak) WYSysArea *pSysNode;
+@property (nonatomic, weak) WYSysCity *sysParentCity;
 
 - (id)initSpotWithInfo:(NSDictionary *)infoDic;
 

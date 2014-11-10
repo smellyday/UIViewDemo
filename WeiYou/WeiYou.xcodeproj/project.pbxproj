@@ -110,7 +110,6 @@
 		69349818199A0B90006BAF8B /* ok_icon_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 693497EA199A0B90006BAF8B /* ok_icon_n@2x.png */; };
 		69349819199A0B90006BAF8B /* setting_icon_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 693497EB199A0B90006BAF8B /* setting_icon_n@2x.png */; };
 		6945D75B19CB01DA00B140AC /* WYSysSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 6945D75A19CB01DA00B140AC /* WYSysSpot.m */; };
-		6945D75E19CB029600B140AC /* WYSysArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 6945D75D19CB029600B140AC /* WYSysArea.m */; };
 		694ED396195A6ECD00917FEB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED395195A6ECD00917FEB /* CFNetwork.framework */; };
 		694ED398195A6EDD00917FEB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED397195A6EDD00917FEB /* SystemConfiguration.framework */; };
 		694ED39A195A6EEF00917FEB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED399195A6EEF00917FEB /* MobileCoreServices.framework */; };
@@ -339,8 +338,6 @@
 		693497EB199A0B90006BAF8B /* setting_icon_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "setting_icon_n@2x.png"; path = "Resources/百度云同步盘/setting_icon_n@2x.png"; sourceTree = SOURCE_ROOT; };
 		6945D75919CB01DA00B140AC /* WYSysSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSysSpot.h; sourceTree = "<group>"; };
 		6945D75A19CB01DA00B140AC /* WYSysSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSysSpot.m; sourceTree = "<group>"; };
-		6945D75C19CB029600B140AC /* WYSysArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSysArea.h; sourceTree = "<group>"; };
-		6945D75D19CB029600B140AC /* WYSysArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSysArea.m; sourceTree = "<group>"; };
 		694ED395195A6ECD00917FEB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		694ED397195A6EDD00917FEB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		694ED399195A6EEF00917FEB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -846,8 +843,6 @@
 				5E52D353199EB85E00BFB916 /* WYSysContinent.m */,
 				5E52D355199EB89E00BFB916 /* WYSysNation.h */,
 				5E52D356199EB89E00BFB916 /* WYSysNation.m */,
-				6945D75C19CB029600B140AC /* WYSysArea.h */,
-				6945D75D19CB029600B140AC /* WYSysArea.m */,
 				5E52D358199EB8B500BFB916 /* WYSysCity.h */,
 				5E52D359199EB8B500BFB916 /* WYSysCity.m */,
 				6945D75919CB01DA00B140AC /* WYSysSpot.h */,
@@ -1262,7 +1257,6 @@
 				696FB81619A6F29700A86E2B /* WYTripCell.m in Sources */,
 				693432CD197F836700C1D2A5 /* WYBiSyncTripsOperation.m in Sources */,
 				5E489B451986BE7600059066 /* WYResetPasswordController2.m in Sources */,
-				6945D75E19CB029600B140AC /* WYSysArea.m in Sources */,
 				5E52D35A199EB8B500BFB916 /* WYSysCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,7 @@
 @interface WYUserNation : WYUserNode {
     WYSysNation *_corSysNation;
     WYUserContinent * __weak _userParentContinent;
+    
     NSMutableArray *_userCitiesArray;
 }
 

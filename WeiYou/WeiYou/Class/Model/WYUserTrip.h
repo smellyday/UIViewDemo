@@ -46,15 +46,14 @@
 - (id)initUserTripWithInfo:(NSDictionary *)tripInfoDic;
 
 #pragma -- operate
-- (void)collectNation:(WYUserNation *)nation;
-- (void)collectCity:(WYUserCity *)city;
-- (void)collectSpot:(WYUserSpot *)spot;
+- (void)collectNation:(WYSysNation *)nation;
+- (void)collectCity:(WYSysCity *)city;
+- (void)collectSpot:(WYSysSpot *)spot;
 - (void)addSpot:(WYUserSpot *)spot toDayth:(NSUInteger)dayth;
 
 - (void)uncollectNation:(WYUserNation *)nation;
 - (void)uncollectCity:(WYUserCity *)city;
 - (void)uncollectSpot:(WYUserSpot *)spot;
-- (void)delSpotFromNodeTree:(WYUserSpot *)spot;
 - (void)delSpot:(WYUserSpot *)spot fromSomeDay:(WYTripDay *)oneTripDay;
 - (void)delSpot:(WYUserSpot *)spot fromDayth:(NSUInteger)dayth;
 

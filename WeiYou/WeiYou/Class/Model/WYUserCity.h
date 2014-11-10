@@ -14,12 +14,13 @@
 @interface WYUserCity : WYUserNode {
     WYSysCity *_corSysCity;
     WYUserNation * __weak _userParentNation;
-    NSMutableArray *_spotsArray;
+    
+    NSMutableArray *_userSpotsArray;
 }
 
 @property (nonatomic, readonly) WYSysCity *corSysCity;
 @property (nonatomic, weak) WYUserNation *userParentNation;
-@property (nonatomic, strong) NSMutableArray *spotsArray;
+@property (nonatomic, strong) NSMutableArray *userSpotsArray;
 
 #pragma -- init
 - (id)initWithSysCity:(WYSysCity *)sysCity;

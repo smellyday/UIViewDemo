@@ -11,7 +11,7 @@
 @implementation WYUserCity
 @synthesize corSysCity = _corSysCity;
 @synthesize userParentNation = _userParentNation;
-@synthesize spotsArray = _spotsArray;
+@synthesize userSpotsArray = _userSpotsArray;
 
 // ---------------
 
@@ -23,7 +23,7 @@
 	if (self) {
 		_corSysCity = sysCity;
 		self.userParentNation = nil;
-        self.spotsArray = [NSMutableArray arrayWithCapacity:10];
+        self.userSpotsArray = [NSMutableArray arrayWithCapacity:10];
 	}
 	
 	return self;
