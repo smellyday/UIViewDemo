@@ -11,6 +11,7 @@
 #import "consts_utility.h"
 #import "consts_network.h"
 #import "consts_language.h"
+#import "consts_notification.h"
 #import "WYNavigationController.h"
 
 #ifndef WeiYou_consts_h

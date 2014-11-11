@@ -46,6 +46,11 @@
 
 
 #pragma -- operate
+- (void)addNewUserTrip:(WYUserTrip *)userTrip {
+    NSUInteger index = [_userTrips count];
+    [_userTrips insertObject:userTrip atIndex:index];
+}
+
 - (void)focusOnUserTrip:(WYUserTrip *)userTrip {
     _focusingTrip = userTrip;
 }

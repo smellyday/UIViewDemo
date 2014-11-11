@@ -23,6 +23,7 @@
 + (id)sharedUserTripAgent;
 
 #pragma -- operate
+- (void)addNewUserTrip:(WYUserTrip *)userTrip;
 - (void)focusOnUserTrip:(WYUserTrip *)userTrip;
 
 #pragma -- KVC

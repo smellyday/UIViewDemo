@@ -7,13 +7,18 @@
 //
 
 #import "WYAppDelegate.h"
-#import "WYGlobalState.h"
-#import "WYDataEngine.h"
 #import "consts.h"
+#import "WYItinerariesController.h"
+//#import "WYGlobalState.h"
+//#import "WYDataEngine.h"
 //#import <TencentOpenAPI/TencentOAuth.h>
 //#import "WYRecommendItineraryController.h"
 //#import "WYMyItineraryController.h"
 //#import "WYLoginController.h"
+
+
+
+
 
 @implementation WYAppDelegate
 
@@ -62,11 +67,11 @@
     
      */
     
-    UIViewController *rootController = [[UIViewController alloc] init];
-    rootController.view.backgroundColor = [UIColor blueColor];
+    WYItinerariesController *rootController = [[WYItinerariesController alloc] init];
 	
-	UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:rootController];
-	rootNav.navigationBar.hidden = YES;
+    UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:rootController];
+    [rootNav.navigationBar setBackgroundImage:[UIImage imageNamed:PIC_NAV_BAR_BG] forBarMetrics:UIBarMetricsDefault];
+	rootNav.navigationBar.hidden = NO;
 	[self.window setRootViewController:rootNav];
 	
     self.window.backgroundColor = [UIColor whiteColor];

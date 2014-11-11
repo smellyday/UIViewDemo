@@ -95,6 +95,8 @@
 		69349817199A0B90006BAF8B /* back_icon_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 693497E9199A0B90006BAF8B /* back_icon_n@2x.png */; };
 		69349818199A0B90006BAF8B /* ok_icon_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 693497EA199A0B90006BAF8B /* ok_icon_n@2x.png */; };
 		69349819199A0B90006BAF8B /* setting_icon_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 693497EB199A0B90006BAF8B /* setting_icon_n@2x.png */; };
+		69451A311A11DE8E00B36834 /* WYItinerariesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69451A301A11DE8E00B36834 /* WYItinerariesController.m */; };
+		69451A341A11DF3800B36834 /* WYCreateItineraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69451A331A11DF3800B36834 /* WYCreateItineraryController.m */; };
 		6945D75B19CB01DA00B140AC /* WYSysSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 6945D75A19CB01DA00B140AC /* WYSysSpot.m */; };
 		694ED396195A6ECD00917FEB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED395195A6ECD00917FEB /* CFNetwork.framework */; };
 		694ED398195A6EDD00917FEB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED397195A6EDD00917FEB /* SystemConfiguration.framework */; };
@@ -286,6 +288,11 @@
 		693497E9199A0B90006BAF8B /* back_icon_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back_icon_n@2x.png"; path = "Resources/百度云同步盘/back_icon_n@2x.png"; sourceTree = SOURCE_ROOT; };
 		693497EA199A0B90006BAF8B /* ok_icon_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ok_icon_n@2x.png"; path = "Resources/百度云同步盘/ok_icon_n@2x.png"; sourceTree = SOURCE_ROOT; };
 		693497EB199A0B90006BAF8B /* setting_icon_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "setting_icon_n@2x.png"; path = "Resources/百度云同步盘/setting_icon_n@2x.png"; sourceTree = SOURCE_ROOT; };
+		69451A2F1A11DE8E00B36834 /* WYItinerariesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYItinerariesController.h; sourceTree = "<group>"; };
+		69451A301A11DE8E00B36834 /* WYItinerariesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYItinerariesController.m; sourceTree = "<group>"; };
+		69451A321A11DF3800B36834 /* WYCreateItineraryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCreateItineraryController.h; sourceTree = "<group>"; };
+		69451A331A11DF3800B36834 /* WYCreateItineraryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCreateItineraryController.m; sourceTree = "<group>"; };
+		69451A351A11FA3F00B36834 /* consts_notification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = consts_notification.h; sourceTree = "<group>"; };
 		6945D75919CB01DA00B140AC /* WYSysSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSysSpot.h; sourceTree = "<group>"; };
 		6945D75A19CB01DA00B140AC /* WYSysSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSysSpot.m; sourceTree = "<group>"; };
 		694ED395195A6ECD00917FEB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -557,6 +564,8 @@
 		5E5BC241183EE5E90003AC6D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				69451A2F1A11DE8E00B36834 /* WYItinerariesController.h */,
+				69451A301A11DE8E00B36834 /* WYItinerariesController.m */,
 				69D0B3421887B4E400E0AB7C /* Map */,
 				5EBCF72F185E94A70057C1AE /* Trip */,
 				5EFE0EDC184F04EE004F8859 /* TripCreateAndEdit */,
@@ -611,8 +620,7 @@
 		5E5BC250183EE5E90003AC6D /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				69D19AD01A0A27ED00810E2F /* NSDate+Utilities.h */,
-				69D19AD11A0A27ED00810E2F /* NSDate+Utilities.m */,
+				69451A351A11FA3F00B36834 /* consts_notification.h */,
 				5E4D773219879447005720BD /* consts_network.h */,
 				5EB6B93019801F8C00E9E695 /* consts_utility.h */,
 				5EB6B92F19800FE600E9E695 /* consts_view.h */,
@@ -626,6 +634,8 @@
 				69582DA71952BACF0072ED3E /* WYGlobalState.m */,
 				6979F7FB198119F400011428 /* WYNavigationController.h */,
 				6979F7FC198119F400011428 /* WYNavigationController.m */,
+				69D19AD01A0A27ED00810E2F /* NSDate+Utilities.h */,
+				69D19AD11A0A27ED00810E2F /* NSDate+Utilities.m */,
 				5E4D772F198786F7005720BD /* NSObject+JSON.h */,
 				5E4D7730198786F7005720BD /* NSObject+JSON.m */,
 				699BE2F21988A7AD00FE6917 /* WYURLUtility.h */,
@@ -801,6 +811,8 @@
 		5EFE0EDC184F04EE004F8859 /* TripCreateAndEdit */ = {
 			isa = PBXGroup;
 			children = (
+				69451A321A11DF3800B36834 /* WYCreateItineraryController.h */,
+				69451A331A11DF3800B36834 /* WYCreateItineraryController.m */,
 			);
 			name = TripCreateAndEdit;
 			sourceTree = "<group>";
@@ -1101,6 +1113,7 @@
 				694ED3BC195A762C00917FEB /* Reachability.m in Sources */,
 				698013D91977CF7300AFD0B4 /* WYUploadTripOperation.m in Sources */,
 				69D907D11A08BA9000CC2EE5 /* WYSysNodeManager.m in Sources */,
+				69451A311A11DE8E00B36834 /* WYItinerariesController.m in Sources */,
 				69D907E31A090AD900CC2EE5 /* WYUserTrip.m in Sources */,
 				695E1FB819A4803C0090B100 /* WYUserTripAgent.m in Sources */,
 				5E4D772C19878012005720BD /* NSString+MD5.m in Sources */,
@@ -1124,6 +1137,7 @@
 				5E52D357199EB89E00BFB916 /* WYSysNation.m in Sources */,
 				5E52D354199EB85E00BFB916 /* WYSysContinent.m in Sources */,
 				5E5BC2F6183F3DB80003AC6D /* WYDataEngine.m in Sources */,
+				69451A341A11DF3800B36834 /* WYCreateItineraryController.m in Sources */,
 				693432CD197F836700C1D2A5 /* WYBiSyncTripsOperation.m in Sources */,
 				5E52D35A199EB8B500BFB916 /* WYSysCity.m in Sources */,
 			);
