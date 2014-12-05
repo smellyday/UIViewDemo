@@ -10,6 +10,7 @@
 #import "consts.h"
 #import "WYFunctionUtility.h"
 #import "WYUserTripAgent.h"
+#import "WYFakeNavBar.h"
 
 
 @interface WYCreateItineraryController ()
@@ -174,6 +175,10 @@
     [_datePickerView selectRow:selectedYearRow inComponent:0 animated:YES];
     [_datePickerView selectRow:selectedMonthRow inComponent:1 animated:YES];
     [_datePickerView selectRow:selectedDayRow inComponent:2 animated:YES];
+    
+    // ====
+    WYFakeNavBar *fnb = [[WYFakeNavBar alloc] init];
+    [self.view addSubview:fnb];
 }
 
 
